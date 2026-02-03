@@ -27,6 +27,5 @@ export interface AgentConfig {
 
 // Bash tool configuration
 export interface BashToolConfig {
-  docsDirectory: string;
-  readOnly: boolean;
+  files: Record<string, string>; // File paths to content mapping
 }

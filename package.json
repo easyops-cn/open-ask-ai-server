@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vercel dev",
     "build": "tsc --noEmit",
-    "deploy": "vercel --prod"
+    "deploy": "vercel --prod",
+    "scan-docs": "tsx scripts/scan-docs.ts"
   },
   "dependencies": {
     "ai": "^6.0.0",
@@ -15,10 +16,11 @@
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
+    "tsx": "^4.19.0",
     "typescript": "^5.0.0",
     "vercel": "latest"
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=24.0.0"
   }
 }

@@ -1,7 +1,9 @@
 import { streamText } from 'ai';
-import { createBashTools } from '../../lib/bash-tool-setup';
 import { DEFAULT_INSTRUCTIONS } from '../../lib/agent';
 import type { SearchStreamRequest, ErrorResponse } from '../../lib/types';
+import fs, { read } from 'fs';
+import path from 'path';
+import { createBashTool } from 'bash-tool';
 
 export const config = {
   runtime: 'nodejs',
@@ -11,7 +13,7 @@ export const config = {
 export async function POST(request: Request): Promise<Response> {
   try {
     // Parse request body
-    const body: SearchStreamRequest = await request.json();
+    const body = await request.json() as SearchStreamRequest;
 
     // Validate query
     if (!body.query || typeof body.query !== 'string' || body.query.trim().length === 0) {
@@ -27,16 +29,20 @@ export async function POST(request: Request): Promise<Response> {
       });
     }
 
-    // Get docs directory from environment
-    const docsDir = process.env.DOCS_DIR;
-    if (!docsDir) {
-      throw new Error('DOCS_DIR environment variable is not set');
+    // Get docs JSON file path from environment, default to docs.json in project root
+    const docsJsonPath = process.env.DOCS_JSON_PATH || path.join(process.cwd(), 'docs.json');
+
+    if (!fs.existsSync(docsJsonPath)) {
+      throw new Error(`Docs JSON file not found: ${docsJsonPath}. Run 'npm run scan-docs' to generate it.`);
     }
 
-    // Create bash tools with OverlayFs for read-only access
-    const { tools } = await createBashTools({
-      docsDirectory: docsDir,
-      readOnly: true,
+    // Load files from JSON
+    const filesContent = fs.readFileSync(docsJsonPath, 'utf-8');
+    const files = JSON.parse(filesContent) as Record<string, string>;
+
+    // Create bash tools with files passed directly
+    const { tools } = await createBashTool({
+      files,
     });
 
     // Get instructions
@@ -49,8 +55,10 @@ export async function POST(request: Request): Promise<Response> {
       model: 'openai/gpt-4o',
       system: instructions,
       prompt: body.query,
-      tools: tools,
-      maxSteps: 20, // Prevent infinite loops
+      tools: {
+        bash: tools.bash,
+        readFile: tools.readFile,
+      },
     });
 
     // Return streaming response
