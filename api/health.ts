@@ -1,4 +1,4 @@
-import type { HealthResponse, ErrorResponse } from '../lib/types';
+import type { HealthResponse, ErrorResponse } from '../lib/types.js';
 
 export const config = {
   runtime: 'nodejs',

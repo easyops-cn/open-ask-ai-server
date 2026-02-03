@@ -8,7 +8,6 @@ export interface HealthResponse {
 
 export interface SearchStreamRequest {
   query: string;
-  instructions?: string; // Optional custom instructions
 }
 
 export interface ErrorResponse {

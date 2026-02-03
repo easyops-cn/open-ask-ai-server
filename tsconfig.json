@@ -1,19 +1,15 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "ESNext",
+    "module": "nodenext",
     "lib": ["ES2022"],
-    "moduleResolution": "bundler",
+    "moduleResolution": "nodenext",
     "esModuleInterop": true,
     "strict": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "noEmit": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/lib/*": ["./lib/*"]
-    }
+    "noEmit": true
   },
   "include": ["api/**/*.ts", "lib/**/*.ts", "scripts/**/*.ts"],
   "exclude": ["node_modules", ".vercel", "dist"]

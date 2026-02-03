@@ -1,4 +1,4 @@
-import type { ErrorResponse } from './types';
+import type { ErrorResponse } from './types.js';
 
 /**
  * Creates a standardized error response

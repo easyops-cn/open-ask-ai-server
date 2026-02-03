@@ -1,9 +1,9 @@
-import { streamText } from 'ai';
-import { DEFAULT_INSTRUCTIONS } from '../../lib/agent';
-import type { SearchStreamRequest, ErrorResponse } from '../../lib/types';
-import fs, { read } from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 import { createBashTool } from 'bash-tool';
+import { ToolLoopAgent, stepCountIs } from 'ai';
+import { DEFAULT_INSTRUCTIONS } from '../../lib/agent.js';
+import type { SearchStreamRequest, ErrorResponse } from '../../lib/types.js';
 
 export const config = {
   runtime: 'nodejs',
@@ -46,19 +46,23 @@ export async function POST(request: Request): Promise<Response> {
     });
 
     // Get instructions
-    const instructions = body.instructions ||
-                        process.env.AGENT_INSTRUCTIONS ||
+    const instructions = process.env.AGENT_INSTRUCTIONS ||
                         DEFAULT_INSTRUCTIONS;
 
-    // Stream the agent's response
-    const result = streamText({
-      model: 'openai/gpt-4o',
-      system: instructions,
-      prompt: body.query,
+    const agent = new ToolLoopAgent({
+      model: 'openai/gpt-4.1-nano',
       tools: {
         bash: tools.bash,
         readFile: tools.readFile,
       },
+      instructions,
+      stopWhen: stepCountIs(10),
+    });
+
+    // Stream the agent's response
+    const result = await agent.stream({
+      // system: instructions,
+      prompt: body.query,
     });
 
     // Return streaming response
