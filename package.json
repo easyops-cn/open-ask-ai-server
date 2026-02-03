@@ -1,0 +1,24 @@
+{
+  "name": "open-ask-ai",
+  "version": "1.0.0",
+  "description": "AI-powered document search with streaming responses",
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "tsc --noEmit",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "ai": "^6.0.0",
+    "bash-tool": "latest",
+    "just-bash": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "vercel": "latest"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
