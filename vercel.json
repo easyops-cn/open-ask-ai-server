@@ -1,9 +1,9 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "fluid": true,
   "functions": {
     "api/**/*.ts": {
-      "maxDuration": 60,
-      "runtime": "nodejs24.x"
+      "maxDuration": 60
     }
   }
 }

@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { createBashTool } from 'bash-tool';
-import { ToolLoopAgent, stepCountIs } from 'ai';
+import { ToolLoopAgent, convertToModelMessages, stepCountIs } from 'ai';
 import { DEFAULT_INSTRUCTIONS } from '../../lib/agent.js';
 import type { SearchStreamRequest, ErrorResponse } from '../../lib/types.js';
 
@@ -15,11 +15,11 @@ export async function POST(request: Request): Promise<Response> {
     // Parse request body
     const body = await request.json() as SearchStreamRequest;
 
-    // Validate query
-    if (!body.query || typeof body.query !== 'string' || body.query.trim().length === 0) {
+    // Validate request: must have messages
+    if (!body.messages) {
       const errorResponse: ErrorResponse = {
         error: 'Invalid request',
-        details: 'Query parameter is required and must be a non-empty string',
+        details: 'Messages parameter is required',
         timestamp: new Date().toISOString(),
       };
 
@@ -39,6 +39,8 @@ export async function POST(request: Request): Promise<Response> {
     // Load files from JSON
     const filesContent = fs.readFileSync(docsJsonPath, 'utf-8');
     const files = JSON.parse(filesContent) as Record<string, string>;
+
+    const messages = await convertToModelMessages(body.messages);
 
     // Create bash tools with files passed directly
     const { tools } = await createBashTool({
@@ -61,12 +63,11 @@ export async function POST(request: Request): Promise<Response> {
 
     // Stream the agent's response
     const result = await agent.stream({
-      // system: instructions,
-      prompt: body.query,
+      messages: messages,
     });
 
-    // Return streaming response
-    return result.toTextStreamResponse();
+    // Return UI message stream response
+    return result.toUIMessageStreamResponse();
 
   } catch (error) {
     console.error('Search stream error:', error);

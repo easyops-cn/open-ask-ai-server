@@ -1,5 +1,7 @@
 // Request/Response types for API endpoints
 
+import type { UIMessage } from "ai";
+
 export interface HealthResponse {
   status: 'ok' | 'error';
   timestamp: string;
@@ -7,7 +9,7 @@ export interface HealthResponse {
 }
 
 export interface SearchStreamRequest {
-  query: string;
+  messages?: UIMessage[]; // For conversation history
 }
 
 export interface ErrorResponse {

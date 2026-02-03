@@ -4,9 +4,6 @@
   "description": "AI-powered document search with streaming responses",
   "type": "module",
   "scripts": {
-    "dev": "vercel dev",
-    "build": "tsc --noEmit",
-    "deploy": "vercel --prod",
     "scan-docs": "tsx scripts/scan-docs.ts"
   },
   "dependencies": {
@@ -15,12 +12,11 @@
     "just-bash": "latest"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0",
+    "@types/node": "^22.0.0",
     "tsx": "^4.19.0",
-    "typescript": "^5.0.0",
-    "vercel": "latest"
+    "typescript": "^5.0.0"
   },
   "engines": {
-    "node": ">=24.0.0"
+    "node": "24.x"
   }
 }
