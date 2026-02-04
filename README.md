@@ -1,41 +1,118 @@
-# Open Ask AI
+# Open Ask AI Server
 
-AI-powered documentation search with streaming responses using Vercel Functions, AI SDK v6, and bash-tool.
+AI-powered multi-project documentation search with streaming responses using Vercel Functions, AI SDK v6 ToolLoopAgent, and bash-tool.
 
 ## Features
 
-- Streaming AI responses for real-time interaction
-- Read-only bash access to markdown documentation
-- Multi-step agent reasoning with bash commands
-- Production-ready with Vercel Functions and Fluid compute
-- GPT-4o via Vercel AI Gateway
+- **Multi-project support**: Serve multiple documentation projects from a single deployment
+- **Conversation-based API**: Full conversation history support with UIMessage format
+- **Streaming AI responses**: Real-time interaction with ToolLoopAgent
+- **Pre-generated documentation**: Fast in-memory file access from pre-scanned JSON
+- **Read-only bash access**: Secure bash commands for searching markdown documentation
+- **Production-ready**: Vercel Functions with Fluid compute for cost-efficient scaling
+
+## Architecture
+
+### Core Components
+
+- **API Endpoint**: `/api/stream` - POST endpoint with streaming UIMessage responses
+- **Agent**: AI SDK v6 ToolLoopAgent with bash and readFile tools
+- **Documentation Scanner**: Pre-scans project docs into JSON files for fast access
+- **Project System**: Multi-project configuration via `projects.json`
+- **Model**: OpenAI GPT-OSS-120B with low reasoning effort for fast responses
+- **Deployment**: Vercel Functions with Fluid compute (60s max duration)
+
+### How It Works
+
+1. **Pre-generation**: Run `npm run scan-docs` to scan all projects in `projects/` directory
+2. **Generated Files**: Creates JSON files in `generated/` with all markdown content
+3. **Runtime**: API loads project JSON into memory and creates bash-tool with files
+4. **Agent Execution**: ToolLoopAgent uses bash commands to search pre-loaded files
+5. **Streaming**: Returns UIMessage stream compatible with AI SDK UI components
+
+```
+Client Request → Vercel Function → AI SDK v6 (streamText)
+                                         ↓
+                                   ToolLoopAgent
+                                         ↓
+                                   bash-tool (OverlayFs)
+                                         ↓
+                              Pre-loaded Files (in-memory)
+                                         ↓
+                             Streaming Response → Client
+```
 
 ## Prerequisites
 
 - Node.js 20+
-- Vercel account with AI Gateway API key
+- OpenAI API key
 - Markdown documentation files
 
 ## Setup
 
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
+### 1. Install Dependencies
 
-2. Configure environment variables in `.env.local`:
-   ```bash
-   VERCEL_AI_GATEWAY_API_KEY=your_api_key_here
-   DOCS_DIR=/Users/wangshenwei/github/open-ask-ai/docs
-   AGENT_INSTRUCTIONS="You are a helpful documentation assistant."
-   ```
+```bash
+npm install
+```
 
-3. Add documentation files to `docs/` directory
+### 2. Configure Projects
 
-4. Run locally:
-   ```bash
-   npm run dev
-   ```
+Edit `projects.json` to define your documentation projects:
+
+```json
+{
+  "my-project": {
+    "name": "My Project",
+    "instructions": "You are a helpful assistant for My Project documentation."
+  }
+}
+```
+
+### 3. Add Documentation
+
+Create a directory for each project in `projects/`:
+
+```
+projects/
+├── my-project/
+│   ├── getting-started.md
+│   ├── api-reference.md
+│   └── guides/
+│       └── authentication.md
+```
+
+### 4. Generate Documentation Files
+
+Scan all projects and generate JSON files:
+
+```bash
+npm run scan-docs
+```
+
+This creates files in `generated/`:
+
+```
+generated/
+└── my-project.json
+```
+
+### 5. Initialize Vercel Project
+
+```bash
+npm install -g vercel
+vercel login
+vercel
+```
+
+### 5. Run Locally
+
+```bash
+npm install -g vercel
+vercel dev
+```
+
+Visit `http://localhost:3000/api/health` to verify the server is running.
 
 ## API Endpoints
 
@@ -47,24 +124,39 @@ Health check endpoint.
 ```json
 {
   "status": "ok",
-  "timestamp": "2026-02-03T12:00:00.000Z",
+  "timestamp": "2026-02-04T12:00:00.000Z",
   "version": "1.0.0"
 }
 ```
 
 ### POST /api/stream
 
-Streaming search endpoint.
+Streaming conversation endpoint with multi-project support.
 
 **Request**:
 ```json
 {
-  "query": "How do I configure authentication?",
-  "instructions": "Optional custom instructions"
+  "messages": [
+    {
+      "id": "msg-1",
+      "role": "user",
+      "parts": [
+        {
+          "type": "text",
+          "text": "How do I configure authentication?"
+        }
+      ]
+    }
+  ],
+  "project": "my-project"
 }
 ```
 
-**Response**: Server-Sent Events stream with AI response
+**Parameters**:
+- `messages` (optional): Array of UIMessage objects for conversation history
+- `project` (optional): Project ID to use (defaults to first project in projects.json)
+
+**Response**: Server-Sent Events stream with UIMessage format
 
 ## Usage Examples
 
@@ -74,24 +166,128 @@ Streaming search endpoint.
 curl http://localhost:3000/api/health
 ```
 
-### Search Documentation
-
-```bash
-curl -X POST http://localhost:3000/api/stream \
-  -H "Content-Type: application/json" \
-  -d '{"query": "What topics are covered in the documentation?"}'
-```
-
-### Custom Instructions
+### Simple Query
 
 ```bash
 curl -X POST http://localhost:3000/api/stream \
   -H "Content-Type: application/json" \
   -d '{
-    "query": "Find API endpoints",
-    "instructions": "Focus on REST API documentation"
+    "messages": [
+      {
+        "id": "msg-1",
+        "role": "user",
+        "parts": [
+          {
+            "type": "text",
+            "text": "What topics are covered in the documentation?"
+          }
+        ]
+      }
+    ],
+    "project": "my-project"
   }'
 ```
+
+### Query Specific Project
+
+```bash
+curl -X POST http://localhost:3000/api/stream \
+  -H "Content-Type: application/json" \
+  -d '{
+    "messages": [
+      {
+        "id": "msg-1",
+        "role": "user",
+        "parts": [
+          {
+            "type": "text",
+            "text": "Find API endpoints"
+          }
+        ]
+      }
+    ],
+    "project": "my-project"
+  }'
+```
+
+### Conversation with History
+
+```bash
+curl -X POST http://localhost:3000/api/stream \
+  -H "Content-Type: application/json" \
+  -d '{
+    "messages": [
+      {
+        "id": "msg-1",
+        "role": "user",
+        "parts": [
+          {
+            "type": "text",
+            "text": "What is authentication?"
+          }
+        ]
+      },
+      {
+        "id": "msg-2",
+        "role": "assistant",
+        "parts": [
+          {
+            "type": "text",
+            "text": "Authentication is..."
+          }
+        ]
+      },
+      {
+        "id": "msg-3",
+        "role": "user",
+        "parts": [
+          {
+            "type": "text",
+            "text": "How do I implement it?"
+          }
+        ]
+      }
+    ],
+    "project": "my-project"
+  }'
+```
+
+## Project Structure
+
+```
+open-ask-ai-server/
+├── api/
+│   ├── health.ts                    # GET /api/health
+│   └── stream.ts                    # POST /api/stream
+├── lib/
+│   ├── types.ts                     # TypeScript interfaces
+│   ├── utils.ts                     # Error handling utilities
+│   ├── bash-tool-setup.ts          # OverlayFs + createBashTool config
+│   └── agent.ts                     # Agent configuration
+├── scripts/
+│   └── scan-docs.ts                 # Documentation scanner
+├── projects/
+│   └── [project-id]/                # Project documentation directories
+│       └── *.md                     # Markdown files
+├── generated/
+│   └── [project-id].json            # Generated project files
+├── projects.json                    # Project configuration
+├── package.json                     # Dependencies
+├── tsconfig.json                    # TypeScript config
+├── vercel.json                      # Vercel deployment config
+└── README.md                        # Documentation
+```
+
+## Agent Capabilities
+
+The agent can execute bash commands to explore documentation:
+- `find` - Locate markdown files
+- `grep` - Search for keywords
+- `cat` - Read file contents
+- `head`/`tail` - Preview files
+- Pipes and command combinations
+
+All commands operate on pre-loaded in-memory files for fast access.
 
 ## Deployment
 
@@ -101,111 +297,63 @@ curl -X POST http://localhost:3000/api/stream \
 vercel --prod
 ```
 
-### Set Environment Variables
+### Pre-deployment
 
-Set environment variables in Vercel Dashboard:
-- `VERCEL_AI_GATEWAY_API_KEY` - Your AI Gateway API key
-- `DOCS_DIR` - Absolute path to documentation directory (e.g., `/var/task/docs`)
+Before deploying, ensure you've generated the documentation files:
 
-## Architecture
-
-```
-Client Request → Vercel Function → AI SDK v6 (streamText)
-                                         ↓
-                                   ToolLoopAgent
-                                         ↓
-                                   bash-tool (OverlayFs)
-                                         ↓
-                              Markdown Docs (read-only)
-                                         ↓
-                             Streaming Response → Client
+```bash
+npm run scan-docs
+git add generated/
+git commit -m "Update generated documentation"
+git push
 ```
 
-### Key Components
-
-- **Vercel Functions**: Serverless HTTP endpoints in `api/` directory
-- **AI SDK v6**: `streamText` for streaming AI responses
-- **bash-tool**: Provides bash, readFile, writeFile tools
-- **just-bash**: OverlayFs for read-only filesystem access
-- **AI Gateway**: Single endpoint for GPT-4o access
-
-## Project Structure
-
-```
-open-ask-ai/
-├── api/
-│   ├── health.ts                    # GET /api/health
-│   └── stream.ts                    # POST /api/stream
-├── lib/
-│   ├── types.ts                     # TypeScript interfaces
-│   ├── utils.ts                     # Error handling utilities
-│   ├── bash-tool-setup.ts          # OverlayFs + createBashTool config
-│   └── agent.ts                     # Agent configuration
-├── package.json                     # Dependencies
-├── tsconfig.json                    # TypeScript config
-├── vercel.json                      # Vercel deployment config
-├── .gitignore                       # Git ignore
-├── .env.local                       # Local environment variables
-└── README.md                        # Documentation
-```
-
-## How It Works
-
-1. **Client sends query**: POST request to `/api/stream`
-2. **Bash tools created**: OverlayFs provides read-only access to docs directory
-3. **Agent processes query**: AI model uses bash commands to search documentation
-4. **Results streamed**: Real-time streaming response to client
-
-### Agent Capabilities
-
-The agent can execute bash commands to explore documentation:
-- `find` - Locate markdown files
-- `grep` - Search for keywords
-- `cat` - Read file contents
-- `head`/`tail` - Preview files
-- Pipes and command combinations
-
-## Environment Variables
-
-### Required
-
-- `VERCEL_AI_GATEWAY_API_KEY` - Get from Vercel AI Gateway dashboard
-- `DOCS_DIR` - Absolute path to markdown documentation directory
-
-### Optional
-
-- `AGENT_INSTRUCTIONS` - Custom system instructions for the agent
+The `generated/` directory is committed to the repository so Vercel can access pre-scanned files at runtime.
 
 ## Development
 
 ### Type Checking
 
 ```bash
-npm run build
+npx tsc --noEmit
+```
+
+### Scan Documentation
+
+After adding or updating markdown files in `projects/`:
+
+```bash
+npm run scan-docs
 ```
 
 ### Local Development
 
 ```bash
-npm run dev
+vercel dev
 ```
-
-Visit `http://localhost:3000/api/health` to verify the server is running.
 
 ## Performance
 
+- **Pre-generated Files**: All documentation loaded into memory at startup
 - **Fluid Compute**: Enabled for cost-efficient scaling
 - **maxDuration: 60**: Functions can run up to 60 seconds
 - **OverlayFs**: Memory-based writes prevent disk I/O overhead
 - **Streaming**: Real-time responses improve perceived performance
-- **Cost-efficient**: Reduces token usage by ~4x compared to embedding entire docs
+- **Low Reasoning Effort**: Fast model responses with `reasoningEffort: "low"`
 
 ## Security
 
 - **Read-Only Access**: OverlayFs prevents writing to actual filesystem
 - **Sandboxed**: bash-tool provides isolated bash environment
-- **Input Validation**: Query parameter validated before processing
+- **Input Validation**: Messages validated before processing
 - **Environment Variables**: API keys stored securely in Vercel
+- **No File System Access**: All files pre-loaded from JSON
+
+## Environment Variables
+
+### Optional
+
+None. Project configurations are defined in `projects.json`.
 
 ## License
 

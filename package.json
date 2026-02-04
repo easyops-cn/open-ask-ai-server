@@ -1,5 +1,6 @@
 {
-  "name": "open-ask-ai",
+  "name": "open-ask-ai-server",
+  "private": true,
   "version": "1.0.0",
   "description": "AI-powered document search with streaming responses",
   "type": "module",
@@ -7,14 +8,14 @@
     "scan-docs": "tsx scripts/scan-docs.ts"
   },
   "dependencies": {
-    "ai": "^6.0.0",
-    "bash-tool": "latest",
-    "just-bash": "latest"
+    "ai": "^6.0.69",
+    "bash-tool": "^1.3.12",
+    "just-bash": "^2.8.0"
   },
   "devDependencies": {
-    "@types/node": "^22.0.0",
+    "@types/node": "^24.0.0",
     "tsx": "^4.19.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.9.3"
   },
   "engines": {
     "node": "24.x"
