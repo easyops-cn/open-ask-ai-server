@@ -1,0 +1,129 @@
+---
+description: "<ai-portal.stage-flow>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"ai-portal.stage-flow"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `ai-portal.stage-flow`
+
+## Examples
+
+### Basic
+
+```yaml preview
+brick: ai-portal.home-container
+children:
+  - brick: ai-portal.flow-tabs
+    properties:
+      tabs:
+        - id: foo
+          label: Fooooo
+        - id: bar
+          label: Baaaaar
+        - id: baz
+          label: Baaaaaz
+      activeTab: foo
+    children:
+      - brick: ai-portal.stage-flow
+        properties:
+          spec:
+            - name: Requirement
+              serviceFlowActivities:
+                - name: Requirement collects
+                  aiEmployeeId: Samuel
+                - name: Requirement documents
+                  aiEmployeeId: Samuel
+            - name: Sprint Planning
+            # - name: Development
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+ai-portal/stage-flow/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <ai-portal.home-container>
+#   <ai-portal.flow-tabs id="brick-1">
+#     <ai-portal.stage-flow id="brick-2"></ai-portal.stage-flow>
+#   </ai-portal.flow-tabs>
+# </ai-portal.home-container>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.tabs = [
+#     {
+#       id: "foo",
+#       label: "Fooooo",
+#     },
+#     {
+#       id: "bar",
+#       label: "Baaaaar",
+#     },
+#     {
+#       id: "baz",
+#       label: "Baaaaaz",
+#     },
+#   ];
+#   brick_1.activeTab = "foo";
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.spec = [
+#     {
+#       name: "Requirement",
+#       serviceFlowActivities: [
+#         {
+#           name: "Requirement collects",
+#           aiEmployeeId: "Samuel",
+#         },
+#         {
+#           name: "Requirement documents",
+#           aiEmployeeId: "Samuel",
+#         },
+#       ],
+#     },
+#     {
+#       name: "Sprint Planning",
+#     },
+#   ];
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["Stage","FlowActivity","AIEmployee","EditActivityDetail"]}>
+  <BrickDocProperties properties={[{"name":"spec","attribute":false,"type":"Stage[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"Stage"}}}},{"name":"aiEmployees","attribute":false,"type":"AIEmployee[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"AIEmployee"}}}},{"name":"readOnly","type":"boolean","annotation":{"type":"keyword","value":"boolean"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={["Stage","FlowActivity","AIEmployee","EditActivityDetail"]}>
+  <BrickDocEvents events={[{"name":"change","detail":{"type":"Stage[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"Stage"}}}}},{"name":"add.activity","detail":{"type":"{ stage: Stage }","annotation":{"type":"typeLiteral","members":[{"type":"propertySignature","key":{"type":"identifier","name":"stage"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"Stage"}},"computed":false}]}}},{"name":"edit.activity","detail":{"type":"EditActivityDetail","annotation":{"type":"reference","typeName":{"type":"identifier","name":"EditActivityDetail"}}}}]} />
+</TypeReferencesContext.Provider>
+
+## Methods
+
+<TypeReferencesContext.Provider value={["Stage","FlowActivity","AIEmployee","EditActivityDetail"]}>
+  <BrickDocMethods methods={[{"name":"addActivity","params":[{"name":"stage","type":"Stage","annotation":{"type":"reference","typeName":{"type":"identifier","name":"Stage"}}},{"name":"activity","type":"FlowActivity","annotation":{"type":"reference","typeName":{"type":"identifier","name":"FlowActivity"}}}],"returns":{}},{"name":"editActivity","params":[{"name":"stage","type":"Stage","annotation":{"type":"reference","typeName":{"type":"identifier","name":"Stage"}}},{"name":"activity","type":"FlowActivity","annotation":{"type":"reference","typeName":{"type":"identifier","name":"FlowActivity"}}},{"name":"activityIndex","type":"number","annotation":{"type":"keyword","value":"number"}}],"returns":{}},{"name":"deleteActivity","params":[{"name":"stage","type":"Stage","annotation":{"type":"reference","typeName":{"type":"identifier","name":"Stage"}}},{"name":"activityIndex","type":"number","annotation":{"type":"keyword","value":"number"}}],"returns":{}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"Stage","body":[{"type":"propertySignature","key":{"type":"identifier","name":"name"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"serviceFlowActivities"},"annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"FlowActivity"}}},"optional":true,"computed":false}]},{"type":"interface","name":"FlowActivity","body":[{"type":"propertySignature","key":{"type":"identifier","name":"name"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"description"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"aiEmployeeId"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"hilRules"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"hilUser"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false}]},{"type":"interface","name":"AIEmployee","body":[{"type":"propertySignature","key":{"type":"identifier","name":"employeeId"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"name"},"annotation":{"type":"keyword","value":"string"},"computed":false}]},{"type":"interface","name":"EditActivityDetail","body":[{"type":"propertySignature","key":{"type":"identifier","name":"stage"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"Stage"}},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"activity"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"FlowActivity"}},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"activityIndex"},"annotation":{"type":"keyword","value":"number"},"computed":false}]}]} />
+

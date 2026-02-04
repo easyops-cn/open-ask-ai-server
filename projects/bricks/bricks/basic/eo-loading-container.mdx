@@ -1,0 +1,65 @@
+---
+description: "<eo-loading-container>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-loading-container"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `eo-loading-container`
+
+## Examples
+
+### Basic
+
+```yaml preview
+brick: eo-loading-container
+properties:
+  loading: true
+children:
+  - brick: eo-button
+    properties:
+      textContent: Hello world
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-loading-container/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-loading-container loading>
+#   <eo-button>Hello world</eo-button>
+# </eo-loading-container>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["LoadingSize"]}>
+  <BrickDocProperties properties={[{"name":"loading","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"delay","description":"延迟显示加载效果的时间（防止闪烁）","type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"size","description":"","default":"\"medium\"","type":"LoadingSize","annotation":{"type":"reference","typeName":{"type":"identifier","name":"LoadingSize"}}},{"name":"textContent","type":"string","description":"文本内容","annotation":{"type":"keyword","value":"string"}}]} />
+</TypeReferencesContext.Provider>
+
+## Slots
+
+<BrickDocSlots slots={[{"name":null,"description":"内容"}]} />
+
+
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"typeAlias","name":"LoadingSize","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"small"},{"type":"jsLiteral","value":"medium"},{"type":"jsLiteral","value":"large"}]}}]} />
+

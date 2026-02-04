@@ -1,0 +1,87 @@
+---
+description: "<data-view.top-title-bar>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"data-view.top-title-bar"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `data-view.top-title-bar`
+
+## Examples
+
+### Basic
+
+```yaml preview
+- brick: data-view.top-title-bar
+  properties:
+    text: 标题
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+data-view/top-title-bar/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <data-view.top-title-bar text="标题"></data-view.top-title-bar>
+# 
+```
+
+### Smaple
+
+```yaml preview
+- brick: data-view.top-title-bar
+  properties:
+    text: 标题
+    type: sample
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+data-view/top-title-bar/smaple
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <data-view.top-title-bar text="标题" type="sample"></data-view.top-title-bar>
+# 
+```
+
+### Square
+
+```yaml preview
+- brick: data-view.top-title-bar
+  properties:
+    text: 标题
+    type: square
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+data-view/top-title-bar/square
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <data-view.top-title-bar text="标题" type="square"></data-view.top-title-bar>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["TitleBarType"]}>
+  <BrickDocProperties properties={[{"name":"text","description":"标题文本","default":"-","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"type","description":"标题类型","default":"normal","type":"TitleBarType","annotation":{"type":"reference","typeName":{"type":"identifier","name":"TitleBarType"}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"typeAlias","name":"TitleBarType","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"normal"},{"type":"jsLiteral","value":"sample"},{"type":"jsLiteral","value":"square"}]}}]} />
+

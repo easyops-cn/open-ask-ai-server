@@ -1,0 +1,166 @@
+---
+description: "<eo-counter-badge>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-counter-badge"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+通用徽标构件。
+
+## Examples
+
+### Basic
+
+```yaml preview
+- brick: eo-counter-badge
+  properties:
+    textContent: 我的通知
+    count: 15
+    overflowCount: 99
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-counter-badge/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-counter-badge count="15" overflow-count="99">我的通知</eo-counter-badge>
+# 
+```
+
+### slot
+
+```yaml preview
+- brick: eo-counter-badge
+  properties:
+    showZero: true
+    count: 100
+  children:
+    - brick: div
+      properties:
+        style:
+          font-size: 16px
+        textContent: 我的待办
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-counter-badge/slot
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-counter-badge show-zero count="100">
+#   <div style="font-size: 16px">我的待办</div>
+# </eo-counter-badge>
+# 
+```
+
+### icon
+
+```yaml preview
+- brick: eo-counter-badge
+  properties:
+    showZero: false
+    count: 99
+    dot: false
+    icon:
+      lib: antd
+      theme: outlined
+      icon: star
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-counter-badge/icon
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-counter-badge count="99" id="brick-1"></eo-counter-badge>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.icon = {
+#     lib: "antd",
+#     theme: "outlined",
+#     icon: "star",
+#   };
+# </script>
+# 
+```
+
+### dot 样式
+
+```yaml preview
+- brick: eo-counter-badge
+  properties:
+    showZero: false
+    count: 99
+    dot: true
+    textContent: 统计总数
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-counter-badge/dot 样式
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-counter-badge count="99" dot>统计总数</eo-counter-badge>
+# 
+```
+
+### 自定义徽标颜色
+
+```yaml preview
+- brick: eo-counter-badge
+  properties:
+    textContent: 已解决问题
+    color: var(--theme-green-color)
+    count: 1000000
+    overflowCount: 500
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-counter-badge/自定义徽标颜色
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-counter-badge
+#   color="var(--theme-green-color)"
+#   count="1000000"
+#   overflow-count="500"
+# >
+#   已解决问题
+# </eo-counter-badge>
+# 
+```
+
+### 单独使用（无内容）
+
+```yaml preview
+- brick: eo-counter-badge
+  properties:
+    count: 15
+    overflowCount: 99
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-counter-badge/单独使用（无内容）
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-counter-badge count="15" overflow-count="99"></eo-counter-badge>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocProperties properties={[{"name":"icon","description":"在内容中使用Icon","attribute":false,"type":"GeneralIconProps","annotation":{"type":"reference","typeName":{"type":"identifier","name":"GeneralIconProps"}}},{"name":"color","description":"徽标的背景颜色。","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"fontColor","description":"微标的字体颜色","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"count","description":"展示的数字，大于 overflowCount 时显示为 ${overflowCount}+，为 0 时隐藏","type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"overflowCount","description":"展示封顶的数字值","default":"true","type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"dot","description":"不展示数字，只有一个小圆点.","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"offset","description":"设置状态点的位置偏移，格式为 [x, y]","attribute":false,"type":"[number, number]","annotation":{"type":"tuple","elementTypes":[{"type":"keyword","value":"number"},{"type":"keyword","value":"number"}]}},{"name":"showZero","description":"当数值为 0 时，是否展示徽标","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"textContent","type":"string","description":"文本内容","annotation":{"type":"keyword","value":"string"}}]} />
+</TypeReferencesContext.Provider>
+
+## Slots
+
+<BrickDocSlots slots={[{"name":null,"description":"内容区"}]} />
+
+
+
+
+
+
+
+
+

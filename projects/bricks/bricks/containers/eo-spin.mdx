@@ -1,0 +1,140 @@
+---
+description: "<eo-spin>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-spin"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+加载中
+
+## Examples
+
+### Basic
+
+```yaml preview
+brick: eo-spin
+properties:
+  spinning: true
+  size: default
+  tip: 加载中...
+slots:
+  "":
+    type: bricks
+    bricks:
+      - brick: eo-descriptions
+        properties:
+          column: 3
+          list:
+            - label: 姓名
+              text: Tom
+            - label: 年龄
+              text: 18
+            - label: 身高
+              text: 180cm
+            - label: 爱好
+              text: 篮球
+            - label: 标签
+              useBrick:
+                - brick: eo-tag-list
+                  properties:
+                    list:
+                      - text: 阳光
+                        key: 0
+                        color: blue
+                      - text: 开朗
+                        key: 1
+                        color: red
+                      - text: 大男孩
+                        key: 2
+                        color: green
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+containers/eo-spin/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-spin spinning size="default" tip="加载中...">
+#   <eo-descriptions column="3" id="brick-1"></eo-descriptions>
+# </eo-spin>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.list = [
+#     {
+#       label: "姓名",
+#       text: "Tom",
+#     },
+#     {
+#       label: "年龄",
+#       text: 18,
+#     },
+#     {
+#       label: "身高",
+#       text: "180cm",
+#     },
+#     {
+#       label: "爱好",
+#       text: "篮球",
+#     },
+#     {
+#       label: "标签",
+#       useBrick: [
+#         {
+#           brick: "eo-tag-list",
+#           properties: {
+#             list: [
+#               {
+#                 text: "阳光",
+#                 key: 0,
+#                 color: "blue",
+#               },
+#               {
+#                 text: "开朗",
+#                 key: 1,
+#                 color: "red",
+#               },
+#               {
+#                 text: "大男孩",
+#                 key: 2,
+#                 color: "green",
+#               },
+#             ],
+#           },
+#         },
+#       ],
+#     },
+#   ];
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocProperties properties={[{"name":"size","description":"加载指示符大小","default":"\"default\"","type":"\"small\" | \"default\" | \"large\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"small"},{"type":"jsLiteral","value":"default"},{"type":"jsLiteral","value":"large"}]}},{"name":"tip","description":"自定义描述文案","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"spinning","description":"是否为加载中状态","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"textContent","type":"string","description":"文本内容","annotation":{"type":"keyword","value":"string"}}]} />
+</TypeReferencesContext.Provider>
+
+## Slots
+
+<BrickDocSlots slots={[{"name":null,"description":"容器内容"}]} />
+
+
+
+
+
+
+
+
+

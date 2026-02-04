@@ -1,0 +1,57 @@
+---
+description: "<ai-portal.mcp-tools>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"ai-portal.mcp-tools"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `ai-portal.mcp-tools`
+
+## Examples
+
+### Basic
+
+```yaml preview
+brick: ai-portal.mcp-tools
+properties:
+  textContent: Hello world
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+ai-portal/mcp-tools/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <ai-portal.mcp-tools>Hello world</ai-portal.mcp-tools>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["McpTool","McpServer"]}>
+  <BrickDocProperties properties={[{"name":"list","attribute":false,"type":"McpTool[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"McpTool"}}}},{"name":"stickyTop","type":"number","annotation":{"type":"keyword","value":"number"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"McpTool","body":[{"type":"propertySignature","key":{"type":"identifier","name":"name"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"title"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"description"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"icon"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"GeneralIconProps"}},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"server"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"McpServer"}},"computed":false}]},{"type":"interface","name":"McpServer","body":[{"type":"propertySignature","key":{"type":"identifier","name":"id"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"name"},"annotation":{"type":"keyword","value":"string"},"computed":false}]}]} />
+

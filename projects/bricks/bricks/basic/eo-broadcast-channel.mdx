@@ -1,0 +1,93 @@
+---
+description: "<eo-broadcast-channel>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-broadcast-channel"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `eo-broadcast-channel`
+
+## Examples
+
+### Basic
+
+```yaml preview
+- brick: eo-button
+  properties:
+    textContent: Clone a tab and click me
+  events:
+    click:
+      target: eo-broadcast-channel
+      method: postMessage
+      args:
+        - Hello from eo-broadcast-channel
+- brick: eo-broadcast-channel
+  properties:
+    channel: demo
+  events:
+    message:
+      useProvider: basic.show-dialog
+      args:
+        - type: info
+          content: <% EVENT.detail %>
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-broadcast-channel/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-button id="brick-1">Clone a tab and click me</eo-button>
+# <eo-broadcast-channel channel="demo" id="brick-2"></eo-broadcast-channel>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("click", (e) => {
+#     const brick = document.querySelector("eo-broadcast-channel");
+#     brick.postMessage("Hello from eo-broadcast-channel");
+#   });
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.addEventListener("message", (e) => {
+#     const provider = document.createElement("basic.show-dialog");
+#     provider.resolve({ type: "info", content: "<% EVENT.detail %>" });
+#   });
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocProperties properties={[{"name":"channel","description":"广播频道名称，详见 [BroadcastChannel](https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API)。","required":true,"type":"string","annotation":{"type":"keyword","value":"string"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocEvents events={[{"name":"message","description":"广播频道消息事件","detail":{"type":"unknown","annotation":{"type":"keyword","value":"unknown"}}}]} />
+</TypeReferencesContext.Provider>
+
+## Methods
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocMethods methods={[{"name":"postMessage","params":[{"name":"data","type":"unknown","annotation":{"type":"keyword","value":"unknown"}}],"description":"发送一条消息","returns":{}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+

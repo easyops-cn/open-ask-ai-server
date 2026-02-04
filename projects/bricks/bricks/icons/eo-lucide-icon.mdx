@@ -1,0 +1,77 @@
+---
+description: "<eo-lucide-icon>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-lucide-icon"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+[View all Lucide icons.](https://lucide.dev/icons/)
+
+```yaml preview
+- brick: div
+  properties:
+    style:
+      display: flex
+      gap: 1em
+      fontSize: 32px
+  children:
+    - brick: eo-icon
+      properties:
+        lib: lucide
+        icon: activity
+    - brick: eo-icon
+      properties:
+        lib: lucide
+        icon: languages
+    - brick: eo-icon
+      properties:
+        lib: lucide
+        icon: ambulance
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+icons/eo-lucide-icon
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <div style="display: flex; gap: 1em; font-size: 32px">
+#   <eo-icon lib="lucide" icon="activity"></eo-icon>
+#   <eo-icon lib="lucide" icon="languages"></eo-icon>
+#   <eo-icon lib="lucide" icon="ambulance"></eo-icon>
+# </div>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["GradientDirection"]}>
+  <BrickDocProperties properties={[{"name":"icon","description":"图标名","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"strokeWidth","description":"描线粗线，限制在区间 `[0.5, 3]`","default":"2","type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"fill","description":"是否填充（注意：仅部分图片有效）","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"startColor","description":"渐变色起始颜色","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"endColor","description":"渐变色终止颜色","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"gradientDirection","description":"渐变色方向","type":"GradientDirection","annotation":{"type":"reference","typeName":{"type":"identifier","name":"GradientDirection"}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={["GradientDirection"]}>
+  <BrickDocEvents events={[{"name":"icon.found","detail":{"type":"boolean","annotation":{"type":"keyword","value":"boolean"}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"typeAlias","name":"GradientDirection","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"left-to-right"},{"type":"jsLiteral","value":"top-to-bottom"}]}}]} />
+

@@ -1,0 +1,40 @@
+---
+description: "<visual-builder.workbench-action-list>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"visual-builder.workbench-action-list"}
+  alias={null}
+  insider={true}
+  deprecated={false}
+/>
+
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["SidebarMenu"]}>
+  <BrickDocProperties properties={[{"name":"appId","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"menu","attribute":false,"type":"SidebarMenu","annotation":{"type":"reference","typeName":{"type":"identifier","name":"SidebarMenu"}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"SidebarMenu","body":[{"type":"propertySignature","key":{"type":"identifier","name":"title"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"icon"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"GeneralIconProps"}},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"menuItems"},"annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"SidebarMenuItem"}}},"optional":true,"computed":false}]}]} />
+

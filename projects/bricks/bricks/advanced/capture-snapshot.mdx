@@ -1,0 +1,153 @@
+---
+description: "<advanced.capture-snapshot>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import GeneralType, { TypeReferencesContext } from "@site/src/components/GeneralType";
+import MaybeEmptyCode from "@site/src/components/MaybeEmptyCode";
+import ProviderDocParams from "@site/src/components/ProviderDocParams";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+
+<BrickTagName name="advanced.capture-snapshot" isProvider />
+
+构件 `advanced.capture-snapshot`
+
+## Examples
+
+### Basic
+
+```yaml preview
+- brick: eo-button
+  properties:
+    textContent: Save As Image
+    style:
+      margin-right: 10px
+  events:
+    click:
+      - useProvider: advanced.capture-snapshot
+        args:
+          - fileType: image
+            name: image
+        callback:
+          success:
+            - action: console.log
+          error:
+            - action: console.error
+- brick: eo-button
+  properties:
+    textContent: Save As PDF
+    style:
+      margin-right: 10px
+  events:
+    click:
+      - useProvider: advanced.capture-snapshot
+        args:
+          - fileType: pdf
+            name: pdf
+        callback:
+          success:
+            - action: console.log
+          error:
+            - action: console.error
+- brick: eo-button
+  properties:
+    textContent: Capture And Upload
+  events:
+    click:
+      - useProvider: advanced.capture-snapshot
+        args:
+          - fileType: image
+            name: upload
+            bucketName: examples
+            selector: "#uploadImage"
+        callback:
+          success:
+            - action: console.log
+          error:
+            - action: console.error
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+advanced/capture-snapshot/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-button style="margin-right: 10px" id="brick-1">Save As Image</eo-button>
+# <eo-button style="margin-right: 10px" id="brick-2">Save As PDF</eo-button>
+# <eo-button id="brick-3">Capture And Upload</eo-button>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("click", (e) => {
+#     const provider = document.createElement("advanced.capture-snapshot");
+#     const promise = Promise.resolve(
+#       provider.resolve({ fileType: "image", name: "image" })
+#     );
+#     promise.then((r) => {
+#       console.log(r);
+#     });
+#     promise.catch((r) => {
+#       console.error(r);
+#     });
+#   });
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.addEventListener("click", (e) => {
+#     const provider = document.createElement("advanced.capture-snapshot");
+#     const promise = Promise.resolve(
+#       provider.resolve({ fileType: "pdf", name: "pdf" })
+#     );
+#     promise.then((r) => {
+#       console.log(r);
+#     });
+#     promise.catch((r) => {
+#       console.error(r);
+#     });
+#   });
+# 
+#   const brick_3 = document.getElementById("brick-3");
+#   brick_3.addEventListener("click", (e) => {
+#     const provider = document.createElement("advanced.capture-snapshot");
+#     const promise = Promise.resolve(
+#       provider.resolve({
+#         fileType: "image",
+#         name: "upload",
+#         bucketName: "examples",
+#         selector: "#uploadImage",
+#       })
+#     );
+#     promise.then((r) => {
+#       console.log(r);
+#     });
+#     promise.catch((r) => {
+#       console.error(r);
+#     });
+#   });
+# </script>
+# 
+```
+
+
+## Definition
+
+
+
+### Parameters
+
+<TypeReferencesContext.Provider value={["SnapshotOptions"]}>
+  <ProviderDocParams params={[{"name":"options","description":"选项","annotation":{"type":"reference","typeName":{"type":"identifier","name":"SnapshotOptions"}}}]} />
+</TypeReferencesContext.Provider>
+
+### Returns
+
+<p>
+  <MaybeEmptyCode>
+    <TypeReferencesContext.Provider value={["SnapshotOptions"]}>
+      <GeneralType annotation={{"type":"reference","typeName":{"type":"identifier","name":"Promise"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"union","types":[{"type":"keyword","value":"void"},{"type":"keyword","value":"string"}]}]}}} />
+    </TypeReferencesContext.Provider>
+  </MaybeEmptyCode>
+</p>
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"SnapshotOptions","body":[{"type":"propertySignature","key":{"type":"identifier","name":"name"},"annotation":{"type":"keyword","value":"string"},"computed":false,"description":"文件名称"},{"type":"propertySignature","key":{"type":"identifier","name":"fileType"},"annotation":{"type":"union","types":[{"type":"jsLiteral","value":"image"},{"type":"jsLiteral","value":"pdf"}]},"computed":false,"description":"文件类型"},{"type":"propertySignature","key":{"type":"identifier","name":"selector"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false,"description":"选择器"},{"type":"propertySignature","key":{"type":"identifier","name":"bucketName"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false,"description":"对象存储桶名字, fileType只能为 `image`"},{"type":"propertySignature","key":{"type":"identifier","name":"backgroundColor"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false,"description":"画布背景颜色, 默认透明"}]}]} />
+

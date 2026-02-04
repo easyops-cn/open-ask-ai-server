@@ -1,0 +1,118 @@
+---
+description: "<ai-portal.action-buttons>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"ai-portal.action-buttons"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `ai-portal.action-buttons`
+
+## Examples
+
+### Basic
+
+```yaml preview
+brick: ai-portal.chat-box
+children:
+  - brick: ai-portal.action-buttons
+    properties:
+      items:
+        - event: think
+          text: 深度思考
+          icon:
+            - lib: antd
+              theme: outlined
+              icon: reddit
+        - event: networking
+          text: 联网搜索
+          icon:
+            lib: antd
+            theme: outlined
+            icon: global
+    events:
+      think:
+        action: console.log
+      networking:
+        action: console.log
+    slot: actions
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+ai-portal/action-buttons/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <ai-portal.chat-box>
+#   <ai-portal.action-buttons
+#     slot="actions"
+#     id="brick-1"
+#   ></ai-portal.action-buttons>
+# </ai-portal.chat-box>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.items = [
+#     {
+#       event: "think",
+#       text: "深度思考",
+#       icon: [
+#         {
+#           lib: "antd",
+#           theme: "outlined",
+#           icon: "reddit",
+#         },
+#       ],
+#     },
+#     {
+#       event: "networking",
+#       text: "联网搜索",
+#       icon: {
+#         lib: "antd",
+#         theme: "outlined",
+#         icon: "global",
+#       },
+#     },
+#   ];
+#   brick_1.addEventListener("think", (e) => {
+#     console.log(e.detail);
+#   });
+#   brick_1.addEventListener("networking", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["ActionItem"]}>
+  <BrickDocProperties properties={[{"name":"items","attribute":false,"type":"ActionItem[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"ActionItem"}}}},{"name":"activeKey","type":"string | null","annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"null"}]}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={["ActionItem"]}>
+  <BrickDocEvents events={[{"name":"change","detail":{"type":"ActionItem | null","annotation":{"type":"union","types":[{"type":"reference","typeName":{"type":"identifier","name":"ActionItem"}},{"type":"keyword","value":"null"}]}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"ActionItem","body":[{"type":"propertySignature","key":{"type":"identifier","name":"text"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"key"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"icon"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"GeneralIconProps"}},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"hidden"},"annotation":{"type":"keyword","value":"boolean"},"optional":true,"computed":false}]}]} />
+

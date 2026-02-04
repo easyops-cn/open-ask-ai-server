@@ -1,0 +1,551 @@
+---
+description: "<eo-workbench-layout>"
+deprecated: true
+---
+
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+</head>
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-workbench-layout"}
+  alias={null}
+  insider={false}
+  deprecated={"Please use eo-workbench-layout-v2 which support global styles instead"}
+/>
+
+工作台布局
+
+## Examples
+
+### Basic
+
+```yaml preview
+- brick: eo-workbench-layout
+  properties:
+    layouts:
+      - i: hello
+        x: 0
+        y: 0
+        w: 2
+        h: 1
+      - i: world
+        x: 0
+        y: 1
+        w: 2
+        h: 1
+      - i: small
+        x: 2
+        y: 0
+        w: 1
+        h: 1
+    componentList:
+      - title: 基础布局
+        useBrick:
+          brick: eo-card
+          properties:
+            fillVertical: true
+          children:
+            - brick: div
+              properties:
+                textContent: Hello
+                style:
+                  textAlign: center
+                  fontSize: 20px
+        position:
+          i: hello
+          x: 0
+          y: 0
+          w: 2
+          h: 1
+        key: hello
+      - title: world
+        useBrick:
+          brick: eo-card
+          properties:
+            fillVertical: true
+          children:
+            - brick: div
+              properties:
+                textContent: World
+                style:
+                  textAlign: center
+                  fontSize: 20px
+        position:
+          i: world
+          x: 0
+          y: 2
+          w: 2
+          h: 1
+        key: world
+      - title: small
+        useBrick:
+          brick: div
+          properties:
+            style:
+              height: 100%
+              background: "#fff"
+          children:
+            - brick: div
+              properties:
+                textContent: small
+                style:
+                  textAlign: center
+                  fontSize: 20px
+        position:
+          i: small
+          x: 2
+          y: 0
+          w: 1
+          h: 2
+        key: small
+      - title: custom
+        useBrick:
+          brick: div
+          properties:
+            style:
+              background: "#6ad26a"
+              width: 100%
+              height: 100%
+        position:
+          i: custom
+          x: 1
+          y: 3
+          w: 1
+          h: 1
+        key: custom
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+advanced/eo-workbench-layout/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-workbench-layout id="brick-1"></eo-workbench-layout>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.layouts = [
+#     {
+#       i: "hello",
+#       x: 0,
+#       y: 0,
+#       w: 2,
+#       h: 1,
+#     },
+#     {
+#       i: "world",
+#       x: 0,
+#       y: 1,
+#       w: 2,
+#       h: 1,
+#     },
+#     {
+#       i: "small",
+#       x: 2,
+#       y: 0,
+#       w: 1,
+#       h: 1,
+#     },
+#   ];
+#   brick_1.componentList = [
+#     {
+#       title: "基础布局",
+#       useBrick: {
+#         brick: "eo-card",
+#         properties: {
+#           fillVertical: true,
+#         },
+#         children: [
+#           {
+#             brick: "div",
+#             properties: {
+#               textContent: "Hello",
+#               style: {
+#                 textAlign: "center",
+#                 fontSize: "20px",
+#               },
+#             },
+#           },
+#         ],
+#       },
+#       position: {
+#         i: "hello",
+#         x: 0,
+#         y: 0,
+#         w: 2,
+#         h: 1,
+#       },
+#       key: "hello",
+#     },
+#     {
+#       title: "world",
+#       useBrick: {
+#         brick: "eo-card",
+#         properties: {
+#           fillVertical: true,
+#         },
+#         children: [
+#           {
+#             brick: "div",
+#             properties: {
+#               textContent: "World",
+#               style: {
+#                 textAlign: "center",
+#                 fontSize: "20px",
+#               },
+#             },
+#           },
+#         ],
+#       },
+#       position: {
+#         i: "world",
+#         x: 0,
+#         y: 2,
+#         w: 2,
+#         h: 1,
+#       },
+#       key: "world",
+#     },
+#     {
+#       title: "small",
+#       useBrick: {
+#         brick: "div",
+#         properties: {
+#           style: {
+#             height: "100%",
+#             background: "#fff",
+#           },
+#         },
+#         children: [
+#           {
+#             brick: "div",
+#             properties: {
+#               textContent: "small",
+#               style: {
+#                 textAlign: "center",
+#                 fontSize: "20px",
+#               },
+#             },
+#           },
+#         ],
+#       },
+#       position: {
+#         i: "small",
+#         x: 2,
+#         y: 0,
+#         w: 1,
+#         h: 2,
+#       },
+#       key: "small",
+#     },
+#     {
+#       title: "custom",
+#       useBrick: {
+#         brick: "div",
+#         properties: {
+#           style: {
+#             background: "#6ad26a",
+#             width: "100%",
+#             height: "100%",
+#           },
+#         },
+#       },
+#       position: {
+#         i: "custom",
+#         x: 1,
+#         y: 3,
+#         w: 1,
+#         h: 1,
+#       },
+#       key: "custom",
+#     },
+#   ];
+# </script>
+# 
+```
+
+### Edit & Event
+
+```yaml preview
+- brick: eo-workbench-layout
+  events:
+    save.layout:
+      - action: console.log
+  properties:
+    isEdit: true
+    layouts:
+      - i: hello
+        x: 0
+        y: 0
+        w: 2
+        h: 1
+      - i: world
+        x: 0
+        y: 1
+        w: 2
+        h: 1
+      - i: small
+        x: 2
+        y: 0
+        w: 1
+        h: 1
+    componentList:
+      - title: 基础布局
+        useBrick:
+          brick: eo-card
+          properties:
+            fillVertical: true
+          children:
+            - brick: div
+              properties:
+                textContent: Hello
+                style:
+                  textAlign: center
+                  fontSize: 20px
+        position:
+          i: hello
+          x: 0
+          y: 0
+          w: 2
+          h: 1
+        key: hello
+      - title: world
+        useBrick:
+          brick: eo-card
+          properties:
+            fillVertical: true
+          children:
+            - brick: div
+              properties:
+                textContent: World
+                style:
+                  textAlign: center
+                  fontSize: 20px
+        position:
+          i: world
+          x: 0
+          y: 2
+          w: 2
+          h: 1
+        key: world
+      - title: small
+        useBrick:
+          brick: div
+          properties:
+            style:
+              height: 100%
+              background: "#fff"
+          children:
+            - brick: div
+              properties:
+                textContent: small
+                style:
+                  textAlign: center
+                  fontSize: 20px
+        position:
+          i: small
+          x: 2
+          y: 0
+          w: 1
+          h: 2
+        key: small
+      - title: custom
+        useBrick:
+          brick: div
+          properties:
+            style:
+              background: "#6ad26a"
+              width: 100%
+              height: 100%
+        position:
+          i: custom
+          x: 1
+          y: 3
+          w: 1
+          h: 1
+        key: custom
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+advanced/eo-workbench-layout/edit & event
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-workbench-layout is-edit id="brick-1"></eo-workbench-layout>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.layouts = [
+#     {
+#       i: "hello",
+#       x: 0,
+#       y: 0,
+#       w: 2,
+#       h: 1,
+#     },
+#     {
+#       i: "world",
+#       x: 0,
+#       y: 1,
+#       w: 2,
+#       h: 1,
+#     },
+#     {
+#       i: "small",
+#       x: 2,
+#       y: 0,
+#       w: 1,
+#       h: 1,
+#     },
+#   ];
+#   brick_1.componentList = [
+#     {
+#       title: "基础布局",
+#       useBrick: {
+#         brick: "eo-card",
+#         properties: {
+#           fillVertical: true,
+#         },
+#         children: [
+#           {
+#             brick: "div",
+#             properties: {
+#               textContent: "Hello",
+#               style: {
+#                 textAlign: "center",
+#                 fontSize: "20px",
+#               },
+#             },
+#           },
+#         ],
+#       },
+#       position: {
+#         i: "hello",
+#         x: 0,
+#         y: 0,
+#         w: 2,
+#         h: 1,
+#       },
+#       key: "hello",
+#     },
+#     {
+#       title: "world",
+#       useBrick: {
+#         brick: "eo-card",
+#         properties: {
+#           fillVertical: true,
+#         },
+#         children: [
+#           {
+#             brick: "div",
+#             properties: {
+#               textContent: "World",
+#               style: {
+#                 textAlign: "center",
+#                 fontSize: "20px",
+#               },
+#             },
+#           },
+#         ],
+#       },
+#       position: {
+#         i: "world",
+#         x: 0,
+#         y: 2,
+#         w: 2,
+#         h: 1,
+#       },
+#       key: "world",
+#     },
+#     {
+#       title: "small",
+#       useBrick: {
+#         brick: "div",
+#         properties: {
+#           style: {
+#             height: "100%",
+#             background: "#fff",
+#           },
+#         },
+#         children: [
+#           {
+#             brick: "div",
+#             properties: {
+#               textContent: "small",
+#               style: {
+#                 textAlign: "center",
+#                 fontSize: "20px",
+#               },
+#             },
+#           },
+#         ],
+#       },
+#       position: {
+#         i: "small",
+#         x: 2,
+#         y: 0,
+#         w: 1,
+#         h: 2,
+#       },
+#       key: "small",
+#     },
+#     {
+#       title: "custom",
+#       useBrick: {
+#         brick: "div",
+#         properties: {
+#           style: {
+#             background: "#6ad26a",
+#             width: "100%",
+#             height: "100%",
+#           },
+#         },
+#       },
+#       position: {
+#         i: "custom",
+#         x: 1,
+#         y: 3,
+#         w: 1,
+#         h: 1,
+#       },
+#       key: "custom",
+#     },
+#   ];
+#   brick_1.addEventListener("save.layout", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["Item"]}>
+  <BrickDocProperties properties={[{"name":"cardTitle","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"isEdit","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"layouts","attribute":false,"type":"Layout[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"Layout"}}}},{"name":"componentList","attribute":false,"type":"Item[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"Item"}}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={["Item"]}>
+  <BrickDocEvents events={[{"name":"change","detail":{"type":"Layout[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"Layout"}}}}},{"name":"save","detail":{"type":"Layout[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"Layout"}}}}},{"name":"cancel","detail":{"type":"void","annotation":{"type":"keyword","value":"void"}}},{"name":"action.click","description":"操作点击事件","detail":{"description":"{\naction: SimpleAction;\nlayouts: Layout[];\n}","type":"{\n    action: SimpleAction;\n    layouts: Layout[];\n  }","annotation":{"type":"typeLiteral","members":[{"type":"propertySignature","key":{"type":"identifier","name":"action"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"SimpleAction"}},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"layouts"},"annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"Layout"}}},"computed":false}]}}}]} />
+</TypeReferencesContext.Provider>
+
+## Methods
+
+<TypeReferencesContext.Provider value={["Item"]}>
+  <BrickDocMethods methods={[{"name":"setLayouts","params":[{"name":"layouts","type":"Layout[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"Layout"}}}}],"returns":{}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"Item","body":[{"type":"propertySignature","key":{"type":"identifier","name":"position"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"Layout"}},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"key"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"title"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"style"},"annotation":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"useBrick"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"UseSingleBrickConf"}},"computed":false}]}]} />
+

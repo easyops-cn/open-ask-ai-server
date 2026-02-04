@@ -7,7 +7,7 @@ import path from 'node:path';
  */
 
 // Extensions to scan
-const extensions = ['.md', '.mdx'];
+const extensions = ['.md', '.mdx', '.json'];
 
 interface ProjectConfig {
   name: string;
@@ -39,8 +39,7 @@ function scanDirectory(dir: string, baseDir: string = dir): Record<string, strin
     } else if (entry.isFile()) {
       const ext = path.extname(entry.name);
       if (extensions.includes(ext)) {
-        // Replace mdx extension with md for 'find' tool
-        const relativePath = path.relative(baseDir, fullPath).replace(/\.mdx$/, ".md");
+        const relativePath = path.relative(baseDir, fullPath);
         const content = fs.readFileSync(fullPath, 'utf-8');
         files[relativePath] = content;
       }
@@ -53,8 +52,8 @@ function scanDirectory(dir: string, baseDir: string = dir): Record<string, strin
 // Main execution
 try {
   const projectsDir = path.join(process.cwd(), 'projects');
-  const projectsJsonPath = path.join(projectsDir, 'projects.json');
-  const generatedDir = path.join(projectsDir, 'generated');
+  const projectsJsonPath = path.join(process.cwd(), 'projects.json');
+  const generatedDir = path.join(process.cwd(), 'generated');
 
   console.log(`Reading projects configuration from: ${projectsJsonPath}`);
 

@@ -1,0 +1,73 @@
+---
+description: "<eo-code-display>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-code-display"}
+  alias={["presentational.code-display"]}
+  insider={false}
+  deprecated={false}
+/>
+
+代码展示
+
+## Examples
+
+### Basic
+
+```yaml preview
+- brick: eo-code-display
+  properties:
+    language: javascript
+    value: |
+      function onSubmit (e) {
+        const fn = () => 123;
+        const job = {
+          title: 'Developer',
+          company: 'Facebook'
+        };
+      }
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-code-display/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-code-display
+#   language="javascript"
+#   value="function onSubmit (e) {
+#   const fn = () =&gt; 123;
+#   const job = {
+#     title: 'Developer',
+#     company: 'Facebook'
+#   };
+# }
+# "
+# ></eo-code-display>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocProperties properties={[{"name":"value","description":"代码内容","default":"\"\"","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"language","description":"语言，具体查阅 [Supported languages](https://prismjs.com/#supported-languages)","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"hideLineNumber","description":"是否隐藏行号","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"maxLines","description":"最大行数","type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"minLines","description":"最小行数","type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"showCopyButton","description":"是否显示复制按钮","default":"true","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"showExportButton","description":"是否显示导出按钮","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"exportFileName","description":"导出的文件名","default":"download.txt","type":"string","annotation":{"type":"keyword","value":"string"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+
+

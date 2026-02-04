@@ -1,0 +1,42 @@
+---
+description: "<eo-form-item>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-form-item"}
+  alias={["form.general-form-item"]}
+  insider={true}
+  deprecated={false}
+/>
+
+通用输入框构件
+
+## Properties
+
+<TypeReferencesContext.Provider value={["Layout","ComponentSize"]}>
+  <BrickDocProperties properties={[{"name":"formElement","attribute":false,"type":"Form","annotation":{"type":"reference","typeName":{"type":"identifier","name":"Form"}}},{"name":"curElement","attribute":false,"type":"HTMLElement","annotation":{"type":"reference","typeName":{"type":"identifier","name":"HTMLElement"}}},{"name":"name","description":"字段名称","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"label","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"pattern","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"message","attribute":false,"type":"Record<string, string>","annotation":{"type":"reference","typeName":{"type":"identifier","name":"Record"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"keyword","value":"string"},{"type":"keyword","value":"string"}]}}},{"name":"type","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"max","type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"min","type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"required","description":"表单项是否为必填","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"value","description":"初始值","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"valuePropsName","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"layout","type":"Layout","annotation":{"type":"reference","typeName":{"type":"identifier","name":"Layout"}}},{"name":"size","type":"ComponentSize","annotation":{"type":"reference","typeName":{"type":"identifier","name":"ComponentSize"}}},{"name":"trim","description":"是否自动去除前后的空白字符","default":"true","annotation":{"type":"keyword","value":"boolean"}},{"name":"trigger","description":"事件触发方法名","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"validator","description":"表单项校验方法","attribute":false,"type":"((value: any) => MessageBody)","annotation":{"type":"parenthesizedType","annotation":{"type":"function","parameters":[{"type":"identifier","name":"value","annotation":{"type":"keyword","value":"any"}}],"annotation":{"type":"reference","typeName":{"type":"identifier","name":"MessageBody"}}}}},{"name":"needValidate","description":"值变化时是否主动出发校验","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"textContent","type":"string","description":"文本内容","annotation":{"type":"keyword","value":"string"}}]} />
+</TypeReferencesContext.Provider>
+
+## Slots
+
+<BrickDocSlots slots={[{"name":null,"description":"表单项内容"}]} />
+
+
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"typeAlias","name":"Layout","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"horizontal"},{"type":"jsLiteral","value":"vertical"},{"type":"jsLiteral","value":"inline"}]}},{"type":"typeAlias","name":"ComponentSize","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"large"},{"type":"jsLiteral","value":"medium"},{"type":"jsLiteral","value":"small"},{"type":"jsLiteral","value":"xs"}]}}]} />
+

@@ -1,0 +1,48 @@
+---
+description: "<eo-iframe>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-iframe"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `eo-iframe`
+
+## Properties
+
+<TypeReferencesContext.Provider value={["PostMessageParameters"]}>
+  <BrickDocProperties properties={[{"name":"src","description":"","required":true,"type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"iframeStyle","description":"Default style:\n\n```css\niframe {\n  margin: 0;\n  border: 0;\n  padding: 0;\n  width: 100%;\n  height: 100%;\n  vertical-align: top;\n}\n```","attribute":false,"type":"CSSProperties","annotation":{"type":"reference","typeName":{"type":"identifier","name":"CSSProperties"}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={["PostMessageParameters"]}>
+  <BrickDocEvents events={[{"name":"load","detail":{"type":"void","annotation":{"type":"keyword","value":"void"}}}]} />
+</TypeReferencesContext.Provider>
+
+## Methods
+
+<TypeReferencesContext.Provider value={["PostMessageParameters"]}>
+  <BrickDocMethods methods={[{"name":"postMessage","params":[{"name":"param_1","type":"PostMessageParameters","annotation":{"type":"reference","typeName":{"type":"identifier","name":"PostMessageParameters"}}}],"returns":{}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"typeAlias","name":"PostMessageParameters","annotation":{"type":"union","types":[{"type":"tuple","elementTypes":[{"type":"namedTupleMember","label":"message","optional":false,"elementType":{"type":"keyword","value":"unknown"}},{"type":"namedTupleMember","label":"targetOrigin","optional":false,"elementType":{"type":"keyword","value":"string"}},{"type":"namedTupleMember","label":"transfer","optional":true,"elementType":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"Transferable"}}}}]},{"type":"tuple","elementTypes":[{"type":"namedTupleMember","label":"message","optional":false,"elementType":{"type":"keyword","value":"unknown"}},{"type":"namedTupleMember","label":"options","optional":true,"elementType":{"type":"reference","typeName":{"type":"identifier","name":"WindowPostMessageOptions"}}}]}]}}]} />
+

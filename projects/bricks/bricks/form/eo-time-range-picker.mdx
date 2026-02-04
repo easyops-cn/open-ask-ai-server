@@ -1,0 +1,318 @@
+---
+description: "<eo-time-range-picker>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-time-range-picker"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `eo-time-range-picker`
+
+## Examples
+
+### Basic
+
+```yaml preview minHeight="400px"
+- brick: eo-time-range-picker
+  properties:
+    label: hello
+    name: time
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+form/eo-time-range-picker/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-time-range-picker label="hello" name="time"></eo-time-range-picker>
+# 
+```
+
+### rangeType
+
+```yaml preview minHeight="400px"
+- brick: eo-radio
+  properties:
+    options:
+      - time
+      - date
+      - dateTime
+      - hmTime
+      - week
+      - month
+      - quarter
+      - year
+  events:
+    change:
+      - target: "#rangePicker"
+        properties:
+          rangeType: <% EVENT.detail.value %>
+- brick: eo-time-range-picker
+  properties:
+    label: hello
+    name: time
+    id: rangePicker
+    rangeType: date
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+form/eo-time-range-picker/rangetype
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-radio id="brick-1"></eo-radio>
+# <eo-time-range-picker
+#   label="hello"
+#   name="time"
+#   id="rangePicker"
+# ></eo-time-range-picker>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.options = [
+#     "time",
+#     "date",
+#     "dateTime",
+#     "hmTime",
+#     "week",
+#     "month",
+#     "quarter",
+#     "year",
+#   ];
+#   brick_1.addEventListener("change", (e) => {
+#     const brick = document.querySelector("#rangePicker");
+#     brick.rangeType = "<% EVENT.detail.value %>";
+#   });
+# 
+#   const rangePicker = document.getElementById("rangePicker");
+#   rangePicker.rangeType = "date";
+# </script>
+# 
+```
+
+### presetRanges
+
+```yaml preview minHeight="400px"
+- brick: eo-time-range-picker
+  properties:
+    label: hello
+    name: time
+    rangeType: week
+    required: true
+    presetRanges:
+      - 本周
+      - 本月
+      - 本季度
+      - 今年
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+form/eo-time-range-picker/presetranges
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-time-range-picker
+#   label="hello"
+#   name="time"
+#   required
+#   id="brick-1"
+# ></eo-time-range-picker>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.rangeType = "week";
+#   brick_1.presetRanges = ["本周", "本月", "本季度", "今年"];
+# </script>
+# 
+```
+
+### validate
+
+```yaml preview minHeight="400px"
+- brick: eo-form
+  events:
+    values.change:
+      - action: console.log
+    validate.success:
+      - action: message.success
+        args:
+          - 表单提交成功
+    validate.error:
+      - action: message.error
+        args:
+          - 表单校验失败
+  slots:
+    "":
+      bricks:
+        - brick: eo-time-range-picker
+          events:
+            change:
+              action: console.log
+          properties:
+            label: hello
+            name: time
+            required: true
+        - brick: eo-submit-buttons
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+form/eo-time-range-picker/validate
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-form id="brick-1">
+#   <eo-time-range-picker
+#     label="hello"
+#     name="time"
+#     required
+#     id="brick-2"
+#   ></eo-time-range-picker>
+#   <eo-submit-buttons></eo-submit-buttons>
+# </eo-form>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("values.change", (e) => {
+#     console.log(e.detail);
+#   });
+#   brick_1.addEventListener("validate.success", (e) => {
+#     const message = document.createElement("basic.show-notification");
+#     message.resolve({ type: "success", message: "表单提交成功" });
+#   });
+#   brick_1.addEventListener("validate.error", (e) => {
+#     const message = document.createElement("basic.show-notification");
+#     message.resolve({ type: "error", message: "表单校验失败" });
+#   });
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.addEventListener("change", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+### selectNearDays
+
+```yaml preview minHeight="400px"
+- brick: eo-time-range-picker
+  events:
+    - action: console.log
+  properties:
+    label: hello
+    name: time
+    selectNearDays: 10
+    rangeType: date
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+form/eo-time-range-picker/selectneardays
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-time-range-picker
+#   label="hello"
+#   name="time"
+#   select-near-days="10"
+#   id="brick-1"
+# ></eo-time-range-picker>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.rangeType = "date";
+#   brick_1.addEventListener("0", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+### Events
+
+```yaml preview minHeight="400px"
+- brick: eo-time-range-picker
+  events:
+    - action: console.log
+  properties:
+    label: hello
+    name: time
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+form/eo-time-range-picker/events
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-time-range-picker
+#   label="hello"
+#   name="time"
+#   id="brick-1"
+# ></eo-time-range-picker>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("0", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+### With Form
+
+```yaml preview minHeight="400px"
+- brick: eo-form
+  events:
+    validate.success:
+      - action: console.log
+    values.change:
+      - action: console.log
+  children:
+    - brick: eo-time-range-picker
+      properties:
+        label: 时间
+        name: time
+        required: true
+    - brick: eo-submit-buttons
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+form/eo-time-range-picker/with form
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-form id="brick-1">
+#   <eo-time-range-picker
+#     label="时间"
+#     name="time"
+#     required
+#   ></eo-time-range-picker>
+#   <eo-submit-buttons></eo-submit-buttons>
+# </eo-form>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("validate.success", (e) => {
+#     console.log(e.detail);
+#   });
+#   brick_1.addEventListener("values.change", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["TimeRange","RangeType","PickerType","OtherPickerType","presetRangeType"]}>
+  <BrickDocProperties properties={[{"name":"name","description":"时间段选择器字段名","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"label","description":"时间段选择器说明","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"value","description":"时间段选择器的初始值","default":"{ \"startTime\": \"00:00:00\", \"endTime\": \"23:59:59\" }","attribute":false,"type":"TimeRange","annotation":{"type":"reference","typeName":{"type":"identifier","name":"TimeRange"}}},{"name":"required","description":"是否必填","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"rangeType","description":"时间段类型","attribute":false,"type":"RangeType","annotation":{"type":"reference","typeName":{"type":"identifier","name":"RangeType"}}},{"name":"placeholder","description":"输入框提示文字,单时间段时为string，范围时间段时为[string, string]","attribute":false,"type":"string | [string, string]","annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"tuple","elementTypes":[{"type":"keyword","value":"string"},{"type":"keyword","value":"string"}]}]}},{"name":"inputStyle","description":"输入框样式","attribute":false,"type":"React.CSSProperties","annotation":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}}},{"name":"selectNearDays","description":"只有rangeType在`date` 和 `dateTime`下， 才支持只选择最近n天(当前时间向前n天)","type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"emitChangeOnInit","description":"","default":"true\n是否在初始化完成后额外触发一次`time.range.change`, 这里因为历史原因之前默认行为就是在初始化后会触发该事件，这里为了兼容之前的行为，默认值只能设置为 true。","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"presetRanges","description":"","default":"[]\n预设时间范围快捷选择；设置了属性selectNearDays时，属性presetRanges不生效；属性rangeType为week时，presetRanges的值只能为本周、本月、本季度、今年，属性rangeType为month、quarter、year时，以此类推","attribute":false,"type":"presetRangeType[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"presetRangeType"}}}},{"name":"validator","attribute":false,"type":"((value: any) => MessageBody | string)","annotation":{"type":"parenthesizedType","annotation":{"type":"function","parameters":[{"type":"identifier","name":"value","annotation":{"type":"keyword","value":"any"}}],"annotation":{"type":"union","types":[{"type":"reference","typeName":{"type":"identifier","name":"MessageBody"}},{"type":"keyword","value":"string"}]}}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={["TimeRange","RangeType","PickerType","OtherPickerType","presetRangeType"]}>
+  <BrickDocEvents events={[{"name":"change","description":"时间段变化时触发","detail":{"type":"TimeRange","annotation":{"type":"reference","typeName":{"type":"identifier","name":"TimeRange"}}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"TimeRange","body":[{"type":"propertySignature","key":{"type":"identifier","name":"startTime"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"endTime"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false}]},{"type":"typeAlias","name":"RangeType","annotation":{"type":"union","types":[{"type":"reference","typeName":{"type":"identifier","name":"PickerType"}},{"type":"reference","typeName":{"type":"identifier","name":"OtherPickerType"}}]}},{"type":"typeAlias","name":"PickerType","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"date"},{"type":"jsLiteral","value":"week"},{"type":"jsLiteral","value":"month"},{"type":"jsLiteral","value":"quarter"},{"type":"jsLiteral","value":"year"}]}},{"type":"typeAlias","name":"OtherPickerType","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"dateTime"},{"type":"jsLiteral","value":"hmTime"},{"type":"jsLiteral","value":"time"}]}},{"type":"enum","name":"presetRangeType","members":[{"type":"enumMember","id":{"type":"identifier","name":"Today"},"initializer":{"type":"jsLiteral","value":"今天"}},{"type":"enumMember","id":{"type":"identifier","name":"ThisWeek"},"initializer":{"type":"jsLiteral","value":"本周"}},{"type":"enumMember","id":{"type":"identifier","name":"ThisMonth"},"initializer":{"type":"jsLiteral","value":"本月"}},{"type":"enumMember","id":{"type":"identifier","name":"ThisQuarter"},"initializer":{"type":"jsLiteral","value":"本季度"}},{"type":"enumMember","id":{"type":"identifier","name":"ThisYear"},"initializer":{"type":"jsLiteral","value":"今年"}}]}]} />
+

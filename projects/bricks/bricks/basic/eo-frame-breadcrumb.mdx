@@ -1,0 +1,45 @@
+---
+description: "<eo-frame-breadcrumb>"
+deprecated: true
+---
+
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+</head>
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-frame-breadcrumb"}
+  alias={null}
+  insider={false}
+  deprecated={true}
+/>
+
+面包屑 已迁移至 `nav` 构件包，后续在在 `basic` 构件包中将不再更新。
+
+## Properties
+
+<TypeReferencesContext.Provider value={["Menu"]}>
+  <BrickDocProperties properties={[{"name":"breadcrumb","description":"面包屑配置","attribute":false,"type":"BreadcrumbItemConf[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"BreadcrumbItemConf"}}}},{"name":"noCurrentApp","description":"是否隐藏当前应用名称","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"menu","description":"菜单配置","attribute":false,"type":"Menu","annotation":{"type":"reference","typeName":{"type":"identifier","name":"Menu"}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"Menu","body":[{"type":"propertySignature","key":{"type":"identifier","name":"title"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"icon"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"GeneralIconProps"}},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"link"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"ExtendedLocationDescriptor"}},"optional":true,"computed":false}]}]} />
+

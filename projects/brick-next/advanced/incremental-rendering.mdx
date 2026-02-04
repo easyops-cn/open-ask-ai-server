@@ -1,0 +1,110 @@
+---
+title: "Incremental Rendering"
+---
+
+import NextExample from "@site/src/components/NextExample";
+import { files, hiddenFiles } from "@site/src/examples/tabs-1";
+
+增量渲染是指动态更新页面中的指定的部分内容，同时保留页面其他部分的 UI 及其状态。增量渲染可以让特定场景下的 UI 交互更加平滑顺畅，并减少资源的重复加载。
+
+例如一个页面通过选项卡列表来提供访问资源对象的不同分类的信息，使用增量渲染可以让页面在切换选项卡时，只需重新加载和渲染选项卡的内容部分，而选项卡外部的 UI 及其状态都会被保留。
+
+实现增量渲染主要有两种方式：*动态控制节点*、*构件下的子路由*。
+
+## 动态控制节点 {#dynamic-control-nodes}
+
+在以下示例中，我们将页面当前选中的选项卡设置到 context 中，并使用控制节点 `:switch` 动态选择渲染不同的内容。
+
+<NextExample
+  files={files}
+  hiddenFiles={hiddenFiles}
+/>
+
+控制节点中未匹配的构件不会被加载，因此不会占用网络或计算资源，当其重新渲染时，新匹配的构件才会被加载。
+
+如果希望选项卡状态可以同步到 URL 中，可以绑定 context 的 `onChange` 事件，调用 `history.push` 并设置参数 `notify: false`，以便更新 URL 而不触发重新渲染：
+
+```yaml
+- name: activeTab
+  value: <% PATH.tab ?? 'basic' %>
+  onChange:
+    action: history.push
+    args:
+    - <% `${APP.homepage}/tabs/${CTX.activeTab}` %>
+    - notify: false
+```
+
+## 子路由增量渲染 {#incremental-sub-routes}
+
+路由可以声明启用*子路由增量渲染*，并在该路由内的某个构件下声明子路由，如果页面发生跳转并且目标地址与该路由匹配，则页面不会发生整体重新渲染，仅增量渲染匹配的子路由。
+
+该特性可以用于选项卡页面（Tabs）或详情抽屉等场景中。相对于使用动态控制节点，使用子路由增量渲染可以利用路由进行更合理的封装，例如将不同的选项卡内容独有的数据放入对应的子路由中，而不是放在父路由中通过条件和状态来管理；同时使用子路由可以天然利用浏览器 URL 联动当前所在页面状态，而不用自行记录页面状态并通过 `notify: false` 跳转。
+
+根据页面的跳转，子路由可能被*挂载*或被*卸载*，而父页面内容不会变化。通常情况下，父页面需要这样或那样的方式感知子页面所在的状态，因此可以利用上子路由内的构件的 `onMount` 和 `onUnmount` 生命周期。
+
+例如一个列表页面，可以将详情的抽屉内容放入子路由中：
+
+```yaml
+routes:
+- path: ${APP.homepage}/list
+  # 需主动启用子路由增量渲染
+  # highlight-next-line
+  incrementalSubRoutes: true
+  bricks:
+    # 省略：在表格中将链接地址指向子路由
+  - brick: eo-next-table
+    # 抽屉容器放在父路由中，以便正常实现抽屉打开和关闭的动画效果
+  - brick: eo-drawer
+    properties:
+      id: 'detail-drawer'
+      customTitle: Detail
+    slots:
+      '':
+        # 抽屉内容放在子路由中
+        type: routes
+        routes:
+        - path: '${APP.homepage}/list/detail/:id'
+          bricks:
+          - brick: div
+            properties:
+              textContent: |
+                <% `This is the detail for ${PATH.id}` %>
+            # 通过 `onMount` 和 `onUnmount` 来打开和关闭抽屉
+            # highlight-start
+            lifeCycle:
+              onMount:
+                target: '#detail-drawer'
+                method: open
+              onUnmount:
+                target: '#detail-drawer'
+                properties:
+                  visible: false
+                # 以上示例针对 v3 构件，对于 v2 的 drawer/modal 构件，没有 `visible` 属性，
+                # 需使用 `close` 方法并设置 `noEvent: true`:
+                # target: '#v2-drawer'
+                # method: close
+                # args:
+                #   - noEvent: true
+            # highlight-end
+    events:
+      # 当抽屉关闭时，回到列表页
+      # highlight-start
+      close:
+        action: history.push
+        args:
+          - ${APP.homepage}/list
+      # highlight-end
+```
+
+注意上述编排中，我们通过详情子路由下的构件的 `onMount` 和 `onUnmount` 来打开和关闭抽屉，并设置当抽屉关闭时跳回列表页：
+
+1. 当用户初始进入列表页时，子路由不会渲染，因此抽屉没有打开；
+2. 当用户点击某个实例进入详情子页时，子路由渲染，触发 `onMount`，从而打开抽屉；
+3. 当用户关闭抽屉时，跳回列表页；
+4. 当用户从详情页跳回列表页时，详情页子路由被移除，触发 `onUnmount`，从而关闭抽屉。
+
+可以打开[详情抽屉场景的在线示例](https://stackblitz.com/edit/brick-next-sub-routes?file=storyboards%2Fapp-drawer.yml)并体验。注意在该示例页面中，还可以点击 *View tabs demo* 来查看选项卡 Tabs 场景的示例。
+
+:::info Important
+依赖 `brick_next >= 3.10.18`。
+:::

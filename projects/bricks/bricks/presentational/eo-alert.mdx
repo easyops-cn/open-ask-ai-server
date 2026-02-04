@@ -1,0 +1,218 @@
+---
+description: "<eo-alert>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-alert"}
+  alias={["presentational.general-alert"]}
+  insider={false}
+  deprecated={false}
+/>
+
+告警提示
+
+## Examples
+
+### Basic
+
+```yaml preview
+brick: div
+properties:
+  style:
+    display: flex
+    flex-direction: column
+    gap: 10px
+slots:
+  "":
+    type: bricks
+    bricks:
+      - brick: eo-alert
+        properties:
+          textContent: 你好！欢迎使用EasyOps 2.0专业版，你可以根据自身需求添加业务模块。
+          type: info
+          closable: true
+      - brick: eo-alert
+        properties:
+          textContent: 恭喜！你所提交的信息已经审核通过。
+          type: success
+          closable: true
+          showIcon: true
+      - brick: eo-alert
+        properties:
+          textContent: "系统将于 15 : 00 - 17 : 00 进行升级，请及时保存你的资料！"
+          type: warning
+          closable: true
+          showIcon: true
+      - brick: eo-alert
+        properties:
+          textContent: 系统错误，请稍后重试。
+          type: error
+          closable: true
+          showIcon: true
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-alert/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <div style="display: flex; flex-direction: column; gap: 10px">
+#   <eo-alert closable id="brick-1">
+#     你好！欢迎使用EasyOps 2.0专业版，你可以根据自身需求添加业务模块。
+#   </eo-alert>
+#   <eo-alert closable show-icon id="brick-2"
+#     >恭喜！你所提交的信息已经审核通过。</eo-alert
+#   >
+#   <eo-alert closable show-icon id="brick-3">
+#     系统将于 15 : 00 - 17 : 00 进行升级，请及时保存你的资料！
+#   </eo-alert>
+#   <eo-alert closable show-icon id="brick-4">系统错误，请稍后重试。</eo-alert>
+# </div>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.type = "info";
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.type = "success";
+# 
+#   const brick_3 = document.getElementById("brick-3");
+#   brick_3.type = "warning";
+# 
+#   const brick_4 = document.getElementById("brick-4");
+#   brick_4.type = "error";
+# </script>
+# 
+```
+
+### HasTitle
+
+```yaml preview
+brick: div
+properties:
+  style:
+    display: flex
+    flex-direction: column
+    gap: 10px
+slots:
+  "":
+    type: bricks
+    bricks:
+      - brick: eo-alert
+        properties:
+          textContent: 你好，由于你的良好信用，我们决定赠送你三个月产品会员，欲了解会员特权与活动请进首页会员专区查看。
+          type: info
+          closable: true
+          hasTitle: true
+          showIcon: true
+        slots:
+          title:
+            type: bricks
+            bricks:
+              - brick: div
+                properties:
+                  textContent: 帮助信息
+      - brick: eo-alert
+        properties:
+          textContent: 你所提交的审核信息已全部通过审核，请及时跟进申请状况。
+          type: success
+          closable: true
+          hasTitle: true
+          showIcon: true
+        slots:
+          title:
+            type: bricks
+            bricks:
+              - brick: div
+                properties:
+                  textContent: 已成功
+      - brick: eo-alert
+        properties:
+          textContent: 你所提交的审核信息审核失败，可以进入个人信箱查看原因。如有疑问，请联系客服人员。
+          type: warning
+          closable: true
+          hasTitle: true
+          showIcon: true
+        slots:
+          title:
+            type: bricks
+            bricks:
+              - brick: div
+                properties:
+                  textContent: 请注意
+      - brick: eo-alert
+        properties:
+          textContent: 你的账户会员使用权限将在3天后到期，请及时跟进申请状况，如有疑问，请联系审核人员。
+          type: error
+          closable: true
+          hasTitle: true
+          showIcon: true
+        slots:
+          title:
+            type: bricks
+            bricks:
+              - brick: div
+                properties:
+                  textContent: 出错了
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-alert/hastitle
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <div style="display: flex; flex-direction: column; gap: 10px">
+#   <eo-alert closable has-title show-icon id="brick-1">
+#     <div slot="title">帮助信息</div>
+#   </eo-alert>
+#   <eo-alert closable has-title show-icon id="brick-2">
+#     <div slot="title">已成功</div>
+#   </eo-alert>
+#   <eo-alert closable has-title show-icon id="brick-3">
+#     <div slot="title">请注意</div>
+#   </eo-alert>
+#   <eo-alert closable has-title show-icon id="brick-4">
+#     <div slot="title">出错了</div>
+#   </eo-alert>
+# </div>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.type = "info";
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.type = "success";
+# 
+#   const brick_3 = document.getElementById("brick-3");
+#   brick_3.type = "warning";
+# 
+#   const brick_4 = document.getElementById("brick-4");
+#   brick_4.type = "error";
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["AlertType"]}>
+  <BrickDocProperties properties={[{"name":"type","description":"警告类型","attribute":false,"type":"AlertType","annotation":{"type":"reference","typeName":{"type":"identifier","name":"AlertType"}}},{"name":"hasTitle","description":"是否显示标题。开启后，可以使用 `title` 插槽","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"showIcon","description":"是否显示提示图标","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"closable","description":"是否显示关闭按钮","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"localStorageKey","description":"以该值和页面 url 作为命名空间，决定是否显示该警告提示","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"disableUrlNamespace","description":"关闭后仅以 `localStorageKey` 作为命名空间","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"textContent","type":"string","description":"文本内容","annotation":{"type":"keyword","value":"string"}}]} />
+</TypeReferencesContext.Provider>
+
+## Slots
+
+<BrickDocSlots slots={[{"name":null,"description":"内容区"},{"name":"title","description":"标题"}]} />
+
+
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"enum","name":"AlertType","members":[{"type":"enumMember","id":{"type":"jsLiteral","value":"SUCCESS"},"initializer":{"type":"jsLiteral","value":"success"}},{"type":"enumMember","id":{"type":"jsLiteral","value":"INFO"},"initializer":{"type":"jsLiteral","value":"info"}},{"type":"enumMember","id":{"type":"jsLiteral","value":"WARNING"},"initializer":{"type":"jsLiteral","value":"warning"}},{"type":"enumMember","id":{"type":"jsLiteral","value":"ERROR"},"initializer":{"type":"jsLiteral","value":"error"}}]}]} />
+

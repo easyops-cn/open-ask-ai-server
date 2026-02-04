@@ -1,0 +1,229 @@
+---
+title: "Tutorial"
+---
+
+import NextExample from "@site/src/components/NextExample";
+import {
+  BricksStep1,
+  BricksStep2,
+  BricksStep3,
+  BricksStep4,
+  BricksStep5,
+  BricksStep6,
+  BricksStep7,
+  highlightRangesStep3,
+  highlightRangesStep4,
+  highlightRangesStep5,
+  highlightRangesStep6,
+  highlightRangesStep7,
+  highlightRangesContext,
+  Context,
+  hiddenFiles,
+} from "@site/src/examples/tutorial-my-todos";
+import MyTodosLightPng from "@site/static/img/docs/my-todos-light.png";
+
+You will build a small *My Todos* app during this tutorial. The techniques you’ll learn in the tutorial are fundamental to building any Brick Next app, and fully understanding it will give you a deep understanding of Brick Next.
+
+You can see what it will look like when you’re finished here:
+
+<img
+  src={MyTodosLightPng}
+  width={309}
+  alt="Screen shot of My Todos app"
+  style={{display: "block", margin: "var(--ifm-leading) auto"}}
+/>
+
+## Setup for the tutorial
+
+[Fork this tutorial project](https://stackblitz.com/edit/brick-next-tutorial-my-todos?file=bootstrap.js,context.yml,storyboard.yml) on StackBlitz. StackBlitz lets you do development in your browser and preview how your users will see the app you’ve created.
+
+:::tip
+
+You can also follow this tutorial using your local development environment. To do this, you need to:
+
+1. Install [Node.js](https://nodejs.org/en/)
+2. In the StackBlitz tab you opened earlier, on the Project panel, press the download button to download an archive of the files locally
+3. Unzip the archive, then open a terminal and `cd` to the directory you unzipped
+4. Install the dependencies with `npm install`
+5. Run `npm start` to start a local server and follow the prompts to view the code running in a browser
+
+If you get stuck, don’t let this stop you! Follow along online instead and try a local setup again later.
+
+:::
+
+## Starting with a static storyboard
+
+In the starter project, a static storyboard has been created for you:
+
+<NextExample
+  files={[
+    {
+      name: "Bricks",
+      code: BricksStep1,
+    }
+  ]}
+  hiddenFiles={hiddenFiles}
+/>
+
+:::info
+Here we’re using [YAML](https://en.wikipedia.org/wiki/YAML) to define storyboards, since it has a minimal syntax, and is more human-readable at the same time, compared to JSON or others. But keep in mind that storyboards are just tree-like structure data.
+:::
+
+It defines a page that is pretty the same as the following HTML:
+
+```html
+<sl-card>
+  <strong slot="header">My Todos</strong>
+  <sl-checkbox>Hard work</sl-checkbox>
+  <sl-checkbox>Have launch</sl-checkbox>
+  <sl-checkbox>Go on vacation</sl-checkbox>
+</sl-card>
+```
+
+[`sl-card`](https://shoelace.style/components/card) and [`sl-checkbox`](https://shoelace.style/components/checkbox) are web components from a third-party library [Shoelace](https://shoelace.style/), which has been integrated to our built-in brick library. You can check more details on their website.
+
+## Fetching data
+
+Next step you’ll want to make the todo list from remote instead of static specified.
+
+First assume that you have a RESTful API to fetch todos data, which will return the following JSON:
+
+```json
+[
+  {
+    "title": "Hard work",
+    "done": true
+  },
+  {
+    "title": "Have launch",
+    "done": false
+  },
+  {
+    "title": "Go on vacation",
+    "done": false
+  }
+]
+```
+
+Then you’ll define a context that will be resolved by your API:
+
+<NextExample
+  files={[
+    {
+      name: "Bricks",
+      code: BricksStep2,
+    },
+    {
+      name: "Context",
+      defaultActive: true,
+      code: Context,
+      highlightRanges: highlightRangesContext,
+    }
+  ]}
+  hiddenFiles={hiddenFiles}
+/>
+
+Here you’re using a built-in [provider brick](../concepts/provider-bricks.md) `basic.http-request` which can call arbitrary HTTP API. It accepts a URL as its first argument. For simplicity, a static JSON file is used in this tutorial.
+
+## Passing data
+
+You have fetched the todo list from an API, but how to render it on the page?
+
+In order to render a list of todos, you can define a [control node](../concepts/control-nodes.md) of `:forEach`, set its `dataSource` to the context you defined before by using an [expression](../concepts/expressions.md), and set its `children` to a list of bricks that will be rendered for each item in the data source.
+
+<NextExample
+  files={[
+    {
+      name: "Bricks",
+      code: BricksStep3,
+      highlightRanges: highlightRangesStep3,
+    },
+    {
+      name: "Context",
+      code: Context,
+    }
+  ]}
+  hiddenFiles={hiddenFiles}
+/>
+
+You can use `ITEM` in expressions inside the children, to access the current item of each loop.
+
+## Responding to events
+
+Let’s add an input box so that users can add todos as they wish.
+
+Add a brick [sl-input](https://shoelace.style/components/input), listen on its [`keydown`](https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event) event, push a todo item into the list when the user pressed *Enter*.
+
+<NextExample
+  files={[
+    {
+      name: "Bricks",
+      code: BricksStep4,
+      highlightRanges: highlightRangesStep4,
+    },
+    {
+      name: "Context",
+      code: Context,
+    }
+  ]}
+  hiddenFiles={hiddenFiles}
+/>
+
+Note that you should also update the expression of `dataSource` to enable binding mode with `<%= %>` instead of `<% %>`, otherwise the list will not be refreshed when the context gets updated.
+
+Next you’ll add a feature that allows the user to clear completed todos.
+
+<NextExample
+  files={[
+    {
+      name: "Bricks",
+      code: BricksStep5,
+      highlightRanges: highlightRangesStep5,
+    },
+    {
+      name: "Context",
+      code: Context,
+    }
+  ]}
+  hiddenFiles={hiddenFiles}
+/>
+
+But the clear button is not working as you expected, it will only clear `Hard work` which is initialized with `done: true`. If the user clicked other todos as done, they will not get cleared when user clicked the clear button.
+
+That’s because the done states of the todos don’t get updated when the user clicked the checkboxes. You need to update the context when the user clicked the checkboxes.
+
+<NextExample
+  files={[
+    {
+      name: "Bricks",
+      code: BricksStep6,
+      highlightRanges: highlightRangesStep6,
+    },
+    {
+      name: "Context",
+      code: Context,
+    }
+  ]}
+  hiddenFiles={hiddenFiles}
+/>
+
+## Conditional rendering
+
+Finally, let’s make the clear button only appear when there are completed todos.
+
+To do that, you can add a [`if` condition](../concepts/conditional-rendering.md) for the clear button:
+
+<NextExample
+  files={[
+    {
+      name: "Bricks",
+      code: BricksStep7,
+      highlightRanges: highlightRangesStep7,
+    },
+    {
+      name: "Context",
+      code: Context,
+    }
+  ]}
+  hiddenFiles={hiddenFiles}
+/>

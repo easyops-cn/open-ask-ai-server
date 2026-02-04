@@ -1,0 +1,139 @@
+---
+description: "<eo-formatter-number>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-formatter-number"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+数字格式化，支持普通数字、货币、百分比、二进制字节等数字的格式化显示。
+
+## Examples
+
+### Basic
+
+```yaml preview
+brick: eo-formatter-number
+properties:
+  value: 314159265
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-formatter-number/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-formatter-number value="314159265"></eo-formatter-number>
+# 
+```
+
+### Currency
+
+```yaml preview
+brick: eo-formatter-number
+properties:
+  value: 314159265
+  type: currency
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-formatter-number/currency
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-formatter-number value="314159265" type="currency"></eo-formatter-number>
+# 
+```
+
+### Percent
+
+```yaml preview
+brick: eo-formatter-number
+properties:
+  value: 0.314159265
+  type: percent
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-formatter-number/percent
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-formatter-number value="0.314159265" type="percent"></eo-formatter-number>
+# 
+```
+
+### Bytes
+
+```yaml preview
+brick: eo-formatter-number
+properties:
+  value: 314159265
+  type: unit
+  decimals: 2
+  originalUnit: KiB
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-formatter-number/bytes
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-formatter-number
+#   value="314159265"
+#   type="unit"
+#   decimals="2"
+#   original-unit="KiB"
+# ></eo-formatter-number>
+# 
+```
+
+### Fallback
+
+```yaml preview
+brick: eo-formatter-number
+properties:
+  fallback: "-"
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-formatter-number/fallback
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-formatter-number fallback="-"></eo-formatter-number>
+# 
+```
+
+### Customizations
+
+```yaml preview
+brick: eo-formatter-number
+properties:
+  value: 314159.265
+  thousandsSeparator: false
+  decimals: 2
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-formatter-number/customizations
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-formatter-number value="314159.265" decimals="2"></eo-formatter-number>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["NumberType","NumberOriginalUnit"]}>
+  <BrickDocProperties properties={[{"name":"value","type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"type","description":"格式化类型","type":"NumberType","annotation":{"type":"reference","typeName":{"type":"identifier","name":"NumberType"}}},{"name":"currency","description":"货币名","default":"\"CNY\"","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"unit","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"originalUnit","description":"原始单位，用于单位转换","type":"NumberOriginalUnit","annotation":{"type":"reference","typeName":{"type":"identifier","name":"NumberOriginalUnit"}}},{"name":"decimals","description":"保留的小数位数","type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"thousandsSeparator","description":"是否启用千分位分隔符","default":"true","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"fallback","description":"当 value 为空或不是数字时的回退显示内容","type":"string","annotation":{"type":"keyword","value":"string"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"typeAlias","name":"NumberType","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"decimal"},{"type":"jsLiteral","value":"currency"},{"type":"jsLiteral","value":"percent"},{"type":"jsLiteral","value":"unit"}]}},{"type":"typeAlias","name":"NumberOriginalUnit","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"bytes"},{"type":"jsLiteral","value":"B"},{"type":"jsLiteral","value":"KB"},{"type":"jsLiteral","value":"MB"},{"type":"jsLiteral","value":"GB"},{"type":"jsLiteral","value":"TB"},{"type":"jsLiteral","value":"PB"},{"type":"jsLiteral","value":"bibytes"},{"type":"jsLiteral","value":"KiB"},{"type":"jsLiteral","value":"MiB"},{"type":"jsLiteral","value":"GiB"},{"type":"jsLiteral","value":"TiB"},{"type":"jsLiteral","value":"PiB"}]}}]} />
+

@@ -1,0 +1,197 @@
+---
+description: "<data-view.app-wall-system-card>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"data-view.app-wall-system-card"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+系统卡片
+
+## Examples
+
+### Basic
+
+```yaml preview
+- brick: data-view.app-wall-system-card
+  properties:
+    cardTitle: A系统
+    itemList:
+      - key: 实例ID
+        value: xxxx
+      - key: 系统英文缩写
+        value: system-fms
+      - key: 实例ID
+        value: xxx
+      - key: 系统英文名称
+        value: app-fms
+      - key: 系统中文名称
+        value: A财务系统
+      - key: 归属部门
+        value: 财务系统部
+      - key: 系统类型
+        value: 应用系统
+      - key: 系统描述
+        value: 1、使用场景概述：财务应收和应付结算
+    buttonName: 应用墙大屏
+    style:
+      background: rgba(40, 46, 58, 100%)
+      box-shadow: "0 0 12px 2px rgba(80, 255, 255, 0.45), inset 0 0 22px 0 #20242A"
+      border: "2px solid #50FFFF"
+      overflow: hidden
+      height: 400px
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+data-view/app-wall-system-card/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <data-view.app-wall-system-card
+#   card-title="A系统"
+#   button-name="应用墙大屏"
+#   style="
+#     background: rgba(40, 46, 58, 100%);
+#     box-shadow:
+#       0 0 12px 2px rgba(80, 255, 255, 0.45),
+#       inset 0 0 22px 0 #20242a;
+#     border: 2px solid #50ffff;
+#     overflow: hidden;
+#     height: 400px;
+#   "
+#   id="brick-1"
+# ></data-view.app-wall-system-card>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.itemList = [
+#     {
+#       key: "实例ID",
+#       value: "xxxx",
+#     },
+#     {
+#       key: "系统英文缩写",
+#       value: "system-fms",
+#     },
+#     {
+#       key: "实例ID",
+#       value: "xxx",
+#     },
+#     {
+#       key: "系统英文名称",
+#       value: "app-fms",
+#     },
+#     {
+#       key: "系统中文名称",
+#       value: "A财务系统",
+#     },
+#     {
+#       key: "归属部门",
+#       value: "财务系统部",
+#     },
+#     {
+#       key: "系统类型",
+#       value: "应用系统",
+#     },
+#     {
+#       key: "系统描述",
+#       value: "1、使用场景概述：财务应收和应付结算",
+#     },
+#   ];
+# </script>
+# 
+```
+
+### Status
+
+```yaml preview
+- brick: data-view.app-wall-system-card
+  properties:
+    cardTitle: B系统
+    itemList:
+      - key: 实例ID
+        value: xxxx
+      - key: 系统英文缩写
+        value: system-fms-B
+      - key: 系统描述
+        value: 1、使用场景概述：财务应收和应付结算
+    buttonName: 应用墙大屏
+    status: warning
+    style:
+      background: "linear-gradient(180deg, #CC0066 0%, rgba(204, 0, 102, 0.2) 100%),#0F1117FF"
+      box-shadow: "0 0 12px 2px rgba(204, 0, 102, 0.4), inset 0 4px 10px 0 rgba(255, 255, 255, 0.65)"
+      overflow: hidden
+      height: 400px
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+data-view/app-wall-system-card/status
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <data-view.app-wall-system-card
+#   card-title="B系统"
+#   button-name="应用墙大屏"
+#   style="
+#     background:
+#       linear-gradient(180deg, #cc0066 0%, rgba(204, 0, 102, 0.2) 100%),
+#       #0f1117ff;
+#     box-shadow:
+#       0 0 12px 2px rgba(204, 0, 102, 0.4),
+#       inset 0 4px 10px 0 rgba(255, 255, 255, 0.65);
+#     overflow: hidden;
+#     height: 400px;
+#   "
+#   id="brick-1"
+# ></data-view.app-wall-system-card>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.itemList = [
+#     {
+#       key: "实例ID",
+#       value: "xxxx",
+#     },
+#     {
+#       key: "系统英文缩写",
+#       value: "system-fms-B",
+#     },
+#     {
+#       key: "系统描述",
+#       value: "1、使用场景概述：财务应收和应付结算",
+#     },
+#   ];
+#   brick_1.status = "warning";
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["StatusType","DescriptionItem"]}>
+  <BrickDocProperties properties={[{"name":"status","description":"","default":"\"normal\"","attribute":false,"type":"StatusType","annotation":{"type":"reference","typeName":{"type":"identifier","name":"StatusType"}}},{"name":"cardTitle","description":"","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"itemList","description":"","attribute":false,"type":"DescriptionItem[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"DescriptionItem"}}}},{"name":"buttonName","description":"","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"containerStyle","description":"","attribute":false,"type":"React.CSSProperties","annotation":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={["StatusType","DescriptionItem"]}>
+  <BrickDocEvents events={[{"name":"button-click","description":"","detail":{"description":null,"type":"void","annotation":{"type":"keyword","value":"void"}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"typeAlias","name":"StatusType","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"normal"},{"type":"jsLiteral","value":"warning"}]}},{"type":"interface","name":"DescriptionItem","body":[{"type":"propertySignature","key":{"type":"identifier","name":"key"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"value"},"annotation":{"type":"keyword","value":"string"},"computed":false}]}]} />
+

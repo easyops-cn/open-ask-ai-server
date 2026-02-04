@@ -1,0 +1,196 @@
+---
+description: "<eo-dropdown-actions>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-dropdown-actions"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+下拉菜单
+
+## Examples
+
+### Basic
+
+```yaml preview minHeight="240px"
+- brick: eo-dropdown-actions
+  properties:
+    actions:
+      - text: Query
+        icon:
+          icon: search
+          lib: antd
+          theme: outlined
+        event: "query"
+        tooltip: some tooltip...
+      - text: Edit
+        icon:
+          lib: "easyops"
+          category: "default"
+          icon: "edit"
+        event: "edit"
+      - type: divider
+      - text: Delete
+        icon:
+          lib: "easyops"
+          category: "default"
+          icon: "delete"
+        event: "delete"
+        tooltip: No permission
+        danger: true
+      - text: Delete 2
+        disabled: true
+        icon:
+          lib: "easyops"
+          category: "default"
+          icon: "delete"
+        event: "delete2"
+        tooltip: No permission
+      - text: switch org
+        icon:
+          lib: "antd"
+          icon: "swap"
+        items:
+          - text: org1
+            event: "org1.click"
+          - text: org2
+            event: "org2.click"
+  events:
+    query:
+      - action: message.success
+        args:
+          - click query button
+    edit:
+      - action: message.warn
+        args:
+          - click edit button
+    delete:
+      - action: message.error
+        args:
+          - click delete button
+  children:
+    - brick: eo-button
+      properties:
+        textContent: button
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-dropdown-actions/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-dropdown-actions id="brick-1">
+#   <eo-button>button</eo-button>
+# </eo-dropdown-actions>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.actions = [
+#     {
+#       text: "Query",
+#       icon: {
+#         icon: "search",
+#         lib: "antd",
+#         theme: "outlined",
+#       },
+#       event: "query",
+#       tooltip: "some tooltip...",
+#     },
+#     {
+#       text: "Edit",
+#       icon: {
+#         lib: "easyops",
+#         category: "default",
+#         icon: "edit",
+#       },
+#       event: "edit",
+#     },
+#     {
+#       type: "divider",
+#     },
+#     {
+#       text: "Delete",
+#       icon: {
+#         lib: "easyops",
+#         category: "default",
+#         icon: "delete",
+#       },
+#       event: "delete",
+#       tooltip: "No permission",
+#       danger: true,
+#     },
+#     {
+#       text: "Delete 2",
+#       disabled: true,
+#       icon: {
+#         lib: "easyops",
+#         category: "default",
+#         icon: "delete",
+#       },
+#       event: "delete2",
+#       tooltip: "No permission",
+#     },
+#     {
+#       text: "switch org",
+#       icon: {
+#         lib: "antd",
+#         icon: "swap",
+#       },
+#       items: [
+#         {
+#           text: "org1",
+#           event: "org1.click",
+#         },
+#         {
+#           text: "org2",
+#           event: "org2.click",
+#         },
+#       ],
+#     },
+#   ];
+#   brick_1.addEventListener("query", (e) => {
+#     const message = document.createElement("basic.show-notification");
+#     message.resolve({ type: "success", message: "click query button" });
+#   });
+#   brick_1.addEventListener("edit", (e) => {
+#     const message = document.createElement("basic.show-notification");
+#     message.resolve({ type: "warn", message: "click edit button" });
+#   });
+#   brick_1.addEventListener("delete", (e) => {
+#     const message = document.createElement("basic.show-notification");
+#     message.resolve({ type: "error", message: "click delete button" });
+#   });
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocProperties properties={[{"name":"actions","description":"操作列表配置","attribute":false,"type":"Action[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"Action"}}}},{"name":"checkedKeys","description":"actions选中项配置","default":"[]","attribute":false,"type":"(string | number)[]","annotation":{"type":"array","elementType":{"type":"parenthesizedType","annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"number"}]}}}},{"name":"disabled","description":"是否禁用","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"strategy","description":"弹出层如何定位","default":"\"absolute\"","type":"\"absolute\" | \"fixed\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"absolute"},{"type":"jsLiteral","value":"fixed"}]}},{"name":"placement","description":"弹出层放置位置","default":"\"bottom-start\"","type":"Placement","annotation":{"type":"reference","typeName":{"type":"identifier","name":"Placement"}}},{"name":"themeVariant","description":"主题变体","type":"\"default\" | \"elevo\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"default"},{"type":"jsLiteral","value":"elevo"}]}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocEvents events={[{"name":"action.click","description":"点击按钮时触发","detail":{"description":"该按钮配置","type":"SimpleAction","annotation":{"type":"reference","typeName":{"type":"identifier","name":"SimpleAction"}}}},{"name":"visible.change","description":"当弹出层可见性变化之后触发","detail":{"description":"当前是否可见","type":"boolean","annotation":{"type":"keyword","value":"boolean"}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+

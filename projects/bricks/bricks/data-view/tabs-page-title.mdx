@@ -1,0 +1,211 @@
+---
+description: "<data-view.tabs-page-title>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"data-view.tabs-page-title"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 tabs-page-title
+
+## Examples
+
+### Basic
+
+```yaml preview
+- brick: data-view.tabs-page-title
+  properties:
+  slots:
+    "":
+      type: bricks
+      bricks:
+        - brick: data-view.title-text
+          properties:
+            text: 大标题
+            type: gradient
+    start:
+      type: bricks
+      bricks:
+        - brick: data-view.brick-notification
+          properties:
+            message: This is the content of the notification.
+    end:
+      type: bricks
+      bricks:
+        - brick: div
+          properties:
+            textContent: "2022/11/30 17:25 星期四"
+            style:
+              font-size: 16px
+              color: "#fff"
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+data-view/tabs-page-title/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <data-view.tabs-page-title>
+#   <data-view.title-text text="大标题" id="brick-1"></data-view.title-text>
+#   <data-view.brick-notification
+#     slot="start"
+#     message="This is the content of the notification."
+#   ></data-view.brick-notification>
+#   <div slot="end" style="font-size: 16px; color: #fff">
+#     2022/11/30 17:25 星期四
+#   </div>
+# </data-view.tabs-page-title>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.type = "gradient";
+# </script>
+# 
+```
+
+### TabList
+
+```yaml preview
+- brick: data-view.tabs-page-title
+  properties:
+    tabList:
+      - text: 标签1
+        key: key1
+      - text: 标签2
+        key: key2
+      - text: 标签3
+        key: key3
+      - text: 标签4
+        key: key4
+      - text: 标签5
+        key: key5
+      - text: 标签6
+        key: key6
+    activeKey: key2
+  slots:
+    "":
+      type: bricks
+      bricks:
+        - brick: data-view.title-text
+          properties:
+            text: 大标题
+            type: gradient
+    key1:
+      type: bricks
+      bricks:
+        - brick: div
+          properties:
+            textContent: 标签一内容
+    key2:
+      type: bricks
+      bricks:
+        - brick: div
+          properties:
+            textContent: 标签二内容
+    key3:
+      type: bricks
+      bricks:
+        - brick: div
+          properties:
+            textContent: 标签三内容
+    key4:
+      type: bricks
+      bricks:
+        - brick: div
+          properties:
+            textContent: 标签四内容
+    key5:
+      type: bricks
+      bricks:
+        - brick: div
+          properties:
+            textContent: 标签五内容
+    key6:
+      type: bricks
+      bricks:
+        - brick: div
+          properties:
+            textContent: 标签六内容
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+data-view/tabs-page-title/tablist
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <data-view.tabs-page-title active-key="key2" id="brick-1">
+#   <data-view.title-text text="大标题" id="brick-2"></data-view.title-text>
+#   <div slot="key1">标签一内容</div>
+#   <div slot="key2">标签二内容</div>
+#   <div slot="key3">标签三内容</div>
+#   <div slot="key4">标签四内容</div>
+#   <div slot="key5">标签五内容</div>
+#   <div slot="key6">标签六内容</div>
+# </data-view.tabs-page-title>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.tabList = [
+#     {
+#       text: "标签1",
+#       key: "key1",
+#     },
+#     {
+#       text: "标签2",
+#       key: "key2",
+#     },
+#     {
+#       text: "标签3",
+#       key: "key3",
+#     },
+#     {
+#       text: "标签4",
+#       key: "key4",
+#     },
+#     {
+#       text: "标签5",
+#       key: "key5",
+#     },
+#     {
+#       text: "标签6",
+#       key: "key6",
+#     },
+#   ];
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.type = "gradient";
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["TabsItem"]}>
+  <BrickDocProperties properties={[{"name":"tabList","description":"标签，如果没有就不展示标签","default":"-","attribute":false,"type":"TabsItem[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"TabsItem"}}}},{"name":"activeKey","description":"标签高亮显示，默认第一个","default":"-","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"textContent","type":"string","description":"文本内容","annotation":{"type":"keyword","value":"string"}}]} />
+</TypeReferencesContext.Provider>
+
+## Slots
+
+<BrickDocSlots slots={[{"name":null,"description":"标题"},{"name":"start","description":"顶部左边插槽"},{"name":"end","description":"顶部右边插槽"},{"name":null,"description":"[key] - 标签对应的key的插槽"}]} />
+
+## Events
+
+<TypeReferencesContext.Provider value={["TabsItem"]}>
+  <BrickDocEvents events={[{"name":"tab.change","description":"切换 `tab` 栏会触发的事件，`detail` 为目标 `tab` 对应的 `key`","detail":{"description":"`string`","type":"string","annotation":{"type":"keyword","value":"string"}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"TabsItem","body":[{"type":"propertySignature","key":{"type":"identifier","name":"key"},"annotation":{"type":"keyword","value":"string"},"computed":false,"description":"唯一标识，对应 slot 名称"},{"type":"propertySignature","key":{"type":"identifier","name":"text"},"annotation":{"type":"keyword","value":"string"},"computed":false,"description":"标签名称"}]}]} />
+

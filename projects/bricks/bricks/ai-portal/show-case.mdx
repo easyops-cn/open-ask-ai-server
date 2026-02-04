@@ -1,0 +1,61 @@
+---
+description: "<ai-portal.show-case>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"ai-portal.show-case"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `ai-portal.show-case`
+
+## Examples
+
+### Basic
+
+```yaml preview
+brick: ai-portal.show-case
+properties:
+  conversationId: c-1
+  caseTitle: 故障排查－操作系统内存高
+  summary: 服务已经正常启动，正常运行，但用户在外部访问失败服务已经正常启动，正常运行但用户正常运行
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+ai-portal/show-case/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <ai-portal.show-case
+#   conversation-id="c-1"
+#   case-title="故障排查－操作系统内存高"
+#   summary="服务已经正常启动，正常运行，但用户在外部访问失败服务已经正常启动，正常运行但用户正常运行"
+# ></ai-portal.show-case>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocProperties properties={[{"name":"caseTitle","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"summary","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"url","type":"string","annotation":{"type":"keyword","value":"string"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+
+

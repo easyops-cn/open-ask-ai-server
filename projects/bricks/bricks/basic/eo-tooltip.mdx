@@ -1,0 +1,394 @@
+---
+description: "<eo-tooltip>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-tooltip"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+提示
+
+## Examples
+
+### Basic
+
+```yaml preview
+brick: div
+properties:
+  style:
+    margin: 50px
+children:
+  - brick: eo-tooltip
+    properties:
+      content: This is a tooltip
+      trigger: hover
+    events:
+      open.change:
+        - action: console.log
+          args:
+            - open.change
+            - <% EVENT.detail %>
+      after.open.change:
+        - action: console.log
+          args:
+            - after.open.change
+            - <% EVENT.detail %>
+    children:
+      - brick: eo-button
+        properties:
+          type: primary
+          textContent: hover
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-tooltip/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <div style="margin: 50px">
+#   <eo-tooltip content="This is a tooltip" trigger="hover" id="brick-1">
+#     <eo-button type="primary">hover</eo-button>
+#   </eo-tooltip>
+# </div>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("open.change", (e) => {
+#     console.log("open.change", e.detail);
+#   });
+#   brick_1.addEventListener("after.open.change", (e) => {
+#     console.log("after.open.change", e.detail);
+#   });
+# </script>
+# 
+```
+
+### Icon
+
+```yaml preview
+brick: div
+properties:
+  style:
+    margin: 50px
+children:
+  - brick: eo-tooltip
+    properties:
+      content: This is a tooltip
+      icon:
+        lib: antd
+        icon: search
+      trigger: hover
+    events:
+      open.change:
+        - action: console.log
+          args:
+            - open.change
+            - <% EVENT.detail %>
+      after.open.change:
+        - action: console.log
+          args:
+            - after.open.change
+            - <% EVENT.detail %>
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-tooltip/icon
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <div style="margin: 50px">
+#   <eo-tooltip
+#     content="This is a tooltip"
+#     trigger="hover"
+#     id="brick-1"
+#   ></eo-tooltip>
+# </div>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.icon = {
+#     lib: "antd",
+#     icon: "search",
+#   };
+#   brick_1.addEventListener("open.change", (e) => {
+#     console.log("open.change", e.detail);
+#   });
+#   brick_1.addEventListener("after.open.change", (e) => {
+#     console.log("after.open.change", e.detail);
+#   });
+# </script>
+# 
+```
+
+### Trigger
+
+```yaml preview
+brick: div
+properties:
+  style:
+    margin: 50px
+    display: flex
+    gap: 100px
+children:
+  - brick: eo-tooltip
+    properties:
+      content: This is a tooltip
+      trigger: hover
+    children:
+      - brick: eo-button
+        properties:
+          type: primary
+          textContent: hover
+  - brick: eo-tooltip
+    properties:
+      content: This is a tooltip
+      trigger: click
+    children:
+      - brick: eo-button
+        properties:
+          type: primary
+          textContent: click
+  - brick: eo-tooltip
+    properties:
+      content: This is a tooltip
+      trigger: focus
+    children:
+      - brick: eo-input
+        properties:
+          type: primary
+          textContent: focus
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-tooltip/trigger
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <div style="margin: 50px; display: flex; gap: 100px">
+#   <eo-tooltip content="This is a tooltip" trigger="hover">
+#     <eo-button type="primary">hover</eo-button>
+#   </eo-tooltip>
+#   <eo-tooltip content="This is a tooltip" trigger="click">
+#     <eo-button type="primary">click</eo-button>
+#   </eo-tooltip>
+#   <eo-tooltip content="This is a tooltip" trigger="focus">
+#     <eo-input type="primary">focus</eo-input>
+#   </eo-tooltip>
+# </div>
+# 
+```
+
+### Placement
+
+```yaml preview
+brick: div
+properties:
+  style:
+    margin: 150px
+    display: grid
+    grid-template-areas: |
+      ". top-start top top-end ."
+      "left-start . . . right-start"
+      "left . . . right"
+      "left-end . . . right-end"
+      ". bottom-start bottom bottom-end ."
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr
+    gap: 20px
+children:
+  - brick: :forEach
+    dataSource:
+      - top-start
+      - top
+      - top-end
+      - right-start
+      - right
+      - right-end
+      - bottom-start
+      - bottom
+      - bottom-end
+      - left-start
+      - left
+      - left-end
+    slots:
+      "":
+        bricks:
+          - brick: eo-tooltip
+            properties:
+              content: This is a tooltip
+              trigger: hover
+              placement: <% ITEM %>
+              style:
+                grid-area: <% ITEM %>
+            children:
+              - brick: eo-button
+                properties:
+                  type: primary
+                  textContent: <% ITEM %>
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-tooltip/placement
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <div
+#   style="
+#     margin: 150px;
+#     display: grid;
+#     grid-template-areas:
+#       &quot;. top-start top top-end .&quot;
+#       &quot;left-start . . . right-start&quot;
+#       &quot;left . . . right&quot;
+#       &quot;left-end . . . right-end&quot;
+#       &quot;. bottom-start bottom bottom-end .&quot;;
+#     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+#     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+#     gap: 20px;
+#   "
+# >
+#   <!-- WARN: ":forEach" is not supported in HTML mode, please try YAML. -->
+# </div>
+# 
+```
+
+### Hoist
+
+```yaml preview
+brick: div
+properties:
+  style:
+    position: relative
+    display: flex
+    margin: 50px
+    padding: 20px
+    border: 1px solid red
+    overflow: hidden
+    gap: 100px
+children:
+  - brick: eo-tooltip
+    properties:
+      content: This is a tooltip
+      trigger: hover
+      hoist: false
+    children:
+      - brick: eo-button
+        properties:
+          type: primary
+          textContent: hover
+  - brick: eo-tooltip
+    properties:
+      content: This is a tooltip
+      trigger: hover
+      hoist: true
+    children:
+      - brick: eo-button
+        properties:
+          type: primary
+          textContent: hover
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-tooltip/hoist
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <div
+#   style="
+#     position: relative;
+#     display: flex;
+#     margin: 50px;
+#     padding: 20px;
+#     border: 1px solid red;
+#     overflow: hidden;
+#     gap: 100px;
+#   "
+# >
+#   <eo-tooltip content="This is a tooltip" trigger="hover">
+#     <eo-button type="primary">hover</eo-button>
+#   </eo-tooltip>
+#   <eo-tooltip content="This is a tooltip" trigger="hover" hoist>
+#     <eo-button type="primary">hover</eo-button>
+#   </eo-tooltip>
+# </div>
+# 
+```
+
+### Slot
+
+```yaml preview
+brick: div
+properties:
+  style:
+    margin: 50px
+    display: flex
+    gap: 100px
+children:
+  - brick: eo-tooltip
+    properties:
+      content: This is a tooltip
+      trigger: hover
+    children:
+      - brick: eo-button
+        properties:
+          type: primary
+          textContent: hover
+  - brick: eo-tooltip
+    properties:
+      trigger: hover
+    slots:
+      "content":
+        bricks:
+          - brick: strong
+            properties:
+              style:
+                color: red
+              textContent: This is a tooltip
+      "":
+        bricks:
+          - brick: eo-button
+            properties:
+              type: primary
+              textContent: hover
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-tooltip/slot
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <div style="margin: 50px; display: flex; gap: 100px">
+#   <eo-tooltip content="This is a tooltip" trigger="hover">
+#     <eo-button type="primary">hover</eo-button>
+#   </eo-tooltip>
+#   <eo-tooltip trigger="hover">
+#     <strong slot="content" style="color: red">This is a tooltip</strong>
+#     <eo-button type="primary">hover</eo-button>
+#   </eo-tooltip>
+# </div>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["Placement"]}>
+  <BrickDocProperties properties={[{"name":"icon","description":"图标","attribute":false,"type":"GeneralIconProps","annotation":{"type":"reference","typeName":{"type":"identifier","name":"GeneralIconProps"}}},{"name":"content","description":"内容","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"placement","description":"弹出位置","type":"Placement","annotation":{"type":"reference","typeName":{"type":"identifier","name":"Placement"}}},{"name":"disabled","description":"是否禁用","default":"false","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"open","description":"是否显示","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"trigger","description":"激活方式，包括 `click` | `hover` | `focus` | `manual`，可以多选用空格分隔","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"hoist","description":"是否使用固定定位防止内容被裁切","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"maxWidth","description":"最大长度, 默认 250px","default":"\"250px\"","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"textContent","type":"string","description":"文本内容","annotation":{"type":"keyword","value":"string"}}]} />
+</TypeReferencesContext.Provider>
+
+## Slots
+
+<BrickDocSlots slots={[{"name":null,"description":"提示的目标元素"},{"name":"content","description":"放置在提示中的元素"}]} />
+
+## Events
+
+<TypeReferencesContext.Provider value={["Placement"]}>
+  <BrickDocEvents events={[{"name":"open.change","description":"当提示可见性开始变化时触发","detail":{"description":"当前是否可见","type":"boolean","annotation":{"type":"keyword","value":"boolean"}}},{"name":"after.open.change","description":"当提示可见性变化完成并完成所有动画后触发。","detail":{"description":"当前是否可见","type":"boolean","annotation":{"type":"keyword","value":"boolean"}}}]} />
+</TypeReferencesContext.Provider>
+
+## Methods
+
+<TypeReferencesContext.Provider value={["Placement"]}>
+  <BrickDocMethods methods={[{"name":"show","params":[],"description":"显示提示","returns":{}},{"name":"hide","params":[],"description":"隐藏提示","returns":{}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"typeAlias","name":"Placement","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"top"},{"type":"jsLiteral","value":"top-start"},{"type":"jsLiteral","value":"top-end"},{"type":"jsLiteral","value":"right"},{"type":"jsLiteral","value":"right-start"},{"type":"jsLiteral","value":"right-end"},{"type":"jsLiteral","value":"bottom"},{"type":"jsLiteral","value":"bottom-start"},{"type":"jsLiteral","value":"bottom-end"},{"type":"jsLiteral","value":"left"},{"type":"jsLiteral","value":"left-start"},{"type":"jsLiteral","value":"left-end"}]}}]} />
+

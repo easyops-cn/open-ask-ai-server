@@ -14,8 +14,7 @@ function getProject(projectId: string): Promise<ProjectWithFiles | null> {
     return cached;
   }
 
-  const projectsDir = process.env.PROJECTS_DIR || path.join(process.cwd(), 'projects');
-  const projectFilePath = path.join(projectsDir, 'generated', `${projectId}.json`);
+  const projectFilePath = path.join(process.cwd(), 'generated', `${projectId}.json`);
 
   const projectPromise = (async () => {
     if (!existsSync(projectFilePath)) {

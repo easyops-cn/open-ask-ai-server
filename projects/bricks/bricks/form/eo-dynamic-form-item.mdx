@@ -1,0 +1,391 @@
+---
+description: "<eo-dynamic-form-item>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-dynamic-form-item"}
+  alias={["form.dynamic-form-item"]}
+  insider={false}
+  deprecated={false}
+/>
+
+动态表单构件。
+
+```yaml preview
+- brick: eo-form
+  properties:
+    layout: vertical
+    values:
+      id: request_5XXX
+      dimension:
+        - dimensionName: one
+          dimensionId: one
+          dimensionValue: 1
+  children:
+    - brick: eo-input
+      properties:
+        name: id
+        label: 指标ID
+        required: true
+    - brick: eo-dynamic-form-item
+      properties:
+        name: dimension
+        label: 维度
+        useBrick:
+          - brick: eo-input
+            properties:
+              name: dimensionName
+              required: true
+              message:
+                required: 维度名称为必填项
+              label: 维度名称
+          - brick: eo-input
+            properties:
+              name: dimensionId
+              required: true
+              message:
+                required: 维度id为必填项
+              label: 维度id
+              unique: true
+              validator: '<% (value) => (value.length > 5 ? "维度id不能超过5" : "") %>'
+          - brick: eo-input
+            properties:
+              name: dimensionValue
+              label: 维度值
+    - brick: eo-submit-buttons
+      properties:
+        cancelText: 取消
+        submitText: 提交
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+form/eo-dynamic-form-item
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-form layout="vertical" values="[object Object]">
+#   <eo-input name="id" label="指标ID" required></eo-input>
+#   <eo-dynamic-form-item
+#     name="dimension"
+#     label="维度"
+#     id="brick-1"
+#   ></eo-dynamic-form-item>
+#   <eo-submit-buttons cancel-text="取消" submit-text="提交"></eo-submit-buttons>
+# </eo-form>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.useBrick = [
+#     {
+#       brick: "eo-input",
+#       properties: {
+#         name: "dimensionName",
+#         required: true,
+#         message: {
+#           required: "维度名称为必填项",
+#         },
+#         label: "维度名称",
+#       },
+#     },
+#     {
+#       brick: "eo-input",
+#       properties: {
+#         name: "dimensionId",
+#         required: true,
+#         message: {
+#           required: "维度id为必填项",
+#         },
+#         label: "维度id",
+#         unique: true,
+#         validator:
+#           '<% (value) => (value.length > 5 ? "维度id不能超过5" : "") %>',
+#       },
+#     },
+#     {
+#       brick: "eo-input",
+#       properties: {
+#         name: "dimensionValue",
+#         label: "维度值",
+#       },
+#     },
+#   ];
+# </script>
+# 
+```
+
+## Examples
+
+### Label
+
+```yaml preview
+- brick: eo-dynamic-form-item
+  properties:
+    label: Label
+    useBrick:
+      - brick: eo-input
+        properties:
+          name: input
+      - brick: eo-select
+        properties:
+          name: select
+          options:
+            - Beijing
+            - Shanghai
+            - Guangzhou
+            - Shenzhen
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+form/eo-dynamic-form-item/label
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-dynamic-form-item label="Label" id="brick-1"></eo-dynamic-form-item>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.useBrick = [
+#     {
+#       brick: "eo-input",
+#       properties: {
+#         name: "input",
+#       },
+#     },
+#     {
+#       brick: "eo-select",
+#       properties: {
+#         name: "select",
+#         options: ["Beijing", "Shanghai", "Guangzhou", "Shenzhen"],
+#       },
+#     },
+#   ];
+# </script>
+# 
+```
+
+### Value
+
+```yaml preview
+- brick: eo-dynamic-form-item
+  properties:
+    value:
+      - input: 北京
+        select: Beijing
+      - input: 上海
+        select: Shanghai
+    useBrick:
+      - brick: eo-input
+        properties:
+          name: input
+      - brick: eo-select
+        properties:
+          name: select
+          options:
+            - Beijing
+            - Shanghai
+            - Guangzhou
+            - Shenzhen
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+form/eo-dynamic-form-item/value
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-dynamic-form-item id="brick-1"></eo-dynamic-form-item>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.value = [
+#     {
+#       input: "北京",
+#       select: "Beijing",
+#     },
+#     {
+#       input: "上海",
+#       select: "Shanghai",
+#     },
+#   ];
+#   brick_1.useBrick = [
+#     {
+#       brick: "eo-input",
+#       properties: {
+#         name: "input",
+#       },
+#     },
+#     {
+#       brick: "eo-select",
+#       properties: {
+#         name: "select",
+#         options: ["Beijing", "Shanghai", "Guangzhou", "Shenzhen"],
+#       },
+#     },
+#   ];
+# </script>
+# 
+```
+
+### Hide or disable buttons
+
+```yaml preview
+- brick: eo-dynamic-form-item
+  properties:
+    hideAddButton: <% (value)=>value.length===5 %>
+    disabledAddButton: <% (value)=>value.length===4 %>
+    hideRemoveButton: <% (value,row)=>row===1 %>
+    disabledRemoveButton: <% (value,row)=>row===0 %>
+    value:
+      - input: hello1
+        select: abc1
+      - input: hello2
+        select: abc2
+      - input: hello3
+        select: abc3
+    useBrick:
+      - brick: eo-input
+        properties:
+          name: input
+      - brick: eo-select
+        properties:
+          name: select
+          options:
+            - abc1
+            - abc2
+            - abc3
+            - abc4
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+form/eo-dynamic-form-item/hide or disable buttons
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-dynamic-form-item id="brick-1"></eo-dynamic-form-item>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.hideAddButton = "<% (value)=>value.length===5 %>";
+#   brick_1.disabledAddButton = "<% (value)=>value.length===4 %>";
+#   brick_1.hideRemoveButton = "<% (value,row)=>row===1 %>";
+#   brick_1.disabledRemoveButton = "<% (value,row)=>row===0 %>";
+#   brick_1.value = [
+#     {
+#       input: "hello1",
+#       select: "abc1",
+#     },
+#     {
+#       input: "hello2",
+#       select: "abc2",
+#     },
+#     {
+#       input: "hello3",
+#       select: "abc3",
+#     },
+#   ];
+#   brick_1.useBrick = [
+#     {
+#       brick: "eo-input",
+#       properties: {
+#         name: "input",
+#       },
+#     },
+#     {
+#       brick: "eo-select",
+#       properties: {
+#         name: "select",
+#         options: ["abc1", "abc2", "abc3", "abc4"],
+#       },
+#     },
+#   ];
+# </script>
+# 
+```
+
+### Event
+
+```yaml preview
+- brick: eo-dynamic-form-item
+  properties:
+    name: dynamicForm
+    useBrick:
+      - brick: eo-input
+        properties:
+          name: input
+      - brick: eo-select
+        properties:
+          name: select
+          options:
+            - Beijing
+            - Shanghai
+            - Guangzhou
+            - Shenzhen
+  events:
+    row.remove:
+      action: console.log
+    row.add:
+      action: console.log
+    change:
+      - action: message.success
+        args:
+          - <% JSON.stringify(EVENT.detail) %>
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+form/eo-dynamic-form-item/event
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-dynamic-form-item name="dynamicForm" id="brick-1"></eo-dynamic-form-item>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.useBrick = [
+#     {
+#       brick: "eo-input",
+#       properties: {
+#         name: "input",
+#       },
+#     },
+#     {
+#       brick: "eo-select",
+#       properties: {
+#         name: "select",
+#         options: ["Beijing", "Shanghai", "Guangzhou", "Shenzhen"],
+#       },
+#     },
+#   ];
+#   brick_1.addEventListener("row.remove", (e) => {
+#     console.log(e.detail);
+#   });
+#   brick_1.addEventListener("row.add", (e) => {
+#     console.log(e.detail);
+#   });
+#   brick_1.addEventListener("change", (e) => {
+#     const message = document.createElement("basic.show-notification");
+#     message.resolve({
+#       type: "success",
+#       /* WARN: incompatible expressions in HTML, please try YAML: */
+#       message: "<% JSON.stringify(EVENT.detail) %>",
+#     });
+#   });
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["DynamicFormValuesItem","rowDataType"]}>
+  <BrickDocProperties properties={[{"name":"name","description":"字段名称","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"label","description":"字段说明","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"required","description":"是否必填","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"value","description":"值","attribute":false,"type":"DynamicFormValuesItem[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"DynamicFormValuesItem"}}}},{"name":"message","description":"校验文本","attribute":false,"type":"Record<string, string>","annotation":{"type":"reference","typeName":{"type":"identifier","name":"Record"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"keyword","value":"string"},{"type":"keyword","value":"string"}]}}},{"name":"hideRemoveButton","description":"是否隐藏每一行删除的按钮","attribute":false,"type":"boolean | ((row: Record<string, any>, index: number) => boolean)","annotation":{"type":"union","types":[{"type":"keyword","value":"boolean"},{"type":"parenthesizedType","annotation":{"type":"function","parameters":[{"type":"identifier","name":"row","annotation":{"type":"reference","typeName":{"type":"identifier","name":"Record"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"keyword","value":"string"},{"type":"keyword","value":"any"}]}}},{"type":"identifier","name":"index","annotation":{"type":"keyword","value":"number"}}],"annotation":{"type":"keyword","value":"boolean"}}}]}},{"name":"disabledRemoveButton","description":"是否禁止每一行删除的按钮","attribute":false,"type":"boolean | ((row: Record<string, any>, index: number) => boolean)","annotation":{"type":"union","types":[{"type":"keyword","value":"boolean"},{"type":"parenthesizedType","annotation":{"type":"function","parameters":[{"type":"identifier","name":"row","annotation":{"type":"reference","typeName":{"type":"identifier","name":"Record"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"keyword","value":"string"},{"type":"keyword","value":"any"}]}}},{"type":"identifier","name":"index","annotation":{"type":"keyword","value":"number"}}],"annotation":{"type":"keyword","value":"boolean"}}}]}},{"name":"hideAddButton","description":"是否隐藏添加的按钮","attribute":false,"type":"boolean | ((value: Record<string, any>[]) => boolean)","annotation":{"type":"union","types":[{"type":"keyword","value":"boolean"},{"type":"parenthesizedType","annotation":{"type":"function","parameters":[{"type":"identifier","name":"value","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"Record"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"keyword","value":"string"},{"type":"keyword","value":"any"}]}}}}],"annotation":{"type":"keyword","value":"boolean"}}}]}},{"name":"disabledAddButton","description":"是否禁止添加的按钮","attribute":false,"type":"boolean | ((value: Record<string, any>[]) => boolean)","annotation":{"type":"union","types":[{"type":"keyword","value":"boolean"},{"type":"parenthesizedType","annotation":{"type":"function","parameters":[{"type":"identifier","name":"value","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"Record"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"keyword","value":"string"},{"type":"keyword","value":"any"}]}}}}],"annotation":{"type":"keyword","value":"boolean"}}}]}},{"name":"useBrick","description":"动态表单子项构件列表","attribute":false,"type":"UseBrickConf","annotation":{"type":"reference","typeName":{"type":"identifier","name":"UseBrickConf"}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={["DynamicFormValuesItem","rowDataType"]}>
+  <BrickDocEvents events={[{"name":"change","detail":{"type":"DynamicFormValuesItem[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"DynamicFormValuesItem"}}}}},{"name":"row.add","description":"增加一行时触发，detail为该行的默认值，index为该行的位置","detail":{"type":"rowDataType","annotation":{"type":"reference","typeName":{"type":"identifier","name":"rowDataType"}}}},{"name":"row.remove","description":"移除一行时触发，detail为该行的值，index为该行的位置","detail":{"type":"rowDataType","annotation":{"type":"reference","typeName":{"type":"identifier","name":"rowDataType"}}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"typeAlias","name":"DynamicFormValuesItem","annotation":{"type":"reference","typeName":{"type":"identifier","name":"Record"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"keyword","value":"string"},{"type":"keyword","value":"any"}]}}},{"type":"interface","name":"rowDataType","body":[{"type":"propertySignature","key":{"type":"identifier","name":"detail"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"Record"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"keyword","value":"string"},{"type":"keyword","value":"any"}]}},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"index"},"annotation":{"type":"keyword","value":"number"},"computed":false}]}]} />
+

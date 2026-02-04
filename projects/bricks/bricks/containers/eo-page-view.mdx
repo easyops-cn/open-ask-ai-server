@@ -1,0 +1,189 @@
+---
+description: "<eo-page-view>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-page-view"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+页面视图
+
+## Examples
+
+### Basic
+
+```yaml preview
+brick: eo-page-view
+properties:
+  style:
+    height: 300px
+children:
+  - brick: div
+    slot: header
+    properties:
+      style:
+        height: 50px
+        background: green
+      textContent: Header
+  - brick: div
+    slot: sidebar
+    properties:
+      style:
+        width: 220px
+        height: 100%
+        background: purple
+      textContent: Sidebar
+  - brick: div
+    slot: subSidebar
+    properties:
+      style:
+        width: 208px
+        height: 100%
+        background: red
+      textContent: Sub-Sidebar
+  - brick: div
+    properties:
+      style:
+        width: 100%
+        height: 100%
+        background: blue
+      textContent: Content
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+containers/eo-page-view/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-page-view style="height: 300px">
+#   <div slot="header" style="height: 50px; background: green">Header</div>
+#   <div slot="sidebar" style="width: 220px; height: 100%; background: purple">
+#     Sidebar
+#   </div>
+#   <div slot="subSidebar" style="width: 208px; height: 100%; background: red">
+#     Sub-Sidebar
+#   </div>
+#   <div style="width: 100%; height: 100%; background: blue">Content</div>
+# </eo-page-view>
+# 
+```
+
+### With Main View
+
+```yaml preview
+brick: eo-page-view
+properties:
+  style:
+    height: 300px
+children:
+  - brick: div
+    slot: header
+    properties:
+      style:
+        height: 50px
+        background: green
+      textContent: Header
+  - brick: div
+    slot: sidebar
+    properties:
+      style:
+        width: 220px
+        height: 100%
+        background: purple
+      textContent: Sidebar
+  - brick: div
+    slot: subSidebar
+    properties:
+      style:
+        width: 208px
+        height: 100%
+        background: red
+      textContent: Sub-Sidebar
+  - brick: eo-main-view
+    children:
+      - brick: eo-frame-breadcrumb
+        slot: breadcrumb
+        properties:
+          breadcrumb:
+            - text: Home
+              to: /Home
+            - text: Detail
+              to: /Detail
+            - text: List
+              to: /List
+      - brick: eo-page-title
+        slot: pageTitle
+        properties:
+          pageTitle: Hello World
+      - brick: div
+        properties:
+          textContent: Say hello to everyone! And then say goodbye to everyone!
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+containers/eo-page-view/with main view
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-page-view style="height: 300px">
+#   <div slot="header" style="height: 50px; background: green">Header</div>
+#   <div slot="sidebar" style="width: 220px; height: 100%; background: purple">
+#     Sidebar
+#   </div>
+#   <div slot="subSidebar" style="width: 208px; height: 100%; background: red">
+#     Sub-Sidebar
+#   </div>
+#   <eo-main-view>
+#     <eo-frame-breadcrumb slot="breadcrumb" id="brick-1"></eo-frame-breadcrumb>
+#     <eo-page-title slot="pageTitle" page-title="Hello World"></eo-page-title>
+#     <div>Say hello to everyone! And then say goodbye to everyone!</div>
+#   </eo-main-view>
+# </eo-page-view>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.breadcrumb = [
+#     {
+#       text: "Home",
+#       to: "/Home",
+#     },
+#     {
+#       text: "Detail",
+#       to: "/Detail",
+#     },
+#     {
+#       text: "List",
+#       to: "/List",
+#     },
+#   ];
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["NarrowViewSize"]}>
+  <BrickDocProperties properties={[{"name":"narrow","description":"设置窄布局模式（居中）。\n\n- \"full\": 全尺寸（非窄布局居中）\n- \"small\": 小尺寸窄布局\n- \"medium\": 中等尺寸窄布局\n- \"large\": 大尺寸窄布局","default":"\"full\"","type":"NarrowViewSize","annotation":{"type":"reference","typeName":{"type":"identifier","name":"NarrowViewSize"}}},{"name":"showFooter","description":"是否显示底栏（通常放置按钮）","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"fixedFooter","description":"底栏始终固定在底部。\n未设置时 footer 默认为 sticky，即：屏幕高度足够时，底栏跟随内容区上移而不是始终固定。","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"reversedFooter","description":"设置 reversedFooter: true 时，底栏子构件靠于右侧。\n\n默认不设置时，底栏子构件靠于左侧。","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"textContent","type":"string","description":"文本内容","annotation":{"type":"keyword","value":"string"}}]} />
+</TypeReferencesContext.Provider>
+
+## Slots
+
+<BrickDocSlots slots={[{"name":null,"description":"内容区"},{"name":"header","description":"顶栏"},{"name":"sidebar","description":"侧边栏"},{"name":"subSidebar","description":"子侧边栏"},{"name":"footer","description":"底栏（通常放置按钮）"}]} />
+
+
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"typeAlias","name":"NarrowViewSize","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"small"},{"type":"jsLiteral","value":"medium"},{"type":"jsLiteral","value":"large"},{"type":"jsLiteral","value":"full"}]}}]} />
+

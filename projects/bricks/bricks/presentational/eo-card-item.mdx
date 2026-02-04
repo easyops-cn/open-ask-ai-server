@@ -1,0 +1,1419 @@
+---
+description: "<eo-card-item>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-card-item"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+信息类卡片 —— 通用卡片
+
+## Examples
+
+### Basic
+
+```yaml preview
+brick: eo-card-item
+properties:
+  style:
+    width: 300px
+  hasHeader: true
+  auxiliaryText: 初级应用
+  cardTitle: 资源监控微应用
+  description: 资源监控微应用相关前后台
+  url: /test
+  target: _blank
+  avatar:
+    icon:
+      lib: easyops
+      category: default
+      icon: monitor
+    color: "#167be0"
+    size: 20
+    bgColor: var(--theme-geekblue-background)
+  actions:
+    - icon:
+        lib: antd
+        theme: outlined
+        icon: star
+      isDropdown: false
+      event: collect
+    - icon:
+        lib: antd
+        icon: copy
+        theme: outlined
+      text: 复制链接
+      isDropdown: true
+      event: copy
+    - icon:
+        lib: antd
+        icon: download
+        theme: outlined
+      text: 下载
+      isDropdown: true
+      disabled: true
+      event: download
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-card-item/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-card-item
+#   style="width: 300px"
+#   has-header
+#   auxiliary-text="初级应用"
+#   card-title="资源监控微应用"
+#   description="资源监控微应用相关前后台"
+#   target="_blank"
+#   id="brick-1"
+# ></eo-card-item>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.url = "/test";
+#   brick_1.avatar = {
+#     icon: {
+#       lib: "easyops",
+#       category: "default",
+#       icon: "monitor",
+#     },
+#     color: "#167be0",
+#     size: 20,
+#     bgColor: "var(--theme-geekblue-background)",
+#   };
+#   brick_1.actions = [
+#     {
+#       icon: {
+#         lib: "antd",
+#         theme: "outlined",
+#         icon: "star",
+#       },
+#       isDropdown: false,
+#       event: "collect",
+#     },
+#     {
+#       icon: {
+#         lib: "antd",
+#         icon: "copy",
+#         theme: "outlined",
+#       },
+#       text: "复制链接",
+#       isDropdown: true,
+#       event: "copy",
+#     },
+#     {
+#       icon: {
+#         lib: "antd",
+#         icon: "download",
+#         theme: "outlined",
+#       },
+#       text: "下载",
+#       isDropdown: true,
+#       disabled: true,
+#       event: "download",
+#     },
+#   ];
+# </script>
+# 
+```
+
+### showActions
+
+```yaml preview
+brick: eo-card-item
+properties:
+  style:
+    width: 300px
+  hasHeader: true
+  auxiliaryText: 初级应用
+  cardTitle: 资源监控微应用
+  description: 资源监控微应用相关前后台
+  avatar:
+    icon:
+      lib: easyops
+      category: default
+      icon: monitor
+    color: "#167be0"
+    size: 20
+    bgColor: var(--theme-geekblue-background)
+  actions:
+    - icon:
+        lib: antd
+        theme: outlined
+        icon: star
+      isDropdown: false
+      event: collect
+    - icon:
+        lib: antd
+        icon: copy
+        theme: outlined
+      text: 复制链接
+      isDropdown: true
+      event: copy
+    - icon:
+        lib: antd
+        icon: download
+        theme: outlined
+      text: 下载
+      isDropdown: true
+      disabled: true
+      event: download
+  showActions: hover
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-card-item/showactions
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-card-item
+#   style="width: 300px"
+#   has-header
+#   auxiliary-text="初级应用"
+#   card-title="资源监控微应用"
+#   description="资源监控微应用相关前后台"
+#   show-actions="hover"
+#   id="brick-1"
+# ></eo-card-item>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.avatar = {
+#     icon: {
+#       lib: "easyops",
+#       category: "default",
+#       icon: "monitor",
+#     },
+#     color: "#167be0",
+#     size: 20,
+#     bgColor: "var(--theme-geekblue-background)",
+#   };
+#   brick_1.actions = [
+#     {
+#       icon: {
+#         lib: "antd",
+#         theme: "outlined",
+#         icon: "star",
+#       },
+#       isDropdown: false,
+#       event: "collect",
+#     },
+#     {
+#       icon: {
+#         lib: "antd",
+#         icon: "copy",
+#         theme: "outlined",
+#       },
+#       text: "复制链接",
+#       isDropdown: true,
+#       event: "copy",
+#     },
+#     {
+#       icon: {
+#         lib: "antd",
+#         icon: "download",
+#         theme: "outlined",
+#       },
+#       text: "下载",
+#       isDropdown: true,
+#       disabled: true,
+#       event: "download",
+#     },
+#   ];
+# </script>
+# 
+```
+
+### Single Expanded Area
+
+```yaml preview gap
+- brick: eo-card-item
+  properties:
+    style:
+      width: 300px
+    hasHeader: true
+    auxiliaryText: 初级应用
+    cardTitle: 资源监控微应用
+    description: 资源监控微应用相关前后台
+    avatar:
+      icon:
+        lib: easyops
+        category: default
+        icon: monitor
+      color: "#167be0"
+      size: 20
+      bgColor: var(--theme-geekblue-background)
+  slots:
+    expanded-area-1:
+      type: bricks
+      bricks:
+        - brick: eo-tag-list
+          properties:
+            size: small
+            list:
+              - text: IT 资源管理
+                key: IT_resource_management
+                color: gray
+              - text: 资源套餐
+                key: resource_package
+                color: gray
+              - text: 存储设备
+                key: storage_device
+                color: gray
+- brick: eo-card-item
+  properties:
+    style:
+      width: 300px
+    hasHeader: true
+    auxiliaryText: 初级应用
+    cardTitle: 资源监控微应用
+    description: 资源监控微应用相关前后台
+    avatar:
+      icon:
+        lib: easyops
+        category: default
+        icon: monitor
+      color: "#167be0"
+      size: 20
+      bgColor: var(--theme-geekblue-background)
+  slots:
+    expanded-area-2:
+      type: bricks
+      bricks:
+        - brick: eo-flex-layout
+          properties:
+            style:
+              width: 100%
+            justifyContent: space-between
+            alignItems: center
+          children:
+            - brick: span
+              properties:
+                textContent: 张元 更新于 2 小时前
+                style:
+                  color: var(--text-color-secondary)
+            - brick: eo-switch
+              properties:
+                size: small
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-card-item/single expanded area
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-card-item
+#   style="width: 300px"
+#   has-header
+#   auxiliary-text="初级应用"
+#   card-title="资源监控微应用"
+#   description="资源监控微应用相关前后台"
+#   id="brick-1"
+# >
+#   <eo-tag-list slot="expanded-area-1" size="small" id="brick-2"></eo-tag-list>
+# </eo-card-item>
+# <eo-card-item
+#   style="width: 300px"
+#   has-header
+#   auxiliary-text="初级应用"
+#   card-title="资源监控微应用"
+#   description="资源监控微应用相关前后台"
+#   id="brick-3"
+# >
+#   <eo-flex-layout
+#     slot="expanded-area-2"
+#     style="width: 100%"
+#     justify-content="space-between"
+#     align-items="center"
+#   >
+#     <span style="color: var(--text-color-secondary)">张元 更新于 2 小时前</span>
+#     <eo-switch size="small"></eo-switch>
+#   </eo-flex-layout>
+# </eo-card-item>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.avatar = {
+#     icon: {
+#       lib: "easyops",
+#       category: "default",
+#       icon: "monitor",
+#     },
+#     color: "#167be0",
+#     size: 20,
+#     bgColor: "var(--theme-geekblue-background)",
+#   };
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.list = [
+#     {
+#       text: "IT 资源管理",
+#       key: "IT_resource_management",
+#       color: "gray",
+#     },
+#     {
+#       text: "资源套餐",
+#       key: "resource_package",
+#       color: "gray",
+#     },
+#     {
+#       text: "存储设备",
+#       key: "storage_device",
+#       color: "gray",
+#     },
+#   ];
+# 
+#   const brick_3 = document.getElementById("brick-3");
+#   brick_3.avatar = {
+#     icon: {
+#       lib: "easyops",
+#       category: "default",
+#       icon: "monitor",
+#     },
+#     color: "#167be0",
+#     size: 20,
+#     bgColor: "var(--theme-geekblue-background)",
+#   };
+# </script>
+# 
+```
+
+### Multiple Expanded Area
+
+```yaml preview gap
+- brick: eo-card-item
+  properties:
+    style:
+      width: 300px
+    hasHeader: true
+    auxiliaryText: 初级应用
+    cardTitle: 资源监控微应用
+    description: 资源监控微应用相关前后台
+    avatar:
+      icon:
+        lib: easyops
+        category: default
+        icon: monitor
+      color: "#167be0"
+      size: 20
+      bgColor: var(--theme-geekblue-background)
+  slots:
+    title-suffix:
+      type: bricks
+      bricks:
+        - brick: eo-tag
+          properties:
+            textContent: 已启用
+            color: green
+    expanded-area-1:
+      type: bricks
+      bricks:
+        - brick: eo-tag-list
+          properties:
+            size: small
+            list:
+              - text: IT 资源管理
+                key: IT_resource_management
+                color: gray
+              - text: 资源套餐
+                key: resource_package
+                color: gray
+              - text: 存储设备
+                key: storage_device
+                color: gray
+    expanded-area-2:
+      type: bricks
+      bricks:
+        - brick: eo-flex-layout
+          properties:
+            style:
+              width: 100%
+            justifyContent: space-between
+            alignItems: center
+          children:
+            - brick: span
+              properties:
+                textContent: 张元 更新于 2 小时前
+                style:
+                  color: var(--text-color-secondary)
+            - brick: eo-switch
+              properties:
+                size: small
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-card-item/multiple expanded area
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-card-item
+#   style="width: 300px"
+#   has-header
+#   auxiliary-text="初级应用"
+#   card-title="资源监控微应用"
+#   description="资源监控微应用相关前后台"
+#   id="brick-1"
+# >
+#   <eo-tag slot="title-suffix" color="green">已启用</eo-tag>
+#   <eo-tag-list slot="expanded-area-1" size="small" id="brick-2"></eo-tag-list>
+#   <eo-flex-layout
+#     slot="expanded-area-2"
+#     style="width: 100%"
+#     justify-content="space-between"
+#     align-items="center"
+#   >
+#     <span style="color: var(--text-color-secondary)">张元 更新于 2 小时前</span>
+#     <eo-switch size="small"></eo-switch>
+#   </eo-flex-layout>
+# </eo-card-item>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.avatar = {
+#     icon: {
+#       lib: "easyops",
+#       category: "default",
+#       icon: "monitor",
+#     },
+#     color: "#167be0",
+#     size: 20,
+#     bgColor: "var(--theme-geekblue-background)",
+#   };
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.list = [
+#     {
+#       text: "IT 资源管理",
+#       key: "IT_resource_management",
+#       color: "gray",
+#     },
+#     {
+#       text: "资源套餐",
+#       key: "resource_package",
+#       color: "gray",
+#     },
+#     {
+#       text: "存储设备",
+#       key: "storage_device",
+#       color: "gray",
+#     },
+#   ];
+# </script>
+# 
+```
+
+### Cover
+
+```yaml preview
+- brick: eo-card-item
+  properties:
+    style:
+      width: 280px
+    hasCover: true
+    coverImage: https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png
+    cardTitle: 信息卡片
+    description: 这是一只可爱的北极熊
+    url: /test
+    target: _blank
+- brick: eo-card-item
+  properties:
+    style:
+      width: 280px
+    hasCover: true
+    coverColor: "#167be0"
+    cardTitle: 资源监控微应用
+    description: 资源监控微应用相关前后台
+    url: /test
+    target: _blank
+    avatarPosition: cover
+    avatar:
+      icon:
+        lib: easyops
+        category: default
+        icon: monitor
+      color: "#fff"
+    actions:
+      - icon:
+          lib: antd
+          theme: outlined
+          icon: star
+          startColor: "#fff"
+          endColor: "#fff"
+        isDropdown: false
+        event: collect
+      - icon:
+          lib: antd
+          icon: copy
+          theme: outlined
+        text: 复制链接
+        isDropdown: true
+        event: copy
+      - icon:
+          lib: antd
+          icon: download
+          theme: outlined
+        text: 下载
+        isDropdown: true
+        disabled: true
+        event: download
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-card-item/cover
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-card-item
+#   style="width: 280px"
+#   has-cover
+#   card-title="信息卡片"
+#   description="这是一只可爱的北极熊"
+#   target="_blank"
+#   id="brick-1"
+# ></eo-card-item>
+# <eo-card-item
+#   style="width: 280px"
+#   has-cover
+#   card-title="资源监控微应用"
+#   description="资源监控微应用相关前后台"
+#   target="_blank"
+#   avatar-position="cover"
+#   id="brick-2"
+# ></eo-card-item>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.coverImage =
+#     "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png";
+#   brick_1.url = "/test";
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.coverColor = "#167be0";
+#   brick_2.url = "/test";
+#   brick_2.avatar = {
+#     icon: {
+#       lib: "easyops",
+#       category: "default",
+#       icon: "monitor",
+#     },
+#     color: "#fff",
+#   };
+#   brick_2.actions = [
+#     {
+#       icon: {
+#         lib: "antd",
+#         theme: "outlined",
+#         icon: "star",
+#         startColor: "#fff",
+#         endColor: "#fff",
+#       },
+#       isDropdown: false,
+#       event: "collect",
+#     },
+#     {
+#       icon: {
+#         lib: "antd",
+#         icon: "copy",
+#         theme: "outlined",
+#       },
+#       text: "复制链接",
+#       isDropdown: true,
+#       event: "copy",
+#     },
+#     {
+#       icon: {
+#         lib: "antd",
+#         icon: "download",
+#         theme: "outlined",
+#       },
+#       text: "下载",
+#       isDropdown: true,
+#       disabled: true,
+#       event: "download",
+#     },
+#   ];
+# </script>
+# 
+```
+
+### avatarPlacement
+
+```yaml preview
+brick: eo-card-item
+properties:
+  avatarPlacement: title-left
+  style:
+    width: 300px
+  cardTitle: 资源监控微应用
+  description: 资源监控微应用相关前后台
+  url: /test
+  target: _blank
+  avatar:
+    icon:
+      lib: easyops
+      category: default
+      icon: monitor
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-card-item/avatarplacement
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-card-item
+#   avatar-placement="title-left"
+#   style="width: 300px"
+#   card-title="资源监控微应用"
+#   description="资源监控微应用相关前后台"
+#   target="_blank"
+#   id="brick-1"
+# ></eo-card-item>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.url = "/test";
+#   brick_1.avatar = {
+#     icon: {
+#       lib: "easyops",
+#       category: "default",
+#       icon: "monitor",
+#     },
+#   };
+# </script>
+# 
+```
+
+### selected
+
+```yaml preview
+- brick: eo-card-item
+  properties:
+    selected: true
+    style:
+      width: 300px
+    cardTitle: 资源监控微应用
+    description: 资源监控微应用相关前后台
+    avatar:
+      icon:
+        lib: easyops
+        category: default
+        icon: monitor
+      size: 20
+- brick: eo-card-item
+  properties:
+    styleType: grayish
+    selected: true
+    style:
+      width: 300px
+    cardTitle: 资源监控微应用
+    description: 资源监控微应用相关前后台
+    avatar:
+      icon:
+        lib: easyops
+        category: default
+        icon: monitor
+      size: 20
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-card-item/selected
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-card-item
+#   selected
+#   style="width: 300px"
+#   card-title="资源监控微应用"
+#   description="资源监控微应用相关前后台"
+#   id="brick-1"
+# ></eo-card-item>
+# <eo-card-item
+#   style-type="grayish"
+#   selected
+#   style="width: 300px"
+#   card-title="资源监控微应用"
+#   description="资源监控微应用相关前后台"
+#   id="brick-2"
+# ></eo-card-item>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.avatar = {
+#     icon: {
+#       lib: "easyops",
+#       category: "default",
+#       icon: "monitor",
+#     },
+#     size: 20,
+#   };
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.avatar = {
+#     icon: {
+#       lib: "easyops",
+#       category: "default",
+#       icon: "monitor",
+#     },
+#     size: 20,
+#   };
+# </script>
+# 
+```
+
+### borderColor
+
+```yaml preview
+- brick: eo-card-item
+  properties:
+    borderColor: blue
+    style:
+      width: 300px
+    cardTitle: 资源监控微应用
+    description: 资源监控微应用相关前后台
+    avatar:
+      icon:
+        lib: easyops
+        category: default
+        icon: monitor
+      size: 20
+- brick: eo-card-item
+  properties:
+    borderColor: blue
+    selected: true
+    style:
+      marginTop: 8px
+      width: 300px
+    cardTitle: 资源监控微应用
+    description: 资源监控微应用相关前后台
+    avatar:
+      icon:
+        lib: easyops
+        category: default
+        icon: monitor
+      size: 20
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-card-item/bordercolor
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-card-item
+#   border-color="blue"
+#   style="width: 300px"
+#   card-title="资源监控微应用"
+#   description="资源监控微应用相关前后台"
+#   id="brick-1"
+# ></eo-card-item>
+# <eo-card-item
+#   border-color="blue"
+#   selected
+#   style="margin-top: 8px; width: 300px"
+#   card-title="资源监控微应用"
+#   description="资源监控微应用相关前后台"
+#   id="brick-2"
+# ></eo-card-item>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.avatar = {
+#     icon: {
+#       lib: "easyops",
+#       category: "default",
+#       icon: "monitor",
+#     },
+#     size: 20,
+#   };
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.avatar = {
+#     icon: {
+#       lib: "easyops",
+#       category: "default",
+#       icon: "monitor",
+#     },
+#     size: 20,
+#   };
+# </script>
+# 
+```
+
+### Tag
+
+```yaml preview
+- brick: div
+  properties:
+    textContent: Text Tag
+    style:
+      marginBottom: 10px
+- brick: eo-grid-layout
+  properties:
+    gap: 16px
+    columns: 4
+  children:
+    - brick: eo-card-item
+      properties:
+        tagConfig:
+          text: 禁用
+          bgColor: gray
+        cardTitle: 资源监控微应用
+        description: 资源监控微应用相关前后台
+    - brick: eo-card-item
+      properties:
+        tagConfig:
+          text: 蓝色
+          bgColor: blue
+        cardTitle: 资源监控微应用
+        description: 资源监控微应用相关前后台
+    - brick: eo-card-item
+      properties:
+        tagConfig:
+          text: 绿色
+          bgColor: green
+        cardTitle: 资源监控微应用
+        description: 资源监控微应用相关前后台
+    - brick: eo-card-item
+      properties:
+        tagConfig:
+          text: 黄色
+          bgColor: yellow
+        cardTitle: 资源监控微应用
+        description: 资源监控微应用相关前后台
+    - brick: eo-card-item
+      properties:
+        tagConfig:
+          text: 红色
+          bgColor: red
+        cardTitle: 资源监控微应用
+        description: 资源监控微应用相关前后台
+    - brick: eo-card-item
+      properties:
+        tagConfig:
+          text: 青色
+          bgColor: cyan
+        cardTitle: 资源监控微应用
+        description: 资源监控微应用相关前后台
+    - brick: eo-card-item
+      properties:
+        tagConfig:
+          text: 灰蓝色
+          bgColor: grayblue
+        cardTitle: 资源监控微应用
+        description: 资源监控微应用相关前后台
+    - brick: eo-card-item
+      properties:
+        tagConfig:
+          text: 紫色
+          bgColor: purple
+        cardTitle: 资源监控微应用
+        description: 资源监控微应用相关前后台
+    - brick: eo-card-item
+      properties:
+        tagConfig:
+          text: 自定义
+          bgColor: "rgb(228 236 183)"
+          color: "#000"
+        cardTitle: 资源监控微应用
+        description: 资源监控微应用相关前后台
+- brick: div
+  properties:
+    textContent: Icon Tag
+    style:
+      margin: 10px
+- brick: eo-grid-layout
+  properties:
+    gap: 16px
+    columns: 4
+  children:
+    - brick: eo-card-item
+      properties:
+        tagConfig:
+          icon:
+            lib: antd
+            icon: info-circle
+            theme: outlined
+          bgColor: blue
+        cardTitle: 资源监控微应用
+        description: 资源监控微应用相关前后台
+        url: /test
+        target: _blank
+    - brick: eo-card-item
+      properties:
+        tagConfig:
+          icon:
+            lib: antd
+            icon: check-circle
+            theme: outlined
+          bgColor: green
+        cardTitle: 资源监控微应用
+        description: 资源监控微应用相关前后台
+        url: /test
+        target: _blank
+    - brick: eo-card-item
+      properties:
+        tagConfig:
+          icon:
+            lib: antd
+            icon: info-circle
+            theme: outlined
+          bgColor: yellow
+        cardTitle: 资源监控微应用
+        description: 资源监控微应用相关前后台
+        url: /test
+        target: _blank
+    - brick: eo-card-item
+      properties:
+        tagConfig:
+          icon:
+            lib: antd
+            icon: close-circle
+            theme: outlined
+          bgColor: red
+        cardTitle: 资源监控微应用
+        description: 资源监控微应用相关前后台
+        url: /test
+        target: _blank
+    - brick: eo-card-item
+      events:
+        tag.click:
+          - action: message.success
+            args:
+              - 收藏成功
+          - target: _self
+            properties:
+              tagConfig:
+                icon:
+                  lib: antd
+                  icon: star
+                  theme: filled
+                  startColor: yellow
+                  endColor: yellow
+                bgColor: blue
+      properties:
+        tagConfig:
+          icon:
+            lib: antd
+            icon: star
+            theme: filled
+          bgColor: blue
+        cardTitle: 资源监控微应用
+        description: 资源监控微应用相关前后台
+        url: /test
+        target: _blank
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-card-item/tag
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <div style="margin-bottom: 10px">Text Tag</div>
+# <eo-grid-layout gap="16px" columns="4">
+#   <eo-card-item
+#     card-title="资源监控微应用"
+#     description="资源监控微应用相关前后台"
+#     id="brick-1"
+#   ></eo-card-item>
+#   <eo-card-item
+#     card-title="资源监控微应用"
+#     description="资源监控微应用相关前后台"
+#     id="brick-2"
+#   ></eo-card-item>
+#   <eo-card-item
+#     card-title="资源监控微应用"
+#     description="资源监控微应用相关前后台"
+#     id="brick-3"
+#   ></eo-card-item>
+#   <eo-card-item
+#     card-title="资源监控微应用"
+#     description="资源监控微应用相关前后台"
+#     id="brick-4"
+#   ></eo-card-item>
+#   <eo-card-item
+#     card-title="资源监控微应用"
+#     description="资源监控微应用相关前后台"
+#     id="brick-5"
+#   ></eo-card-item>
+#   <eo-card-item
+#     card-title="资源监控微应用"
+#     description="资源监控微应用相关前后台"
+#     id="brick-6"
+#   ></eo-card-item>
+#   <eo-card-item
+#     card-title="资源监控微应用"
+#     description="资源监控微应用相关前后台"
+#     id="brick-7"
+#   ></eo-card-item>
+#   <eo-card-item
+#     card-title="资源监控微应用"
+#     description="资源监控微应用相关前后台"
+#     id="brick-8"
+#   ></eo-card-item>
+#   <eo-card-item
+#     card-title="资源监控微应用"
+#     description="资源监控微应用相关前后台"
+#     id="brick-9"
+#   ></eo-card-item>
+# </eo-grid-layout>
+# <div style="margin: 10px">Icon Tag</div>
+# <eo-grid-layout gap="16px" columns="4">
+#   <eo-card-item
+#     card-title="资源监控微应用"
+#     description="资源监控微应用相关前后台"
+#     target="_blank"
+#     id="brick-10"
+#   ></eo-card-item>
+#   <eo-card-item
+#     card-title="资源监控微应用"
+#     description="资源监控微应用相关前后台"
+#     target="_blank"
+#     id="brick-11"
+#   ></eo-card-item>
+#   <eo-card-item
+#     card-title="资源监控微应用"
+#     description="资源监控微应用相关前后台"
+#     target="_blank"
+#     id="brick-12"
+#   ></eo-card-item>
+#   <eo-card-item
+#     card-title="资源监控微应用"
+#     description="资源监控微应用相关前后台"
+#     target="_blank"
+#     id="brick-13"
+#   ></eo-card-item>
+#   <eo-card-item
+#     card-title="资源监控微应用"
+#     description="资源监控微应用相关前后台"
+#     target="_blank"
+#     id="brick-14"
+#   ></eo-card-item>
+# </eo-grid-layout>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.tagConfig = {
+#     text: "禁用",
+#     bgColor: "gray",
+#   };
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.tagConfig = {
+#     text: "蓝色",
+#     bgColor: "blue",
+#   };
+# 
+#   const brick_3 = document.getElementById("brick-3");
+#   brick_3.tagConfig = {
+#     text: "绿色",
+#     bgColor: "green",
+#   };
+# 
+#   const brick_4 = document.getElementById("brick-4");
+#   brick_4.tagConfig = {
+#     text: "黄色",
+#     bgColor: "yellow",
+#   };
+# 
+#   const brick_5 = document.getElementById("brick-5");
+#   brick_5.tagConfig = {
+#     text: "红色",
+#     bgColor: "red",
+#   };
+# 
+#   const brick_6 = document.getElementById("brick-6");
+#   brick_6.tagConfig = {
+#     text: "青色",
+#     bgColor: "cyan",
+#   };
+# 
+#   const brick_7 = document.getElementById("brick-7");
+#   brick_7.tagConfig = {
+#     text: "灰蓝色",
+#     bgColor: "grayblue",
+#   };
+# 
+#   const brick_8 = document.getElementById("brick-8");
+#   brick_8.tagConfig = {
+#     text: "紫色",
+#     bgColor: "purple",
+#   };
+# 
+#   const brick_9 = document.getElementById("brick-9");
+#   brick_9.tagConfig = {
+#     text: "自定义",
+#     bgColor: "rgb(228 236 183)",
+#     color: "#000",
+#   };
+# 
+#   const brick_10 = document.getElementById("brick-10");
+#   brick_10.tagConfig = {
+#     icon: {
+#       lib: "antd",
+#       icon: "info-circle",
+#       theme: "outlined",
+#     },
+#     bgColor: "blue",
+#   };
+#   brick_10.url = "/test";
+# 
+#   const brick_11 = document.getElementById("brick-11");
+#   brick_11.tagConfig = {
+#     icon: {
+#       lib: "antd",
+#       icon: "check-circle",
+#       theme: "outlined",
+#     },
+#     bgColor: "green",
+#   };
+#   brick_11.url = "/test";
+# 
+#   const brick_12 = document.getElementById("brick-12");
+#   brick_12.tagConfig = {
+#     icon: {
+#       lib: "antd",
+#       icon: "info-circle",
+#       theme: "outlined",
+#     },
+#     bgColor: "yellow",
+#   };
+#   brick_12.url = "/test";
+# 
+#   const brick_13 = document.getElementById("brick-13");
+#   brick_13.tagConfig = {
+#     icon: {
+#       lib: "antd",
+#       icon: "close-circle",
+#       theme: "outlined",
+#     },
+#     bgColor: "red",
+#   };
+#   brick_13.url = "/test";
+# 
+#   const brick_14 = document.getElementById("brick-14");
+#   brick_14.tagConfig = {
+#     icon: {
+#       lib: "antd",
+#       icon: "star",
+#       theme: "filled",
+#     },
+#     bgColor: "blue",
+#   };
+#   brick_14.url = "/test";
+#   brick_14.addEventListener("tag.click", (e) => {
+#     const message = document.createElement("basic.show-notification");
+#     message.resolve({ type: "success", message: "收藏成功" });
+#   });
+#   brick_14.addEventListener("tag.click", (e) => {
+#     const brick = e.target;
+#     brick.tagConfig = {
+#       icon: {
+#         lib: "antd",
+#         icon: "star",
+#         theme: "filled",
+#         startColor: "yellow",
+#         endColor: "yellow",
+#       },
+#       bgColor: "blue",
+#     };
+#   });
+# </script>
+# 
+```
+
+### Style type
+
+```yaml preview
+brick: eo-card-item
+properties:
+  styleType: grayish
+  style:
+    width: 300px
+  cardTitle: 资源监控微应用
+  description: 资源监控微应用相关前后台
+  url: /test
+  target: _blank
+  avatar:
+    icon:
+      lib: easyops
+      category: default
+      icon: monitor
+    size: 20
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-card-item/style type
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-card-item
+#   style-type="grayish"
+#   style="width: 300px"
+#   card-title="资源监控微应用"
+#   description="资源监控微应用相关前后台"
+#   target="_blank"
+#   id="brick-1"
+# ></eo-card-item>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.url = "/test";
+#   brick_1.avatar = {
+#     icon: {
+#       lib: "easyops",
+#       category: "default",
+#       icon: "monitor",
+#     },
+#     size: 20,
+#   };
+# </script>
+# 
+```
+
+### stacked
+
+```yaml preview
+- brick: eo-card-item
+  properties:
+    stacked: true
+    style:
+      width: 300px
+    cardTitle: 资源监控微应用
+    description: 资源监控微应用相关前后台
+    avatar:
+      icon:
+        lib: easyops
+        category: default
+        icon: monitor
+      size: 20
+- brick: eo-card-item
+  properties:
+    stacked: true
+    styleType: grayish
+    style:
+      marginTop: 18px
+      width: 300px
+    cardTitle: 资源监控微应用
+    description: 资源监控微应用相关前后台
+    avatar:
+      icon:
+        lib: easyops
+        category: default
+        icon: monitor
+      size: 20
+- brick: eo-card-item
+  properties:
+    stacked: true
+    borderColor: blue
+    style:
+      marginTop: 18px
+      width: 300px
+    cardTitle: 资源监控微应用
+    description: 资源监控微应用相关前后台
+    avatar:
+      icon:
+        lib: easyops
+        category: default
+        icon: monitor
+      size: 20
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-card-item/stacked
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-card-item
+#   stacked
+#   style="width: 300px"
+#   card-title="资源监控微应用"
+#   description="资源监控微应用相关前后台"
+#   id="brick-1"
+# ></eo-card-item>
+# <eo-card-item
+#   stacked
+#   style-type="grayish"
+#   style="margin-top: 18px; width: 300px"
+#   card-title="资源监控微应用"
+#   description="资源监控微应用相关前后台"
+#   id="brick-2"
+# ></eo-card-item>
+# <eo-card-item
+#   stacked
+#   border-color="blue"
+#   style="margin-top: 18px; width: 300px"
+#   card-title="资源监控微应用"
+#   description="资源监控微应用相关前后台"
+#   id="brick-3"
+# ></eo-card-item>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.avatar = {
+#     icon: {
+#       lib: "easyops",
+#       category: "default",
+#       icon: "monitor",
+#     },
+#     size: 20,
+#   };
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.avatar = {
+#     icon: {
+#       lib: "easyops",
+#       category: "default",
+#       icon: "monitor",
+#     },
+#     size: 20,
+#   };
+# 
+#   const brick_3 = document.getElementById("brick-3");
+#   brick_3.avatar = {
+#     icon: {
+#       lib: "easyops",
+#       category: "default",
+#       icon: "monitor",
+#     },
+#     size: 20,
+#   };
+# </script>
+# 
+```
+
+### cardStyle
+
+```yaml preview
+- brick: eo-card-item
+  properties:
+    style:
+      width: 280px
+    cardStyle:
+      backgroundColor: var(--palette-gray-blue-6)
+    cardTitle: 信息卡片
+    description: 这是一只可爱的北极熊
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-card-item/cardstyle
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-card-item
+#   style="width: 280px"
+#   card-title="信息卡片"
+#   description="这是一只可爱的北极熊"
+#   id="brick-1"
+# ></eo-card-item>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.cardStyle = {
+#     backgroundColor: "var(--palette-gray-blue-6)",
+#   };
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["IconAvatar","ImgAvatar","TagConfig"]}>
+  <BrickDocProperties properties={[{"name":"hasHeader","description":"是否有顶部小标题","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"cardTitle","description":"卡片标题","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"description","description":"描述信息","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"auxiliaryText","description":"顶部辅助文字","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"avatar","description":"图标","attribute":false,"type":"IconAvatar | ImgAvatar","annotation":{"type":"union","types":[{"type":"reference","typeName":{"type":"identifier","name":"IconAvatar"}},{"type":"reference","typeName":{"type":"identifier","name":"ImgAvatar"}}]}},{"name":"href","description":"设置 `href` 时将使用原生 `<a>` 标签，通常用于外链的跳转","type":"LinkProps[\"href\"]","annotation":{"type":"indexedAccess","objectType":{"type":"reference","typeName":{"type":"identifier","name":"LinkProps"}},"indexType":{"type":"jsLiteral","value":"href"}}},{"name":"url","description":"链接地址","attribute":false,"type":"LinkProps[\"url\"]","annotation":{"type":"indexedAccess","objectType":{"type":"reference","typeName":{"type":"identifier","name":"LinkProps"}},"indexType":{"type":"jsLiteral","value":"url"}}},{"name":"target","description":"链接跳转目标","type":"LinkProps[\"target\"]","annotation":{"type":"indexedAccess","objectType":{"type":"reference","typeName":{"type":"identifier","name":"LinkProps"}},"indexType":{"type":"jsLiteral","value":"target"}}},{"name":"actions","description":"操作按钮组","attribute":false,"type":"ActionType[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"ActionType"}}}},{"name":"showActions","description":"展示操作按钮组","default":"\"always\"","type":"\"always\" | \"hover\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"always"},{"type":"jsLiteral","value":"hover"}]}},{"name":"selected","description":"是否选中","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"styleType","description":"卡片样式类型","type":"\"grayish\"","annotation":{"type":"jsLiteral","value":"grayish"}},{"name":"hasCover","description":"是否使用卡片封面","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"coverImage","description":"卡片封面背景图片","attribute":false,"type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"coverColor","description":"卡片封面背景颜色（使用纯色背景）","attribute":false,"type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"coverImageSize","description":"卡片封面图片尺寸 ，配置参考 https://developer.mozilla.org/zh-CN/docs/Web/CSS/background-size","attribute":false,"type":"React.CSSProperties[\"backgroundSize\"]","annotation":{"type":"indexedAccess","objectType":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}},"indexType":{"type":"jsLiteral","value":"backgroundSize"}}},{"name":"avatarPosition","description":"图标是否放置在卡片封面","type":"\"content\" | \"cover\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"content"},{"type":"jsLiteral","value":"cover"}]}},{"name":"avatarPlacement","description":"图标位置，在 avatarPosition 不为 cover 时有效","default":"\"left\"","type":"\"left\" | \"title-left\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"left"},{"type":"jsLiteral","value":"title-left"}]}},{"name":"tagConfig","attribute":false,"type":"TagConfig","annotation":{"type":"reference","typeName":{"type":"identifier","name":"TagConfig"}}},{"name":"borderColor","description":"卡片边框颜色","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"stacked","description":"是否堆叠","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"cardStyle","description":"卡片样式","attribute":false,"type":"React.CSSProperties","annotation":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}}},{"name":"cardBodyStyle","description":"卡片内容区域样式","attribute":false,"type":"React.CSSProperties","annotation":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}}},{"name":"cardTitleStyle","description":"卡片标题样式","attribute":false,"type":"React.CSSProperties","annotation":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}}},{"name":"textContent","type":"string","description":"文本内容","annotation":{"type":"keyword","value":"string"}}]} />
+</TypeReferencesContext.Provider>
+
+## Slots
+
+<BrickDocSlots slots={[{"name":null,"description":"内容区域，通常放置卡片自定义内容"},{"name":"expanded-area-1","description":"扩展区域 1，通常放置标签信息"},{"name":"expanded-area-2","description":"扩展区域 2，通常放置操作和其他属性信息（图标/头像/小字描述/统计信息）"}]} />
+
+## Events
+
+<TypeReferencesContext.Provider value={["IconAvatar","ImgAvatar","TagConfig"]}>
+  <BrickDocEvents events={[{"name":"action.click","description":"操作按钮点击事件","detail":{"type":"SimpleActionType","annotation":{"type":"reference","typeName":{"type":"identifier","name":"SimpleActionType"}}}},{"name":"tag.click","description":"徽标点击事件","detail":{"type":"void","annotation":{"type":"keyword","value":"void"}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"IconAvatar","body":[{"type":"propertySignature","key":{"type":"identifier","name":"containerSize"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"icon"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"GeneralIconProps"}},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"color"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"size"},"annotation":{"type":"keyword","value":"number"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"shape"},"annotation":{"type":"union","types":[{"type":"jsLiteral","value":"circle"},{"type":"jsLiteral","value":"square"},{"type":"jsLiteral","value":"round-square"}]},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"bgColor"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false}]},{"type":"interface","name":"ImgAvatar","body":[{"type":"propertySignature","key":{"type":"identifier","name":"containerSize"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"imgSrc"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"imgStyle"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"CSSProperties"}},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"shape"},"annotation":{"type":"union","types":[{"type":"jsLiteral","value":"circle"},{"type":"jsLiteral","value":"square"},{"type":"jsLiteral","value":"round-square"}]},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"bgColor"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false}]},{"type":"interface","name":"TagConfig","body":[{"type":"propertySignature","key":{"type":"identifier","name":"text"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"icon"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"GeneralIconProps"}},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"bgColor"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"color"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false}]}]} />
+

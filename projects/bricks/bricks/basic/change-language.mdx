@@ -1,0 +1,115 @@
+---
+description: "<basic.change-language>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import GeneralType, { TypeReferencesContext } from "@site/src/components/GeneralType";
+import MaybeEmptyCode from "@site/src/components/MaybeEmptyCode";
+import ProviderDocParams from "@site/src/components/ProviderDocParams";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+
+<BrickTagName name="basic.change-language" isProvider />
+
+更改站点语言。
+
+## Examples
+
+```yaml preview gap
+brick: div
+properties:
+  style:
+    display: grid
+    gap: 1em
+children:
+  - brick: eo-button
+    properties:
+      textContent: 中文
+    events:
+      click:
+        useProvider: basic.change-language
+        args:
+          - zh
+        callback:
+          success:
+            action: message.success
+            args:
+              - '<% I18N_TEXT({ zh: "你好", "en": "Hello" }) %>'
+  - brick: eo-button
+    properties:
+      textContent: English
+    events:
+      click:
+        useProvider: basic.change-language
+        args:
+          - en
+        callback:
+          success:
+            action: message.success
+            args:
+              - '<% I18N_TEXT({ zh: "你好", "en": "Hello" }) %>'
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/change-language
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <div style="display: grid; gap: 1em">
+#   <eo-button id="brick-1">中文</eo-button>
+#   <eo-button id="brick-2">English</eo-button>
+# </div>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("click", (e) => {
+#     const provider = document.createElement("basic.change-language");
+#     const promise = Promise.resolve(provider.resolve("zh"));
+#     promise.then((r) => {
+#       const message = document.createElement("basic.show-notification");
+#       message.resolve({
+#         type: "success",
+#         /* WARN: incompatible expressions in HTML, please try YAML: */
+#         message: '<% I18N_TEXT({ zh: "你好", "en": "Hello" }) %>',
+#       });
+#     });
+#   });
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.addEventListener("click", (e) => {
+#     const provider = document.createElement("basic.change-language");
+#     const promise = Promise.resolve(provider.resolve("en"));
+#     promise.then((r) => {
+#       const message = document.createElement("basic.show-notification");
+#       message.resolve({
+#         type: "success",
+#         /* WARN: incompatible expressions in HTML, please try YAML: */
+#         message: '<% I18N_TEXT({ zh: "你好", "en": "Hello" }) %>',
+#       });
+#     });
+#   });
+# </script>
+# 
+```
+
+
+## Definition
+
+
+
+### Parameters
+
+<TypeReferencesContext.Provider value={undefined}>
+  <ProviderDocParams params={[{"name":"lang","description":"语言","annotation":{"type":"keyword","value":"string"}}]} />
+</TypeReferencesContext.Provider>
+
+### Returns
+
+<p>
+  <MaybeEmptyCode>
+    <TypeReferencesContext.Provider value={undefined}>
+      <GeneralType annotation={{"type":"reference","typeName":{"type":"identifier","name":"Promise"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"keyword","value":"void"}]}}} />
+    </TypeReferencesContext.Provider>
+  </MaybeEmptyCode>
+</p>
+
+
+
+
+

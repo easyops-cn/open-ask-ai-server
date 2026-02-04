@@ -1,0 +1,57 @@
+---
+description: "<data-view.graph-text>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"data-view.graph-text"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+data-view.graph-text
+
+## Examples
+
+### Basic
+
+```yaml preview
+- brick: data-view.graph-text
+  properties:
+    text: 负载均衡数
+    value: 234
+    style:
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+data-view/graph-text/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <data-view.graph-text text="负载均衡数" value="234"></data-view.graph-text>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocProperties properties={[{"name":"text","description":"","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"value","description":"","type":"string | number","annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"number"}]}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+
+

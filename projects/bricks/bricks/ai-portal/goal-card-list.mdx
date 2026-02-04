@@ -1,0 +1,118 @@
+---
+description: "<ai-portal.goal-card-list>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"ai-portal.goal-card-list"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `ai-portal.goal-card-list`
+
+## Examples
+
+### Basic
+
+```yaml preview
+brick: ai-portal.goal-card-list
+properties:
+  style:
+    width: 600px
+  goalList:
+    - title: 页面流程绘制
+      index: 100124
+      state: ready
+      instanceId: abc1
+      conversations:
+        - 会话1
+        - 会话2
+        - 会话3
+    - title: 原型与设计绘制
+      index: 100125
+      state: working
+      instanceId: bdc9
+      conversations:
+        - 会话4
+    - title: 设计稿绘制
+      index: 100126
+      state: completed
+      instanceId: d76a
+      conversations:
+        - 会话5
+        - 会话6
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+ai-portal/goal-card-list/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <ai-portal.goal-card-list
+#   style="width: 600px"
+#   id="brick-1"
+# ></ai-portal.goal-card-list>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.goalList = [
+#     {
+#       title: "页面流程绘制",
+#       index: 100124,
+#       state: "ready",
+#       instanceId: "abc1",
+#       conversations: ["会话1", "会话2", "会话3"],
+#     },
+#     {
+#       title: "原型与设计绘制",
+#       index: 100125,
+#       state: "working",
+#       instanceId: "bdc9",
+#       conversations: ["会话4"],
+#     },
+#     {
+#       title: "设计稿绘制",
+#       index: 100126,
+#       state: "completed",
+#       instanceId: "d76a",
+#       conversations: ["会话5", "会话6"],
+#     },
+#   ];
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["GoalItem","GoalState","GoalMember"]}>
+  <BrickDocProperties properties={[{"name":"goalList","attribute":false,"type":"GoalItem[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"GoalItem"}}}},{"name":"cardStyle","attribute":false,"type":"React.CSSProperties","annotation":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}}},{"name":"activeKey","type":"string","annotation":{"type":"keyword","value":"string"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={["GoalItem","GoalState","GoalMember"]}>
+  <BrickDocEvents events={[{"name":"item.click","detail":{"type":"GoalItem","annotation":{"type":"reference","typeName":{"type":"identifier","name":"GoalItem"}}}},{"name":"item.status.change","detail":{"type":"GoalItem","annotation":{"type":"reference","typeName":{"type":"identifier","name":"GoalItem"}}}},{"name":"item.title.change","detail":{"type":"GoalItem","annotation":{"type":"reference","typeName":{"type":"identifier","name":"GoalItem"}}}},{"name":"item.new.chat","detail":{"type":"GoalItem","annotation":{"type":"reference","typeName":{"type":"identifier","name":"GoalItem"}}}}]} />
+</TypeReferencesContext.Provider>
+
+## Methods
+
+<TypeReferencesContext.Provider value={["GoalItem","GoalState","GoalMember"]}>
+  <BrickDocMethods methods={[{"name":"appendChildDone","params":[{"name":"pendingId","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"newItem","type":"GoalItem","annotation":{"type":"reference","typeName":{"type":"identifier","name":"GoalItem"}}}],"returns":{}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"GoalItem","body":[{"type":"propertySignature","key":{"type":"identifier","name":"title"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"description"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"state"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"GoalState"}},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"id"},"annotation":{"type":"keyword","value":"number"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"conversations"},"annotation":{"type":"keyword","value":"number"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"owner"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"GoalMember"}},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"users"},"annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"GoalMember"}}},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"instanceId"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"level"},"annotation":{"type":"keyword","value":"number"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"pending"},"annotation":{"type":"keyword","value":"boolean"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"pendingParentId"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false}]},{"type":"typeAlias","name":"GoalState","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"ready"},{"type":"jsLiteral","value":"working"},{"type":"jsLiteral","value":"completed"}]}},{"type":"interface","name":"GoalMember","body":[{"type":"propertySignature","key":{"type":"identifier","name":"instanceId"},"annotation":{"type":"keyword","value":"string"},"computed":false}]}]} />
+

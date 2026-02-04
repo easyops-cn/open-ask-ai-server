@@ -1,0 +1,84 @@
+---
+description: "<ai-portal.show-cases>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"ai-portal.show-cases"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `ai-portal.show-cases`
+
+## Examples
+
+### Basic
+
+```yaml preview
+brick: ai-portal.show-cases
+properties:
+  list:
+    - conversationId: c-1
+      title: 故障排查－操作系统内存高
+      summary: 服务已经正常启动，正常运行，但用户在外部访问失败服务已经正常启动，正常运行但用户正常运行
+      scenario: 主机故障排查
+    - conversationId: c-2
+      title: Hi
+      summary: There
+      scenario: 主机巡检
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+ai-portal/show-cases/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <ai-portal.show-cases id="brick-1"></ai-portal.show-cases>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.list = [
+#     {
+#       conversationId: "c-1",
+#       title: "故障排查－操作系统内存高",
+#       summary:
+#         "服务已经正常启动，正常运行，但用户在外部访问失败服务已经正常启动，正常运行但用户正常运行",
+#       scenario: "主机故障排查",
+#     },
+#     {
+#       conversationId: "c-2",
+#       title: "Hi",
+#       summary: "There",
+#       scenario: "主机巡检",
+#     },
+#   ];
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["ShowCaseType"]}>
+  <BrickDocProperties properties={[{"name":"list","attribute":false,"type":"ShowCaseType[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"ShowCaseType"}}}},{"name":"limit","type":"number","annotation":{"type":"keyword","value":"number"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"ShowCaseType","body":[{"type":"propertySignature","key":{"type":"identifier","name":"conversationId"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"title"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"summary"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"scenario"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"url"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false}]}]} />
+

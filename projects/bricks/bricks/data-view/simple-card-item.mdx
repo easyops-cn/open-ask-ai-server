@@ -1,0 +1,57 @@
+---
+description: "<data-view.simple-card-item>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"data-view.simple-card-item"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `data-view.simple-card-item`
+
+## Examples
+
+### Basic
+
+```html preview
+<data-view.simple-card-item>Hello world</data-view.simple-card-item>
+<!-- HTML HEADING DELIMITER start (1nbbm8) --
+data-view/simple-card-item/basic
+-- HTML HEADING DELIMITER end (1nbbm8) -->
+<!-- HTML DELIMITER start (1nbbm8) --
+brick: data-view.simple-card-item
+properties:
+  textContent: Hello world
+-- HTML DELIMITER end (1nbbm8) -->
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["descriptionListItem"]}>
+  <BrickDocProperties properties={[{"name":"status","description":"状态","default":"\"normal\"","type":"\"normal\" | \"warning\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"normal"},{"type":"jsLiteral","value":"warning"}]}},{"name":"cardTitle","description":"标题","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"titleStyle","description":"标题样式","attribute":false,"type":"CSSProperties","annotation":{"type":"reference","typeName":{"type":"identifier","name":"CSSProperties"}}},{"name":"description","description":"描述","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"color","description":"字体颜色","attribute":false,"type":"CSSProperties[\"color\"]","annotation":{"type":"indexedAccess","objectType":{"type":"reference","typeName":{"type":"identifier","name":"CSSProperties"}},"indexType":{"type":"jsLiteral","value":"color"}}},{"name":"desStyle","description":"描述样式","attribute":false,"type":"CSSProperties","annotation":{"type":"reference","typeName":{"type":"identifier","name":"CSSProperties"}}},{"name":"descriptionList","description":"描述列表","attribute":false,"type":"descriptionListItem[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"descriptionListItem"}}}},{"name":"background","description":"背景颜色","attribute":false,"type":"React.CSSProperties[\"background\"]","annotation":{"type":"indexedAccess","objectType":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}},"indexType":{"type":"jsLiteral","value":"background"}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"descriptionListItem","body":[{"type":"propertySignature","key":{"type":"identifier","name":"key"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"value"},"annotation":{"type":"keyword","value":"string"},"computed":false}]}]} />
+

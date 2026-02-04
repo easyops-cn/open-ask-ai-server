@@ -1,0 +1,162 @@
+---
+description: "<data-view.cabinet-thumbnail>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"data-view.cabinet-thumbnail"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+data-view.cabinet-thumbnail 部署架构拓扑缩略图
+
+## Examples
+
+### Basic
+
+```yaml preview
+- brick: data-view.cabinet-thumbnail
+  properties:
+    appName: inventory-api
+    clusters:
+      - title: inventory-api##aaaaa
+        type: host
+        data:
+          - nodeTitle: 244.244.244.244
+            key: 244.244.244.244
+            type: physical-machine
+          - nodeTitle: 244.244.244.245
+            key: 244.244.244.245
+            type: virtual-machine
+          - nodeTitle: 244.244.245.245
+            key: 244.244.245.245
+            type: physical-machine
+          - nodeTitle: 244.244.245.244
+            key: 244.244.245.244
+            type: virtual-machine
+      - title: K8S集群xxx
+        key: k8s-cluster
+        type: k8s
+        data:
+          - nodeTitle: a容器组
+            key: aa
+            type: container-group
+          - nodeTitle: b容器组
+            key: bb
+            type: container-group
+      - title: K8S集群xx
+        key: xxxx
+        type: k8s-blue
+        data:
+          - nodeTitle: a1容器组
+            key: aaa
+            type: pod
+          - nodeTitle: b1容器组
+            key: bbb
+            type: pod
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+data-view/cabinet-thumbnail/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <data-view.cabinet-thumbnail
+#   app-name="inventory-api"
+#   id="brick-1"
+# ></data-view.cabinet-thumbnail>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.clusters = [
+#     {
+#       title: "inventory-api##aaaaa",
+#       type: "host",
+#       data: [
+#         {
+#           nodeTitle: "244.244.244.244",
+#           key: "244.244.244.244",
+#           type: "physical-machine",
+#         },
+#         {
+#           nodeTitle: "244.244.244.245",
+#           key: "244.244.244.245",
+#           type: "virtual-machine",
+#         },
+#         {
+#           nodeTitle: "244.244.245.245",
+#           key: "244.244.245.245",
+#           type: "physical-machine",
+#         },
+#         {
+#           nodeTitle: "244.244.245.244",
+#           key: "244.244.245.244",
+#           type: "virtual-machine",
+#         },
+#       ],
+#     },
+#     {
+#       title: "K8S集群xxx",
+#       key: "k8s-cluster",
+#       type: "k8s",
+#       data: [
+#         {
+#           nodeTitle: "a容器组",
+#           key: "aa",
+#           type: "container-group",
+#         },
+#         {
+#           nodeTitle: "b容器组",
+#           key: "bb",
+#           type: "container-group",
+#         },
+#       ],
+#     },
+#     {
+#       title: "K8S集群xx",
+#       key: "xxxx",
+#       type: "k8s-blue",
+#       data: [
+#         {
+#           nodeTitle: "a1容器组",
+#           key: "aaa",
+#           type: "pod",
+#         },
+#         {
+#           nodeTitle: "b1容器组",
+#           key: "bbb",
+#           type: "pod",
+#         },
+#       ],
+#     },
+#   ];
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["Clusters"]}>
+  <BrickDocProperties properties={[{"name":"clusters","description":"","default":"[]","attribute":false,"type":"Clusters[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"Clusters"}}}},{"name":"columns","description":"","default":"4","type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"appName","description":"","type":"string","annotation":{"type":"keyword","value":"string"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"Clusters","body":[{"type":"propertySignature","key":{"type":"identifier","name":"data"},"annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"CabinetNodeProps"}}},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"type"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"ContainerType"}},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"title"},"annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"undefined"}]},"optional":true,"computed":false}]}]} />
+

@@ -1,0 +1,60 @@
+---
+description: "<data-view.app-wall-relation-line>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"data-view.app-wall-relation-line"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+应用墙流光线条
+
+## Examples
+
+### Basic
+
+```yaml preview
+- brick: data-view.app-wall-relation-line
+  properties:
+    lightColor: purple
+    style:
+      height: 200px
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+data-view/app-wall-relation-line/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <data-view.app-wall-relation-line
+#   light-color="purple"
+#   style="height: 200px"
+# ></data-view.app-wall-relation-line>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocProperties properties={[{"name":"lightColor","description":"","default":"\"blue\"","type":"\"blue\" | \"purple\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"blue"},{"type":"jsLiteral","value":"purple"}]}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,88 @@
+---
+description: "<nav.poll-announce>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"nav.poll-announce"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+导航栏图标
+
+## Examples
+
+### Basic
+
+```yaml preview minHeight="500px"
+brick: nav.poll-announce
+properties:
+  realTimeMessage:
+    title: Hello
+    data: World
+    instanceId: docs-basic
+events:
+  notification.open:
+    action: console.log
+    args:
+      - notification.open
+  notification.close:
+    action: console.log
+    args:
+      - notification.close
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+nav/poll-announce/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <nav.poll-announce id="brick-1"></nav.poll-announce>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.realTimeMessage = {
+#     title: "Hello",
+#     data: "World",
+#     instanceId: "docs-basic",
+#   };
+#   brick_1.addEventListener("notification.open", (e) => {
+#     console.log("notification.open");
+#   });
+#   brick_1.addEventListener("notification.close", (e) => {
+#     console.log("notification.close");
+#   });
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["Message"]}>
+  <BrickDocProperties properties={[{"name":"pollEnabled","description":"是否启用轮询\n\n- 启用时，将会不断轮询通知列表接口\n- 未启用时，通过 `realTimeMessage` 属性传入实时通知消息\n\n注意：v2 构件 `nav-legacy.poll-announce` 该属性名称为 `pollDisabled`，但其实际意义却是 `pollEnabled`，因此在迁移时进行了重命名。","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"realTimeMessage","description":"实时通知消息（通常通过 WebSocket 消息得到）","attribute":false,"type":"Message","annotation":{"type":"reference","typeName":{"type":"identifier","name":"Message"}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={["Message"]}>
+  <BrickDocEvents events={[{"name":"notification.close","description":"通知框关闭后，调用忽略通知接口完成后触发","detail":{"type":"void","annotation":{"type":"keyword","value":"void"}}},{"name":"notification.open","description":"轮询得到新的通知时触发。","detail":{"type":"void","annotation":{"type":"keyword","value":"void"}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"Message","body":[{"type":"propertySignature","key":{"type":"identifier","name":"title"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"data"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"instanceId"},"annotation":{"type":"keyword","value":"string"},"computed":false}]}]} />
+

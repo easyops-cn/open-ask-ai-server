@@ -1,0 +1,627 @@
+---
+description: "<eo-drawer>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-drawer"}
+  alias={["containers.general-drawer"]}
+  insider={false}
+  deprecated={false}
+/>
+
+通用抽屉容器构件。
+
+```html preview minHeight="320px"
+<eo-drawer custom-title="Drawer Title" visible="true">Content</eo-drawer>
+<!-- HTML HEADING DELIMITER start (1nbbm8) --
+containers/eo-drawer
+-- HTML HEADING DELIMITER end (1nbbm8) -->
+<!-- HTML DELIMITER start (1nbbm8) --
+brick: eo-drawer
+properties:
+  customTitle: Drawer Title
+  visible: true
+  textContent: Content
+-- HTML DELIMITER end (1nbbm8) -->
+```
+
+## Examples
+
+### Placement
+
+```yaml preview minHeight="500px"
+- brick: eo-button
+  properties:
+    textContent: Top
+  events:
+    click:
+      - target: "#drawer-top"
+        method: open
+- brick: eo-button
+  properties:
+    textContent: Left
+  events:
+    click:
+      - target: "#drawer-left"
+        method: open
+- brick: eo-button
+  properties:
+    textContent: Right
+  events:
+    click:
+      - target: "#drawer-right"
+        method: open
+- brick: eo-button
+  properties:
+    textContent: Bottom
+  events:
+    click:
+      - target: "#drawer-bottom"
+        method: open
+- brick: eo-drawer
+  properties:
+    customTitle: 抽屉标题
+    id: "drawer-top"
+    placement: top
+- brick: eo-drawer
+  properties:
+    customTitle: 抽屉标题
+    id: "drawer-left"
+    placement: left
+- brick: eo-drawer
+  properties:
+    customTitle: 抽屉标题
+    id: "drawer-right"
+    placement: right
+- brick: eo-drawer
+  properties:
+    customTitle: 抽屉标题
+    id: "drawer-bottom"
+    placement: bottom
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+containers/eo-drawer/placement
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-button id="brick-1">Top</eo-button>
+# <eo-button id="brick-2">Left</eo-button>
+# <eo-button id="brick-3">Right</eo-button>
+# <eo-button id="brick-4">Bottom</eo-button>
+# <eo-drawer custom-title="抽屉标题" placement="top" id="drawer-top"></eo-drawer>
+# <eo-drawer
+#   custom-title="抽屉标题"
+#   placement="left"
+#   id="drawer-left"
+# ></eo-drawer>
+# <eo-drawer
+#   custom-title="抽屉标题"
+#   placement="right"
+#   id="drawer-right"
+# ></eo-drawer>
+# <eo-drawer
+#   custom-title="抽屉标题"
+#   placement="bottom"
+#   id="drawer-bottom"
+# ></eo-drawer>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("click", (e) => {
+#     const brick = document.querySelector("#drawer-top");
+#     brick.open();
+#   });
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.addEventListener("click", (e) => {
+#     const brick = document.querySelector("#drawer-left");
+#     brick.open();
+#   });
+# 
+#   const brick_3 = document.getElementById("brick-3");
+#   brick_3.addEventListener("click", (e) => {
+#     const brick = document.querySelector("#drawer-right");
+#     brick.open();
+#   });
+# 
+#   const brick_4 = document.getElementById("brick-4");
+#   brick_4.addEventListener("click", (e) => {
+#     const brick = document.querySelector("#drawer-bottom");
+#     brick.open();
+#   });
+# </script>
+# 
+```
+
+### Width
+
+```yaml preview minHeight="320px"
+- brick: eo-button
+  properties:
+    textContent: open
+  events:
+    click:
+      - target: "#drawer"
+        method: open
+- brick: eo-drawer
+  properties:
+    customTitle: 抽屉标题
+    id: "drawer"
+    width: 200
+  children:
+    - brick: div
+      properties:
+        textContent: 抽屉内容
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+containers/eo-drawer/width
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-button id="brick-1">open</eo-button>
+# <eo-drawer custom-title="抽屉标题" id="drawer">
+#   <div>抽屉内容</div>
+# </eo-drawer>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("click", (e) => {
+#     const brick = document.querySelector("#drawer");
+#     brick.open();
+#   });
+# 
+#   const drawer = document.getElementById("drawer");
+#   drawer.width = 200;
+# </script>
+# 
+```
+
+### Height
+
+```yaml preview minHeight="320px"
+- brick: eo-button
+  properties:
+    textContent: open
+  events:
+    click:
+      - target: "#drawer"
+        method: open
+- brick: eo-drawer
+  properties:
+    customTitle: 抽屉标题
+    id: "drawer"
+    height: 200
+    placement: top
+  children:
+    - brick: div
+      properties:
+        textContent: 抽屉内容
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+containers/eo-drawer/height
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-button id="brick-1">open</eo-button>
+# <eo-drawer custom-title="抽屉标题" placement="top" id="drawer">
+#   <div>抽屉内容</div>
+# </eo-drawer>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("click", (e) => {
+#     const brick = document.querySelector("#drawer");
+#     brick.open();
+#   });
+# 
+#   const drawer = document.getElementById("drawer");
+#   drawer.height = 200;
+# </script>
+# 
+```
+
+### Closable
+
+```yaml preview minHeight="320px"
+- brick: eo-button
+  properties:
+    textContent: Show Close
+  events:
+    click:
+      - target: "#drawer-show-close"
+        method: open
+- brick: eo-button
+  properties:
+    textContent: Hide Close
+  events:
+    click:
+      - target: "#drawer-hide-close"
+        method: open
+- brick: eo-drawer
+  properties:
+    customTitle: 抽屉标题
+    id: "drawer-show-close"
+  children:
+    - brick: div
+      properties:
+        textContent: 抽屉内容
+- brick: eo-drawer
+  properties:
+    customTitle: 抽屉标题
+    id: "drawer-hide-close"
+    closable: false
+  children:
+    - brick: div
+      properties:
+        textContent: 抽屉内容
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+containers/eo-drawer/closable
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-button id="brick-1">Show Close</eo-button>
+# <eo-button id="brick-2">Hide Close</eo-button>
+# <eo-drawer custom-title="抽屉标题" id="drawer-show-close">
+#   <div>抽屉内容</div>
+# </eo-drawer>
+# <eo-drawer custom-title="抽屉标题" id="drawer-hide-close">
+#   <div>抽屉内容</div>
+# </eo-drawer>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("click", (e) => {
+#     const brick = document.querySelector("#drawer-show-close");
+#     brick.open();
+#   });
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.addEventListener("click", (e) => {
+#     const brick = document.querySelector("#drawer-hide-close");
+#     brick.open();
+#   });
+# </script>
+# 
+```
+
+### Mask
+
+```yaml preview minHeight="320px"
+- brick: eo-button
+  properties:
+    textContent: Show Mask
+  events:
+    click:
+      - target: "#drawer-show-mask"
+        method: open
+- brick: eo-drawer
+  properties:
+    customTitle: 抽屉标题
+    id: "drawer-show-mask"
+    mask: true
+  children:
+    - brick: div
+      properties:
+        textContent: 抽屉内容
+- brick: eo-button
+  properties:
+    textContent: Hide Mask
+  events:
+    click:
+      - target: "#drawer-hide-mask"
+        method: open
+- brick: eo-drawer
+  properties:
+    customTitle: 抽屉标题
+    id: "drawer-hide-mask"
+    mask: false
+  children:
+    - brick: div
+      properties:
+        textContent: 抽屉内容
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+containers/eo-drawer/mask
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-button id="brick-1">Show Mask</eo-button>
+# <eo-drawer custom-title="抽屉标题" mask id="drawer-show-mask">
+#   <div>抽屉内容</div>
+# </eo-drawer>
+# <eo-button id="brick-2">Hide Mask</eo-button>
+# <eo-drawer custom-title="抽屉标题" id="drawer-hide-mask">
+#   <div>抽屉内容</div>
+# </eo-drawer>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("click", (e) => {
+#     const brick = document.querySelector("#drawer-show-mask");
+#     brick.open();
+#   });
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.addEventListener("click", (e) => {
+#     const brick = document.querySelector("#drawer-hide-mask");
+#     brick.open();
+#   });
+# </script>
+# 
+```
+
+### MaskClosable
+
+```yaml preview minHeight="320px"
+- brick: eo-button
+  properties:
+    textContent: Mask Allow Close
+  events:
+    click:
+      - target: "#drawer-mask-allow-close"
+        method: open
+- brick: eo-drawer
+  properties:
+    customTitle: 抽屉标题
+    id: "drawer-mask-allow-close"
+    maskClosable: true
+  children:
+    - brick: div
+      properties:
+        textContent: 抽屉内容
+- brick: eo-button
+  properties:
+    textContent: Mask Not Allow Close
+  events:
+    click:
+      - target: "#drawer-mask-not-allow-close"
+        method: open
+- brick: eo-drawer
+  properties:
+    customTitle: 抽屉标题
+    id: "drawer-mask-not-allow-close"
+    maskClosable: false
+  children:
+    - brick: div
+      properties:
+        textContent: 抽屉内容
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+containers/eo-drawer/maskclosable
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-button id="brick-1">Mask Allow Close</eo-button>
+# <eo-drawer custom-title="抽屉标题" mask-closable id="drawer-mask-allow-close">
+#   <div>抽屉内容</div>
+# </eo-drawer>
+# <eo-button id="brick-2">Mask Not Allow Close</eo-button>
+# <eo-drawer custom-title="抽屉标题" id="drawer-mask-not-allow-close">
+#   <div>抽屉内容</div>
+# </eo-drawer>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("click", (e) => {
+#     const brick = document.querySelector("#drawer-mask-allow-close");
+#     brick.open();
+#   });
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.addEventListener("click", (e) => {
+#     const brick = document.querySelector("#drawer-mask-not-allow-close");
+#     brick.open();
+#   });
+# </script>
+# 
+```
+
+### Slots
+
+```yaml preview minHeight="320px"
+- brick: eo-button
+  properties:
+    textContent: open
+  events:
+    click:
+      - target: "#drawer"
+        method: open
+- brick: eo-drawer
+  properties:
+    customTitle: 抽屉标题
+    id: "drawer"
+    footerSlot: true
+  children:
+    - brick: div
+      properties:
+        textContent: 抽屉内容
+    - brick: div
+      slot: footer
+      properties:
+        textContent: 底部内容
+    - brick: div
+      slot: extra
+      properties:
+        textContent: 头部右上角
+    - brick: div
+      slot: headerLeft
+      properties:
+        textContent: 头部左上角
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+containers/eo-drawer/slots
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-button id="brick-1">open</eo-button>
+# <eo-drawer custom-title="抽屉标题" footer-slot id="drawer">
+#   <div>抽屉内容</div>
+#   <div slot="footer">底部内容</div>
+#   <div slot="extra">头部右上角</div>
+#   <div slot="headerLeft">头部左上角</div>
+# </eo-drawer>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("click", (e) => {
+#     const brick = document.querySelector("#drawer");
+#     brick.open();
+#   });
+# </script>
+# 
+```
+
+### Open Event & Close Event
+
+```yaml preview minHeight="320px"
+- brick: eo-button
+  properties:
+    textContent: open
+  events:
+    click:
+      - target: "#drawer"
+        method: open
+- brick: eo-drawer
+  properties:
+    customTitle: 抽屉标题
+    id: "drawer"
+    placement: left
+    keyboard: true
+  events:
+    open:
+      - action: message.success
+        args:
+          - Drawer Open
+    close:
+      - action: message.success
+        args:
+          - Drawer Close
+  children:
+    - brick: eo-button
+      properties:
+        textContent: 关闭弹窗
+      events:
+        click:
+          - target: "#drawer"
+            method: "close"
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+containers/eo-drawer/open event & close event
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-button id="brick-1">open</eo-button>
+# <eo-drawer custom-title="抽屉标题" placement="left" keyboard id="drawer">
+#   <eo-button id="brick-2">关闭弹窗</eo-button>
+# </eo-drawer>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("click", (e) => {
+#     const brick = document.querySelector("#drawer");
+#     brick.open();
+#   });
+# 
+#   const drawer = document.getElementById("drawer");
+#   drawer.addEventListener("open", (e) => {
+#     const message = document.createElement("basic.show-notification");
+#     message.resolve({ type: "success", message: "Drawer Open" });
+#   });
+#   drawer.addEventListener("close", (e) => {
+#     const message = document.createElement("basic.show-notification");
+#     message.resolve({ type: "success", message: "Drawer Close" });
+#   });
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.addEventListener("click", (e) => {
+#     const brick = document.querySelector("#drawer");
+#     brick.close();
+#   });
+# </script>
+# 
+```
+
+### Nested
+
+```yaml preview minHeight="320px"
+- brick: eo-button
+  properties:
+    textContent: Open drawer
+  events:
+    click:
+      - target: "#drawer-1"
+        method: open
+- brick: eo-drawer
+  properties:
+    customTitle: Drawer Title
+    id: "drawer-1"
+    keyboard: true
+  children:
+    - brick: eo-button
+      properties:
+        textContent: Open nested drawer
+      events:
+        click:
+          - target: "#drawer-2"
+            method: "open"
+- brick: eo-drawer
+  properties:
+    customTitle: Nested Drawer Title
+    id: "drawer-2"
+    keyboard: true
+    width: 400
+    textContent: This a a nested drawer.
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+containers/eo-drawer/nested
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-button id="brick-1">Open drawer</eo-button>
+# <eo-drawer custom-title="Drawer Title" keyboard id="drawer-1">
+#   <eo-button id="brick-2">Open nested drawer</eo-button>
+# </eo-drawer>
+# <eo-drawer custom-title="Nested Drawer Title" keyboard id="drawer-2">
+#   This a a nested drawer.
+# </eo-drawer>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("click", (e) => {
+#     const brick = document.querySelector("#drawer-1");
+#     brick.open();
+#   });
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.addEventListener("click", (e) => {
+#     const brick = document.querySelector("#drawer-2");
+#     brick.open();
+#   });
+# 
+#   const drawer_2 = document.getElementById("drawer-2");
+#   drawer_2.width = 400;
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["Placement"]}>
+  <BrickDocProperties properties={[{"name":"customTitle","description":"标题","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"subTitle","description":"副标题","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"width","description":"宽度(placement为left，right时生效)","attribute":false,"type":"number | string","annotation":{"type":"union","types":[{"type":"keyword","value":"number"},{"type":"keyword","value":"string"}]}},{"name":"height","description":"高度(placement为top，bottom时生效)","attribute":false,"type":"number | string","annotation":{"type":"union","types":[{"type":"keyword","value":"number"},{"type":"keyword","value":"string"}]}},{"name":"closable","description":"是否显示右上角的关闭按钮","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"mask","description":"是否展示遮罩层","default":"true","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"maskClosable","description":"点击遮罩层是否关闭抽屉","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"visible","description":"抽屉是否显示","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"footerSlot","description":"是否存在底层插槽","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"placement","description":"抽屉方向","type":"Placement","annotation":{"type":"reference","typeName":{"type":"identifier","name":"Placement"}}},{"name":"scrollToTopWhenOpen","description":"打开抽屉时内容区是否自动滚动到顶部\n\n注意：仅初始设置有效。","default":"true","attribute":false,"annotation":{"type":"keyword","value":"boolean"}},{"name":"maskStyle","description":"自定义遮罩层的样式","default":"{}","attribute":false},{"name":"keyboard","description":"是否支持键盘 esc 关闭","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"themeVariant","description":"主题变体","type":"\"default\" | \"elevo\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"default"},{"type":"jsLiteral","value":"elevo"}]}},{"name":"stackable","description":"是否可堆叠，开启后每次打开抽屉会将新的抽屉置于上层（zIndex ++）\n\n注意：仅初始设置有效。","deprecated":true,"type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"textContent","type":"string","description":"文本内容","annotation":{"type":"keyword","value":"string"}}]} />
+</TypeReferencesContext.Provider>
+
+## Slots
+
+<BrickDocSlots slots={[{"name":null,"description":"抽屉内容插槽"},{"name":"headerLeft","description":"头部左上角（标题右侧）"},{"name":"extra","description":"头部右上角（关闭按钮左侧）"},{"name":"footer","description":"抽屉底部插槽"}]} />
+
+## Events
+
+<TypeReferencesContext.Provider value={["Placement"]}>
+  <BrickDocEvents events={[{"name":"open","description":"抽屉开启事件","detail":{"type":"void","annotation":{"type":"keyword","value":"void"}}},{"name":"close","description":"抽屉关闭事件","detail":{"type":"void","annotation":{"type":"keyword","value":"void"}}}]} />
+</TypeReferencesContext.Provider>
+
+## Methods
+
+<TypeReferencesContext.Provider value={["Placement"]}>
+  <BrickDocMethods methods={[{"name":"open","params":[],"description":"抽屉开启方法","returns":{}},{"name":"close","params":[],"description":"抽屉关闭方法","returns":{}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"typeAlias","name":"Placement","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"left"},{"type":"jsLiteral","value":"right"},{"type":"jsLiteral","value":"top"},{"type":"jsLiteral","value":"bottom"}]}}]} />
+

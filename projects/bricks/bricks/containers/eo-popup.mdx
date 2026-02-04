@@ -1,0 +1,198 @@
+---
+description: "<eo-popup>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-popup"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `eo-popup`
+
+## Examples
+
+### Basic
+
+```yaml preview minHeight="500px"
+brick: eo-popup
+properties:
+  popupTitle: Popup
+  popupHeight: 300px
+  visible: true
+children:
+  - brick: div
+    properties:
+      textContent: Hello, I'm content!
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+containers/eo-popup/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-popup popup-title="Popup" popup-height="300px" visible>
+#   <div>Hello, I'm content!</div>
+# </eo-popup>
+# 
+```
+
+### Method & PopupId
+
+```yaml preview minHeight="500px"
+- brick: eo-button
+  properties:
+    textContent: Open Popup
+  events:
+    click:
+      - target: "#popup"
+        method: open
+- brick: eo-button
+  properties:
+    textContent: Close Popup
+  events:
+    click:
+      - target: "#popup"
+        method: close
+- brick: eo-popup
+  properties:
+    popupTitle: Button Open
+    popupHeight: 400px
+    id: popup
+    popupId: popupA
+  children:
+    - brick: div
+      properties:
+        textContent: Hello, I'm content!
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+containers/eo-popup/method & popupid
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-button id="brick-1">Open Popup</eo-button>
+# <eo-button id="brick-2">Close Popup</eo-button>
+# <eo-popup
+#   popup-title="Button Open"
+#   popup-height="400px"
+#   popup-id="popupA"
+#   id="popup"
+# >
+#   <div>Hello, I'm content!</div>
+# </eo-popup>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("click", (e) => {
+#     const brick = document.querySelector("#popup");
+#     brick.open();
+#   });
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.addEventListener("click", (e) => {
+#     const brick = document.querySelector("#popup");
+#     brick.close();
+#   });
+# </script>
+# 
+```
+
+### Resizable
+
+```yaml preview minHeight="500px"
+brick: eo-popup
+properties:
+  popupTitle: resizable
+  visible: true
+  resizable: true
+children:
+  - brick: div
+    properties:
+      textContent: Hello, I'm content!
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+containers/eo-popup/resizable
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-popup popup-title="resizable" visible resizable>
+#   <div>Hello, I'm content!</div>
+# </eo-popup>
+# 
+```
+
+### Toolbar slot
+
+```yaml preview minHeight="300px"
+brick: eo-popup
+properties:
+  popupTitle: resizable
+  popupHeight: 200px
+  visible: true
+children:
+  - brick: div
+    properties:
+      textContent: Hello, I'm content!
+  - brick: eo-icon
+    slot: toolbar
+    properties:
+      icon: edit
+      lib: antd
+      style:
+        cursor: pointer
+    events:
+      click:
+        - action: message.success
+          args:
+            - edit
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+containers/eo-popup/toolbar slot
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-popup popup-title="resizable" popup-height="200px" visible>
+#   <div>Hello, I'm content!</div>
+#   <eo-icon
+#     slot="toolbar"
+#     icon="edit"
+#     lib="antd"
+#     style="cursor: pointer"
+#     id="brick-1"
+#   ></eo-icon>
+# </eo-popup>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("click", (e) => {
+#     const message = document.createElement("basic.show-notification");
+#     message.resolve({ type: "success", message: "edit" });
+#   });
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["OpenDirection"]}>
+  <BrickDocProperties properties={[{"name":"popupId","description":"浮层Id, 如果有设置浮层id, 会开启位置记录功能","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"popupWidth","description":"弹窗宽度","default":"500","type":"React.CSSProperties[\"width\"]","annotation":{"type":"indexedAccess","objectType":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}},"indexType":{"type":"jsLiteral","value":"width"}}},{"name":"popupHeight","description":"弹窗高度","type":"React.CSSProperties[\"height\"]","annotation":{"type":"indexedAccess","objectType":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}},"indexType":{"type":"jsLiteral","value":"height"}}},{"name":"popupTitle","description":"弹窗标题","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"openDirection","description":"弹窗打开位置","default":"center","type":"OpenDirection","annotation":{"type":"reference","typeName":{"type":"identifier","name":"OpenDirection"}}},{"name":"visible","description":"是否显示模态框","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"headerStyle","description":"用于设置 popup head的样式","attribute":false,"type":"React.CSSProperties","annotation":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}}},{"name":"wrapperStyle","description":"用于设置 popup wrapper的样式","attribute":false,"type":"React.CSSProperties","annotation":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}}},{"name":"noPadding","description":"内容没有边距","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"resizable","description":"是否可调整尺寸","type":"boolean","annotation":{"type":"keyword","value":"boolean"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+## Methods
+
+<TypeReferencesContext.Provider value={["OpenDirection"]}>
+  <BrickDocMethods methods={[{"name":"open","params":[],"description":"显示弹窗","returns":{"type":"void","annotation":{"type":"keyword","value":"void"}}},{"name":"close","params":[],"description":"关闭弹窗","returns":{"type":"void","annotation":{"type":"keyword","value":"void"}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"enum","name":"OpenDirection","members":[{"type":"enumMember","id":{"type":"identifier","name":"LeftTop"},"initializer":{"type":"jsLiteral","value":"leftTop"}},{"type":"enumMember","id":{"type":"identifier","name":"LeftBottom"},"initializer":{"type":"jsLiteral","value":"leftBottom"}},{"type":"enumMember","id":{"type":"identifier","name":"RightTop"},"initializer":{"type":"jsLiteral","value":"rightTop"}},{"type":"enumMember","id":{"type":"identifier","name":"RightBottom"},"initializer":{"type":"jsLiteral","value":"rightBottom"}},{"type":"enumMember","id":{"type":"identifier","name":"Center"},"initializer":{"type":"jsLiteral","value":"center"}}]}]} />
+

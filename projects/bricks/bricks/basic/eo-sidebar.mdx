@@ -1,0 +1,49 @@
+---
+description: "<eo-sidebar>"
+deprecated: true
+---
+
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+</head>
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-sidebar"}
+  alias={null}
+  insider={false}
+  deprecated={true}
+/>
+
+侧边栏 已迁移至 `nav` 构件包，后续在在 `basic` 构件包中将不再更新。
+
+## Properties
+
+<TypeReferencesContext.Provider value={["ExpandedState"]}>
+  <BrickDocProperties properties={[{"name":"menu","description":"菜单数据","attribute":false,"type":"SidebarMenuType","annotation":{"type":"reference","typeName":{"type":"identifier","name":"SidebarMenuType"}}},{"name":"hiddenFixedIcon","description":"是否隐藏固定按钮","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"expandedState","description":"侧栏状态","type":"ExpandedState","annotation":{"type":"reference","typeName":{"type":"identifier","name":"ExpandedState"}}},{"name":"position","description":"设置定位方式：静态定位或固定定位。","default":"\"fixed\"","type":"\"static\" | \"fixed\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"static"},{"type":"jsLiteral","value":"fixed"}]}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={["ExpandedState"]}>
+  <BrickDocEvents events={[{"name":"actual.width.change","description":"宽度变化时触发","detail":{"description":"当前宽度","type":"number","annotation":{"type":"keyword","value":"number"}}},{"name":"expanded.state.change","description":"侧栏状态变化时触发","detail":{"description":"侧栏状态","type":"ExpandedState","annotation":{"type":"reference","typeName":{"type":"identifier","name":"ExpandedState"}}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"enum","name":"ExpandedState","members":[{"type":"enumMember","id":{"type":"identifier","name":"Collapsed"},"initializer":{"type":"jsLiteral","value":"collapsed"}},{"type":"enumMember","id":{"type":"identifier","name":"Hovered"},"initializer":{"type":"jsLiteral","value":"hovered"}},{"type":"enumMember","id":{"type":"identifier","name":"Expanded"},"initializer":{"type":"jsLiteral","value":"expanded"}}]}]} />
+

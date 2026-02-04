@@ -1,0 +1,59 @@
+---
+description: "<ai-portal.sticky-container>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"ai-portal.sticky-container"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `ai-portal.sticky-container`
+
+## Examples
+
+### Basic
+
+```yaml preview
+brick: ai-portal.sticky-container
+properties:
+  textContent: Hello world
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+ai-portal/sticky-container/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <ai-portal.sticky-container>Hello world</ai-portal.sticky-container>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["StickyContainerVariant"]}>
+  <BrickDocProperties properties={[{"name":"variant","description":"","default":"\"default\"","type":"StickyContainerVariant","annotation":{"type":"reference","typeName":{"type":"identifier","name":"StickyContainerVariant"}}},{"name":"textContent","type":"string","description":"文本内容","annotation":{"type":"keyword","value":"string"}}]} />
+</TypeReferencesContext.Provider>
+
+## Slots
+
+<BrickDocSlots slots={[{"name":null,"description":"内容"},{"name":"header","description":"头部"},{"name":"toolbar","description":"工具栏"}]} />
+
+
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"typeAlias","name":"StickyContainerVariant","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"default"},{"type":"jsLiteral","value":"home"}]}}]} />
+

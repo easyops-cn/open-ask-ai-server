@@ -31,6 +31,6 @@ yarn-debug.log*
 yarn-error.log*
 
 # Generated files
-projects/generated/*
-!projects/generated/.gitkeep
+generated/*
+!generated/.gitkeep
 .env*.local

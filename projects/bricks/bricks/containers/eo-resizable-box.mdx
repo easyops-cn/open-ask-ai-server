@@ -1,0 +1,216 @@
+---
+description: "<eo-resizable-box>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-resizable-box"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+可以左右或上下调整尺寸的容器。
+
+注意与 v2 构件 `basic-bricks.resizable-box` 的差别：
+
+- 移除属性 `resizable`，改为使用 `disabled` 控制是否可调整尺寸；
+- 放在 `containers-NB` 包，而不是 `basic-bricks-NB`。
+
+## Examples
+
+### Basic
+
+```yaml preview
+brick: div
+properties:
+  style:
+    display: flex
+    height: calc(100vh - 4em)
+    border: 1px solid var(--theme-gray-border-color)
+children:
+  - brick: eo-resizable-box
+    properties:
+      textContent: Hello
+      storageKey: demo-basic
+  - brick: div
+    properties:
+      textContent: World
+      style:
+        flex: 1
+        borderLeft: 1px solid var(--theme-gray-border-color)
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+containers/eo-resizable-box/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <div
+#   style="
+#     display: flex;
+#     height: calc(100vh - 4em);
+#     border: 1px solid var(--theme-gray-border-color);
+#   "
+# >
+#   <eo-resizable-box storage-key="demo-basic">Hello</eo-resizable-box>
+#   <div style="flex: 1; border-left: 1px solid var(--theme-gray-border-color)">
+#     World
+#   </div>
+# </div>
+# 
+```
+
+### Direction
+
+```yaml preview
+brick: div
+properties:
+  style:
+    display: flex
+    flexDirection: column
+    height: calc(100vh - 4em)
+    border: 1px solid var(--theme-gray-border-color)
+children:
+  - brick: eo-resizable-box
+    properties:
+      textContent: Hello
+      storageKey: demo-direction
+      resizeDirection: bottom
+  - brick: div
+    properties:
+      textContent: World
+      style:
+        flex: 1
+        borderTop: 1px solid var(--theme-gray-border-color)
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+containers/eo-resizable-box/direction
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <div
+#   style="
+#     display: flex;
+#     flex-direction: column;
+#     height: calc(100vh - 4em);
+#     border: 1px solid var(--theme-gray-border-color);
+#   "
+# >
+#   <eo-resizable-box storage-key="demo-direction" resize-direction="bottom">
+#     Hello
+#   </eo-resizable-box>
+#   <div style="flex: 1; border-top: 1px solid var(--theme-gray-border-color)">
+#     World
+#   </div>
+# </div>
+# 
+```
+
+### Sizing
+
+```yaml preview
+brick: div
+properties:
+  style:
+    display: flex
+    height: calc(100vh - 4em)
+    border: 1px solid var(--theme-gray-border-color)
+children:
+  - brick: eo-resizable-box
+    properties:
+      textContent: Hello
+      storageKey: demo-sizing
+      minSize: 100
+      minSpace: 100
+  - brick: div
+    properties:
+      textContent: World
+      style:
+        flex: 1
+        borderLeft: 1px solid var(--theme-gray-border-color)
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+containers/eo-resizable-box/sizing
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <div
+#   style="
+#     display: flex;
+#     height: calc(100vh - 4em);
+#     border: 1px solid var(--theme-gray-border-color);
+#   "
+# >
+#   <eo-resizable-box storage-key="demo-sizing" min-size="100" min-space="100">
+#     Hello
+#   </eo-resizable-box>
+#   <div style="flex: 1; border-left: 1px solid var(--theme-gray-border-color)">
+#     World
+#   </div>
+# </div>
+# 
+```
+
+### Dashboard
+
+```yaml preview
+brick: div
+properties:
+  style:
+    display: flex
+    height: calc(100vh - 4em)
+    border: 1px solid var(--theme-gray-border-color)
+children:
+  - brick: eo-resizable-box
+    properties:
+      textContent: Hello
+      storageKey: demo-dashboard
+      variant: dashboard
+  - brick: div
+    properties:
+      textContent: World
+      style:
+        flex: 1
+        borderLeft: 1px solid var(--theme-gray-border-color)
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+containers/eo-resizable-box/dashboard
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <div
+#   style="
+#     display: flex;
+#     height: calc(100vh - 4em);
+#     border: 1px solid var(--theme-gray-border-color);
+#   "
+# >
+#   <eo-resizable-box storage-key="demo-dashboard" variant="dashboard">
+#     Hello
+#   </eo-resizable-box>
+#   <div style="flex: 1; border-left: 1px solid var(--theme-gray-border-color)">
+#     World
+#   </div>
+# </div>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["ResizeDirection"]}>
+  <BrickDocProperties properties={[{"name":"resizeDirection","description":"调整方向","default":"\"right\"","type":"ResizeDirection","annotation":{"type":"reference","typeName":{"type":"identifier","name":"ResizeDirection"}}},{"name":"storageKey","description":"用于存放当前尺寸的 (local) storage key","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"defaultSize","description":"默认尺寸（px）","default":"200","type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"minSize","description":"最小尺寸（px）","default":"defaultSize","type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"minSpace","description":"留给其他部分的最小空间。\n\n即：控制尺寸不超过 `documentElement.clientWidth - minSpace`（水平方向时）。","default":"300","type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"disabled","description":"禁用 resize","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"variant","description":"","default":"\"default\"","type":"\"dashboard\" | \"default\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"dashboard"},{"type":"jsLiteral","value":"default"}]}},{"name":"boxStyle","attribute":false,"type":"React.CSSProperties","annotation":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}}},{"name":"boxStyleWhenNotResizing","attribute":false,"type":"React.CSSProperties","annotation":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}}},{"name":"syncSizeWithHost","type":"boolean","annotation":{"type":"keyword","value":"boolean"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"typeAlias","name":"ResizeDirection","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"left"},{"type":"jsLiteral","value":"right"},{"type":"jsLiteral","value":"top"},{"type":"jsLiteral","value":"bottom"}]}}]} />
+

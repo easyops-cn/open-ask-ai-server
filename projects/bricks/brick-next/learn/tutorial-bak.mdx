@@ -1,0 +1,216 @@
+---
+title: "Tutorial"
+---
+
+import NextExample from "@site/src/components/NextExample";
+import styleText from "!!raw-loader!@site/src/examples/shopping/style.css";
+
+<NextExample
+  files={[
+    {
+      name: "Bricks",
+      code:
+`brick: sl-card
+children:
+- brick: img
+  slot: image
+  properties:
+    src: |
+      https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=240&q=80
+- brick: strong
+  properties:
+    textContent: Apple
+- brick: div
+  properties:
+    textContent: Fresh apples!`
+    }
+  ]}
+/>
+
+<NextExample
+  files={[
+    {
+      name: "Bricks",
+      code:
+`brick: sl-card
+children:
+- brick: img
+  slot: image
+  properties:
+    src: |
+      https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=240&q=80
+- brick: strong
+  properties:
+    textContent: Apple
+- brick: div
+  properties:
+    textContent: Fresh apples!
+- brick: div
+  slot: footer
+  properties:
+    className: flex-layout
+  children:
+  - brick: sl-input
+    properties:
+      label: Qty
+      type: number
+      min: 1
+      max: 10
+      value: 1
+      size: small
+  - brick: sl-button
+    properties:
+      size: small
+      textContent: Add to cart`
+    },
+    {
+      name: "style.css",
+      lang: "css",
+      code: styleText,
+    }
+  ]}
+/>
+
+<NextExample
+  files={[
+    {
+      name: "Bricks",
+      code:
+`brick: tpl-fruit-card
+properties:
+  label: Apple
+  description: Fresh apples!
+  imageUrl: |
+    https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=240&q=80`
+    },
+    {
+      name: "tpl-fruit-card",
+      defaultActive: true,
+      code:
+`state:
+- name: label
+  expose: true
+- name: description
+  expose: true
+- name: imageUrl
+  expose: true
+bricks:
+- brick: sl-card
+  children:
+  - brick: img
+    slot: image
+    properties:
+      src: <%= STATE.imageUrl %>
+  - brick: strong
+    properties:
+      textContent: <%= STATE.label %>
+  - brick: div
+    properties:
+      textContent: <%= STATE.description %>
+  - brick: div
+    slot: footer
+    properties:
+      className: flex-layout
+    children:
+    - brick: sl-input
+      properties:
+        label: Qty
+        type: number
+        min: 1
+        max: 10
+        value: 1
+        size: small
+    - brick: sl-button
+      properties:
+        size: small
+        textContent: Add to cart`
+    },
+    {
+      name: "style.css",
+      lang: "css",
+      code: styleText,
+    }
+  ]}
+/>
+
+<NextExample
+  files={[
+    {
+      name: "Bricks",
+      code:
+`brick: div
+properties:
+  className: product-list
+children:
+- brick: ':forEach'
+  dataSource: <%= CTX.products %>
+  children:
+  - brick: tpl-fruit-card
+    properties:
+      label: <% ITEM.label %>
+      description: <% ITEM.description %>
+      imageUrl: <% ITEM.imageUrl %>`
+    },
+    {
+      name: "Context",
+      code:
+`- name: products
+  value:
+  - label: Apple
+    description: Fresh apples!
+    imageUrl: |
+      https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=240&q=80
+  - label: Orange
+    description: Fresh Oranges!
+    imageUrl: |
+      https://images.unsplash.com/photo-1482012792084-a0c3725f289f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=240&q=80`,
+    },
+    {
+      name: "tpl-fruit-card",
+      defaultActive: true,
+      code:
+`state:
+- name: label
+  expose: true
+- name: description
+  expose: true
+- name: imageUrl
+  expose: true
+bricks:
+- brick: sl-card
+  children:
+  - brick: img
+    slot: image
+    properties:
+      src: <%= STATE.imageUrl %>
+  - brick: strong
+    properties:
+      textContent: <%= STATE.label %>
+  - brick: div
+    properties:
+      textContent: <%= STATE.description %>
+  - brick: div
+    slot: footer
+    properties:
+      className: flex-layout
+    children:
+    - brick: sl-input
+      properties:
+        label: Qty
+        type: number
+        min: 1
+        max: 10
+        value: 1
+        size: small
+    - brick: sl-button
+      properties:
+        size: small
+        textContent: Add to cart`
+    },
+    {
+      name: "style.css",
+      lang: "css",
+      code: styleText,
+    }
+  ]}
+/>

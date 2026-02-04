@@ -1,0 +1,262 @@
+---
+description: "<eo-tree-select>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-tree-select"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `eo-tree-select`
+
+## Examples
+
+### Basic
+
+```yaml preview minHeight="500px"
+- brick: eo-tree-select
+  properties:
+    treeData:
+      - title: Node1
+        value: 0
+        key: 0
+        children:
+          - title: Node1-1
+            value: 0-1
+          - title: Node1-2
+            value: 0-2
+          - title: Node1-3
+            value: 0-3
+      - title: Node2
+        value: 1
+        key: 1
+        children:
+          - title: Node2-1
+            value: 1-1
+          - title: Node2-2
+            value: 1-2
+          - title: Node2-3
+            value: 1-3
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+advanced/eo-tree-select/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-tree-select id="brick-1"></eo-tree-select>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.treeData = [
+#     {
+#       title: "Node1",
+#       value: 0,
+#       key: 0,
+#       children: [
+#         {
+#           title: "Node1-1",
+#           value: "0-1",
+#         },
+#         {
+#           title: "Node1-2",
+#           value: "0-2",
+#         },
+#         {
+#           title: "Node1-3",
+#           value: "0-3",
+#         },
+#       ],
+#     },
+#     {
+#       title: "Node2",
+#       value: 1,
+#       key: 1,
+#       children: [
+#         {
+#           title: "Node2-1",
+#           value: "1-1",
+#         },
+#         {
+#           title: "Node2-2",
+#           value: "1-2",
+#         },
+#         {
+#           title: "Node2-3",
+#           value: "1-3",
+#         },
+#       ],
+#     },
+#   ];
+# </script>
+# 
+```
+
+### With Form
+
+```yaml preview minHeight="500px"
+- brick: eo-form
+  events:
+    validate.success:
+      - action: console.log
+    validate.error:
+      - action: console.log
+  children:
+    - brick: eo-tree-select
+      properties:
+        label: tree
+        name: tree
+        required: true
+        treeData:
+          - title: "Node1"
+            value: "Node1"
+            key: "0-0"
+            children:
+              - title: "Child Node1-1"
+                value: "Child Node1-1"
+                key: "0-0-0"
+              - title: "Child Node1-2"
+                value: "Child Node1-2"
+                key: "0-0-1"
+          - title: "Node2"
+            value: "0-1"
+            key: "0-1"
+            children:
+              - title: "Child Node2-1"
+                value: "Child Node2-1"
+                key: "0-1-0"
+              - title: "Child Node2-2"
+                value: "Child Node2-2"
+                key: "0-1-1"
+                children:
+                  - title: Child Node2-2-1
+                    value: Child Node2-2-1
+                    key: "0-1-1-0"
+        multiple: true
+        checkable: true
+        placeholder: 请选择树节点
+      events:
+        change:
+          - action: console.log
+        select:
+          - action: console.log
+        expand:
+          - action: console.log
+        search:
+          - action: console.log
+    - brick: eo-submit-buttons
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+advanced/eo-tree-select/with form
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-form id="brick-1">
+#   <eo-tree-select
+#     label="tree"
+#     name="tree"
+#     required
+#     multiple
+#     checkable
+#     placeholder="请选择树节点"
+#     id="brick-2"
+#   ></eo-tree-select>
+#   <eo-submit-buttons></eo-submit-buttons>
+# </eo-form>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("validate.success", (e) => {
+#     console.log(e.detail);
+#   });
+#   brick_1.addEventListener("validate.error", (e) => {
+#     console.log(e.detail);
+#   });
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.treeData = [
+#     {
+#       title: "Node1",
+#       value: "Node1",
+#       key: "0-0",
+#       children: [
+#         {
+#           title: "Child Node1-1",
+#           value: "Child Node1-1",
+#           key: "0-0-0",
+#         },
+#         {
+#           title: "Child Node1-2",
+#           value: "Child Node1-2",
+#           key: "0-0-1",
+#         },
+#       ],
+#     },
+#     {
+#       title: "Node2",
+#       value: "0-1",
+#       key: "0-1",
+#       children: [
+#         {
+#           title: "Child Node2-1",
+#           value: "Child Node2-1",
+#           key: "0-1-0",
+#         },
+#         {
+#           title: "Child Node2-2",
+#           value: "Child Node2-2",
+#           key: "0-1-1",
+#           children: [
+#             {
+#               title: "Child Node2-2-1",
+#               value: "Child Node2-2-1",
+#               key: "0-1-1-0",
+#             },
+#           ],
+#         },
+#       ],
+#     },
+#   ];
+#   brick_2.addEventListener("change", (e) => {
+#     console.log(e.detail);
+#   });
+#   brick_2.addEventListener("select", (e) => {
+#     console.log(e.detail);
+#   });
+#   brick_2.addEventListener("expand", (e) => {
+#     console.log(e.detail);
+#   });
+#   brick_2.addEventListener("search", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocProperties properties={[{"name":"name","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"label","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"required","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"treeData","attribute":false,"type":"AntdTreeSelectProps[\"treeData\"]","annotation":{"type":"indexedAccess","objectType":{"type":"reference","typeName":{"type":"identifier","name":"AntdTreeSelectProps"}},"indexType":{"type":"jsLiteral","value":"treeData"}}},{"name":"treeDefaultExpandAll","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"treeExpandedKeys","attribute":false,"type":"string[]","annotation":{"type":"array","elementType":{"type":"keyword","value":"string"}}},{"name":"fieldNames","attribute":false,"type":"AntdTreeSelectProps[\"fieldNames\"]","annotation":{"type":"indexedAccess","objectType":{"type":"reference","typeName":{"type":"identifier","name":"AntdTreeSelectProps"}},"indexType":{"type":"jsLiteral","value":"fieldNames"}}},{"name":"value","attribute":false,"type":"AntdTreeSelectProps[\"value\"]","annotation":{"type":"indexedAccess","objectType":{"type":"reference","typeName":{"type":"identifier","name":"AntdTreeSelectProps"}},"indexType":{"type":"jsLiteral","value":"value"}}},{"name":"placeholder","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"multiple","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"disabled","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"checkable","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"allowClear","type":"boolean","default":"true","annotation":{"type":"keyword","value":"boolean"}},{"name":"loading","type":"boolean","default":"false","annotation":{"type":"keyword","value":"boolean"}},{"name":"filterTreeNode","attribute":false,"type":"AntdTreeSelectProps[\"filterTreeNode\"]","annotation":{"type":"indexedAccess","objectType":{"type":"reference","typeName":{"type":"identifier","name":"AntdTreeSelectProps"}},"indexType":{"type":"jsLiteral","value":"filterTreeNode"}}},{"name":"showSearch","type":"boolean","default":"true","annotation":{"type":"keyword","value":"boolean"}},{"name":"suffixIcon","attribute":false,"type":"GeneralIconProps","annotation":{"type":"reference","typeName":{"type":"identifier","name":"GeneralIconProps"}}},{"name":"popupPlacement","type":"AntdTreeSelectProps[\"placement\"]","default":"\"bottomLeft\"","annotation":{"type":"indexedAccess","objectType":{"type":"reference","typeName":{"type":"identifier","name":"AntdTreeSelectProps"}},"indexType":{"type":"jsLiteral","value":"placement"}}},{"name":"size","type":"AntdTreeSelectProps[\"size\"]","annotation":{"type":"indexedAccess","objectType":{"type":"reference","typeName":{"type":"identifier","name":"AntdTreeSelectProps"}},"indexType":{"type":"jsLiteral","value":"size"}}},{"name":"maxTagCount","attribute":false,"type":"number | \"responsive\"","annotation":{"type":"union","types":[{"type":"keyword","value":"number"},{"type":"jsLiteral","value":"responsive"}]}},{"name":"dropdownStyle","attribute":false,"type":"CSSProperties","annotation":{"type":"reference","typeName":{"type":"identifier","name":"CSSProperties"}}},{"name":"popupMatchSelectWidth","type":"boolean","default":"true","annotation":{"type":"keyword","value":"boolean"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocEvents events={[{"name":"change","description":"","detail":{"description":"{ value: AntdTreeSelectProps[\"value\"], selectedOptions: DefaultOptionType[] | DefaultOptionType[][] }","type":"{\n    value: AntdTreeSelectProps[\"value\"];\n  }","annotation":{"type":"typeLiteral","members":[{"type":"propertySignature","key":{"type":"identifier","name":"value"},"annotation":{"type":"indexedAccess","objectType":{"type":"reference","typeName":{"type":"identifier","name":"AntdTreeSelectProps"}},"indexType":{"type":"jsLiteral","value":"value"}},"computed":false}]}}},{"name":"search","detail":{"type":"string","annotation":{"type":"keyword","value":"string"}}},{"name":"select","detail":{"type":"{ value: AntdTreeSelectProps[\"value\"] }","annotation":{"type":"typeLiteral","members":[{"type":"propertySignature","key":{"type":"identifier","name":"value"},"annotation":{"type":"indexedAccess","objectType":{"type":"reference","typeName":{"type":"identifier","name":"AntdTreeSelectProps"}},"indexType":{"type":"jsLiteral","value":"value"}},"computed":false}]}}},{"name":"expand","detail":{"type":"{ keys: React.Key[] }","annotation":{"type":"typeLiteral","members":[{"type":"propertySignature","key":{"type":"identifier","name":"keys"},"annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"Key"}}}},"computed":false}]}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+

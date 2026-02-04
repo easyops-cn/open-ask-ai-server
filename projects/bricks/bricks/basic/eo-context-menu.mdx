@@ -1,0 +1,117 @@
+---
+description: "<eo-context-menu>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-context-menu"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `eo-context-menu`
+
+## Examples
+
+### Basic
+
+```yaml preview minHeight="200px"
+- brick: button
+  properties:
+    textContent: Right-click Me
+  events:
+    contextmenu:
+      - action: event.preventDefault
+      - target: eo-context-menu
+        method: open
+        args:
+          - position: <% [EVENT.clientX, EVENT.clientY] %>
+- brick: eo-context-menu
+  properties:
+    actions:
+      - text: Edit
+        icon:
+          lib: antd
+          icon: edit
+      - type: divider
+      - text: Delete
+        icon:
+          lib: antd
+          icon: delete
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-context-menu/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <button id="brick-1">Right-click Me</button>
+# <eo-context-menu id="brick-2"></eo-context-menu>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("contextmenu", (e) => {
+#     // WARN: encountered incompatible event handlers in HTML mode, please try YAML.
+#   });
+#   brick_1.addEventListener("contextmenu", (e) => {
+#     const brick = document.querySelector("eo-context-menu");
+#     brick.open({ position: "<% [EVENT.clientX, EVENT.clientY] %>" });
+#   });
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.actions = [
+#     {
+#       text: "Edit",
+#       icon: {
+#         lib: "antd",
+#         icon: "edit",
+#       },
+#     },
+#     {
+#       type: "divider",
+#     },
+#     {
+#       text: "Delete",
+#       icon: {
+#         lib: "antd",
+#         icon: "delete",
+#       },
+#     },
+#   ];
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["Position","OpenInfo"]}>
+  <BrickDocProperties properties={[{"name":"actions","description":"动作列表","attribute":false,"type":"Action[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"Action"}}}},{"name":"active","description":"是否激活","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"position","attribute":false,"type":"Position","annotation":{"type":"reference","typeName":{"type":"identifier","name":"Position"}}},{"name":"itemDraggable","description":"action中的菜单项是否可拖拽","type":"boolean","annotation":{"type":"keyword","value":"boolean"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={["Position","OpenInfo"]}>
+  <BrickDocEvents events={[{"name":"action.click","description":"点击菜单项动作时触发","detail":{"description":"该菜单项动作配置","type":"SimpleAction","annotation":{"type":"reference","typeName":{"type":"identifier","name":"SimpleAction"}}}},{"name":"item.drag.start","description":"开始拖拽菜单项时触发","detail":{"description":"该菜单项动作配置","type":"SimpleAction","annotation":{"type":"reference","typeName":{"type":"identifier","name":"SimpleAction"}}}},{"name":"item.drag.end","description":"完成拖拽菜单项时触发","detail":{"description":"该菜单项动作配置","type":"SimpleAction","annotation":{"type":"reference","typeName":{"type":"identifier","name":"SimpleAction"}}}}]} />
+</TypeReferencesContext.Provider>
+
+## Methods
+
+<TypeReferencesContext.Provider value={["Position","OpenInfo"]}>
+  <BrickDocMethods methods={[{"name":"open","params":[{"name":"param_1","type":"OpenInfo","annotation":{"type":"reference","typeName":{"type":"identifier","name":"OpenInfo"}}}],"returns":{}},{"name":"close","params":[],"returns":{}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"typeAlias","name":"Position","annotation":{"type":"tuple","elementTypes":[{"type":"namedTupleMember","label":"x","optional":false,"elementType":{"type":"keyword","value":"number"}},{"type":"namedTupleMember","label":"y","optional":false,"elementType":{"type":"keyword","value":"number"}}]}},{"type":"interface","name":"OpenInfo","body":[{"type":"propertySignature","key":{"type":"identifier","name":"position"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"Position"}},"computed":false,"description":"通常设为 `[EVENT.clientX, EVENT.clientY]`"}]}]} />
+

@@ -1,0 +1,71 @@
+---
+description: "<ai-portal.icon-button>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"ai-portal.icon-button"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `ai-portal.icon-button`
+
+## Examples
+
+### Basic
+
+```yaml preview
+brick: ai-portal.icon-button
+properties:
+  icon:
+    lib: antd
+    icon: download
+  tooltip: Go to homepage
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+ai-portal/icon-button/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <ai-portal.icon-button
+#   tooltip="Go to homepage"
+#   id="brick-1"
+# ></ai-portal.icon-button>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.icon = {
+#     lib: "antd",
+#     icon: "download",
+#   };
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["IconButtonVariant"]}>
+  <BrickDocProperties properties={[{"name":"icon","attribute":false,"type":"(GeneralIconProps & HTMLAttributes<GeneralIcon>)","annotation":{"type":"parenthesizedType","annotation":{"type":"intersection","types":[{"type":"reference","typeName":{"type":"identifier","name":"GeneralIconProps"}},{"type":"reference","typeName":{"type":"identifier","name":"HTMLAttributes"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"reference","typeName":{"type":"identifier","name":"GeneralIcon"}}]}}]}}},{"name":"tooltip","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"tooltipHoist","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"active","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"disabled","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"variant","type":"IconButtonVariant","annotation":{"type":"reference","typeName":{"type":"identifier","name":"IconButtonVariant"}}},{"name":"reduceIconSize","description":"是否缩小图标尺寸（部分 easyops 图标过大）","type":"boolean","annotation":{"type":"keyword","value":"boolean"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"typeAlias","name":"IconButtonVariant","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"default"},{"type":"jsLiteral","value":"light"},{"type":"jsLiteral","value":"mini"},{"type":"jsLiteral","value":"mini-light"},{"type":"jsLiteral","value":"bordered"}]}}]} />
+

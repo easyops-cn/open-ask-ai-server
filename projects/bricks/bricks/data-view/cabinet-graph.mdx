@@ -1,0 +1,179 @@
+---
+description: "<data-view.cabinet-graph>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"data-view.cabinet-graph"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+data-view.cabinet-graph 部署架构拓扑
+
+## Examples
+
+### Basic
+
+```yaml preview
+- brick: data-view.cabinet-graph
+  properties:
+    dataSource:
+      appName: inventory-api
+      key: inventory-api
+      clusters:
+        - clusterName: inventory-api##aaaaa
+          key: inventory-api##aaaaa
+          type: host
+          nodes:
+            - nodeTitle: 244.244.244.244
+              key: 244.244.244.244
+              type: physical-machine
+              isAlert: true
+            - nodeTitle: 244.244.244.245
+              key: 244.244.244.245
+              type: virtual-machine
+              isAlert: true
+            - nodeTitle: 244.244.245.245
+              key: 244.244.245.245
+              type: physical-machine
+            - nodeTitle: 244.244.245.244
+              key: 244.244.245.244
+              type: virtual-machine
+        - clusterName: K8S集群xxx
+          key: k8s-cluster
+          type: k8s
+          nodes:
+            - nodeTitle: a容器组
+              key: aa
+              type: container-group
+              isAlert: true
+            - nodeTitle: b容器组
+              key: bb
+              type: container-group
+        - clusterName: K8S集群xx
+          key: xxxx
+          type: k8s-blue
+          nodes:
+            - nodeTitle: a容器组
+              key: aa
+              type: pod
+              isAlert: true
+            - nodeTitle: b容器组
+              key: bb
+              type: pod
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+data-view/cabinet-graph/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <data-view.cabinet-graph id="brick-1"></data-view.cabinet-graph>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.dataSource = {
+#     appName: "inventory-api",
+#     key: "inventory-api",
+#     clusters: [
+#       {
+#         clusterName: "inventory-api##aaaaa",
+#         key: "inventory-api##aaaaa",
+#         type: "host",
+#         nodes: [
+#           {
+#             nodeTitle: "244.244.244.244",
+#             key: "244.244.244.244",
+#             type: "physical-machine",
+#             isAlert: true,
+#           },
+#           {
+#             nodeTitle: "244.244.244.245",
+#             key: "244.244.244.245",
+#             type: "virtual-machine",
+#             isAlert: true,
+#           },
+#           {
+#             nodeTitle: "244.244.245.245",
+#             key: "244.244.245.245",
+#             type: "physical-machine",
+#           },
+#           {
+#             nodeTitle: "244.244.245.244",
+#             key: "244.244.245.244",
+#             type: "virtual-machine",
+#           },
+#         ],
+#       },
+#       {
+#         clusterName: "K8S集群xxx",
+#         key: "k8s-cluster",
+#         type: "k8s",
+#         nodes: [
+#           {
+#             nodeTitle: "a容器组",
+#             key: "aa",
+#             type: "container-group",
+#             isAlert: true,
+#           },
+#           {
+#             nodeTitle: "b容器组",
+#             key: "bb",
+#             type: "container-group",
+#           },
+#         ],
+#       },
+#       {
+#         clusterName: "K8S集群xx",
+#         key: "xxxx",
+#         type: "k8s-blue",
+#         nodes: [
+#           {
+#             nodeTitle: "a容器组",
+#             key: "aa",
+#             type: "pod",
+#             isAlert: true,
+#           },
+#           {
+#             nodeTitle: "b容器组",
+#             key: "bb",
+#             type: "pod",
+#           },
+#         ],
+#       },
+#     ],
+#   };
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["AppData","Clusters","Node","ChangeType"]}>
+  <BrickDocProperties properties={[{"name":"dataSource","description":"","attribute":false,"type":"AppData","annotation":{"type":"reference","typeName":{"type":"identifier","name":"AppData"}}},{"name":"activeKey","description":"","attribute":false,"type":"string | string[]","annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"array","elementType":{"type":"keyword","value":"string"}}]}},{"name":"hiddenCloseBtn","description":"","type":"boolean","annotation":{"type":"keyword","value":"boolean"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={["AppData","Clusters","Node","ChangeType"]}>
+  <BrickDocEvents events={[{"name":"close.button.click","description":"","detail":{"description":null,"type":"void","annotation":{"type":"keyword","value":"void"}}},{"name":"cabinet.click","description":"","detail":{"description":null,"type":"{\n    type: ChangeType;\n    data: Record<string, any>;\n  }","annotation":{"type":"typeLiteral","members":[{"type":"propertySignature","key":{"type":"identifier","name":"type"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"ChangeType"}},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"data"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"Record"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"keyword","value":"string"},{"type":"keyword","value":"any"}]}},"computed":false}]}}},{"name":"cabinet.dbclick","description":"","detail":{"description":null,"type":"{\n    type: ChangeType;\n    data: Record<string, any>;\n  }","annotation":{"type":"typeLiteral","members":[{"type":"propertySignature","key":{"type":"identifier","name":"type"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"ChangeType"}},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"data"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"Record"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"keyword","value":"string"},{"type":"keyword","value":"any"}]}},"computed":false}]}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"AppData","body":[{"type":"propertySignature","key":{"type":"identifier","name":"appName"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"key"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"clusters"},"annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"Clusters"}}},"computed":false}]},{"type":"interface","name":"Clusters","body":[{"type":"propertySignature","key":{"type":"identifier","name":"clusterName"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"key"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"type"},"annotation":{"type":"union","types":[{"type":"jsLiteral","value":"host"},{"type":"jsLiteral","value":"k8s"},{"type":"jsLiteral","value":"k8s-blue"}]},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"nodes"},"annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"Node"}}},"computed":false}]},{"type":"interface","name":"Node","body":[{"type":"propertySignature","key":{"type":"identifier","name":"nodeTitle"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"key"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"type"},"annotation":{"type":"union","types":[{"type":"jsLiteral","value":"container-group"},{"type":"jsLiteral","value":"physical-machine"},{"type":"jsLiteral","value":"virtual-machine"}]},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"isAlert"},"annotation":{"type":"keyword","value":"boolean"},"optional":true,"computed":false}]},{"type":"typeAlias","name":"ChangeType","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"node"},{"type":"jsLiteral","value":"cluster"},{"type":"jsLiteral","value":"layer"}]}}]} />
+

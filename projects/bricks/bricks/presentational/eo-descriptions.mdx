@@ -1,0 +1,912 @@
+---
+description: "<eo-descriptions>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-descriptions"}
+  alias={["presentational.general-descriptions"]}
+  insider={false}
+  deprecated={false}
+/>
+
+通用描述列表构件。
+
+```yaml preview
+- brick: eo-descriptions
+  properties:
+    list:
+      - label: 姓名
+        text: Tom
+      - label: 年龄
+        text: 18
+      - label: 身高
+        text: 180cm
+      - label: 爱好
+        text: 篮球
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-descriptions
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-descriptions id="brick-1"></eo-descriptions>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.list = [
+#     {
+#       label: "姓名",
+#       text: "Tom",
+#     },
+#     {
+#       label: "年龄",
+#       text: 18,
+#     },
+#     {
+#       label: "身高",
+#       text: "180cm",
+#     },
+#     {
+#       label: "爱好",
+#       text: "篮球",
+#     },
+#   ];
+# </script>
+# 
+```
+
+## Examples
+
+### Column
+
+```yaml preview
+- brick: eo-descriptions
+  properties:
+    descriptionTitle: UserInfo
+    column: 2
+    list:
+      - label: 姓名
+        text: Tom
+      - label: 年龄
+        text: 18
+      - label: 身高
+        text: 180cm
+      - label: 爱好
+        text: 篮球
+      - label: 标签
+        useBrick:
+          - brick: eo-tag-list
+            properties:
+              list:
+                - text: 阳光
+                  key: 0
+                  color: blue
+                - text: 开朗
+                  key: 1
+                  color: red
+                - text: 大男孩
+                  key: 2
+                  color: green
+
+- brick: eo-divider
+  properties:
+    dividerStyle:
+      margin: 8px 0 4px 0
+- brick: eo-descriptions
+  properties:
+    descriptionTitle: 用户信息
+    column: 4
+    list:
+      - label: 姓名
+        text: Tom
+      - label: 年龄
+        text: 18
+      - label: 身高
+        text: 180cm
+      - label: 爱好
+        text: 篮球
+      - label: 标签
+        useBrick:
+          - brick: eo-tag-list
+            properties:
+              list:
+                - text: 阳光
+                  key: 0
+                  color: blue
+                - text: 开朗
+                  key: 1
+                  color: red
+                - text: 大男孩
+                  key: 2
+                  color: green
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-descriptions/column
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-descriptions
+#   description-title="UserInfo"
+#   column="2"
+#   id="brick-1"
+# ></eo-descriptions>
+# <eo-divider id="brick-2"></eo-divider>
+# <eo-descriptions
+#   description-title="用户信息"
+#   column="4"
+#   id="brick-3"
+# ></eo-descriptions>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.list = [
+#     {
+#       label: "姓名",
+#       text: "Tom",
+#     },
+#     {
+#       label: "年龄",
+#       text: 18,
+#     },
+#     {
+#       label: "身高",
+#       text: "180cm",
+#     },
+#     {
+#       label: "爱好",
+#       text: "篮球",
+#     },
+#     {
+#       label: "标签",
+#       useBrick: [
+#         {
+#           brick: "eo-tag-list",
+#           properties: {
+#             list: [
+#               {
+#                 text: "阳光",
+#                 key: 0,
+#                 color: "blue",
+#               },
+#               {
+#                 text: "开朗",
+#                 key: 1,
+#                 color: "red",
+#               },
+#               {
+#                 text: "大男孩",
+#                 key: 2,
+#                 color: "green",
+#               },
+#             ],
+#           },
+#         },
+#       ],
+#     },
+#   ];
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.dividerStyle = {
+#     margin: "8px 0 4px 0",
+#   };
+# 
+#   const brick_3 = document.getElementById("brick-3");
+#   brick_3.list = [
+#     {
+#       label: "姓名",
+#       text: "Tom",
+#     },
+#     {
+#       label: "年龄",
+#       text: 18,
+#     },
+#     {
+#       label: "身高",
+#       text: "180cm",
+#     },
+#     {
+#       label: "爱好",
+#       text: "篮球",
+#     },
+#     {
+#       label: "标签",
+#       useBrick: [
+#         {
+#           brick: "eo-tag-list",
+#           properties: {
+#             list: [
+#               {
+#                 text: "阳光",
+#                 key: 0,
+#                 color: "blue",
+#               },
+#               {
+#                 text: "开朗",
+#                 key: 1,
+#                 color: "red",
+#               },
+#               {
+#                 text: "大男孩",
+#                 key: 2,
+#                 color: "green",
+#               },
+#             ],
+#           },
+#         },
+#       ],
+#     },
+#   ];
+# </script>
+# 
+```
+
+### Layout
+
+```yaml preview
+- brick: eo-descriptions
+  properties:
+    layout: horizontal
+    list:
+      - label: 姓名
+        text: Tom
+      - label: 年龄
+        text: 18
+      - label: 身高
+        text: 180cm
+      - label: 爱好
+        text: 篮球
+      - label: 标签
+        useBrick:
+          - brick: eo-tag-list
+            properties:
+              list:
+                - text: 阳光
+                  key: 0
+                  color: blue
+                - text: 开朗
+                  key: 1
+                  color: red
+                - text: 大男孩
+                  key: 2
+                  color: green
+- brick: eo-divider
+  properties:
+    dividerStyle:
+      margin: 8px 0 4px 0
+- brick: eo-descriptions
+  properties:
+    layout: vertical
+    list:
+      - label: 姓名
+        text: Tom
+      - label: 年龄
+        text: 18
+      - label: 身高
+        text: 180cm
+      - label: 爱好
+        text: 篮球
+      - label: 标签
+        useBrick:
+          - brick: eo-tag-list
+            properties:
+              list:
+                - text: 阳光
+                  key: 0
+                  color: blue
+                - text: 开朗
+                  key: 1
+                  color: red
+                - text: 大男孩
+                  key: 2
+                  color: green
+- brick: div
+  properties:
+    style:
+      margin: 10px 0px
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-descriptions/layout
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-descriptions layout="horizontal" id="brick-1"></eo-descriptions>
+# <eo-divider id="brick-2"></eo-divider>
+# <eo-descriptions layout="vertical" id="brick-3"></eo-descriptions>
+# <div style="margin: 10px 0px"></div>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.list = [
+#     {
+#       label: "姓名",
+#       text: "Tom",
+#     },
+#     {
+#       label: "年龄",
+#       text: 18,
+#     },
+#     {
+#       label: "身高",
+#       text: "180cm",
+#     },
+#     {
+#       label: "爱好",
+#       text: "篮球",
+#     },
+#     {
+#       label: "标签",
+#       useBrick: [
+#         {
+#           brick: "eo-tag-list",
+#           properties: {
+#             list: [
+#               {
+#                 text: "阳光",
+#                 key: 0,
+#                 color: "blue",
+#               },
+#               {
+#                 text: "开朗",
+#                 key: 1,
+#                 color: "red",
+#               },
+#               {
+#                 text: "大男孩",
+#                 key: 2,
+#                 color: "green",
+#               },
+#             ],
+#           },
+#         },
+#       ],
+#     },
+#   ];
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.dividerStyle = {
+#     margin: "8px 0 4px 0",
+#   };
+# 
+#   const brick_3 = document.getElementById("brick-3");
+#   brick_3.list = [
+#     {
+#       label: "姓名",
+#       text: "Tom",
+#     },
+#     {
+#       label: "年龄",
+#       text: 18,
+#     },
+#     {
+#       label: "身高",
+#       text: "180cm",
+#     },
+#     {
+#       label: "爱好",
+#       text: "篮球",
+#     },
+#     {
+#       label: "标签",
+#       useBrick: [
+#         {
+#           brick: "eo-tag-list",
+#           properties: {
+#             list: [
+#               {
+#                 text: "阳光",
+#                 key: 0,
+#                 color: "blue",
+#               },
+#               {
+#                 text: "开朗",
+#                 key: 1,
+#                 color: "red",
+#               },
+#               {
+#                 text: "大男孩",
+#                 key: 2,
+#                 color: "green",
+#               },
+#             ],
+#           },
+#         },
+#       ],
+#     },
+#   ];
+# </script>
+# 
+```
+
+### Bordered
+
+```yaml preview
+- brick: eo-descriptions
+  properties:
+    bordered: true
+    layout: vertical
+    list:
+      - label: 姓名
+        text: Tom
+      - label: 年龄
+        text: 18
+      - label: 身高
+        text: 180cm
+      - label: 爱好
+        text: 篮球
+      - label: 标签
+        useBrick:
+          - brick: eo-tag-list
+            properties:
+              list:
+                - text: 阳光
+                  key: 0
+                  color: blue
+                - text: 开朗
+                  key: 1
+                  color: red
+                - text: 大男孩
+                  key: 2
+                  color: green
+- brick: div
+  properties:
+    style:
+      margin: 10px 0px
+- brick: eo-descriptions
+  properties:
+    bordered: true
+    layout: horizontal
+    list:
+      - label: 姓名
+        text: Tom
+      - label: 年龄
+        text: 18
+      - label: 身高
+        text: 180cm
+      - label: 爱好
+        text: 篮球
+      - label: 标签
+        useBrick:
+          - brick: eo-tag-list
+            properties:
+              list:
+                - text: 阳光
+                  key: 0
+                  color: blue
+                - text: 开朗
+                  key: 1
+                  color: red
+                - text: 大男孩
+                  key: 2
+                  color: green
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-descriptions/bordered
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-descriptions bordered layout="vertical" id="brick-1"></eo-descriptions>
+# <div style="margin: 10px 0px"></div>
+# <eo-descriptions bordered layout="horizontal" id="brick-2"></eo-descriptions>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.list = [
+#     {
+#       label: "姓名",
+#       text: "Tom",
+#     },
+#     {
+#       label: "年龄",
+#       text: 18,
+#     },
+#     {
+#       label: "身高",
+#       text: "180cm",
+#     },
+#     {
+#       label: "爱好",
+#       text: "篮球",
+#     },
+#     {
+#       label: "标签",
+#       useBrick: [
+#         {
+#           brick: "eo-tag-list",
+#           properties: {
+#             list: [
+#               {
+#                 text: "阳光",
+#                 key: 0,
+#                 color: "blue",
+#               },
+#               {
+#                 text: "开朗",
+#                 key: 1,
+#                 color: "red",
+#               },
+#               {
+#                 text: "大男孩",
+#                 key: 2,
+#                 color: "green",
+#               },
+#             ],
+#           },
+#         },
+#       ],
+#     },
+#   ];
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.list = [
+#     {
+#       label: "姓名",
+#       text: "Tom",
+#     },
+#     {
+#       label: "年龄",
+#       text: 18,
+#     },
+#     {
+#       label: "身高",
+#       text: "180cm",
+#     },
+#     {
+#       label: "爱好",
+#       text: "篮球",
+#     },
+#     {
+#       label: "标签",
+#       useBrick: [
+#         {
+#           brick: "eo-tag-list",
+#           properties: {
+#             list: [
+#               {
+#                 text: "阳光",
+#                 key: 0,
+#                 color: "blue",
+#               },
+#               {
+#                 text: "开朗",
+#                 key: 1,
+#                 color: "red",
+#               },
+#               {
+#                 text: "大男孩",
+#                 key: 2,
+#                 color: "green",
+#               },
+#             ],
+#           },
+#         },
+#       ],
+#     },
+#   ];
+# </script>
+# 
+```
+
+### Hide Groups
+
+```yaml preview
+- brick: eo-descriptions
+  properties:
+    hideGroups: other
+    list:
+      - label: 姓名
+        text: Tom
+      - label: 年龄
+        text: 18
+      - label: 身高
+        text: 180cm
+      - label: 爱好
+        text: 篮球
+        group: "other"
+      - label: 标签
+        group: "other"
+        useBrick:
+          - brick: eo-tag-list
+            properties:
+              list:
+                - text: 阳光
+                  key: 0
+                  color: blue
+                - text: 开朗
+                  key: 1
+                  color: red
+                - text: 大男孩
+                  key: 2
+                  color: green
+
+- brick: div
+  properties:
+    style:
+      margin: 10px 0px
+- brick: eo-descriptions
+  properties:
+    hideGroups:
+      - name
+      - other
+    list:
+      - label: 姓名
+        text: Tom
+        group: name
+      - label: 年龄
+        text: 18
+        group: age
+      - label: 身高
+        text: 180cm
+      - label: 爱好
+        text: 篮球
+        group: other
+      - label: 标签
+        useBrick:
+          - brick: eo-tag-list
+            properties:
+              list:
+                - text: 阳光
+                  key: 0
+                  color: blue
+                - text: 开朗
+                  key: 1
+                  color: red
+                - text: 大男孩
+                  key: 2
+                  color: green
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-descriptions/hide groups
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-descriptions id="brick-1"></eo-descriptions>
+# <div style="margin: 10px 0px"></div>
+# <eo-descriptions id="brick-2"></eo-descriptions>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.hideGroups = "other";
+#   brick_1.list = [
+#     {
+#       label: "姓名",
+#       text: "Tom",
+#     },
+#     {
+#       label: "年龄",
+#       text: 18,
+#     },
+#     {
+#       label: "身高",
+#       text: "180cm",
+#     },
+#     {
+#       label: "爱好",
+#       text: "篮球",
+#       group: "other",
+#     },
+#     {
+#       label: "标签",
+#       group: "other",
+#       useBrick: [
+#         {
+#           brick: "eo-tag-list",
+#           properties: {
+#             list: [
+#               {
+#                 text: "阳光",
+#                 key: 0,
+#                 color: "blue",
+#               },
+#               {
+#                 text: "开朗",
+#                 key: 1,
+#                 color: "red",
+#               },
+#               {
+#                 text: "大男孩",
+#                 key: 2,
+#                 color: "green",
+#               },
+#             ],
+#           },
+#         },
+#       ],
+#     },
+#   ];
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.hideGroups = ["name", "other"];
+#   brick_2.list = [
+#     {
+#       label: "姓名",
+#       text: "Tom",
+#       group: "name",
+#     },
+#     {
+#       label: "年龄",
+#       text: 18,
+#       group: "age",
+#     },
+#     {
+#       label: "身高",
+#       text: "180cm",
+#     },
+#     {
+#       label: "爱好",
+#       text: "篮球",
+#       group: "other",
+#     },
+#     {
+#       label: "标签",
+#       useBrick: [
+#         {
+#           brick: "eo-tag-list",
+#           properties: {
+#             list: [
+#               {
+#                 text: "阳光",
+#                 key: 0,
+#                 color: "blue",
+#               },
+#               {
+#                 text: "开朗",
+#                 key: 1,
+#                 color: "red",
+#               },
+#               {
+#                 text: "大男孩",
+#                 key: 2,
+#                 color: "green",
+#               },
+#             ],
+#           },
+#         },
+#       ],
+#     },
+#   ];
+# </script>
+# 
+```
+
+### DataSource
+
+```yaml preview
+- brick: eo-descriptions
+  properties:
+    dataSource:
+      text: Hello world
+      name: Tom
+    list:
+      - label: 姓名
+        field: name
+      - label: 年龄
+        text: 18
+      - label: 身高
+        text: 180cm
+      - label: 爱好
+        text: 篮球
+      - label: Form dataSource
+        useBrick:
+          brick: div
+          properties:
+            textContent: "<% DATA.text %>"
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-descriptions/datasource
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-descriptions id="brick-1"></eo-descriptions>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.dataSource = {
+#     text: "Hello world",
+#     name: "Tom",
+#   };
+#   brick_1.list = [
+#     {
+#       label: "姓名",
+#       field: "name",
+#     },
+#     {
+#       label: "年龄",
+#       text: 18,
+#     },
+#     {
+#       label: "身高",
+#       text: "180cm",
+#     },
+#     {
+#       label: "爱好",
+#       text: "篮球",
+#     },
+#     {
+#       label: "Form dataSource",
+#       useBrick: {
+#         brick: "div",
+#         properties: {
+#           textContent: "<% DATA.text %>",
+#         },
+#       },
+#     },
+#   ];
+# </script>
+# 
+```
+
+### Theme variant Elevo
+
+```yaml preview
+# Use this container to emulate background
+brick: ai-portal.home-container
+properties:
+  style:
+    padding: 2em
+    backgroundColor: "#d8d8d8"
+children:
+  - brick: eo-descriptions
+    properties:
+      themeVariant: elevo
+      column: 1
+      list:
+        - label: 姓名
+          text: Tom
+        - label: 年龄
+          text: 18
+        - label: 身高
+          text: 180cm
+        - label: 爱好
+          text: 篮球
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-descriptions/theme variant elevo
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <ai-portal.home-container style="padding: 2em; background-color: #d8d8d8">
+#   <eo-descriptions
+#     theme-variant="elevo"
+#     column="1"
+#     id="brick-1"
+#   ></eo-descriptions>
+# </ai-portal.home-container>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.list = [
+#     {
+#       label: "姓名",
+#       text: "Tom",
+#     },
+#     {
+#       label: "年龄",
+#       text: 18,
+#     },
+#     {
+#       label: "身高",
+#       text: "180cm",
+#     },
+#     {
+#       label: "爱好",
+#       text: "篮球",
+#     },
+#   ];
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["DescriptionItem","Layout"]}>
+  <BrickDocProperties properties={[{"name":"descriptionTitle","description":"描述标题","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"list","description":"描述列表","attribute":false,"type":"DescriptionItem[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"DescriptionItem"}}}},{"name":"showCard","description":"是否展示卡片背景","default":"true","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"column","description":"列数","attribute":true,"type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"templateColumns","description":"CSS [grid-template-columns](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns)","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"layout","description":"布局模式","default":"\"horizontal\"","type":"Layout","annotation":{"type":"reference","typeName":{"type":"identifier","name":"Layout"}}},{"name":"bordered","description":"是否展示边框","default":"false","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"hideGroups","description":"隐藏的描述列表项","attribute":false,"type":"string | string[]","annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"array","elementType":{"type":"keyword","value":"string"}}]}},{"name":"dataSource","description":"数据源","attribute":false,"type":"object","annotation":{"type":"keyword","value":"object"}},{"name":"themeVariant","description":"主题变体","type":"\"default\" | \"elevo\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"default"},{"type":"jsLiteral","value":"elevo"}]}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"DescriptionItem","body":[{"type":"propertySignature","key":{"type":"identifier","name":"label"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"field"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"group"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"text"},"annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"number"}]},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"useBrick"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"UseBrickConf"}},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"gridColumn"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false}]},{"type":"typeAlias","name":"Layout","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"horizontal"},{"type":"jsLiteral","value":"vertical"}]}}]} />
+

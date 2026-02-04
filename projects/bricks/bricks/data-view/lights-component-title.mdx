@@ -1,0 +1,100 @@
+---
+description: "<data-view.lights-component-title>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"data-view.lights-component-title"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `data-view.lights-component-title`
+
+## Examples
+
+### Light
+
+```yaml preview
+- brick: div
+  properties:
+    style:
+      width: 100%
+      height: 100%
+      background: "#000000FF"
+  slots:
+    "":
+      type: bricks
+      bricks:
+        - brick: data-view.lights-component-title
+          properties:
+            componentTitle: 标题内容
+            theme: "light"
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+data-view/lights-component-title/light
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <div style="width: 100%; height: 100%; background: #000000ff">
+#   <data-view.lights-component-title
+#     component-title="标题内容"
+#     theme="light"
+#   ></data-view.lights-component-title>
+# </div>
+# 
+```
+### Dark
+
+```yaml preview
+- brick: div
+  properties:
+    style:
+      width: 100%
+      height: 100%
+      background: "#000000FF"
+  slots:
+    "":
+      type: bricks
+      bricks:
+        - brick: data-view.lights-component-title
+          properties:
+            componentTitle: 标题内容
+            theme: "dark"
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+data-view/lights-component-title/dark
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <div style="width: 100%; height: 100%; background: #000000ff">
+#   <data-view.lights-component-title
+#     component-title="标题内容"
+#     theme="dark"
+#   ></data-view.lights-component-title>
+# </div>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocProperties properties={[{"name":"componentTitle","description":"组件标题","default":"-","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"theme","description":"","required":true,"default":null,"type":"\"light\" | \"dark\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"light"},{"type":"jsLiteral","value":"dark"}]}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+
+

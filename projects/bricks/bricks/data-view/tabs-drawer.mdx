@@ -1,0 +1,176 @@
+---
+description: "<data-view.tabs-drawer>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"data-view.tabs-drawer"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+data-view.tabs-drawer
+
+## Examples
+
+### Basic
+
+```yaml preview
+- brick: data-view.tabs-drawer
+  properties:
+    activeKey: search
+    id: drawer
+    visible: true
+    width: 800
+    style:
+      height: 600px
+      display: block
+    tabList:
+      - tooltip: 搜索
+        key: search
+        icon:
+          lib: fa
+          icon: search
+          prefix: fas
+      - tooltip: 内容
+        key: app
+        icon:
+          lib: easyops
+          category: app
+          icon: micro-app-configuration
+
+      - tooltip: 图表
+        key: chart
+        icon:
+          lib: fa
+          icon: ad
+          prefix: fas
+  slots:
+    search:
+      type: bricks
+      bricks:
+        - brick: div
+          properties:
+            style:
+              padding: 0 16px
+              height: 100px
+              background: red
+            textContent: 测试
+    app:
+      type: bricks
+      bricks:
+        - brick: div
+          properties:
+            textContent: 内容区域
+            style:
+              background: yellow
+              height: 100px
+    chart:
+      type: bricks
+      bricks:
+        - brick: div
+          properties:
+            textContent: 图表区域
+            style:
+              background: green
+              height: 100px
+  events:
+    close:
+      - action: console.log
+    tab.change:
+      - action: console.log
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+data-view/tabs-drawer/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <data-view.tabs-drawer
+#   active-key="search"
+#   visible
+#   style="height: 600px; display: block"
+#   id="drawer"
+# >
+#   <div slot="search" style="padding: 0 16px; height: 100px; background: red">
+#     测试
+#   </div>
+#   <div slot="app" style="background: yellow; height: 100px">内容区域</div>
+#   <div slot="chart" style="background: green; height: 100px">图表区域</div>
+# </data-view.tabs-drawer>
+# 
+# <script>
+#   const drawer = document.getElementById("drawer");
+#   drawer.width = 800;
+#   drawer.tabList = [
+#     {
+#       tooltip: "搜索",
+#       key: "search",
+#       icon: {
+#         lib: "fa",
+#         icon: "search",
+#         prefix: "fas",
+#       },
+#     },
+#     {
+#       tooltip: "内容",
+#       key: "app",
+#       icon: {
+#         lib: "easyops",
+#         category: "app",
+#         icon: "micro-app-configuration",
+#       },
+#     },
+#     {
+#       tooltip: "图表",
+#       key: "chart",
+#       icon: {
+#         lib: "fa",
+#         icon: "ad",
+#         prefix: "fas",
+#       },
+#     },
+#   ];
+#   drawer.addEventListener("close", (e) => {
+#     console.log(e.detail);
+#   });
+#   drawer.addEventListener("tab.change", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["TabItem"]}>
+  <BrickDocProperties properties={[{"name":"tabList","description":"","required":true,"default":"-","attribute":false,"type":"TabItem[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"TabItem"}}}},{"name":"activeKey","description":"","required":true,"default":"-","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"width","description":"","attribute":false,"type":"number | string","annotation":{"type":"union","types":[{"type":"keyword","value":"number"},{"type":"keyword","value":"string"}]}},{"name":"drawerStyle","description":"","attribute":false,"type":"React.CSSProperties","annotation":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}}},{"name":"bodyStyle","description":"","attribute":false,"type":"React.CSSProperties","annotation":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}}},{"name":"zIndex","description":"","type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"visible","description":"","type":"boolean","annotation":{"type":"keyword","value":"boolean"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={["TabItem"]}>
+  <BrickDocEvents events={[{"name":"open","description":"","detail":{"description":null,"type":"void","annotation":{"type":"keyword","value":"void"}}},{"name":"close","description":"","detail":{"description":null,"type":"void","annotation":{"type":"keyword","value":"void"}}},{"name":"tab.change","description":"","detail":{"description":"`string`","type":"string","annotation":{"type":"keyword","value":"string"}}}]} />
+</TypeReferencesContext.Provider>
+
+## Methods
+
+<TypeReferencesContext.Provider value={["TabItem"]}>
+  <BrickDocMethods methods={[{"name":"open","params":[],"description":"","returns":{}},{"name":"close","params":[],"description":"","returns":{}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"TabItem","body":[{"type":"propertySignature","key":{"type":"identifier","name":"icon"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"GeneralIconProps"}},"computed":false,"description":"菜单标题对应的图标。"},{"type":"propertySignature","key":{"type":"identifier","name":"key"},"annotation":{"type":"keyword","value":"string"},"computed":false,"description":"唯一标识"},{"type":"propertySignature","key":{"type":"identifier","name":"title"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false,"description":"菜单标题。"},{"type":"propertySignature","key":{"type":"identifier","name":"tooltip"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false}]}]} />
+

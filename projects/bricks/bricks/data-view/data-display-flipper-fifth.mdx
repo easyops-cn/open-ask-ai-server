@@ -1,0 +1,66 @@
+---
+description: "<data-view.data-display-flipper-fifth>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"data-view.data-display-flipper-fifth"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `data-view.data-display-flipper-fifth`
+
+## Examples
+
+### Basic
+
+```yaml preview
+- brick: data-view.data-display-flipper-fifth
+  properties:
+    flipperTitle: 翻牌器名称
+    data: 195.15
+    unit: 单位
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+data-view/data-display-flipper-fifth/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <data-view.data-display-flipper-fifth
+#   flipper-title="翻牌器名称"
+#   id="brick-1"
+# ></data-view.data-display-flipper-fifth>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.data = 195.15;
+#   brick_1.unit = "单位";
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocProperties properties={[{"name":"flipperTitle","description":"翻牌器标题","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"flipperStyle","description":"翻牌器样式","attribute":false,"type":"React.CSSProperties","annotation":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}}},{"name":"data","description":"翻牌器数值","attribute":false,"type":"number | string","annotation":{"type":"union","types":[{"type":"keyword","value":"number"},{"type":"keyword","value":"string"}]}},{"name":"unit","description":"翻牌器单位","attribute":false,"type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"enableTitlePrefix","description":"是否启用标题前缀插槽","default":"false","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"showDefaultPrefix","description":"标题是否展示默认前缀图片","default":"true","type":"boolean","annotation":{"type":"keyword","value":"boolean"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+
+

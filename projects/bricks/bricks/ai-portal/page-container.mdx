@@ -1,0 +1,59 @@
+---
+description: "<ai-portal.page-container>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"ai-portal.page-container"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `ai-portal.page-container`
+
+## Examples
+
+### Basic
+
+```yaml preview
+brick: ai-portal.page-container
+properties:
+  textContent: Hello world
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+ai-portal/page-container/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <ai-portal.page-container>Hello world</ai-portal.page-container>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["Breadcrumb"]}>
+  <BrickDocProperties properties={[{"name":"pageTitle","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"breadcrumbs","attribute":false,"type":"Breadcrumb[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"Breadcrumb"}}}},{"name":"size","type":"\"medium\" | \"small\" | \"full\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"medium"},{"type":"jsLiteral","value":"small"},{"type":"jsLiteral","value":"full"}]}},{"name":"variant","type":"\"default\" | \"form\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"default"},{"type":"jsLiteral","value":"form"}]}},{"name":"sticky","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"textContent","type":"string","description":"文本内容","annotation":{"type":"keyword","value":"string"}}]} />
+</TypeReferencesContext.Provider>
+
+## Slots
+
+<BrickDocSlots slots={[{"name":null,"description":"内容"},{"name":"toolbar","description":"工具栏"}]} />
+
+
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"Breadcrumb","body":[{"type":"propertySignature","key":{"type":"identifier","name":"text"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"url"},"annotation":{"type":"keyword","value":"string"},"computed":false}]}]} />
+

@@ -1,0 +1,68 @@
+---
+description: "<eo-easyops-avatar>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-easyops-avatar"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+EasyOps 头像
+
+## Examples
+
+### Basic
+
+```yaml preview gap
+- brick: eo-easyops-avatar
+  properties:
+    nameOrInstanceId: easyops
+- brick: eo-easyops-avatar
+  properties:
+    nameOrInstanceId: easyops1
+- brick: eo-easyops-avatar
+  properties:
+    nameOrInstanceId: easyops_invalid
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-easyops-avatar/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-easyops-avatar name-or-instance-id="easyops"></eo-easyops-avatar>
+# <eo-easyops-avatar name-or-instance-id="easyops1"></eo-easyops-avatar>
+# <eo-easyops-avatar name-or-instance-id="easyops_invalid"></eo-easyops-avatar>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["AvatarSize","AvatarGapSize"]}>
+  <BrickDocProperties properties={[{"name":"nameOrInstanceId","description":"用户名或 instanceId","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"size","description":"尺寸","default":"\"medium\"","type":"AvatarSize","annotation":{"type":"reference","typeName":{"type":"identifier","name":"AvatarSize"}}},{"name":"gapSize","description":"头像和名称间距大小","default":"\"medium\"","type":"AvatarGapSize","annotation":{"type":"reference","typeName":{"type":"identifier","name":"AvatarGapSize"}}},{"name":"bordered","description":"是否有边框","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"showName","description":"是否展示用户名称","type":"boolean","annotation":{"type":"keyword","value":"boolean"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+## Parts
+
+<BrickDocParts parts={[{"name":"eo-avatar","description":"eo-avatar 元素"},{"name":"avatar","description":"头像容器"},{"name":"avatar-img","description":"显示为图片时的头像容器"},{"name":"avatar-icon","description":"显示为图标时的头像容器"},{"name":"avatar-text","description":"显示为文本时的头像容器"},{"name":"name","description":"用户名"}]} />
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"typeAlias","name":"AvatarSize","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"large"},{"type":"jsLiteral","value":"medium"},{"type":"jsLiteral","value":"small"},{"type":"jsLiteral","value":"xs"}]}},{"type":"typeAlias","name":"AvatarGapSize","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"medium"},{"type":"jsLiteral","value":"large"}]}}]} />
+

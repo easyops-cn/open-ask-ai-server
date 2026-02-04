@@ -1,0 +1,317 @@
+---
+description: "<eo-date-picker>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-date-picker"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `eo-date-picker`
+
+## Examples
+
+### Basic
+
+```yaml preview minHeight="450px"
+- brick: eo-date-picker
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+form/eo-date-picker/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-date-picker></eo-date-picker>
+# 
+```
+
+### picker
+
+```yaml preview minHeight="550px"
+- brick: eo-radio
+  events:
+    change:
+      - target: "#datePicker"
+        properties:
+          picker: <% EVENT.detail.value %>
+  properties:
+    options:
+      - label: 天
+        value: date
+      - label: 周
+        value: week
+      - label: 月
+        value: month
+      - label: 季度
+        value: quarter
+      - label: 年
+        value: year
+- brick: div
+  properties:
+    style:
+      display: grid
+      gap: 1em
+  children:
+    - brick: eo-button
+      properties:
+        textContent: 中文
+      events:
+        click:
+          useProvider: basic.change-language
+          args:
+            - zh
+          callback:
+            success:
+              action: message.success
+              args:
+                - '<% I18N_TEXT({ zh: "你好", "en": "Hello" }) %>'
+    - brick: eo-button
+      properties:
+        textContent: English
+      events:
+        click:
+          useProvider: basic.change-language
+          args:
+            - en
+          callback:
+            success:
+              action: message.success
+              args:
+                - '<% I18N_TEXT({ zh: "你好", "en": "Hello" }) %>'
+- brick: eo-date-picker
+  properties:
+    id: datePicker
+    useFastSelectBtn: true
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+form/eo-date-picker/picker
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-radio id="brick-1"></eo-radio>
+# <div style="display: grid; gap: 1em">
+#   <eo-button id="brick-2">中文</eo-button>
+#   <eo-button id="brick-3">English</eo-button>
+# </div>
+# <eo-date-picker use-fast-select-btn id="datePicker"></eo-date-picker>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.options = [
+#     {
+#       label: "天",
+#       value: "date",
+#     },
+#     {
+#       label: "周",
+#       value: "week",
+#     },
+#     {
+#       label: "月",
+#       value: "month",
+#     },
+#     {
+#       label: "季度",
+#       value: "quarter",
+#     },
+#     {
+#       label: "年",
+#       value: "year",
+#     },
+#   ];
+#   brick_1.addEventListener("change", (e) => {
+#     const brick = document.querySelector("#datePicker");
+#     brick.picker = "<% EVENT.detail.value %>";
+#   });
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.addEventListener("click", (e) => {
+#     const provider = document.createElement("basic.change-language");
+#     const promise = Promise.resolve(provider.resolve("zh"));
+#     promise.then((r) => {
+#       const message = document.createElement("basic.show-notification");
+#       message.resolve({
+#         type: "success",
+#         /* WARN: incompatible expressions in HTML, please try YAML: */
+#         message: '<% I18N_TEXT({ zh: "你好", "en": "Hello" }) %>',
+#       });
+#     });
+#   });
+# 
+#   const brick_3 = document.getElementById("brick-3");
+#   brick_3.addEventListener("click", (e) => {
+#     const provider = document.createElement("basic.change-language");
+#     const promise = Promise.resolve(provider.resolve("en"));
+#     promise.then((r) => {
+#       const message = document.createElement("basic.show-notification");
+#       message.resolve({
+#         type: "success",
+#         /* WARN: incompatible expressions in HTML, please try YAML: */
+#         message: '<% I18N_TEXT({ zh: "你好", "en": "Hello" }) %>',
+#       });
+#     });
+#   });
+# </script>
+# 
+```
+
+### showTime
+
+```yaml preview minHeight="450px"
+- brick: eo-date-picker
+  events:
+    ok:
+      action: console.log
+    change:
+      action: console.log
+  properties:
+    showTime: true
+    value: "2020-02-01 14:30:00"
+    format: "YYYY-MM-DD HH:mm:ss"
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+form/eo-date-picker/showtime
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-date-picker
+#   show-time
+#   value="2020-02-01 14:30:00"
+#   format="YYYY-MM-DD HH:mm:ss"
+#   id="brick-1"
+# ></eo-date-picker>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("ok", (e) => {
+#     console.log(e.detail);
+#   });
+#   brick_1.addEventListener("change", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+### 禁用日期
+
+```yaml preview minHeight="450px"
+- brick: eo-date-picker
+  events:
+    ok:
+      action: console.log
+    change:
+      action: console.log
+  properties:
+    disabledDate:
+      - weekday: 4
+      - date: 10-15
+        year: 2010-2020
+      - hour: 12-18
+        minute: 0-29
+        weekday: 3
+    format: "YYYY-MM-DD HH:mm:ss"
+    showTime: true
+    value: "2019-10-01 00:00:00"
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+form/eo-date-picker/禁用日期
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-date-picker
+#   format="YYYY-MM-DD HH:mm:ss"
+#   show-time
+#   value="2019-10-01 00:00:00"
+#   id="brick-1"
+# ></eo-date-picker>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.disabledDate = [
+#     {
+#       weekday: 4,
+#     },
+#     {
+#       date: "10-15",
+#       year: "2010-2020",
+#     },
+#     {
+#       hour: "12-18",
+#       minute: "0-29",
+#       weekday: 3,
+#     },
+#   ];
+#   brick_1.addEventListener("ok", (e) => {
+#     console.log(e.detail);
+#   });
+#   brick_1.addEventListener("change", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+### With Form
+
+```yaml preview minHeight="450px"
+- brick: eo-form
+  events:
+    validate.success:
+      - action: console.log
+    values.change:
+      - action: console.log
+  children:
+    - brick: eo-date-picker
+      properties:
+        label: 日期
+        name: date
+        required: true
+    - brick: eo-submit-buttons
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+form/eo-date-picker/with form
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-form id="brick-1">
+#   <eo-date-picker label="日期" name="date" required></eo-date-picker>
+#   <eo-submit-buttons></eo-submit-buttons>
+# </eo-form>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("validate.success", (e) => {
+#     console.log(e.detail);
+#   });
+#   brick_1.addEventListener("values.change", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["PickerMode","DisabledDateType","DisabledDate"]}>
+  <BrickDocProperties properties={[{"name":"name","description":"日期选择器字段名","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"label","description":"日期选择器说明","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"value","description":"日期选择器的初始值","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"placeholder","description":"日期选择器占位说明","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"message","description":"校验文本信息","attribute":false,"type":"Record<string, string>","annotation":{"type":"reference","typeName":{"type":"identifier","name":"Record"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"keyword","value":"string"},{"type":"keyword","value":"string"}]}}},{"name":"disabled","description":"是否禁用","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"required","description":"是否必填","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"showTime","description":"是否显示时间, 当设为 `true` 时, 请同时设置 `format` 为 `YYYY-MM-DD HH:mm:ss` 使其也显示具体时，分，秒 的时间","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"format","description":"显示预览的格式，具体配置参考 [dayjs](https://day.js.org/docs/zh-CN/display/format#%E6%94%AF%E6%8C%81%E7%9A%84%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%8D%A0%E4%BD%8D%E7%AC%A6%E5%88%97%E8%A1%A8)，注意，这里并非是定义给后台的数据格式，给后台的数据格式定义请参考 `general-form` 构件的 [valueTypes](developers/brick-book/brick/forms.general-form) 属性","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"picker","description":"设置选择器类型","attribute":false,"type":"PickerMode","annotation":{"type":"reference","typeName":{"type":"identifier","name":"PickerMode"}}},{"name":"futureDateDisabled","description":"不可选择未来日期,优先级高于disabledDate","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"disabledDate","description":"不可选择的日期","attribute":false,"type":"DisabledDateType","annotation":{"type":"reference","typeName":{"type":"identifier","name":"DisabledDateType"}}},{"name":"useFastSelectBtn","description":"快速选项","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"inputStyle","description":"输入框样式","attribute":false,"type":"CSSProperties","annotation":{"type":"reference","typeName":{"type":"identifier","name":"CSSProperties"}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={["PickerMode","DisabledDateType","DisabledDate"]}>
+  <BrickDocEvents events={[{"name":"change","description":"日期变化时触发","detail":{"type":"string","annotation":{"type":"keyword","value":"string"}}},{"name":"ok","description":"点击确定按钮触发（showTime 为 true 使用）","detail":{"type":"string","annotation":{"type":"keyword","value":"string"}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"typeAlias","name":"PickerMode","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"date"},{"type":"jsLiteral","value":"week"},{"type":"jsLiteral","value":"month"},{"type":"jsLiteral","value":"year"},{"type":"jsLiteral","value":"quarter"}]}},{"type":"typeAlias","name":"DisabledDateType","annotation":{"type":"union","types":[{"type":"reference","typeName":{"type":"identifier","name":"DisabledDate"}},{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"DisabledDate"}}}]}},{"type":"interface","name":"DisabledDate","body":[{"type":"propertySignature","key":{"type":"identifier","name":"second"},"annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"number"}]},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"minute"},"annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"number"}]},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"hour"},"annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"number"}]},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"date"},"annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"number"}]},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"month"},"annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"number"}]},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"year"},"annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"number"}]},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"weekday"},"annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"number"}]},"optional":true,"computed":false}]}]} />
+

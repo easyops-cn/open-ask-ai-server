@@ -1,0 +1,392 @@
+---
+description: "<ai-portal.dropdown-select>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"ai-portal.dropdown-select"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `ai-portal.dropdown-select`
+
+下拉选择器组件，提供选项列表供用户选择，支持搜索过滤功能。
+
+## Examples
+
+### Basic
+
+基础用法，提供选项列表：
+
+```yaml preview
+brick: ai-portal.dropdown-select
+properties:
+  options:
+    - label: "选项1"
+      value: "option1"
+    - label: "选项2"
+      value: "option2"
+    - label: "选项3"
+      value: "option3"
+  value: "option1"
+events:
+  change:
+    action: "console.log"
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+ai-portal/dropdown-select/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <ai-portal.dropdown-select
+#   value="option1"
+#   id="brick-1"
+# ></ai-portal.dropdown-select>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.options = [
+#     {
+#       label: "选项1",
+#       value: "option1",
+#     },
+#     {
+#       label: "选项2",
+#       value: "option2",
+#     },
+#     {
+#       label: "选项3",
+#       value: "option3",
+#     },
+#   ];
+#   brick_1.addEventListener("change", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+### With Search
+
+启用搜索功能：
+
+```yaml preview
+brick: ai-portal.dropdown-select
+properties:
+  showSearch: true
+  searchPlaceholder: "请输入关键词搜索"
+  options:
+    - label: "北京市"
+      value: "beijing"
+    - label: "上海市"
+      value: "shanghai"
+    - label: "广州市"
+      value: "guangzhou"
+    - label: "深圳市"
+      value: "shenzhen"
+    - label: "杭州市"
+      value: "hangzhou"
+events:
+  change:
+    action: "console.log"
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+ai-portal/dropdown-select/with search
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <ai-portal.dropdown-select show-search id="brick-1"></ai-portal.dropdown-select>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.searchPlaceholder = "请输入关键词搜索";
+#   brick_1.options = [
+#     {
+#       label: "北京市",
+#       value: "beijing",
+#     },
+#     {
+#       label: "上海市",
+#       value: "shanghai",
+#     },
+#     {
+#       label: "广州市",
+#       value: "guangzhou",
+#     },
+#     {
+#       label: "深圳市",
+#       value: "shenzhen",
+#     },
+#     {
+#       label: "杭州市",
+#       value: "hangzhou",
+#     },
+#   ];
+#   brick_1.addEventListener("change", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+### Loading State
+
+加载状态显示：
+
+```yaml preview
+brick: ai-portal.dropdown-select
+properties:
+  loading: true
+  options:
+    - label: "加载中..."
+      value: "loading"
+events:
+  change:
+    action: "console.log"
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+ai-portal/dropdown-select/loading state
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <ai-portal.dropdown-select loading id="brick-1"></ai-portal.dropdown-select>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.options = [
+#     {
+#       label: "加载中...",
+#       value: "loading",
+#     },
+#   ];
+#   brick_1.addEventListener("change", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+### Custom Width
+
+自定义标签和下拉框宽度：
+
+```yaml preview
+brick: ai-portal.dropdown-select
+properties:
+  labelMaxWidth: "150px"
+  dropdownMaxWidth: "300px"
+  options:
+    - label: "这是一个很长的选项标签文本"
+      value: "long-option"
+    - label: "短选项"
+      value: "short"
+    - label: "中等长度的选项"
+      value: "medium"
+  value: "long-option"
+events:
+  change:
+    action: "console.log"
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+ai-portal/dropdown-select/custom width
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <ai-portal.dropdown-select
+#   value="long-option"
+#   id="brick-1"
+# ></ai-portal.dropdown-select>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.labelMaxWidth = "150px";
+#   brick_1.dropdownMaxWidth = "300px";
+#   brick_1.options = [
+#     {
+#       label: "这是一个很长的选项标签文本",
+#       value: "long-option",
+#     },
+#     {
+#       label: "短选项",
+#       value: "short",
+#     },
+#     {
+#       label: "中等长度的选项",
+#       value: "medium",
+#     },
+#   ];
+#   brick_1.addEventListener("change", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+### With Disabled Options
+
+包含禁用选项：
+
+```yaml preview
+brick: ai-portal.dropdown-select
+properties:
+  options:
+    - label: "可用选项1"
+      value: "enabled1"
+    - label: "禁用选项"
+      value: "disabled1"
+      disabled: true
+    - label: "可用选项2"
+      value: "enabled2"
+    - label: "禁用选项2"
+      value: "disabled2"
+      disabled: true
+events:
+  change:
+    action: "console.log"
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+ai-portal/dropdown-select/with disabled options
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <ai-portal.dropdown-select id="brick-1"></ai-portal.dropdown-select>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.options = [
+#     {
+#       label: "可用选项1",
+#       value: "enabled1",
+#     },
+#     {
+#       label: "禁用选项",
+#       value: "disabled1",
+#       disabled: true,
+#     },
+#     {
+#       label: "可用选项2",
+#       value: "enabled2",
+#     },
+#     {
+#       label: "禁用选项2",
+#       value: "disabled2",
+#       disabled: true,
+#     },
+#   ];
+#   brick_1.addEventListener("change", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+### Complex Example
+
+综合示例，包含所有功能：
+
+```yaml preview
+brick: ai-portal.dropdown-select
+properties:
+  value: "frontend"
+  showSearch: true
+  searchPlaceholder: "搜索技术栈"
+  labelMaxWidth: "200px"
+  dropdownMaxWidth: "400px"
+  options:
+    - label: "前端开发 - React"
+      value: "frontend"
+    - label: "后端开发 - Node.js"
+      value: "backend"
+    - label: "移动开发 - React Native"
+      value: "mobile"
+    - label: "数据库 - MongoDB"
+      value: "database"
+    - label: "DevOps - Docker"
+      value: "devops"
+      disabled: true
+    - label: "机器学习 - Python"
+      value: "ml"
+    - label: "云计算 - AWS"
+      value: "cloud"
+events:
+  change:
+    - action: "console.log"
+      args:
+        - "选择了："
+        - "<% EVENT.detail %>"
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+ai-portal/dropdown-select/complex example
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <ai-portal.dropdown-select
+#   value="frontend"
+#   show-search
+#   id="brick-1"
+# ></ai-portal.dropdown-select>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.searchPlaceholder = "搜索技术栈";
+#   brick_1.labelMaxWidth = "200px";
+#   brick_1.dropdownMaxWidth = "400px";
+#   brick_1.options = [
+#     {
+#       label: "前端开发 - React",
+#       value: "frontend",
+#     },
+#     {
+#       label: "后端开发 - Node.js",
+#       value: "backend",
+#     },
+#     {
+#       label: "移动开发 - React Native",
+#       value: "mobile",
+#     },
+#     {
+#       label: "数据库 - MongoDB",
+#       value: "database",
+#     },
+#     {
+#       label: "DevOps - Docker",
+#       value: "devops",
+#       disabled: true,
+#     },
+#     {
+#       label: "机器学习 - Python",
+#       value: "ml",
+#     },
+#     {
+#       label: "云计算 - AWS",
+#       value: "cloud",
+#     },
+#   ];
+#   brick_1.addEventListener("change", (e) => {
+#     console.log("选择了：", e.detail);
+#   });
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["DropdownOptions"]}>
+  <BrickDocProperties properties={[{"name":"value","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"options","attribute":false,"type":"DropdownOptions[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"DropdownOptions"}}}},{"name":"labelMaxWidth","attribute":false,"type":"string | number","annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"number"}]}},{"name":"loading","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"searchPlaceholder","attribute":false,"type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"dropdownContentStyle","attribute":false,"type":"React.CSSProperties","annotation":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}}},{"name":"dropdownMaxWidth","description":"","default":"\"500px\"","attribute":false,"type":"string | number","annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"number"}]}},{"name":"showSearch","description":"是否展示搜索框","type":"boolean","annotation":{"type":"keyword","value":"boolean"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={["DropdownOptions"]}>
+  <BrickDocEvents events={[{"name":"change","detail":{"type":"DropdownOptions","annotation":{"type":"reference","typeName":{"type":"identifier","name":"DropdownOptions"}}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"DropdownOptions","body":[{"type":"propertySignature","key":{"type":"identifier","name":"label"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"value"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"disabled"},"annotation":{"type":"keyword","value":"boolean"},"optional":true,"computed":false},{"type":"indexSignature","parameter":{"type":"identifier","name":"key","annotation":{"type":"keyword","value":"string"}},"annotation":{"type":"keyword","value":"unknown"}}]}]} />
+

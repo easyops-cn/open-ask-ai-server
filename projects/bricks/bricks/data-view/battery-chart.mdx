@@ -1,0 +1,177 @@
+---
+description: "<data-view.battery-chart>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"data-view.battery-chart"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+电池显示构件
+
+## Examples
+
+### Basic
+
+```yaml preview
+- brick: data-view.battery-chart
+  properties:
+    value: 30
+    style:
+      background-color: "#1c1e21"
+      display: block
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+data-view/battery-chart/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <data-view.battery-chart
+#   value="30"
+#   style="background-color: #1c1e21; display: block"
+# ></data-view.battery-chart>
+# 
+```
+
+### ThresholdValue
+
+```yaml preview
+- brick: data-view.battery-chart
+  properties:
+    value: 100
+    thresholdValue: 120
+    batteryHeight: 80
+    batteryWidth: 50
+    thresholdColors:
+      - color: "linear-gradient(180deg, #246EFF 0%, #26CE90 100%)"
+        startValue: 0
+        endValue: 120
+        headerColor: "#246EFF"
+      - color: "linear-gradient(180deg, #FF772A 0%, #FFC22A 100%)"
+        startValue: 120
+        endValue: 200
+        headerColor: "#FF772A"
+    style:
+      background-color: "#1c1e21"
+      display: block
+  slots:
+    "":
+      type: bricks
+      bricks:
+        - brick: div
+          properties:
+            textContent: 标题
+            style:
+              color: "#fff"
+              opacity: 0.6
+              marginTop: 10px
+              fontSize: 14px
+        - brick: div
+          properties:
+            textContent: 数据信息
+            style:
+              color: "#fff"
+              fontSize: 20px
+              line-height: 29px
+              fontWeight: 500
+    left:
+      type: bricks
+      bricks:
+        - brick: div
+          properties:
+            textContent: 标题
+            style:
+              color: "#fff"
+              opacity: 0.6
+              marginTop: 10px
+              fontSize: 14px
+        - brick: div
+          properties:
+            textContent: 数据信息
+            style:
+              color: "#fff"
+              fontSize: 20px
+              line-height: 29px
+              fontWeight: 500
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+data-view/battery-chart/thresholdvalue
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <data-view.battery-chart
+#   value="100"
+#   threshold-value="120"
+#   battery-height="80"
+#   battery-width="50"
+#   style="background-color: #1c1e21; display: block"
+#   id="brick-1"
+# >
+#   <div style="color: #fff; opacity: 0.6; margin-top: 10px; font-size: 14px">
+#     标题
+#   </div>
+#   <div
+#     style="color: #fff; font-size: 20px; line-height: 29px; font-weight: 500"
+#   >
+#     数据信息
+#   </div>
+#   <div
+#     slot="left"
+#     style="color: #fff; opacity: 0.6; margin-top: 10px; font-size: 14px"
+#   >
+#     标题
+#   </div>
+#   <div
+#     slot="left"
+#     style="color: #fff; font-size: 20px; line-height: 29px; font-weight: 500"
+#   >
+#     数据信息
+#   </div>
+# </data-view.battery-chart>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.thresholdColors = [
+#     {
+#       color: "linear-gradient(180deg, #246EFF 0%, #26CE90 100%)",
+#       startValue: 0,
+#       endValue: 120,
+#       headerColor: "#246EFF",
+#     },
+#     {
+#       color: "linear-gradient(180deg, #FF772A 0%, #FFC22A 100%)",
+#       startValue: 120,
+#       endValue: 200,
+#       headerColor: "#FF772A",
+#     },
+#   ];
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["ThresholdColor"]}>
+  <BrickDocProperties properties={[{"name":"value","description":"","type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"batteryWidth","description":"","type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"batteryHeight","description":"","type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"thresholdColors","description":"","attribute":false,"type":"ThresholdColor[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"ThresholdColor"}}}},{"name":"thresholdValue","description":"","type":"number","annotation":{"type":"keyword","value":"number"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"ThresholdColor","body":[{"type":"propertySignature","key":{"type":"identifier","name":"color"},"annotation":{"type":"indexedAccess","objectType":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}},"indexType":{"type":"jsLiteral","value":"color"}},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"startValue"},"annotation":{"type":"keyword","value":"number"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"endValue"},"annotation":{"type":"keyword","value":"number"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"headerColor"},"annotation":{"type":"indexedAccess","objectType":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}},"indexType":{"type":"jsLiteral","value":"color"}},"optional":true,"computed":false,"description":"电池头的颜色，默认取 color，color为渐变色，需要单独配置头部颜色，请使用该属性"}]}]} />
+

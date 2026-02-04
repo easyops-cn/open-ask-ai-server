@@ -1,0 +1,193 @@
+---
+description: "<eo-directory-tree-internal-node>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-directory-tree-internal-node"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+目录树节点
+
+## Examples
+
+### Basic
+
+```yaml preview
+brick: eo-directory-tree-internal-node
+events:
+  expand:
+    - action: console.log
+      args:
+        - <% EVENT.detail %>
+properties:
+  style:
+    width: 200px
+children:
+  - brick: span
+    slot: label
+    properties:
+      textContent: 第一层级
+  - brick: eo-tag
+    slot: suffix
+    properties:
+      textContent: suffixBrick
+      color: red
+  - brick: eo-directory-tree-leaf
+    properties:
+      depth: 1
+    children:
+      - brick: span
+        properties:
+          textContent: 第二层级-1
+  - brick: eo-directory-tree-leaf
+    properties:
+      depth: 1
+    children:
+      - brick: span
+        properties:
+          textContent: 第二层级-2
+  - brick: eo-directory-tree-leaf
+    properties:
+      depth: 1
+    children:
+      - brick: span
+        properties:
+          textContent: 第二层级-3
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+nav/eo-directory-tree-internal-node/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-directory-tree-internal-node style="width: 200px" id="brick-1">
+#   <span slot="label">第一层级</span>
+#   <eo-tag slot="suffix" color="red">suffixBrick</eo-tag>
+#   <eo-directory-tree-leaf depth="1">
+#     <span>第二层级-1</span>
+#   </eo-directory-tree-leaf>
+#   <eo-directory-tree-leaf depth="1">
+#     <span>第二层级-2</span>
+#   </eo-directory-tree-leaf>
+#   <eo-directory-tree-leaf depth="1">
+#     <span>第二层级-3</span>
+#   </eo-directory-tree-leaf>
+# </eo-directory-tree-internal-node>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("expand", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+### Selectable
+
+```yaml preview
+brick: eo-directory-tree-internal-node
+events:
+  expand:
+    - action: console.log
+      args:
+        - <% EVENT.detail %>
+  select:
+    - action: console.log
+      args:
+        - <% EVENT.detail %>
+properties:
+  selectable: true
+  style:
+    width: 200px
+children:
+  - brick: span
+    slot: label
+    properties:
+      textContent: 第一层级
+  - brick: eo-tag
+    slot: suffix
+    properties:
+      textContent: suffixBrick
+      color: red
+  - brick: eo-directory-tree-leaf
+    properties:
+      depth: 1
+    children:
+      - brick: span
+        properties:
+          textContent: 第二层级-1
+  - brick: eo-directory-tree-leaf
+    properties:
+      depth: 1
+    children:
+      - brick: span
+        properties:
+          textContent: 第二层级-2
+  - brick: eo-directory-tree-leaf
+    properties:
+      depth: 1
+    children:
+      - brick: span
+        properties:
+          textContent: 第二层级-3
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+nav/eo-directory-tree-internal-node/selectable
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-directory-tree-internal-node selectable style="width: 200px" id="brick-1">
+#   <span slot="label">第一层级</span>
+#   <eo-tag slot="suffix" color="red">suffixBrick</eo-tag>
+#   <eo-directory-tree-leaf depth="1">
+#     <span>第二层级-1</span>
+#   </eo-directory-tree-leaf>
+#   <eo-directory-tree-leaf depth="1">
+#     <span>第二层级-2</span>
+#   </eo-directory-tree-leaf>
+#   <eo-directory-tree-leaf depth="1">
+#     <span>第二层级-3</span>
+#   </eo-directory-tree-leaf>
+# </eo-directory-tree-internal-node>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("expand", (e) => {
+#     console.log(e.detail);
+#   });
+#   brick_1.addEventListener("select", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocProperties properties={[{"name":"depth","description":"深度","default":"0","type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"expanded","description":"是否展开","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"selectable","description":"可选择","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"selected","description":"是否选中","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"icon","attribute":false,"type":"GeneralIconProps","annotation":{"type":"reference","typeName":{"type":"identifier","name":"GeneralIconProps"}}},{"name":"faded","type":"boolean","annotation":{"type":"keyword","value":"boolean"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocEvents events={[{"name":"expand","description":"展开事件","detail":{"description":"展开状态","type":"boolean","annotation":{"type":"keyword","value":"boolean"}}},{"name":"select","description":"选择事件","detail":{"type":"void","annotation":{"type":"keyword","value":"void"}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+

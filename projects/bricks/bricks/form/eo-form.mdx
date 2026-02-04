@@ -1,0 +1,676 @@
+---
+description: "<eo-form>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-form"}
+  alias={["form.general-form"]}
+  insider={false}
+  deprecated={false}
+/>
+
+表单构件。
+
+## Examples
+
+### Layout
+
+```yaml preview
+- brick: eo-form
+  properties:
+    layout: inline
+  slots:
+    "":
+      bricks:
+        - brick: eo-input
+          properties:
+            label: input
+        - brick: eo-select
+          properties:
+            label: select
+- brick: div
+  properties:
+    style:
+      height: 1px
+      background: "#abc"
+      margin: "20px 0"
+- brick: eo-form
+  properties:
+    layout: horizontal
+  slots:
+    "":
+      bricks:
+        - brick: eo-input
+          properties:
+            label: input
+        - brick: eo-select
+          properties:
+            label: select
+- brick: div
+  properties:
+    style:
+      height: 1px
+      background: "#abc"
+      margin: "20px 0"
+- brick: eo-form
+  properties:
+    layout: vertical
+  slots:
+    "":
+      bricks:
+        - brick: eo-input
+          properties:
+            label: input
+        - brick: eo-select
+          properties:
+            label: select
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+form/eo-form/layout
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-form layout="inline">
+#   <eo-input label="input"></eo-input>
+#   <eo-select label="select"></eo-select>
+# </eo-form>
+# <div style="height: 1px; background: #abc; margin: 20px 0"></div>
+# <eo-form layout="horizontal">
+#   <eo-input label="input"></eo-input>
+#   <eo-select label="select"></eo-select>
+# </eo-form>
+# <div style="height: 1px; background: #abc; margin: 20px 0"></div>
+# <eo-form layout="vertical">
+#   <eo-input label="input"></eo-input>
+#   <eo-select label="select"></eo-select>
+# </eo-form>
+# 
+```
+
+### Values
+
+```yaml preview
+- brick: eo-form
+  properties:
+    values:
+      input: This is default value
+      select: Beijing
+      radio: Guangzhou
+      checkbox:
+        - C
+        - D
+      textarea: "Hello World! \nNice to see you!"
+      dynamicForm:
+        - input: beijing
+          select: Guangzhou
+        - input: shenzhen
+          select: Shenzhen
+  slots:
+    "":
+      bricks:
+        - brick: eo-input
+          properties:
+            label: input
+            name: input
+        - brick: eo-select
+          properties:
+            label: select
+            name: select
+            options:
+              - Beijing
+              - Shanghai
+        - brick: eo-radio
+          properties:
+            label: radio
+            name: radio
+            options:
+              - Guangzhou
+              - Shenzhen
+        - brick: eo-checkbox
+          properties:
+            name: checkbox
+            label: checkbox
+            options:
+              - A
+              - B
+              - C
+              - D
+        - brick: eo-textarea
+          properties:
+            name: textarea
+            label: textarea
+            autoSize:
+              minRows: 3
+        - brick: eo-dynamic-form-item
+          properties:
+            label: dynamic-form
+            name: dynamicForm
+            useBrick:
+              - brick: eo-input
+                properties:
+                  name: input
+              - brick: eo-select
+                properties:
+                  name: select
+                  options:
+                    - Beijing
+                    - Shanghai
+                    - Guangzhou
+                    - Shenzhen
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+form/eo-form/values
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-form values="[object Object]">
+#   <eo-input label="input" name="input"></eo-input>
+#   <eo-select label="select" name="select" id="brick-1"></eo-select>
+#   <eo-radio label="radio" name="radio" id="brick-2"></eo-radio>
+#   <eo-checkbox name="checkbox" label="checkbox" id="brick-3"></eo-checkbox>
+#   <eo-textarea name="textarea" label="textarea" id="brick-4"></eo-textarea>
+#   <eo-dynamic-form-item
+#     label="dynamic-form"
+#     name="dynamicForm"
+#     id="brick-5"
+#   ></eo-dynamic-form-item>
+# </eo-form>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.options = ["Beijing", "Shanghai"];
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.options = ["Guangzhou", "Shenzhen"];
+# 
+#   const brick_3 = document.getElementById("brick-3");
+#   brick_3.options = ["A", "B", "C", "D"];
+# 
+#   const brick_4 = document.getElementById("brick-4");
+#   brick_4.autoSize = {
+#     minRows: 3,
+#   };
+# 
+#   const brick_5 = document.getElementById("brick-5");
+#   brick_5.useBrick = [
+#     {
+#       brick: "eo-input",
+#       properties: {
+#         name: "input",
+#       },
+#     },
+#     {
+#       brick: "eo-select",
+#       properties: {
+#         name: "select",
+#         options: ["Beijing", "Shanghai", "Guangzhou", "Shenzhen"],
+#       },
+#     },
+#   ];
+# </script>
+# 
+```
+
+### Events
+
+```yaml preview
+- brick: eo-form
+  events:
+    values.change:
+      - action: console.log
+    validate.success:
+      - action: message.success
+        args:
+          - 表单提交成功
+    validate.error:
+      - action: message.error
+        args:
+          - 表单校验失败
+  slots:
+    "":
+      bricks:
+        - brick: eo-input
+          properties:
+            required: true
+            name: name
+            label: 姓名
+            max: 6
+            min: 2
+            message:
+              required: 一定要填写姓名哟
+              max: 不能超过 6 个字符哟
+              min: 最少填写 2 个字符哟
+        - brick: eo-select
+          properties:
+            required: true
+            name: sex
+            label: 性别
+            options:
+              - label: 男
+                value: 0
+              - label: 女
+                value: 1
+        - brick: eo-submit-buttons
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+form/eo-form/events
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-form id="brick-1">
+#   <eo-input
+#     required
+#     name="name"
+#     label="姓名"
+#     max="6"
+#     min="2"
+#     id="brick-2"
+#   ></eo-input>
+#   <eo-select required name="sex" label="性别" id="brick-3"></eo-select>
+#   <eo-submit-buttons></eo-submit-buttons>
+# </eo-form>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("values.change", (e) => {
+#     console.log(e.detail);
+#   });
+#   brick_1.addEventListener("validate.success", (e) => {
+#     const message = document.createElement("basic.show-notification");
+#     message.resolve({ type: "success", message: "表单提交成功" });
+#   });
+#   brick_1.addEventListener("validate.error", (e) => {
+#     const message = document.createElement("basic.show-notification");
+#     message.resolve({ type: "error", message: "表单校验失败" });
+#   });
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.message = {
+#     required: "一定要填写姓名哟",
+#     max: "不能超过 6 个字符哟",
+#     min: "最少填写 2 个字符哟",
+#   };
+# 
+#   const brick_3 = document.getElementById("brick-3");
+#   brick_3.options = [
+#     {
+#       label: "男",
+#       value: 0,
+#     },
+#     {
+#       label: "女",
+#       value: 1,
+#     },
+#   ];
+# </script>
+# 
+```
+
+### Method
+
+```yaml preview
+- brick: eo-form
+  properties:
+    id: form
+  slots:
+    "":
+      bricks:
+        - brick: eo-input
+          properties:
+            required: true
+            name: name
+            label: 姓名
+            max: 6
+            min: 2
+        - brick: eo-select
+          properties:
+            required: true
+            name: sex
+            label: 性别
+            options:
+              - label: 男
+                value: 0
+              - label: 女
+                value: 1
+- brick: eo-button
+  properties:
+    textContent: validateFields
+  events:
+    click:
+      - target: "#form"
+        method: validate
+- brick: eo-button
+  properties:
+    textContent: setInitValue
+  events:
+    click:
+      - target: "#form"
+        method: setInitValue
+        args:
+          - name: Mike
+            sex: 0
+- brick: eo-button
+  properties:
+    textContent: resetFields
+  events:
+    click:
+      - target: "#form"
+        method: resetFields
+- brick: eo-button
+  properties:
+    textContent: resetFields(name)
+  events:
+    click:
+      - target: "#form"
+        method: resetFields
+        args:
+          - name
+- brick: eo-button
+  properties:
+    textContent: getFieldsValue
+  events:
+    click:
+      - target: "#form"
+        method: getFieldsValue
+        callback:
+          success:
+            - action: console.log
+- brick: eo-button
+  properties:
+    textContent: getFieldsValue(name)
+  events:
+    click:
+      - target: "#form"
+        method: getFieldsValue
+        args:
+          - name
+        callback:
+          success:
+            - action: console.log
+- brick: eo-button
+  properties:
+    textContent: validateField(name)
+  events:
+    click:
+      - target: "#form"
+        method: validateField
+        args:
+          - name
+- brick: eo-button
+  properties:
+    textContent: resetValidateState
+  events:
+    click:
+      - target: "#form"
+        method: resetValidateState
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+form/eo-form/method
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-form id="form">
+#   <eo-input required name="name" label="姓名" max="6" min="2"></eo-input>
+#   <eo-select required name="sex" label="性别" id="brick-1"></eo-select>
+# </eo-form>
+# <eo-button id="brick-2">validateFields</eo-button>
+# <eo-button id="brick-3">setInitValue</eo-button>
+# <eo-button id="brick-4">resetFields</eo-button>
+# <eo-button id="brick-5">resetFields(name)</eo-button>
+# <eo-button id="brick-6">getFieldsValue</eo-button>
+# <eo-button id="brick-7">getFieldsValue(name)</eo-button>
+# <eo-button id="brick-8">validateField(name)</eo-button>
+# <eo-button id="brick-9">resetValidateState</eo-button>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.options = [
+#     {
+#       label: "男",
+#       value: 0,
+#     },
+#     {
+#       label: "女",
+#       value: 1,
+#     },
+#   ];
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.addEventListener("click", (e) => {
+#     const brick = document.querySelector("#form");
+#     brick.validate();
+#   });
+# 
+#   const brick_3 = document.getElementById("brick-3");
+#   brick_3.addEventListener("click", (e) => {
+#     const brick = document.querySelector("#form");
+#     brick.setInitValue({ name: "Mike", sex: 0 });
+#   });
+# 
+#   const brick_4 = document.getElementById("brick-4");
+#   brick_4.addEventListener("click", (e) => {
+#     const brick = document.querySelector("#form");
+#     brick.resetFields();
+#   });
+# 
+#   const brick_5 = document.getElementById("brick-5");
+#   brick_5.addEventListener("click", (e) => {
+#     const brick = document.querySelector("#form");
+#     brick.resetFields("name");
+#   });
+# 
+#   const brick_6 = document.getElementById("brick-6");
+#   brick_6.addEventListener("click", (e) => {
+#     const brick = document.querySelector("#form");
+#     brick.getFieldsValue();
+#   });
+# 
+#   const brick_7 = document.getElementById("brick-7");
+#   brick_7.addEventListener("click", (e) => {
+#     const brick = document.querySelector("#form");
+#     brick.getFieldsValue("name");
+#   });
+# 
+#   const brick_8 = document.getElementById("brick-8");
+#   brick_8.addEventListener("click", (e) => {
+#     const brick = document.querySelector("#form");
+#     brick.validateField("name");
+#   });
+# 
+#   const brick_9 = document.getElementById("brick-9");
+#   brick_9.addEventListener("click", (e) => {
+#     const brick = document.querySelector("#form");
+#     brick.resetValidateState();
+#   });
+# </script>
+# 
+```
+
+### Theme variant Elevo
+
+```yaml preview
+# Use this container to emulate background
+brick: ai-portal.home-container
+properties:
+  style:
+    padding: 2em
+    backgroundColor: "#d8d8d8"
+children:
+  - brick: eo-form
+    properties:
+      themeVariant: elevo
+      layout: vertical
+      values:
+        city: 深圳
+        public: true
+        tags:
+          - 活泼
+    events:
+      validate.success:
+        useProvider: basic.show-dialog
+        args:
+          - title: 提交表单
+            type: confirm
+            content: 确定提交吗？
+            themeVariant: elevo
+    children:
+      - brick: eo-input
+        properties:
+          label: 名称
+          name: name
+          themeVariant: elevo
+          placeholder: 请输入
+      - brick: eo-textarea
+        properties:
+          label: 说明
+          name: desc
+          themeVariant: elevo
+          placeholder: 请输入
+      - brick: eo-select
+        properties:
+          label: 类型
+          name: type
+          themeVariant: elevo
+          placeholder: 请选择
+          options:
+            - 默认
+            - 其他
+      - brick: eo-radio
+        properties:
+          label: 城市
+          name: city
+          type: button
+          themeVariant: elevo
+          options:
+            - 北京
+            - 上海
+            - 深圳
+      - brick: eo-checkbox
+        properties:
+          label: 标签
+          name: tags
+          themeVariant: elevo
+          options:
+            - 活泼
+            - 开朗
+            - 好动
+      - brick: eo-switch
+        properties:
+          label: 公开
+          name: public
+          themeVariant: elevo
+      - brick: eo-submit-buttons
+        properties:
+          themeVariant: elevo
+          submitText: 提交
+          cancelText: 取消
+          submitType: primary
+          cancelType: default
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+form/eo-form/theme variant elevo
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <ai-portal.home-container style="padding: 2em; background-color: #d8d8d8">
+#   <eo-form
+#     theme-variant="elevo"
+#     layout="vertical"
+#     values="[object Object]"
+#     id="brick-1"
+#   >
+#     <eo-input
+#       label="名称"
+#       name="name"
+#       theme-variant="elevo"
+#       placeholder="请输入"
+#     ></eo-input>
+#     <eo-textarea
+#       label="说明"
+#       name="desc"
+#       theme-variant="elevo"
+#       placeholder="请输入"
+#     ></eo-textarea>
+#     <eo-select
+#       label="类型"
+#       name="type"
+#       theme-variant="elevo"
+#       placeholder="请选择"
+#       id="brick-2"
+#     ></eo-select>
+#     <eo-radio
+#       label="城市"
+#       name="city"
+#       type="button"
+#       theme-variant="elevo"
+#       id="brick-3"
+#     ></eo-radio>
+#     <eo-checkbox
+#       label="标签"
+#       name="tags"
+#       theme-variant="elevo"
+#       id="brick-4"
+#     ></eo-checkbox>
+#     <eo-switch label="公开" name="public" theme-variant="elevo"></eo-switch>
+#     <eo-submit-buttons
+#       theme-variant="elevo"
+#       submit-text="提交"
+#       cancel-text="取消"
+#       submit-type="primary"
+#       cancel-type="default"
+#     ></eo-submit-buttons>
+#   </eo-form>
+# </ai-portal.home-container>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("validate.success", (e) => {
+#     const provider = document.createElement("basic.show-dialog");
+#     provider.resolve({
+#       title: "提交表单",
+#       type: "confirm",
+#       content: "确定提交吗？",
+#       themeVariant: "elevo",
+#     });
+#   });
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.options = ["默认", "其他"];
+# 
+#   const brick_3 = document.getElementById("brick-3");
+#   brick_3.options = ["北京", "上海", "深圳"];
+# 
+#   const brick_4 = document.getElementById("brick-4");
+#   brick_4.options = ["活泼", "开朗", "好动"];
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["Layout","ComponentSize"]}>
+  <BrickDocProperties properties={[{"name":"staticValues","attribute":false,"type":"Record<string, unknown>","annotation":{"type":"reference","typeName":{"type":"identifier","name":"Record"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"keyword","value":"string"},{"type":"keyword","value":"unknown"}]}}},{"name":"layout","description":"布局方式(默认 vertical 布局)","default":"vertical","type":"Layout","annotation":{"type":"reference","typeName":{"type":"identifier","name":"Layout"}}},{"name":"size","description":"表单组件尺寸","type":"ComponentSize","annotation":{"type":"reference","typeName":{"type":"identifier","name":"ComponentSize"}}},{"name":"labelCol","description":"标签列布局样式（仅当 layout=\"horizontal\" 时有效）","default":"{\n    sm: {\n      span: 24,\n    },\n    md: {\n      span: 24,\n    },\n    lg: {\n      span: 7,\n    },\n    xl: {\n      span: 5,\n    },\n    xxl: {\n      span: 4,\n    },\n  }","attribute":false,"type":"ColProps","annotation":{"type":"reference","typeName":{"type":"identifier","name":"ColProps"}}},{"name":"wrapperCol","description":"输入控件列布局样式（仅当 layout=\"horizontal\" 时有效）","default":"{\n    sm: {\n      span: 18,\n    },\n    md: {\n      span: 18,\n    },\n    lg: {\n      span: 13,\n    },\n    xl: {\n      span: 16,\n    },\n    xxl: {\n      span: 18,\n    },\n  }","attribute":false,"type":"ColProps","annotation":{"type":"reference","typeName":{"type":"identifier","name":"ColProps"}}},{"name":"autoScrollToInvalidFields","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"formStyle","attribute":false,"type":"React.CSSProperties","annotation":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}}},{"name":"textContent","type":"string","description":"文本内容","annotation":{"type":"keyword","value":"string"}}]} />
+</TypeReferencesContext.Provider>
+
+## Slots
+
+<BrickDocSlots slots={[{"name":null,"description":"表单内容"}]} />
+
+## Events
+
+<TypeReferencesContext.Provider value={["Layout","ComponentSize"]}>
+  <BrickDocEvents events={[{"name":"values.change","description":"表单值变更事件","detail":{"description":null,"type":"Record<string, unknown>","annotation":{"type":"reference","typeName":{"type":"identifier","name":"Record"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"keyword","value":"string"},{"type":"keyword","value":"unknown"}]}}}},{"name":"validate.success","description":"表单验证成功时触发事件","detail":{"type":"Record<string, unknown>","annotation":{"type":"reference","typeName":{"type":"identifier","name":"Record"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"keyword","value":"string"},{"type":"keyword","value":"unknown"}]}}}},{"name":"validate.error","description":"表单验证报错时触发事件","detail":{"type":"(MessageBody & { name: string })[]","annotation":{"type":"array","elementType":{"type":"parenthesizedType","annotation":{"type":"intersection","types":[{"type":"reference","typeName":{"type":"identifier","name":"MessageBody"}},{"type":"typeLiteral","members":[{"type":"propertySignature","key":{"type":"identifier","name":"name"},"annotation":{"type":"keyword","value":"string"},"computed":false}]}]}}}}}]} />
+</TypeReferencesContext.Provider>
+
+## Methods
+
+<TypeReferencesContext.Provider value={["Layout","ComponentSize"]}>
+  <BrickDocMethods methods={[{"name":"validate","params":[],"description":"表单校验方法","returns":{"type":"boolean | Record<string, unknown>","annotation":{"type":"union","types":[{"type":"keyword","value":"boolean"},{"type":"reference","typeName":{"type":"identifier","name":"Record"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"keyword","value":"string"},{"type":"keyword","value":"unknown"}]}}]}}},{"name":"setInitValue","params":[{"name":"values","type":"Record<string, unknown>","annotation":{"type":"reference","typeName":{"type":"identifier","name":"Record"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"keyword","value":"string"},{"type":"keyword","value":"unknown"}]}}},{"name":"options","type":"{ runInMacrotask?: boolean; runInMicrotask?: boolean }","annotation":{"type":"typeLiteral","members":[{"type":"propertySignature","key":{"type":"identifier","name":"runInMacrotask"},"annotation":{"type":"keyword","value":"boolean"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"runInMicrotask"},"annotation":{"type":"keyword","value":"boolean"},"optional":true,"computed":false}]}}],"description":"表单设置值方法","returns":{}},{"name":"resetFields","params":[{"name":"name","type":"string","annotation":{"type":"keyword","value":"string"}}],"description":"表单重置值方法","returns":{}},{"name":"getFieldsValue","params":[{"name":"name","type":"string","annotation":{"type":"keyword","value":"string"}}],"description":"获取表单值方法","returns":{}},{"name":"validateField","params":[{"name":"name","type":"string","annotation":{"type":"keyword","value":"string"}}],"description":"校验表单字段方法","returns":{}},{"name":"resetValidateState","params":[],"description":"重置表单校验状态方法","returns":{}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"typeAlias","name":"Layout","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"horizontal"},{"type":"jsLiteral","value":"vertical"},{"type":"jsLiteral","value":"inline"}]}},{"type":"typeAlias","name":"ComponentSize","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"large"},{"type":"jsLiteral","value":"medium"},{"type":"jsLiteral","value":"small"},{"type":"jsLiteral","value":"xs"}]}}]} />
+

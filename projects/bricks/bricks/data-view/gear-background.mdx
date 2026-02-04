@@ -1,0 +1,61 @@
+---
+description: "<data-view.gear-background>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"data-view.gear-background"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+齿轮背景
+
+## Examples
+
+### Basic
+
+```yaml preview
+- brick: data-view.gear-background
+  properties:
+    style:
+      width: 300px
+      height: 300px
+      display: block
+      background: "#1c1e21"
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+data-view/gear-background/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <data-view.gear-background
+#   style="width: 300px; height: 300px; display: block; background: #1c1e21"
+# ></data-view.gear-background>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocProperties properties={[{"name":"color","description":"","default":"\"#3366FF\"","attribute":false,"type":"React.CSSProperties[\"color\"]","annotation":{"type":"indexedAccess","objectType":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}},"indexType":{"type":"jsLiteral","value":"color"}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+
+

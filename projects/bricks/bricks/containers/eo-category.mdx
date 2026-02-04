@@ -1,0 +1,400 @@
+---
+description: "<eo-category>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-category"}
+  alias={["containers.general-category"]}
+  insider={false}
+  deprecated={false}
+/>
+
+通用分类容器构件。
+
+```yaml preview
+- brick: eo-category
+  properties:
+    categories:
+      - title: Item 1
+        key: Item 1
+      - title: Item 2
+        key: Item 2
+  slots:
+    "Item 1":
+      bricks:
+        - brick: div
+          properties:
+            textContent: Item 1 Content
+    "Item 2":
+      bricks:
+        - brick: div
+          properties:
+            textContent: Item 2 Content
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+containers/eo-category
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-category id="brick-1">
+#   <div slot="Item 1">Item 1 Content</div>
+#   <div slot="Item 2">Item 2 Content</div>
+# </eo-category>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.categories = [
+#     {
+#       title: "Item 1",
+#       key: "Item 1",
+#     },
+#     {
+#       title: "Item 2",
+#       key: "Item 2",
+#     },
+#   ];
+# </script>
+# 
+```
+
+## Examples
+
+### Content Style
+
+```yaml preview
+- brick: eo-category
+  properties:
+    categories:
+      - title: Item 1
+        key: Item 1
+      - title: Item 2
+        key: Item 2
+    contentStyle:
+      background: "#abc"
+  slots:
+    "Item 1":
+      bricks:
+        - brick: div
+          properties:
+            textContent: Item 1 Content
+    "Item 2":
+      bricks:
+        - brick: div
+          properties:
+            textContent: Item 2 Content
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+containers/eo-category/content style
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-category id="brick-1">
+#   <div slot="Item 1">Item 1 Content</div>
+#   <div slot="Item 2">Item 2 Content</div>
+# </eo-category>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.categories = [
+#     {
+#       title: "Item 1",
+#       key: "Item 1",
+#     },
+#     {
+#       title: "Item 2",
+#       key: "Item 2",
+#     },
+#   ];
+#   brick_1.contentStyle = {
+#     background: "#abc",
+#   };
+# </script>
+# 
+```
+
+### Header Style
+
+```yaml preview
+- brick: eo-category
+  properties:
+    categories:
+      - title: Item 1
+        key: Item 1
+      - title: Item 2
+        key: Item 2
+    headerStyle:
+      background: "#abc"
+      padding: 10px 20px
+      marginTop: 20px
+  slots:
+    "Item 1":
+      bricks:
+        - brick: div
+          properties:
+            textContent: Item 1 Content
+    "Item 2":
+      bricks:
+        - brick: div
+          properties:
+            textContent: Item 2 Content
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+containers/eo-category/header style
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-category id="brick-1">
+#   <div slot="Item 1">Item 1 Content</div>
+#   <div slot="Item 2">Item 2 Content</div>
+# </eo-category>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.categories = [
+#     {
+#       title: "Item 1",
+#       key: "Item 1",
+#     },
+#     {
+#       title: "Item 2",
+#       key: "Item 2",
+#     },
+#   ];
+#   brick_1.headerStyle = {
+#     background: "#abc",
+#     padding: "10px 20px",
+#     marginTop: "20px",
+#   };
+# </script>
+# 
+```
+
+### Container Style
+
+```yaml preview
+- brick: eo-category
+  properties:
+    categories:
+      - title: Item 1
+        key: Item 1
+      - title: Item 2
+        key: Item 2
+    containerStyle:
+      background: "#abc"
+      padding: 10px 20px
+      borderRadius: 8px
+  slots:
+    "Item 1":
+      bricks:
+        - brick: div
+          properties:
+            textContent: Item 1 Content
+    "Item 2":
+      bricks:
+        - brick: div
+          properties:
+            textContent: Item 2 Content
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+containers/eo-category/container style
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-category id="brick-1">
+#   <div slot="Item 1">Item 1 Content</div>
+#   <div slot="Item 2">Item 2 Content</div>
+# </eo-category>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.categories = [
+#     {
+#       title: "Item 1",
+#       key: "Item 1",
+#     },
+#     {
+#       title: "Item 2",
+#       key: "Item 2",
+#     },
+#   ];
+#   brick_1.containerStyle = {
+#     background: "#abc",
+#     padding: "10px 20px",
+#     borderRadius: "8px",
+#   };
+# </script>
+# 
+```
+
+### Show Index
+
+```yaml preview
+- brick: eo-category
+  properties:
+    split: true
+    headerMask: false
+    showIndex: true
+    categories:
+      - title: 表单一
+        key: Item 1
+      - title: 表单二
+        key: Item 2
+  children:
+    - brick: eo-form
+      slot: Item 1
+      properties:
+        id: form
+      context:
+        - name: formHadSave
+          value: false
+      events:
+        validate.success:
+          - action: message.success
+            args:
+              - 表单一保存了
+          - action: context.replace
+            args:
+              - formHadSave
+              - true
+          - target: "#save-btn-1"
+            properties:
+              textContent: 已保存
+              icon:
+                lib: antd
+                icon: check
+              style:
+                pointerEvents: none
+      children:
+        - brick: eo-input
+          properties:
+            label: 姓名
+            name: name
+            required: true
+            disabled: <%= CTX.formHadSave %>
+        - brick: eo-link
+          properties:
+            textContent: 保存按钮
+            icon:
+              lib: antd
+              icon: save
+            size: small
+            id: save-btn-1
+            style:
+              marginTop: 4px
+          events:
+            click:
+              - if: <% !EVENT.target.hadSave %>
+                target: "#form"
+                method: validate
+    - brick: eo-form
+      slot: Item 2
+      children:
+        - brick: eo-input
+          properties:
+            label: 学校
+            name: school
+        - brick: eo-link
+          properties:
+            textContent: 已保存
+            icon:
+              lib: antd
+              icon: check
+            size: small
+            style:
+              pointerEvents: none
+              marginTop: 4px
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+containers/eo-category/show index
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-category split show-index id="brick-1">
+#   <eo-form slot="Item 1" id="form">
+#     <eo-input label="姓名" name="name" required disabled></eo-input>
+#     <eo-link size="small" style="margin-top: 4px" id="save-btn-1"
+#       >保存按钮</eo-link
+#     >
+#   </eo-form>
+#   <eo-form slot="Item 2">
+#     <eo-input label="学校" name="school"></eo-input>
+#     <eo-link
+#       size="small"
+#       style="pointer-events: none; margin-top: 4px"
+#       id="brick-2"
+#     >
+#       已保存
+#     </eo-link>
+#   </eo-form>
+# </eo-category>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.categories = [
+#     {
+#       "title": "表单一",
+#       "key": "Item 1"
+#     },
+#     {
+#       "title": "表单二",
+#       "key": "Item 2"
+#     }
+#   ];
+# 
+#   const form = document.getElementById("form");
+#   form.addEventListener("validate.success", (e) => {
+#     const message = document.createElement("basic.show-notification");
+#     message.resolve({ type: "success", message: "表单一保存了" });
+#   });
+#   form.addEventListener("validate.success", (e) => {
+#     // WARN: encountered incompatible event handlers in HTML mode, please try YAML.
+#   });
+#   form.addEventListener("validate.success", (e) => {
+#     const brick = document.querySelector("#save-btn-1");
+#     brick.textContent = "已保存";
+#     brick.icon = {
+#     "lib": "antd",
+#     "icon": "check"
+#   };
+#     brick.style = {
+#     "pointerEvents": "none"
+#   };
+#   });
+# 
+#   const save_btn-1 = document.getElementById("save-btn-1");
+#   save_btn-1.icon = {
+#     "lib": "antd",
+#     "icon": "save"
+#   };
+#   save_btn-1.addEventListener("click", (e) => {
+#     const brick = document.querySelector("#form");
+#     brick.validate();
+#   });
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.icon = {
+#     "lib": "antd",
+#     "icon": "check"
+#   };
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["CategoryProps"]}>
+  <BrickDocProperties properties={[{"name":"categories","description":"分类信息","attribute":false,"type":"CategoryProps[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"CategoryProps"}}}},{"name":"contentStyle","description":"内容样式","attribute":false,"type":"React.CSSProperties","annotation":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}}},{"name":"headerStyle","description":"头部样式","attribute":false,"type":"React.CSSProperties","annotation":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}}},{"name":"containerStyle","description":"容器样式","attribute":false,"type":"React.CSSProperties","annotation":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}}},{"name":"split","description":"是否展示分割线","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"headerMask","description":"是否显示头部线条","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"showIndex","description":"是否显示序号","type":"boolean","annotation":{"type":"keyword","value":"boolean"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"CategoryProps","body":[{"type":"propertySignature","key":{"type":"identifier","name":"title"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"key"},"annotation":{"type":"keyword","value":"string"},"computed":false}]}]} />
+

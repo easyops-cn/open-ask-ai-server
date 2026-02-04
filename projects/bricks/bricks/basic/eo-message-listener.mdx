@@ -1,0 +1,91 @@
+---
+description: "<eo-message-listener>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-message-listener"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+用于监听 window.postMessage 事件的构件。
+
+## Examples
+
+### Basic
+
+```yaml preview
+- brick: eo-message-listener
+  events:
+    message:
+      action: message.success
+      args:
+        - <% EVENT.detail.data.payload %>
+- brick: eo-button
+  properties:
+    textContent: Send a message
+  events:
+    click:
+      action: window.postMessage
+      args:
+        - type: test
+          payload: Hello
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-message-listener/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-message-listener id="brick-1"></eo-message-listener>
+# <eo-button id="brick-2">Send a message</eo-button>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("message", (e) => {
+#     const message = document.createElement("basic.show-notification");
+#     message.resolve({
+#       type: "success",
+#       /* WARN: incompatible expressions in HTML, please try YAML: */
+#       message: "<% EVENT.detail.data.payload %>",
+#     });
+#   });
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.addEventListener("click", (e) => {
+#     // WARN: encountered incompatible event handlers in HTML mode, please try YAML.
+#   });
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["MessageDetail"]}>
+  <BrickDocProperties properties={[{"name":"sameOrigin","description":"是否仅接收同源消息","default":"true","type":"boolean","annotation":{"type":"keyword","value":"boolean"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={["MessageDetail"]}>
+  <BrickDocEvents events={[{"name":"message","detail":{"type":"MessageDetail","annotation":{"type":"reference","typeName":{"type":"identifier","name":"MessageDetail"}}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"MessageDetail","body":[{"type":"propertySignature","key":{"type":"identifier","name":"data"},"annotation":{"type":"keyword","value":"unknown"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"origin"},"annotation":{"type":"keyword","value":"string"},"computed":false}]}]} />
+

@@ -1,0 +1,48 @@
+---
+description: "<visual-builder.chat-preview>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"visual-builder.chat-preview"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `visual-builder.chat-preview`
+
+## Properties
+
+<TypeReferencesContext.Provider value={["InspectSelector"]}>
+  <BrickDocProperties properties={[{"name":"storyboard","attribute":false,"type":"BrickConf | BrickConf[]","annotation":{"type":"union","types":[{"type":"reference","typeName":{"type":"identifier","name":"BrickConf"}},{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"BrickConf"}}}]}},{"name":"theme","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"uiVersion","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"app","type":"MicroApp","annotation":{"type":"reference","typeName":{"type":"identifier","name":"MicroApp"}}},{"name":"inspecting","type":"boolean","annotation":{"type":"keyword","value":"boolean"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={["InspectSelector"]}>
+  <BrickDocEvents events={[{"name":"activeTarget.change","detail":{"type":"InspectSelector | undefined","annotation":{"type":"union","types":[{"type":"reference","typeName":{"type":"identifier","name":"InspectSelector"}},{"type":"keyword","value":"undefined"}]}}}]} />
+</TypeReferencesContext.Provider>
+
+## Methods
+
+<TypeReferencesContext.Provider value={["InspectSelector"]}>
+  <BrickDocMethods methods={[{"name":"select","params":[{"name":"payload","type":"InspectSelector","annotation":{"type":"reference","typeName":{"type":"identifier","name":"InspectSelector"}}}],"returns":{}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"InspectSelector","body":[{"type":"propertySignature","key":{"type":"identifier","name":"type"},"annotation":{"type":"jsLiteral","value":"item"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"uuid"},"annotation":{"type":"keyword","value":"string"},"computed":false}]}]} />
+

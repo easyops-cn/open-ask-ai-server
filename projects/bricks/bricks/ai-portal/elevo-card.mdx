@@ -1,0 +1,119 @@
+---
+description: "<ai-portal.elevo-card>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"ai-portal.elevo-card"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `ai-portal.elevo-card`
+
+## Examples
+
+### Basic
+
+```yaml preview
+brick: ai-portal.home-container
+children:
+  - brick: ai-portal.elevo-card
+    properties:
+      cardTitle: HR
+      description: Provide standard HR workflows. e.g. leave applications, office supply requistion, purchase requistion, etc.
+      style:
+        maxWidth: 400px
+    children:
+      - brick: eo-dropdown-actions
+        slot: actions
+        properties:
+          themeVariant: elevo
+          actions:
+            - text: Edit
+              event: edit
+            - text: Delete
+              event: delete
+              danger: true
+        children:
+          - brick: ai-portal.icon-button
+            properties:
+              variant: mini
+              icon:
+                lib: antd
+                icon: setting
+      - brick: eo-button
+        slot: footer
+        properties:
+          themeVariant: elevo
+          textContent: Chat
+          type: flat
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+ai-portal/elevo-card/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <ai-portal.home-container>
+#   <ai-portal.elevo-card
+#     card-title="HR"
+#     description="Provide standard HR workflows. e.g. leave applications, office supply requistion, purchase requistion, etc."
+#     style="max-width: 400px"
+#   >
+#     <eo-dropdown-actions slot="actions" theme-variant="elevo" id="brick-1">
+#       <ai-portal.icon-button
+#         variant="mini"
+#         id="brick-2"
+#       ></ai-portal.icon-button>
+#     </eo-dropdown-actions>
+#     <eo-button slot="footer" theme-variant="elevo" type="flat">Chat</eo-button>
+#   </ai-portal.elevo-card>
+# </ai-portal.home-container>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.actions = [
+#     {
+#       text: "Edit",
+#       event: "edit",
+#     },
+#     {
+#       text: "Delete",
+#       event: "delete",
+#       danger: true,
+#     },
+#   ];
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.icon = {
+#     lib: "antd",
+#     icon: "setting",
+#   };
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocProperties properties={[{"name":"cardTitle","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"description","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"url","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"avatar","attribute":false,"type":"string | GeneralIconProps","annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"reference","typeName":{"type":"identifier","name":"GeneralIconProps"}}]}},{"name":"avatarType","type":"\"icon\" | \"image\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"icon"},{"type":"jsLiteral","value":"image"}]}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+
+

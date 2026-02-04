@@ -1,0 +1,167 @@
+---
+description: "<eo-avatar>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-avatar"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+头像
+
+## Examples
+
+### Type
+
+```yaml preview gap
+- brick: eo-avatar
+  properties:
+    src: https://images.unsplash.com/photo-1490150028299-bf57d78394e0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=256&h=256&q=80&crop=right
+    name: Lucy
+- brick: eo-avatar
+  properties:
+    icon:
+      lib: antd
+      icon: user
+      theme: outlined
+      color: "#167be0"
+    name: Lucy
+- brick: eo-avatar
+  properties:
+    name: Lucy
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-avatar/type
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-avatar
+#   src="https://images.unsplash.com/photo-1490150028299-bf57d78394e0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=256&amp;h=256&amp;q=80&amp;crop=right"
+#   name="Lucy"
+# ></eo-avatar>
+# <eo-avatar name="Lucy" id="brick-1"></eo-avatar>
+# <eo-avatar name="Lucy"></eo-avatar>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.icon = {
+#     lib: "antd",
+#     icon: "user",
+#     theme: "outlined",
+#     color: "#167be0",
+#   };
+# </script>
+# 
+```
+
+### Size
+
+```yaml preview gap
+- brick: eo-avatar
+  properties:
+    src: https://images.unsplash.com/photo-1490150028299-bf57d78394e0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=256&h=256&q=80&crop=right
+    name: Lucy
+    size: large
+- brick: eo-avatar
+  properties:
+    src: https://images.unsplash.com/photo-1490150028299-bf57d78394e0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=256&h=256&q=80&crop=right
+    name: Lucy
+    size: medium
+- brick: eo-avatar
+  properties:
+    src: https://images.unsplash.com/photo-1490150028299-bf57d78394e0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=256&h=256&q=80&crop=right
+    name: Lucy
+    size: small
+- brick: eo-avatar
+  properties:
+    src: https://images.unsplash.com/photo-1490150028299-bf57d78394e0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=256&h=256&q=80&crop=right
+    name: Lucy
+    size: xs
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-avatar/size
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-avatar
+#   src="https://images.unsplash.com/photo-1490150028299-bf57d78394e0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=256&amp;h=256&amp;q=80&amp;crop=right"
+#   name="Lucy"
+#   size="large"
+# ></eo-avatar>
+# <eo-avatar
+#   src="https://images.unsplash.com/photo-1490150028299-bf57d78394e0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=256&amp;h=256&amp;q=80&amp;crop=right"
+#   name="Lucy"
+#   size="medium"
+# ></eo-avatar>
+# <eo-avatar
+#   src="https://images.unsplash.com/photo-1490150028299-bf57d78394e0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=256&amp;h=256&amp;q=80&amp;crop=right"
+#   name="Lucy"
+#   size="small"
+# ></eo-avatar>
+# <eo-avatar
+#   src="https://images.unsplash.com/photo-1490150028299-bf57d78394e0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=256&amp;h=256&amp;q=80&amp;crop=right"
+#   name="Lucy"
+#   size="xs"
+# ></eo-avatar>
+# 
+```
+
+### Shape
+
+```yaml preview
+- brick: eo-avatar
+  properties:
+    src: https://images.unsplash.com/photo-1490150028299-bf57d78394e0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=256&h=256&q=80&crop=right
+    name: Lucy
+    shape: circle
+- brick: eo-avatar
+  properties:
+    src: https://images.unsplash.com/photo-1490150028299-bf57d78394e0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=256&h=256&q=80&crop=right
+    name: Lucy
+    shape: round-square
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-avatar/shape
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-avatar
+#   src="https://images.unsplash.com/photo-1490150028299-bf57d78394e0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=256&amp;h=256&amp;q=80&amp;crop=right"
+#   name="Lucy"
+#   shape="circle"
+# ></eo-avatar>
+# <eo-avatar
+#   src="https://images.unsplash.com/photo-1490150028299-bf57d78394e0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=256&amp;h=256&amp;q=80&amp;crop=right"
+#   name="Lucy"
+#   shape="round-square"
+# ></eo-avatar>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["AvatarSize"]}>
+  <BrickDocProperties properties={[{"name":"size","description":"尺寸","default":"\"medium\"","type":"AvatarSize","annotation":{"type":"reference","typeName":{"type":"identifier","name":"AvatarSize"}}},{"name":"gapSize","description":"头像和名称间距大小","default":"\"medium\"","type":"\"medium\" | \"large\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"medium"},{"type":"jsLiteral","value":"large"}]}},{"name":"shape","description":"形状","default":"\"circle\"","type":"\"circle\" | \"round-square\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"circle"},{"type":"jsLiteral","value":"round-square"}]}},{"name":"src","description":"图片地址","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"alt","description":"图像无法显示时的替代文本","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"icon","description":"图标","attribute":false,"type":"GeneralIconProps","annotation":{"type":"reference","typeName":{"type":"identifier","name":"GeneralIconProps"}}},{"name":"name","description":"用户名","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"bordered","description":"是否有边框","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"showName","description":"是否展示名称","type":"boolean","annotation":{"type":"keyword","value":"boolean"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+## Parts
+
+<BrickDocParts parts={[{"name":"avatar","description":"头像容器"},{"name":"avatar-img","description":"显示为图片时的头像容器"},{"name":"avatar-icon","description":"显示为图标时的头像容器"},{"name":"avatar-text","description":"显示为文本时的头像容器"},{"name":"name","description":"用户名"}]} />
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"typeAlias","name":"AvatarSize","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"large"},{"type":"jsLiteral","value":"medium"},{"type":"jsLiteral","value":"small"},{"type":"jsLiteral","value":"xs"}]}}]} />
+

@@ -1,0 +1,115 @@
+---
+description: "<eo-pagination>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-pagination"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+分页
+
+## Examples
+
+### Basic
+
+```yaml preview
+brick: eo-pagination
+properties:
+  total: 1000
+  pageSize: 20
+  page: 1
+events:
+  change:
+    - action: console.log
+      args:
+        - <% EVENT.detail %>
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-pagination/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-pagination
+#   total="1000"
+#   page-size="20"
+#   page="1"
+#   id="brick-1"
+# ></eo-pagination>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("change", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+### By token
+
+```yaml preview
+brick: eo-pagination
+properties:
+  type: token
+  pageSize: 20
+  nextToken: abc
+  previousToken: def
+events:
+  change:
+    - action: console.log
+      args:
+        - <% EVENT.detail %>
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-pagination/by token
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-pagination
+#   type="token"
+#   page-size="20"
+#   next-token="abc"
+#   previous-token="def"
+#   id="brick-1"
+# ></eo-pagination>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("change", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["ChangeDetail","ChangeDetailOfPage","ChangeDetailOfToken"]}>
+  <BrickDocProperties properties={[{"name":"type","description":"","default":"\"page\"","type":"\"page\" | \"token\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"page"},{"type":"jsLiteral","value":"token"}]}},{"name":"total","description":"数据总数","default":"0","type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"page","description":"当前页数","default":"1","type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"pageSize","description":"每页条数","default":"20","type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"pageSizeOptions","description":"指定每页可以显示多少条","default":"[10, 20, 50, 100]","attribute":false,"type":"number[]","annotation":{"type":"array","elementType":{"type":"keyword","value":"number"}}},{"name":"showSizeChanger","description":"是否展示`pageSize`分页器","default":"true","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"nextToken","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"previousToken","type":"string","annotation":{"type":"keyword","value":"string"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={["ChangeDetail","ChangeDetailOfPage","ChangeDetailOfToken"]}>
+  <BrickDocEvents events={[{"name":"change","description":"页码及每页条数改变事件","detail":{"type":"ChangeDetail","annotation":{"type":"reference","typeName":{"type":"identifier","name":"ChangeDetail"}}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"typeAlias","name":"ChangeDetail","annotation":{"type":"union","types":[{"type":"reference","typeName":{"type":"identifier","name":"ChangeDetailOfPage"}},{"type":"reference","typeName":{"type":"identifier","name":"ChangeDetailOfToken"}}]}},{"type":"interface","name":"ChangeDetailOfPage","body":[{"type":"propertySignature","key":{"type":"identifier","name":"page"},"annotation":{"type":"keyword","value":"number"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"pageSize"},"annotation":{"type":"keyword","value":"number"},"computed":false}]},{"type":"interface","name":"ChangeDetailOfToken","body":[{"type":"propertySignature","key":{"type":"identifier","name":"type"},"annotation":{"type":"jsLiteral","value":"token"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"nextToken"},"annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"undefined"}]},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"pageSize"},"annotation":{"type":"keyword","value":"number"},"computed":false}]}]} />
+

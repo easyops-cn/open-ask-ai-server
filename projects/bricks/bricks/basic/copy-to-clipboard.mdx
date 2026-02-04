@@ -1,0 +1,83 @@
+---
+description: "<basic.copy-to-clipboard>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import GeneralType, { TypeReferencesContext } from "@site/src/components/GeneralType";
+import MaybeEmptyCode from "@site/src/components/MaybeEmptyCode";
+import ProviderDocParams from "@site/src/components/ProviderDocParams";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+
+<BrickTagName name="basic.copy-to-clipboard" isProvider />
+
+复制文本内容到粘贴板。
+
+## Examples
+
+```yaml preview
+brick: eo-button
+properties:
+  textContent: Copy
+events:
+  click:
+    useProvider: basic.copy-to-clipboard
+    args:
+      - Some text to copy...
+    callback:
+      success:
+        action: message.success
+        args:
+          - Copied!
+      error:
+        action: message.error
+        args:
+          - Copy failed!
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/copy-to-clipboard
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-button id="brick-1">Copy</eo-button>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("click", (e) => {
+#     const provider = document.createElement("basic.copy-to-clipboard");
+#     const promise = Promise.resolve(provider.resolve("Some text to copy..."));
+#     promise.then((r) => {
+#       const message = document.createElement("basic.show-notification");
+#       message.resolve({ type: "success", message: "Copied!" });
+#     });
+#     promise.catch((r) => {
+#       const message = document.createElement("basic.show-notification");
+#       message.resolve({ type: "error", message: "Copy failed!" });
+#     });
+#   });
+# </script>
+# 
+```
+
+
+## Definition
+
+
+
+### Parameters
+
+<TypeReferencesContext.Provider value={undefined}>
+  <ProviderDocParams params={[{"name":"text","description":"文本内容","annotation":{"type":"keyword","value":"string"}}]} />
+</TypeReferencesContext.Provider>
+
+### Returns
+
+<p>
+  <MaybeEmptyCode>
+    <TypeReferencesContext.Provider value={undefined}>
+      <GeneralType annotation={{"type":"reference","typeName":{"type":"identifier","name":"Promise"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"keyword","value":"void"}]}}} />
+    </TypeReferencesContext.Provider>
+  </MaybeEmptyCode>
+</p>
+
+
+
+
+

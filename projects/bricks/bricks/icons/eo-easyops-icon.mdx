@@ -1,0 +1,108 @@
+---
+description: "<eo-easyops-icon>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-easyops-icon"}
+  alias={["icons.easyops-icon"]}
+  insider={false}
+  deprecated={false}
+/>
+
+```yaml preview
+- brick: div
+  properties:
+    style:
+      display: flex
+      gap: 1em
+      fontSize: 32px
+  children:
+    - brick: eo-icon
+      properties:
+        lib: easyops
+        icon: honeycomb
+    - brick: eo-icon
+      properties:
+        lib: easyops
+        category: monitor
+        icon: host
+    - brick: eo-icon
+      properties:
+        lib: easyops
+        category: model
+        icon: app
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+icons/eo-easyops-icon
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <div style="display: flex; gap: 1em; font-size: 32px">
+#   <eo-icon lib="easyops" icon="honeycomb"></eo-icon>
+#   <eo-icon lib="easyops" category="monitor" icon="host"></eo-icon>
+#   <eo-icon lib="easyops" category="model" icon="app"></eo-icon>
+# </div>
+# 
+```
+
+## Examples
+
+### Raw image icons
+
+```yaml preview
+- brick: div
+  properties:
+    style:
+      display: flex
+      gap: 1em
+      fontSize: 32px
+  children:
+    - brick: eo-icon
+      properties:
+        lib: easyops
+        category: image
+        icon: ai-robot-png
+    - brick: eo-icon
+      properties:
+        lib: easyops
+        category: image
+        icon: ai-robot-gif
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+icons/eo-easyops-icon/raw image icons
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <div style="display: flex; gap: 1em; font-size: 32px">
+#   <eo-icon lib="easyops" category="image" icon="ai-robot-png"></eo-icon>
+#   <eo-icon lib="easyops" category="image" icon="ai-robot-gif"></eo-icon>
+# </div>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocProperties properties={[{"name":"category","description":"图标分类","default":"\"default\"","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"icon","description":"图标名","type":"string","annotation":{"type":"keyword","value":"string"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocEvents events={[{"name":"icon.found","detail":{"type":"boolean","annotation":{"type":"keyword","value":"boolean"}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+

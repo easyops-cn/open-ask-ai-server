@@ -1,0 +1,70 @@
+---
+description: "<eo-page-title>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-page-title"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `eo-page-title`
+
+## Examples
+
+### Basic
+
+```yaml preview
+- brick: eo-page-title
+  properties:
+    pageTitle: Hello world
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-page-title/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-page-title page-title="Hello world"></eo-page-title>
+# 
+```
+
+### dashboard 模式显示
+
+```yaml preview
+- brick: eo-page-title
+  properties:
+    pageTitle: Hello world
+    dashboardMode: true
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-page-title/dashboard 模式显示
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-page-title page-title="Hello world" dashboard-mode></eo-page-title>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocProperties properties={[{"name":"pageTitle","description":"页面标题","type":"string","annotation":{"type":"keyword","value":"string"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+
+

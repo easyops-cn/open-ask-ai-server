@@ -1,0 +1,67 @@
+---
+description: "<advanced.pdf-viewer>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"advanced.pdf-viewer"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `advanced.pdf-viewer`
+
+## Examples
+
+### Basic
+
+```yaml preview
+brick: advanced.pdf-viewer
+properties:
+  url: https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf
+  viewerStyle:
+    height: 500px
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+advanced/pdf-viewer/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <advanced.pdf-viewer
+#   url="https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf"
+#   id="brick-1"
+# ></advanced.pdf-viewer>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.viewerStyle = {
+#     height: "500px",
+#   };
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocProperties properties={[{"name":"url","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"page","type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"search","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"viewerStyle","attribute":false,"type":"React.CSSProperties","annotation":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+
+

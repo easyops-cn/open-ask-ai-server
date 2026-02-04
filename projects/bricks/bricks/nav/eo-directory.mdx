@@ -1,0 +1,155 @@
+---
+description: "<eo-directory>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-directory"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `eo-directory`
+
+## Examples
+
+### Basic
+
+```yaml preview
+- brick: div
+  properties:
+    style:
+      width: 200px
+      height: 500px
+  slots:
+    "":
+      type: bricks
+      bricks:
+        - brick: eo-directory
+          events:
+            menu.item.click:
+              - action: console.log
+            suffix.icon.click:
+              - action: console.log
+          properties:
+            defaultSelectedKeys:
+              - strategy1
+            directoryTitle: 目录标题
+            menuItems:
+              - title: 测试
+                type: group
+                suffixIcon:
+                  lib: antd
+                  icon: plus-circle
+                  theme: outlined
+                key: test
+                children:
+                  - key: strategy1
+                    title: 数据1
+                  - key: strategy2
+                    title: 数据2
+              - title: 其他
+                type: group
+                suffixIcon:
+                  lib: antd
+                  icon: plus-circle
+                  theme: outlined
+                suffixIconDisabled: true
+                suffixIconTooltip: 禁止点击
+                key: otherKey
+                children:
+                  - key: manual-strategy1
+                    title: 数据3
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+nav/eo-directory/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <div style="width: 200px; height: 500px">
+#   <eo-directory directory-title="目录标题" id="brick-1"></eo-directory>
+# </div>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.defaultSelectedKeys = ["strategy1"];
+#   brick_1.menuItems = [
+#     {
+#       title: "测试",
+#       type: "group",
+#       suffixIcon: {
+#         lib: "antd",
+#         icon: "plus-circle",
+#         theme: "outlined",
+#       },
+#       key: "test",
+#       children: [
+#         {
+#           key: "strategy1",
+#           title: "数据1",
+#         },
+#         {
+#           key: "strategy2",
+#           title: "数据2",
+#         },
+#       ],
+#     },
+#     {
+#       title: "其他",
+#       type: "group",
+#       suffixIcon: {
+#         lib: "antd",
+#         icon: "plus-circle",
+#         theme: "outlined",
+#       },
+#       suffixIconDisabled: true,
+#       suffixIconTooltip: "禁止点击",
+#       key: "otherKey",
+#       children: [
+#         {
+#           key: "manual-strategy1",
+#           title: "数据3",
+#         },
+#       ],
+#     },
+#   ];
+#   brick_1.addEventListener("menu.item.click", (e) => {
+#     console.log(e.detail);
+#   });
+#   brick_1.addEventListener("suffix.icon.click", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["MenuItem","MenuChildrenItem","MenuItemClickEventDetail"]}>
+  <BrickDocProperties properties={[{"name":"position","description":"设置定位方式：静态定位或固定定位。","default":"\"fixed\"","type":"\"static\" | \"fixed\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"static"},{"type":"jsLiteral","value":"fixed"}]}},{"name":"directoryTitle","description":"目录标题","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"menuItems","description":"菜单数据","required":true,"default":"[]","attribute":false,"type":"MenuItem[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"MenuItem"}}}},{"name":"hideRightBorder","description":"是否隐藏右边线","default":"false","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"suffixBrick","description":"后缀 useBrick","attribute":false,"type":"{ useBrick: UseBrickConf }","annotation":{"type":"typeLiteral","members":[{"type":"propertySignature","key":{"type":"identifier","name":"useBrick"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"UseBrickConf"}},"computed":false}]}},{"name":"defaultSelectedKeys","description":"默认选中高亮的菜单项","attribute":false,"type":"string[]","annotation":{"type":"array","elementType":{"type":"keyword","value":"string"}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={["MenuItem","MenuChildrenItem","MenuItemClickEventDetail"]}>
+  <BrickDocEvents events={[{"name":"menu.item.click","description":"菜单点击，groupKey 表示对应分组的key，data 表示对应菜单项","detail":{"description":"{ groupKey: string, data: MenuChildrenItem   }","type":"MenuItemClickEventDetail","annotation":{"type":"reference","typeName":{"type":"identifier","name":"MenuItemClickEventDetail"}}}},{"name":"suffix.icon.click","description":"点击icon，detail为 对应菜单项或者是分组的key","detail":{"description":"{ key: string  }","type":"{ key: string }","annotation":{"type":"typeLiteral","members":[{"type":"propertySignature","key":{"type":"identifier","name":"key"},"annotation":{"type":"keyword","value":"string"},"computed":false}]}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"MenuItem","body":[{"type":"propertySignature","key":{"type":"identifier","name":"title"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"key"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"type"},"annotation":{"type":"union","types":[{"type":"jsLiteral","value":"group"},{"type":"jsLiteral","value":"item"}]},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"children"},"annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"MenuChildrenItem"}}},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"suffixIcon"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"GeneralIconProps"}},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"suffixIconTooltip"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"suffixIconDisabled"},"annotation":{"type":"keyword","value":"boolean"},"optional":true,"computed":false}]},{"type":"interface","name":"MenuChildrenItem","body":[{"type":"propertySignature","key":{"type":"identifier","name":"title"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"key"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"indexSignature","parameter":{"type":"identifier","name":"key","annotation":{"type":"keyword","value":"string"}},"annotation":{"type":"keyword","value":"any"}}]},{"type":"interface","name":"MenuItemClickEventDetail","body":[{"type":"propertySignature","key":{"type":"identifier","name":"data"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"MenuChildrenItem"}},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"groupKey"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false}]}]} />
+

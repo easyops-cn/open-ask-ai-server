@@ -1,0 +1,45 @@
+---
+description: "<eo-sidebar-sub-menu>"
+deprecated: true
+---
+
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+</head>
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-sidebar-sub-menu"}
+  alias={null}
+  insider={false}
+  deprecated={true}
+/>
+
+构件 `eo-sidebar-sub-menu` 已迁移至 `nav` 构件包，后续在在 `basic` 构件包中将不再更新。
+
+## Properties
+
+<TypeReferencesContext.Provider value={["SidebarMenu"]}>
+  <BrickDocProperties properties={[{"name":"menu","description":"菜单项","attribute":false,"type":"SidebarMenu","annotation":{"type":"reference","typeName":{"type":"identifier","name":"SidebarMenu"}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"SidebarMenu","body":[{"type":"propertySignature","key":{"type":"identifier","name":"title"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"icon"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"GeneralIconProps"}},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"link"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"LocationDescriptor"}},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"defaultCollapsed"},"annotation":{"type":"keyword","value":"boolean"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"defaultCollapsedBreakpoint"},"annotation":{"type":"keyword","value":"number"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"menuItems"},"annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"SidebarMenuItem"}}},"computed":false}]}]} />
+

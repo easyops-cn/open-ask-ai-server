@@ -1,0 +1,108 @@
+---
+description: "<eo-grid-layout>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-grid-layout"}
+  alias={["containers.grid-layout"]}
+  insider={false}
+  deprecated={false}
+/>
+
+多行多列的响应式网格布局。
+
+```html preview
+<eo-grid-layout
+  columns="2"
+  gap="20px"
+  show-grid-border="true"
+  style="width: 900px; background: pink; margin-bottom: 20px"
+>
+  <div style="background: yellow">第一个 div</div>
+  <div style="background: orange">第二个 div</div>
+  <div style="background: blue">第三个 div</div>
+  <div style="background: red">第四个 div</div>
+  <div style="background: green">第五个 div</div>
+  <div style="background: black">第六个 div</div>
+  <div style="background: gray">第七个 div</div>
+</eo-grid-layout>
+<!-- HTML HEADING DELIMITER start (1nbbm8) --
+containers/eo-grid-layout
+-- HTML HEADING DELIMITER end (1nbbm8) -->
+<!-- HTML DELIMITER start (1nbbm8) --
+brick: eo-grid-layout
+properties:
+  columns: 2
+  gap: 20px
+  showGridBorder: 'true'
+  style:
+    width: 900px
+    background: pink
+    marginBottom: 20px
+children:
+  - brick: div
+    properties:
+      style:
+        background: yellow
+      textContent: 第一个 div
+  - brick: div
+    properties:
+      style:
+        background: orange
+      textContent: 第二个 div
+  - brick: div
+    properties:
+      style:
+        background: blue
+      textContent: 第三个 div
+  - brick: div
+    properties:
+      style:
+        background: red
+      textContent: 第四个 div
+  - brick: div
+    properties:
+      style:
+        background: green
+      textContent: 第五个 div
+  - brick: div
+    properties:
+      style:
+        background: black
+      textContent: 第六个 div
+  - brick: div
+    properties:
+      style:
+        background: gray
+      textContent: 第七个 div
+-- HTML DELIMITER end (1nbbm8) -->
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["ResponsiveSettings","GridSettings"]}>
+  <BrickDocProperties properties={[{"name":"columns","description":"网格布局列数（各列等宽）","type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"rows","description":"网格布局行数","default":"1","annotation":{"type":"keyword","value":"number"}},{"name":"rowSpan","description":"在父级网格中所占行数","default":"1","annotation":{"type":"keyword","value":"number"}},{"name":"columnSpan","description":"在父级网格中所占列数","default":"1","annotation":{"type":"keyword","value":"number"}},{"name":"templateColumns","description":"网格布局模板列","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"alignItems","description":"设置单元格的垂直位置","type":"CSSProperties[\"alignItems\"]","annotation":{"type":"indexedAccess","objectType":{"type":"reference","typeName":{"type":"identifier","name":"CSSProperties"}},"indexType":{"type":"jsLiteral","value":"alignItems"}}},{"name":"alignContent","description":"设置整个内容区域的垂直位置","type":"CSSProperties[\"alignContent\"]","annotation":{"type":"indexedAccess","objectType":{"type":"reference","typeName":{"type":"identifier","name":"CSSProperties"}},"indexType":{"type":"jsLiteral","value":"alignContent"}}},{"name":"justifyItems","description":"设置单元格内容的水平位置","type":"CSSProperties[\"justifyItems\"]","annotation":{"type":"indexedAccess","objectType":{"type":"reference","typeName":{"type":"identifier","name":"CSSProperties"}},"indexType":{"type":"jsLiteral","value":"justifyItems"}}},{"name":"justifyContent","description":"设置整个内容区域在容器里面的水平位置","type":"CSSProperties[\"justifyContent\"]","annotation":{"type":"indexedAccess","objectType":{"type":"reference","typeName":{"type":"identifier","name":"CSSProperties"}},"indexType":{"type":"jsLiteral","value":"justifyContent"}}},{"name":"autoFlow","description":"子元素自动排布顺序","type":"CSSProperties[\"gridAutoFlow\"]","annotation":{"type":"indexedAccess","objectType":{"type":"reference","typeName":{"type":"identifier","name":"CSSProperties"}},"indexType":{"type":"jsLiteral","value":"gridAutoFlow"}}},{"name":"responsive","description":"响应式布局设置","attribute":false,"type":"ResponsiveSettings","annotation":{"type":"reference","typeName":{"type":"identifier","name":"ResponsiveSettings"}}},{"name":"gap","description":"子元素之间的间距","default":"\"var(--page-card-gap)\"","annotation":{"type":"keyword","value":"string"}},{"name":"showGridBorder","description":"是否展示网格布局边框","default":"false","annotation":{"type":"keyword","value":"boolean"}},{"name":"gridBorderColor","description":"网格布局边框颜色","type":"string","annotation":{"type":"keyword","value":"string"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"ResponsiveSettings","body":[{"type":"propertySignature","key":{"type":"identifier","name":"large"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"GridSettings"}},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"medium"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"GridSettings"}},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"small"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"GridSettings"}},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"xs"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"GridSettings"}},"optional":true,"computed":false}]},{"type":"interface","name":"GridSettings","body":[{"type":"propertySignature","key":{"type":"identifier","name":"columns"},"annotation":{"type":"keyword","value":"number"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"rows"},"annotation":{"type":"keyword","value":"number"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"templateColumns"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"columnSpan"},"annotation":{"type":"keyword","value":"number"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"rowSpan"},"annotation":{"type":"keyword","value":"number"},"optional":true,"computed":false}]}]} />
+

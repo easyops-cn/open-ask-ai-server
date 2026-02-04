@@ -1,0 +1,204 @@
+---
+description: "<eo-humanize-time>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-humanize-time"}
+  alias={["presentational.humanize-time"]}
+  insider={false}
+  deprecated={false}
+/>
+
+人性化时间展示
+
+## Examples
+
+### 完整
+
+```yaml preview
+- brick: eo-humanize-time
+  properties:
+    formatter: full
+    value: 1714026348
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-humanize-time/完整
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-humanize-time id="brick-1"></eo-humanize-time>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.formatter = "full";
+#   brick_1.value = 1714026348;
+# </script>
+# 
+```
+
+### 精确
+
+```yaml preview
+- brick: eo-humanize-time
+  properties:
+    formatter: accurate
+    value: 1714026348
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-humanize-time/精确
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-humanize-time id="brick-1"></eo-humanize-time>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.formatter = "accurate";
+#   brick_1.value = 1714026348;
+# </script>
+# 
+```
+
+### 相对
+
+```yaml preview
+- brick: eo-humanize-time
+  properties:
+    formatter: relative
+    isMillisecond: true
+    value: 1714026348000
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-humanize-time/相对
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-humanize-time is-millisecond id="brick-1"></eo-humanize-time>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.formatter = "relative";
+#   brick_1.value = 1714026348000;
+# </script>
+# 
+```
+
+### 耗时
+
+```yaml preview
+- brick: eo-humanize-time
+  properties:
+    formatter: relative
+    isCostTime: true
+    value: 1000
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-humanize-time/耗时
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-humanize-time is-cost-time id="brick-1"></eo-humanize-time>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.formatter = "relative";
+#   brick_1.value = 1000;
+# </script>
+# 
+```
+
+### 链接
+
+```yaml preview
+- brick: eo-humanize-time
+  properties:
+    formatter: full
+    link:
+      target: _blank
+      url: /aaa/bbb
+    value: 1714026348
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-humanize-time/链接
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-humanize-time id="brick-1"></eo-humanize-time>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.formatter = "full";
+#   brick_1.link = {
+#     target: "_blank",
+#     url: "/aaa/bbb",
+#   };
+#   brick_1.value = 1714026348;
+# </script>
+# 
+```
+
+### 自定义格式
+
+```yaml preview
+- brick: eo-humanize-time
+  properties:
+    inputFormat: YYYY-MM-DD
+    outputFormat: LLL
+    value: "2020-02-27 16:36"
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-humanize-time/自定义格式
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-humanize-time
+#   input-format="YYYY-MM-DD"
+#   output-format="LLL"
+#   id="brick-1"
+# ></eo-humanize-time>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.value = "2020-02-27 16:36";
+# </script>
+# 
+```
+
+### 仅日期
+
+```yaml preview
+- brick: eo-humanize-time
+  properties:
+    formatter: full
+    type: date
+    value: 1714026348
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-humanize-time/仅日期
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-humanize-time type="date" id="brick-1"></eo-humanize-time>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.formatter = "full";
+#   brick_1.value = 1714026348;
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["LinkInfo"]}>
+  <BrickDocProperties properties={[{"name":"value","description":"时间截，或字符串，当为字符串时，应提供时间格式 `inputFormat`","required":true,"attribute":false,"type":"number | string","annotation":{"type":"union","types":[{"type":"keyword","value":"number"},{"type":"keyword","value":"string"}]}},{"name":"inputFormat","description":"字符串的时间格式，如 \"YYYY-MM-DD\", [时间格式参照表](https://day.js.org/docs/en/parse/string-format)","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"outputFormat","description":"展示时间格式，如 \"YYYY-MM-DD\"，当设置该属性时，属性 `formatter` 无效 [时间格式参照表](https://day.js.org/docs/en/display/format)","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"type","description":"使用日期+时间格式输出还是仅日期。","default":"\"datetime\"","type":"\"datetime\" | \"date\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"datetime"},{"type":"jsLiteral","value":"date"}]}},{"name":"isCostTime","description":"是否展示为耗费时间，例如：'1 个月 20 天'","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"formatter","description":"格式类型","default":"\"default\"","attribute":false,"type":"HumanizeTimeFormat","annotation":{"type":"reference","typeName":{"type":"identifier","name":"HumanizeTimeFormat"}}},{"name":"isMicrosecond","description":"value 值的单位是否为毫秒（此处属性 id 写错，实际表达意义为 isMillisecond）","deprecated":"请使用 `isMillisecond`","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"isMillisecond","description":"value 值的单位是否为毫秒","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"link","description":"跳转链接，默认为空","attribute":false,"type":"LinkInfo","annotation":{"type":"reference","typeName":{"type":"identifier","name":"LinkInfo"}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"LinkInfo","body":[{"type":"propertySignature","key":{"type":"identifier","name":"url"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"target"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"Target"}},"optional":true,"computed":false}]}]} />
+

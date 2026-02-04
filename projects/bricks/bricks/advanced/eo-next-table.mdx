@@ -1,0 +1,2765 @@
+---
+description: "<eo-next-table>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-next-table"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+大型表格
+
+## Examples
+
+### Basic
+
+```yaml preview
+- brick: eo-next-table
+  events:
+    page.change:
+      - action: console.log
+    page.size.change:
+      - action: console.log
+  properties:
+    scrollConfig:
+      x: false
+    pagination:
+      pageSizeOptions:
+        - 5
+        - 10
+        - 20
+    columns:
+      - dataIndex: name
+        key: name
+        title: Name
+      - dataIndex: age
+        key: age
+        title: Age
+      - dataIndex: address
+        key: address
+        title: Address
+      - dataIndex: remarks
+        key: remarks
+        title: Long Column Long Column Long Column Long Column
+        width: 200
+        ellipsis: true
+      - dataIndex: operator
+        key: operator
+        title: 操作
+        width: 200
+        useBrick:
+          - brick: div
+            properties:
+              style:
+                display: flex
+                gap: 4px
+            children:
+              - brick: eo-button
+                properties:
+                  type: link
+                  size: small
+                  icon:
+                    lib: antd
+                    icon: edit
+                events:
+                  click:
+                    - action: message.info
+                      args:
+                        - <% DATA.rowData.name %>
+              - brick: eo-button
+                properties:
+                  type: link
+                  size: small
+                  danger: true
+                  icon:
+                    lib: antd
+                    icon: delete
+                events:
+                  click:
+                    - action: message.error
+                      args:
+                        - <% JSON.stringify(DATA) %>
+    dataSource:
+      pageSize: 5
+      page: 1
+      list:
+        - key: 0
+          name: Jack
+          age: 18
+          address: Guangzhou
+          remarks: Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text
+        - key: 1
+          name: Alex
+          age: 20
+          address: Shanghai
+          remarks: Long text Long text
+        - key: 2
+          name: Lucy
+          age: 16
+          address: Yunnan
+        - key: 3
+          name: Sam
+          age: 28
+          address: Guangzhou
+          remarks: Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text
+        - key: 4
+          name: Bob
+          age: 35
+          address: Hainan
+        - key: 5
+          name: Ava
+          age: 23
+          address: Beijing
+        - key: 6
+          name: Sophia
+          age: 20
+          address: Shanghai
+        - key: 7
+          name: Charlotte
+          age: 33
+          address: Chongqing
+        - key: 8
+          name: Mia
+          age: 18
+          address: Chengdu
+        - key: 9
+          name: Noah
+          age: 38
+          address: Hainan
+        - key: 10
+          name: William
+          age: 16
+          address: Taiwan
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+advanced/eo-next-table/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-next-table id="brick-1"></eo-next-table>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.scrollConfig = {
+#     x: false,
+#   };
+#   brick_1.pagination = {
+#     pageSizeOptions: [5, 10, 20],
+#   };
+#   brick_1.columns = [
+#     {
+#       dataIndex: "name",
+#       key: "name",
+#       title: "Name",
+#     },
+#     {
+#       dataIndex: "age",
+#       key: "age",
+#       title: "Age",
+#     },
+#     {
+#       dataIndex: "address",
+#       key: "address",
+#       title: "Address",
+#     },
+#     {
+#       dataIndex: "remarks",
+#       key: "remarks",
+#       title: "Long Column Long Column Long Column Long Column",
+#       width: 200,
+#       ellipsis: true,
+#     },
+#     {
+#       dataIndex: "operator",
+#       key: "operator",
+#       title: "操作",
+#       width: 200,
+#       useBrick: [
+#         {
+#           brick: "div",
+#           properties: {
+#             style: {
+#               display: "flex",
+#               gap: "4px",
+#             },
+#           },
+#           children: [
+#             {
+#               brick: "eo-button",
+#               properties: {
+#                 type: "link",
+#                 size: "small",
+#                 icon: {
+#                   lib: "antd",
+#                   icon: "edit",
+#                 },
+#               },
+#               events: {
+#                 click: [
+#                   {
+#                     action: "message.info",
+#                     args: ["<% DATA.rowData.name %>"],
+#                   },
+#                 ],
+#               },
+#             },
+#             {
+#               brick: "eo-button",
+#               properties: {
+#                 type: "link",
+#                 size: "small",
+#                 danger: true,
+#                 icon: {
+#                   lib: "antd",
+#                   icon: "delete",
+#                 },
+#               },
+#               events: {
+#                 click: [
+#                   {
+#                     action: "message.error",
+#                     args: ["<% JSON.stringify(DATA) %>"],
+#                   },
+#                 ],
+#               },
+#             },
+#           ],
+#         },
+#       ],
+#     },
+#   ];
+#   brick_1.dataSource = {
+#     pageSize: 5,
+#     page: 1,
+#     list: [
+#       {
+#         key: 0,
+#         name: "Jack",
+#         age: 18,
+#         address: "Guangzhou",
+#         remarks:
+#           "Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text",
+#       },
+#       {
+#         key: 1,
+#         name: "Alex",
+#         age: 20,
+#         address: "Shanghai",
+#         remarks: "Long text Long text",
+#       },
+#       {
+#         key: 2,
+#         name: "Lucy",
+#         age: 16,
+#         address: "Yunnan",
+#       },
+#       {
+#         key: 3,
+#         name: "Sam",
+#         age: 28,
+#         address: "Guangzhou",
+#         remarks:
+#           "Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text",
+#       },
+#       {
+#         key: 4,
+#         name: "Bob",
+#         age: 35,
+#         address: "Hainan",
+#       },
+#       {
+#         key: 5,
+#         name: "Ava",
+#         age: 23,
+#         address: "Beijing",
+#       },
+#       {
+#         key: 6,
+#         name: "Sophia",
+#         age: 20,
+#         address: "Shanghai",
+#       },
+#       {
+#         key: 7,
+#         name: "Charlotte",
+#         age: 33,
+#         address: "Chongqing",
+#       },
+#       {
+#         key: 8,
+#         name: "Mia",
+#         age: 18,
+#         address: "Chengdu",
+#       },
+#       {
+#         key: 9,
+#         name: "Noah",
+#         age: 38,
+#         address: "Hainan",
+#       },
+#       {
+#         key: 10,
+#         name: "William",
+#         age: 16,
+#         address: "Taiwan",
+#       },
+#     ],
+#   };
+#   brick_1.addEventListener("page.change", (e) => {
+#     console.log(e.detail);
+#   });
+#   brick_1.addEventListener("page.size.change", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+### Fixed & Scroll & useBrick
+
+```yaml preview
+- brick: eo-next-table
+  events:
+    page.change:
+      - action: console.log
+    page.size.change:
+      - action: console.log
+  properties:
+    scrollConfig:
+      x: max-content
+    pagination:
+      pageSizeOptions:
+        - 5
+        - 10
+        - 20
+    columns:
+      - dataIndex: name
+        key: name
+        title: Name
+        width: 100
+        fixed: true
+        headerBrick:
+          useBrick:
+            brick: span
+            properties:
+              style:
+                color: red
+              textContent: <% DATA.title %>
+        useBrick:
+          - brick: span
+            properties:
+              style:
+                color: pink
+              textContent: <% DATA.cellData %>
+      - dataIndex: address
+        key: column1
+        title: column1
+      - dataIndex: address
+        key: column2
+        title: column2
+      - dataIndex: address
+        key: column3
+        title: column3
+      - dataIndex: address
+        key: column4
+        title: column4
+      - dataIndex: address
+        key: column5
+        title: column5
+      - dataIndex: address
+        key: column6
+        title: column6
+      - dataIndex: address
+        key: column7
+        title: column7
+      - dataIndex: address
+        key: column8
+        title: column8
+      - dataIndex: address
+        key: column9
+        title: column9
+      - dataIndex: address
+        key: column10
+        title: column10
+      - dataIndex: age
+        key: age
+        title: Age
+        width: 100
+        fixed: right
+    dataSource:
+      pageSize: 5
+      page: 1
+      list:
+        - key: 0
+          name: Jack
+          age: 18
+          address: Guangzhou
+        - key: 1
+          name: Alex
+          age: 20
+          address: Shanghai
+        - key: 2
+          name: Lucy
+          age: 16
+          address: Yunnan
+        - key: 3
+          name: Sam
+          age: 28
+          address: Guangzhou
+        - key: 4
+          name: Bob
+          age: 35
+          address: Hainan
+        - key: 5
+          name: Ava
+          age: 23
+          address: Beijing
+        - key: 6
+          name: Sophia
+          age: 20
+          address: Shanghai
+        - key: 7
+          name: Charlotte
+          age: 33
+          address: Chongqing
+        - key: 8
+          name: Mia
+          age: 18
+          address: Chengdu
+        - key: 9
+          name: Noah
+          age: 38
+          address: Hainan
+        - key: 10
+          name: William
+          age: 16
+          address: Taiwan
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+advanced/eo-next-table/fixed & scroll & usebrick
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-next-table id="brick-1"></eo-next-table>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.scrollConfig = {
+#     x: "max-content",
+#   };
+#   brick_1.pagination = {
+#     pageSizeOptions: [5, 10, 20],
+#   };
+#   brick_1.columns = [
+#     {
+#       dataIndex: "name",
+#       key: "name",
+#       title: "Name",
+#       width: 100,
+#       fixed: true,
+#       headerBrick: {
+#         useBrick: {
+#           brick: "span",
+#           properties: {
+#             style: {
+#               color: "red",
+#             },
+#             textContent: "<% DATA.title %>",
+#           },
+#         },
+#       },
+#       useBrick: [
+#         {
+#           brick: "span",
+#           properties: {
+#             style: {
+#               color: "pink",
+#             },
+#             textContent: "<% DATA.cellData %>",
+#           },
+#         },
+#       ],
+#     },
+#     {
+#       dataIndex: "address",
+#       key: "column1",
+#       title: "column1",
+#     },
+#     {
+#       dataIndex: "address",
+#       key: "column2",
+#       title: "column2",
+#     },
+#     {
+#       dataIndex: "address",
+#       key: "column3",
+#       title: "column3",
+#     },
+#     {
+#       dataIndex: "address",
+#       key: "column4",
+#       title: "column4",
+#     },
+#     {
+#       dataIndex: "address",
+#       key: "column5",
+#       title: "column5",
+#     },
+#     {
+#       dataIndex: "address",
+#       key: "column6",
+#       title: "column6",
+#     },
+#     {
+#       dataIndex: "address",
+#       key: "column7",
+#       title: "column7",
+#     },
+#     {
+#       dataIndex: "address",
+#       key: "column8",
+#       title: "column8",
+#     },
+#     {
+#       dataIndex: "address",
+#       key: "column9",
+#       title: "column9",
+#     },
+#     {
+#       dataIndex: "address",
+#       key: "column10",
+#       title: "column10",
+#     },
+#     {
+#       dataIndex: "age",
+#       key: "age",
+#       title: "Age",
+#       width: 100,
+#       fixed: "right",
+#     },
+#   ];
+#   brick_1.dataSource = {
+#     pageSize: 5,
+#     page: 1,
+#     list: [
+#       {
+#         key: 0,
+#         name: "Jack",
+#         age: 18,
+#         address: "Guangzhou",
+#       },
+#       {
+#         key: 1,
+#         name: "Alex",
+#         age: 20,
+#         address: "Shanghai",
+#       },
+#       {
+#         key: 2,
+#         name: "Lucy",
+#         age: 16,
+#         address: "Yunnan",
+#       },
+#       {
+#         key: 3,
+#         name: "Sam",
+#         age: 28,
+#         address: "Guangzhou",
+#       },
+#       {
+#         key: 4,
+#         name: "Bob",
+#         age: 35,
+#         address: "Hainan",
+#       },
+#       {
+#         key: 5,
+#         name: "Ava",
+#         age: 23,
+#         address: "Beijing",
+#       },
+#       {
+#         key: 6,
+#         name: "Sophia",
+#         age: 20,
+#         address: "Shanghai",
+#       },
+#       {
+#         key: 7,
+#         name: "Charlotte",
+#         age: 33,
+#         address: "Chongqing",
+#       },
+#       {
+#         key: 8,
+#         name: "Mia",
+#         age: 18,
+#         address: "Chengdu",
+#       },
+#       {
+#         key: 9,
+#         name: "Noah",
+#         age: 38,
+#         address: "Hainan",
+#       },
+#       {
+#         key: 10,
+#         name: "William",
+#         age: 16,
+#         address: "Taiwan",
+#       },
+#     ],
+#   };
+#   brick_1.addEventListener("page.change", (e) => {
+#     console.log(e.detail);
+#   });
+#   brick_1.addEventListener("page.size.change", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+### Front Search
+
+```yaml preview
+- brick: eo-search-bar
+  children:
+    - brick: eo-search
+      slot: start
+      properties:
+        placeholder: Enter keyword
+      events:
+        search:
+          target: "#table"
+          method: search
+          args:
+            - q: <% EVENT.detail %>
+- brick: eo-next-table
+  events:
+    page.change:
+      - action: console.log
+    page.size.change:
+      - action: console.log
+    sort.change:
+      - action: console.log
+  properties:
+    id: table
+    frontSearch: true
+    searchFields:
+      - address
+    sort:
+      columnKey: age
+      order: descend
+    multiSort: true
+    pagination:
+      pageSizeOptions:
+        - 5
+        - 10
+        - 20
+    columns:
+      - dataIndex: name
+        key: name
+        title: Name
+      - dataIndex: age
+        key: age
+        title: Age
+        sortable: true
+        sortPriority: 1
+      - dataIndex: address
+        key: address
+        title: Address
+        sortable: true
+        sortPriority: 2
+    dataSource:
+      pageSize: 5
+      page: 1
+      list:
+        - key: 0
+          name: Jack
+          age: 18
+          address: Guangzhou
+        - key: 1
+          name: Alex
+          age: 20
+          address: Shanghai
+        - key: 2
+          name: Lucy
+          age: 16
+          address: Yunnan
+        - key: 3
+          name: Sam
+          age: 28
+          address: Guangzhou
+        - key: 4
+          name: Bob
+          age: 35
+          address: Hainan
+        - key: 5
+          name: Ava
+          age: 23
+          address: Beijing
+        - key: 6
+          name: Sophia
+          age: 20
+          address: Shanghai
+        - key: 7
+          name: Charlotte
+          age: 33
+          address: Chongqing
+        - key: 8
+          name: Mia
+          age: 18
+          address: Chengdu
+        - key: 9
+          name: Noah
+          age: 38
+          address: Hainan
+        - key: 10
+          name: William
+          age: 16
+          address: Taiwan
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+advanced/eo-next-table/front search
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-search-bar>
+#   <eo-search slot="start" placeholder="Enter keyword" id="brick-1"></eo-search>
+# </eo-search-bar>
+# <eo-next-table front-search multi-sort id="table"></eo-next-table>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("search", (e) => {
+#     const brick = document.querySelector("#table");
+#     brick.search({ q: "<% EVENT.detail %>" });
+#   });
+# 
+#   const table = document.getElementById("table");
+#   table.searchFields = ["address"];
+#   table.sort = {
+#     columnKey: "age",
+#     order: "descend",
+#   };
+#   table.pagination = {
+#     pageSizeOptions: [5, 10, 20],
+#   };
+#   table.columns = [
+#     {
+#       dataIndex: "name",
+#       key: "name",
+#       title: "Name",
+#     },
+#     {
+#       dataIndex: "age",
+#       key: "age",
+#       title: "Age",
+#       sortable: true,
+#       sortPriority: 1,
+#     },
+#     {
+#       dataIndex: "address",
+#       key: "address",
+#       title: "Address",
+#       sortable: true,
+#       sortPriority: 2,
+#     },
+#   ];
+#   table.dataSource = {
+#     pageSize: 5,
+#     page: 1,
+#     list: [
+#       {
+#         key: 0,
+#         name: "Jack",
+#         age: 18,
+#         address: "Guangzhou",
+#       },
+#       {
+#         key: 1,
+#         name: "Alex",
+#         age: 20,
+#         address: "Shanghai",
+#       },
+#       {
+#         key: 2,
+#         name: "Lucy",
+#         age: 16,
+#         address: "Yunnan",
+#       },
+#       {
+#         key: 3,
+#         name: "Sam",
+#         age: 28,
+#         address: "Guangzhou",
+#       },
+#       {
+#         key: 4,
+#         name: "Bob",
+#         age: 35,
+#         address: "Hainan",
+#       },
+#       {
+#         key: 5,
+#         name: "Ava",
+#         age: 23,
+#         address: "Beijing",
+#       },
+#       {
+#         key: 6,
+#         name: "Sophia",
+#         age: 20,
+#         address: "Shanghai",
+#       },
+#       {
+#         key: 7,
+#         name: "Charlotte",
+#         age: 33,
+#         address: "Chongqing",
+#       },
+#       {
+#         key: 8,
+#         name: "Mia",
+#         age: 18,
+#         address: "Chengdu",
+#       },
+#       {
+#         key: 9,
+#         name: "Noah",
+#         age: 38,
+#         address: "Hainan",
+#       },
+#       {
+#         key: 10,
+#         name: "William",
+#         age: 16,
+#         address: "Taiwan",
+#       },
+#     ],
+#   };
+#   table.addEventListener("page.change", (e) => {
+#     console.log(e.detail);
+#   });
+#   table.addEventListener("page.size.change", (e) => {
+#     console.log(e.detail);
+#   });
+#   table.addEventListener("sort.change", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+### Row Selection
+
+```yaml preview
+- brick: eo-next-table
+  events:
+    row.select:
+      - action: console.log
+  properties:
+    rowSelection: true
+    pagination:
+      pageSizeOptions:
+        - 5
+        - 10
+        - 20
+    columns:
+      - dataIndex: name
+        key: name
+        title: Name
+      - dataIndex: age
+        key: age
+        title: Age
+        useBrick:
+          - brick: eo-tag
+            properties:
+              color: |
+                <% DATA.cellData > 18 ? "green" : "red" %>
+              textContent: <% DATA.cellData %>
+      - dataIndex: address
+        key: address
+        title: Address
+    dataSource:
+      pageSize: 5
+      page: 1
+      list:
+        - key: 0
+          name: Jack
+          age: 18
+          address: Guangzhou
+        - key: 1
+          name: Alex
+          age: 20
+          address: Shanghai
+        - key: 2
+          name: Lucy
+          age: 16
+          address: Yunnan
+        - key: 3
+          name: Sam
+          age: 28
+          address: Guangzhou
+        - key: 4
+          name: Bob
+          age: 35
+          address: Hainan
+        - key: 5
+          name: Ava
+          age: 23
+          address: Beijing
+        - key: 6
+          name: Sophia
+          age: 20
+          address: Shanghai
+        - key: 7
+          name: Charlotte
+          age: 33
+          address: Chongqing
+        - key: 8
+          name: Mia
+          age: 18
+          address: Chengdu
+        - key: 9
+          name: Noah
+          age: 38
+          address: Hainan
+        - key: 10
+          name: William
+          age: 16
+          address: Taiwan
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+advanced/eo-next-table/row selection
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-next-table id="brick-1"></eo-next-table>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.rowSelection = true;
+#   brick_1.pagination = {
+#     pageSizeOptions: [5, 10, 20],
+#   };
+#   brick_1.columns = [
+#     {
+#       dataIndex: "name",
+#       key: "name",
+#       title: "Name",
+#     },
+#     {
+#       dataIndex: "age",
+#       key: "age",
+#       title: "Age",
+#       useBrick: [
+#         {
+#           brick: "eo-tag",
+#           properties: {
+#             color: '<% DATA.cellData > 18 ? "green" : "red" %>\n',
+#             textContent: "<% DATA.cellData %>",
+#           },
+#         },
+#       ],
+#     },
+#     {
+#       dataIndex: "address",
+#       key: "address",
+#       title: "Address",
+#     },
+#   ];
+#   brick_1.dataSource = {
+#     pageSize: 5,
+#     page: 1,
+#     list: [
+#       {
+#         key: 0,
+#         name: "Jack",
+#         age: 18,
+#         address: "Guangzhou",
+#       },
+#       {
+#         key: 1,
+#         name: "Alex",
+#         age: 20,
+#         address: "Shanghai",
+#       },
+#       {
+#         key: 2,
+#         name: "Lucy",
+#         age: 16,
+#         address: "Yunnan",
+#       },
+#       {
+#         key: 3,
+#         name: "Sam",
+#         age: 28,
+#         address: "Guangzhou",
+#       },
+#       {
+#         key: 4,
+#         name: "Bob",
+#         age: 35,
+#         address: "Hainan",
+#       },
+#       {
+#         key: 5,
+#         name: "Ava",
+#         age: 23,
+#         address: "Beijing",
+#       },
+#       {
+#         key: 6,
+#         name: "Sophia",
+#         age: 20,
+#         address: "Shanghai",
+#       },
+#       {
+#         key: 7,
+#         name: "Charlotte",
+#         age: 33,
+#         address: "Chongqing",
+#       },
+#       {
+#         key: 8,
+#         name: "Mia",
+#         age: 18,
+#         address: "Chengdu",
+#       },
+#       {
+#         key: 9,
+#         name: "Noah",
+#         age: 38,
+#         address: "Hainan",
+#       },
+#       {
+#         key: 10,
+#         name: "William",
+#         age: 16,
+#         address: "Taiwan",
+#       },
+#     ],
+#   };
+#   brick_1.addEventListener("row.select", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+### Expandable
+
+```yaml preview
+- brick: eo-next-table
+  events:
+    row.expand:
+      - action: console.log
+    expanded.rows.change:
+      - action: console.log
+  properties:
+    expandable:
+      rowExpandable: <% DATA.rowData.key % 2 === 0 %>
+      expandedRowBrick:
+        useBrick:
+          brick: eo-next-table
+          properties:
+            scrollConfig: false
+            pagination: false
+            bordered: true
+            rowKey: title
+            columns:
+              - dataIndex: title
+                key: title
+                title: 标题
+              - dataIndex: description
+                key: description
+                title: 描述
+              - dataIndex: operator
+                key: operator
+                title: 操作
+                useBrick:
+                  brick: eo-link
+                  properties:
+                    textContent: 操作
+            dataSource:
+              list: <% DATA.rowData.info %>
+    pagination:
+      pageSizeOptions:
+        - 5
+        - 10
+        - 20
+    columns:
+      - dataIndex: name
+        key: name
+        title: Name
+      - dataIndex: age
+        key: age
+        title: Age
+      - dataIndex: address
+        key: address
+        title: Address
+    dataSource:
+      pageSize: 5
+      page: 1
+      list:
+        - key: 0
+          name: Jack
+          age: 18
+          address: Guangzhou
+          info:
+            - title: 测试1
+              description: 这是一串描述
+              id: 1
+            - title: 测试2
+              description: 这是一串描述
+              id: 2
+        - key: 1
+          name: Alex
+          age: 20
+          address: Shanghai
+        - key: 2
+          name: Lucy
+          age: 16
+          address: Yunnan
+          info:
+            - title: 测试3
+              description: 这是一串描述
+              id: 3
+            - title: 测试4
+              description: 这是一串描述
+              id: 4
+        - key: 3
+          name: Sam
+          age: 28
+          address: Shenzhen
+        - key: 4
+          name: Bob
+          age: 35
+          address: Hainan
+        - key: 5
+          name: Ava
+          age: 23
+          address: Beijing
+        - key: 6
+          name: Sophia
+          age: 20
+          address: Nanjing
+        - key: 7
+          name: Charlotte
+          age: 33
+          address: Chongqing
+        - key: 8
+          name: Mia
+          age: 18
+          address: Chengdu
+        - key: 9
+          name: Noah
+          age: 38
+          address: Wuhan
+        - key: 10
+          name: William
+          age: 16
+          address: Taiwan
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+advanced/eo-next-table/expandable
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-next-table id="brick-1"></eo-next-table>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.expandable = {
+#     rowExpandable: "<% DATA.rowData.key % 2 === 0 %>",
+#     expandedRowBrick: {
+#       useBrick: {
+#         brick: "eo-next-table",
+#         properties: {
+#           scrollConfig: false,
+#           pagination: false,
+#           bordered: true,
+#           rowKey: "title",
+#           columns: [
+#             {
+#               dataIndex: "title",
+#               key: "title",
+#               title: "标题",
+#             },
+#             {
+#               dataIndex: "description",
+#               key: "description",
+#               title: "描述",
+#             },
+#             {
+#               dataIndex: "operator",
+#               key: "operator",
+#               title: "操作",
+#               useBrick: {
+#                 brick: "eo-link",
+#                 properties: {
+#                   textContent: "操作",
+#                 },
+#               },
+#             },
+#           ],
+#           dataSource: {
+#             list: "<% DATA.rowData.info %>",
+#           },
+#         },
+#       },
+#     },
+#   };
+#   brick_1.pagination = {
+#     pageSizeOptions: [5, 10, 20],
+#   };
+#   brick_1.columns = [
+#     {
+#       dataIndex: "name",
+#       key: "name",
+#       title: "Name",
+#     },
+#     {
+#       dataIndex: "age",
+#       key: "age",
+#       title: "Age",
+#     },
+#     {
+#       dataIndex: "address",
+#       key: "address",
+#       title: "Address",
+#     },
+#   ];
+#   brick_1.dataSource = {
+#     pageSize: 5,
+#     page: 1,
+#     list: [
+#       {
+#         key: 0,
+#         name: "Jack",
+#         age: 18,
+#         address: "Guangzhou",
+#         info: [
+#           {
+#             title: "测试1",
+#             description: "这是一串描述",
+#             id: 1,
+#           },
+#           {
+#             title: "测试2",
+#             description: "这是一串描述",
+#             id: 2,
+#           },
+#         ],
+#       },
+#       {
+#         key: 1,
+#         name: "Alex",
+#         age: 20,
+#         address: "Shanghai",
+#       },
+#       {
+#         key: 2,
+#         name: "Lucy",
+#         age: 16,
+#         address: "Yunnan",
+#         info: [
+#           {
+#             title: "测试3",
+#             description: "这是一串描述",
+#             id: 3,
+#           },
+#           {
+#             title: "测试4",
+#             description: "这是一串描述",
+#             id: 4,
+#           },
+#         ],
+#       },
+#       {
+#         key: 3,
+#         name: "Sam",
+#         age: 28,
+#         address: "Shenzhen",
+#       },
+#       {
+#         key: 4,
+#         name: "Bob",
+#         age: 35,
+#         address: "Hainan",
+#       },
+#       {
+#         key: 5,
+#         name: "Ava",
+#         age: 23,
+#         address: "Beijing",
+#       },
+#       {
+#         key: 6,
+#         name: "Sophia",
+#         age: 20,
+#         address: "Nanjing",
+#       },
+#       {
+#         key: 7,
+#         name: "Charlotte",
+#         age: 33,
+#         address: "Chongqing",
+#       },
+#       {
+#         key: 8,
+#         name: "Mia",
+#         age: 18,
+#         address: "Chengdu",
+#       },
+#       {
+#         key: 9,
+#         name: "Noah",
+#         age: 38,
+#         address: "Wuhan",
+#       },
+#       {
+#         key: 10,
+#         name: "William",
+#         age: 16,
+#         address: "Taiwan",
+#       },
+#     ],
+#   };
+#   brick_1.addEventListener("row.expand", (e) => {
+#     console.log(e.detail);
+#   });
+#   brick_1.addEventListener("expanded.rows.change", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+### Bordered
+
+```yaml preview
+- brick: eo-next-table
+  properties:
+    bordered: true
+    columns:
+      - dataIndex: name
+        key: name
+        title: Name
+      - dataIndex: age
+        key: age
+        title: Age
+      - dataIndex: address
+        key: address
+        title: Address
+    dataSource:
+      pageSize: 5
+      page: 1
+      list:
+        - key: 0
+          name: Jack
+          age: 18
+          address: Guangzhou
+        - key: 1
+          name: Alex
+          age: 20
+          address: Shanghai
+        - key: 3
+          name: Sam
+          age: 28
+          address: Shenzhen
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+advanced/eo-next-table/bordered
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-next-table bordered id="brick-1"></eo-next-table>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.columns = [
+#     {
+#       dataIndex: "name",
+#       key: "name",
+#       title: "Name",
+#     },
+#     {
+#       dataIndex: "age",
+#       key: "age",
+#       title: "Age",
+#     },
+#     {
+#       dataIndex: "address",
+#       key: "address",
+#       title: "Address",
+#     },
+#   ];
+#   brick_1.dataSource = {
+#     pageSize: 5,
+#     page: 1,
+#     list: [
+#       {
+#         key: 0,
+#         name: "Jack",
+#         age: 18,
+#         address: "Guangzhou",
+#       },
+#       {
+#         key: 1,
+#         name: "Alex",
+#         age: 20,
+#         address: "Shanghai",
+#       },
+#       {
+#         key: 3,
+#         name: "Sam",
+#         age: 28,
+#         address: "Shenzhen",
+#       },
+#     ],
+#   };
+# </script>
+# 
+```
+
+### Size
+
+```yaml preview
+brick: eo-content-layout
+children:
+  - brick: :forEach
+    dataSource:
+      - large
+      - middle
+      - small
+    children:
+      - brick: strong
+        properties:
+          textContent: "<% `Size: ${ITEM}` %>"
+      - brick: eo-next-table
+        properties:
+          size: <% ITEM %>
+          pagination: false
+          columns:
+            - dataIndex: name
+              key: name
+              title: Name
+            - dataIndex: age
+              key: age
+              title: Age
+            - dataIndex: address
+              key: address
+              title: Address
+          dataSource:
+            pageSize: 5
+            page: 1
+            list:
+              - key: 0
+                name: Jack
+                age: 18
+                address: Guangzhou
+              - key: 1
+                name: Alex
+                age: 20
+                address: Shanghai
+              - key: 3
+                name: Sam
+                age: 28
+                address: Shenzhen
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+advanced/eo-next-table/size
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-content-layout>
+#   <!-- WARN: ":forEach" is not supported in HTML mode, please try YAML. -->
+# </eo-content-layout>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.pagination = false;
+#   brick_1.columns = [
+#     {
+#       dataIndex: "name",
+#       key: "name",
+#       title: "Name",
+#     },
+#     {
+#       dataIndex: "age",
+#       key: "age",
+#       title: "Age",
+#     },
+#     {
+#       dataIndex: "address",
+#       key: "address",
+#       title: "Address",
+#     },
+#   ];
+#   brick_1.dataSource = {
+#     pageSize: 5,
+#     page: 1,
+#     list: [
+#       {
+#         key: 0,
+#         name: "Jack",
+#         age: 18,
+#         address: "Guangzhou",
+#       },
+#       {
+#         key: 1,
+#         name: "Alex",
+#         age: 20,
+#         address: "Shanghai",
+#       },
+#       {
+#         key: 3,
+#         name: "Sam",
+#         age: 28,
+#         address: "Shenzhen",
+#       },
+#     ],
+#   };
+# </script>
+# 
+```
+
+### Draggable
+
+```yaml preview
+- brick: eo-next-table
+  events:
+    row.drag:
+      - action: console.log
+  properties:
+    rowKey: name
+    rowDraggable: true
+    pagination: false
+    columns:
+      - dataIndex: name
+        key: name
+        title: Name
+      - dataIndex: age
+        key: age
+        title: Age
+      - dataIndex: address
+        key: address
+        title: Address
+    dataSource:
+      list:
+        - key: 0
+          name: Jack
+          age: 18
+          address: Guangzhou
+        - key: 1
+          name: Alex
+          age: 20
+          address: Shanghai
+        - key: 2
+          name: Lucy
+          age: 16
+          address: Yunnan
+        - key: 3
+          name: Sam
+          age: 28
+          address: Guangzhou
+        - key: 4
+          name: Bob
+          age: 35
+          address: Hainan
+        - key: 5
+          name: Ava
+          age: 23
+          address: Beijing
+        - key: 6
+          name: Sophia
+          age: 20
+          address: Shanghai
+        - key: 7
+          name: Charlotte
+          age: 33
+          address: Chongqing
+        - key: 8
+          name: Mia
+          age: 18
+          address: Chengdu
+        - key: 9
+          name: Noah
+          age: 38
+          address: Hainan
+        - key: 10
+          name: William
+          age: 16
+          address: Taiwan
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+advanced/eo-next-table/draggable
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-next-table row-key="name" row-draggable id="brick-1"></eo-next-table>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.pagination = false;
+#   brick_1.columns = [
+#     {
+#       dataIndex: "name",
+#       key: "name",
+#       title: "Name",
+#     },
+#     {
+#       dataIndex: "age",
+#       key: "age",
+#       title: "Age",
+#     },
+#     {
+#       dataIndex: "address",
+#       key: "address",
+#       title: "Address",
+#     },
+#   ];
+#   brick_1.dataSource = {
+#     list: [
+#       {
+#         key: 0,
+#         name: "Jack",
+#         age: 18,
+#         address: "Guangzhou",
+#       },
+#       {
+#         key: 1,
+#         name: "Alex",
+#         age: 20,
+#         address: "Shanghai",
+#       },
+#       {
+#         key: 2,
+#         name: "Lucy",
+#         age: 16,
+#         address: "Yunnan",
+#       },
+#       {
+#         key: 3,
+#         name: "Sam",
+#         age: 28,
+#         address: "Guangzhou",
+#       },
+#       {
+#         key: 4,
+#         name: "Bob",
+#         age: 35,
+#         address: "Hainan",
+#       },
+#       {
+#         key: 5,
+#         name: "Ava",
+#         age: 23,
+#         address: "Beijing",
+#       },
+#       {
+#         key: 6,
+#         name: "Sophia",
+#         age: 20,
+#         address: "Shanghai",
+#       },
+#       {
+#         key: 7,
+#         name: "Charlotte",
+#         age: 33,
+#         address: "Chongqing",
+#       },
+#       {
+#         key: 8,
+#         name: "Mia",
+#         age: 18,
+#         address: "Chengdu",
+#       },
+#       {
+#         key: 9,
+#         name: "Noah",
+#         age: 38,
+#         address: "Hainan",
+#       },
+#       {
+#         key: 10,
+#         name: "William",
+#         age: 16,
+#         address: "Taiwan",
+#       },
+#     ],
+#   };
+#   brick_1.addEventListener("row.drag", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+### RowSpan & ColSpan
+
+```yaml preview
+- brick: eo-next-table
+  properties:
+    pagination: false
+    bordered: true
+    columns:
+      - dataIndex: name
+        key: name
+        title: Name
+      - dataIndex: age
+        key: age
+        title: Age
+      - dataIndex: mobile
+        key: mobile
+        title: phone
+        colSpan: 2
+        cellColSpanKey: mobileColSpan
+        cellRowSpanKey: mobileRowSpan
+      - dataIndex: landlines
+        key: landlines
+        colSpan: 0
+        cellColSpanKey: landlinesColSpan
+        cellRowSpanKey: landlinesRowSpan
+      - dataIndex: address
+        key: address
+        title: Address
+    dataSource:
+      list:
+        - key: 0
+          name: Jack
+          age: 18
+          address: Guangzhou
+          mobile: 18900010222
+          landlines: 0571-22098909
+        - key: 1
+          name: Alex
+          age: 20
+          address: Shanghai
+          mobile: 18900010333
+          mobileColSpan: 2
+          landlinesColSpan: 0
+        - key: 2
+          name: Lucy
+          age: 16
+          address: Yunnan
+          mobile: 18900010444
+          landlines: 0571-22098707
+          landlinesRowSpan: 2
+        - key: 3
+          name: Sam
+          age: 28
+          address: Guangzhou
+          mobile: 18900010555
+          landlines: 0571-22098707
+          landlinesRowSpan: 0
+          mobileRowSpan: 2
+        - key: 4
+          name: Bob
+          age: 35
+          address: Hainan
+          mobile: 18900010555
+          landlines: 0571-22098606
+          mobileRowSpan: 0
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+advanced/eo-next-table/rowspan & colspan
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-next-table bordered id="brick-1"></eo-next-table>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.pagination = false;
+#   brick_1.columns = [
+#     {
+#       dataIndex: "name",
+#       key: "name",
+#       title: "Name",
+#     },
+#     {
+#       dataIndex: "age",
+#       key: "age",
+#       title: "Age",
+#     },
+#     {
+#       dataIndex: "mobile",
+#       key: "mobile",
+#       title: "phone",
+#       colSpan: 2,
+#       cellColSpanKey: "mobileColSpan",
+#       cellRowSpanKey: "mobileRowSpan",
+#     },
+#     {
+#       dataIndex: "landlines",
+#       key: "landlines",
+#       colSpan: 0,
+#       cellColSpanKey: "landlinesColSpan",
+#       cellRowSpanKey: "landlinesRowSpan",
+#     },
+#     {
+#       dataIndex: "address",
+#       key: "address",
+#       title: "Address",
+#     },
+#   ];
+#   brick_1.dataSource = {
+#     list: [
+#       {
+#         key: 0,
+#         name: "Jack",
+#         age: 18,
+#         address: "Guangzhou",
+#         mobile: 18900010222,
+#         landlines: "0571-22098909",
+#       },
+#       {
+#         key: 1,
+#         name: "Alex",
+#         age: 20,
+#         address: "Shanghai",
+#         mobile: 18900010333,
+#         mobileColSpan: 2,
+#         landlinesColSpan: 0,
+#       },
+#       {
+#         key: 2,
+#         name: "Lucy",
+#         age: 16,
+#         address: "Yunnan",
+#         mobile: 18900010444,
+#         landlines: "0571-22098707",
+#         landlinesRowSpan: 2,
+#       },
+#       {
+#         key: 3,
+#         name: "Sam",
+#         age: 28,
+#         address: "Guangzhou",
+#         mobile: 18900010555,
+#         landlines: "0571-22098707",
+#         landlinesRowSpan: 0,
+#         mobileRowSpan: 2,
+#       },
+#       {
+#         key: 4,
+#         name: "Bob",
+#         age: 35,
+#         address: "Hainan",
+#         mobile: 18900010555,
+#         landlines: "0571-22098606",
+#         mobileRowSpan: 0,
+#       },
+#     ],
+#   };
+# </script>
+# 
+```
+
+### Tree
+
+设置 childrenColumnName 来指定树形结构的列名，展开功能的配置可以使用 expandable。目前树形结构暂不支持拖拽。
+
+```yaml preview
+- brick: eo-next-table
+  events:
+    row.expand:
+      - action: console.log
+    expanded.rows.change:
+      - action: console.log
+  properties:
+    pagination: false
+    childrenColumnName: student
+    expandable:
+      defaultExpandAllRows: true
+    columns:
+      - dataIndex: name
+        key: name
+        title: Name
+      - dataIndex: age
+        key: age
+        title: Age
+      - dataIndex: address
+        key: address
+        title: Address
+    dataSource:
+      list:
+        - key: "1"
+          name: Jack
+          age: 18
+          address: Guangzhou
+          student:
+            - key: "11"
+              name: Alex
+              age: 20
+              address: Shanghai
+            - key: "12"
+              name: Lucy
+              age: 16
+              address: Yunnan
+            - key: "13"
+              name: Sam
+              age: 28
+              address: Guangzhou
+        - key: "2"
+          name: Bob
+          age: 35
+          address: Hainan
+          student:
+            - key: "21"
+              name: Ava
+              age: 23
+              address: Beijing
+            - key: "22"
+              name: Sophia
+              age: 20
+              address: Shanghai
+            - key: "23"
+              name: Charlotte
+              age: 33
+              address: Chongqing
+              student:
+                - key: "231"
+                  name: Mia
+                  age: 18
+                  address: Chengdu
+                - key: "232"
+                  name: Noah
+                  age: 38
+                  address: Hainan
+                - key: "233"
+                  name: William
+                  age: 16
+                  address: Taiwan
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+advanced/eo-next-table/tree
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-next-table children-column-name="student" id="brick-1"></eo-next-table>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.pagination = false;
+#   brick_1.expandable = {
+#     defaultExpandAllRows: true,
+#   };
+#   brick_1.columns = [
+#     {
+#       dataIndex: "name",
+#       key: "name",
+#       title: "Name",
+#     },
+#     {
+#       dataIndex: "age",
+#       key: "age",
+#       title: "Age",
+#     },
+#     {
+#       dataIndex: "address",
+#       key: "address",
+#       title: "Address",
+#     },
+#   ];
+#   brick_1.dataSource = {
+#     list: [
+#       {
+#         key: "1",
+#         name: "Jack",
+#         age: 18,
+#         address: "Guangzhou",
+#         student: [
+#           {
+#             key: "11",
+#             name: "Alex",
+#             age: 20,
+#             address: "Shanghai",
+#           },
+#           {
+#             key: "12",
+#             name: "Lucy",
+#             age: 16,
+#             address: "Yunnan",
+#           },
+#           {
+#             key: "13",
+#             name: "Sam",
+#             age: 28,
+#             address: "Guangzhou",
+#           },
+#         ],
+#       },
+#       {
+#         key: "2",
+#         name: "Bob",
+#         age: 35,
+#         address: "Hainan",
+#         student: [
+#           {
+#             key: "21",
+#             name: "Ava",
+#             age: 23,
+#             address: "Beijing",
+#           },
+#           {
+#             key: "22",
+#             name: "Sophia",
+#             age: 20,
+#             address: "Shanghai",
+#           },
+#           {
+#             key: "23",
+#             name: "Charlotte",
+#             age: 33,
+#             address: "Chongqing",
+#             student: [
+#               {
+#                 key: "231",
+#                 name: "Mia",
+#                 age: 18,
+#                 address: "Chengdu",
+#               },
+#               {
+#                 key: "232",
+#                 name: "Noah",
+#                 age: 38,
+#                 address: "Hainan",
+#               },
+#               {
+#                 key: "233",
+#                 name: "William",
+#                 age: 16,
+#                 address: "Taiwan",
+#               },
+#             ],
+#           },
+#         ],
+#       },
+#     ],
+#   };
+#   brick_1.addEventListener("row.expand", (e) => {
+#     console.log(e.detail);
+#   });
+#   brick_1.addEventListener("expanded.rows.change", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+#### With Row Selection
+
+设置 rowSelection.checkStrictly 来控制父子数据选中状态是否关联。注意，关联的时候，节点勾选传导策略为【只勾选可触达的可勾选节点】
+
+```yaml preview
+- brick: eo-next-table
+  events:
+    row.select:
+      - action: console.log
+  properties:
+    pagination: false
+    childrenColumnName: student
+    rowSelection:
+      checkStrictly: false
+      indentSize: 50
+      rowDisabled: <% DATA.rowData.age > 30 %>
+    columns:
+      - dataIndex: name
+        key: name
+        title: Name
+      - dataIndex: age
+        key: age
+        title: Age
+      - dataIndex: address
+        key: address
+        title: Address
+    dataSource:
+      list:
+        - key: "1"
+          name: Jack
+          age: 18
+          address: Guangzhou
+          student:
+            - key: "11"
+              name: Alex
+              age: 20
+              address: Shanghai
+            - key: "12"
+              name: Lucy
+              age: 16
+              address: Yunnan
+            - key: "13"
+              name: Sam
+              age: 34
+              address: Guangzhou
+        - key: "2"
+          name: Bob
+          age: 27
+          address: Hainan
+          student:
+            - key: "21"
+              name: Ava
+              age: 23
+              address: Beijing
+            - key: "22"
+              name: Sophia
+              age: 20
+              address: Shanghai
+            - key: "23"
+              name: Charlotte
+              age: 35
+              address: Chongqing
+              student:
+                - key: "231"
+                  name: Mia
+                  age: 18
+                  address: Chengdu
+                - key: "232"
+                  name: Noah
+                  age: 38
+                  address: Hainan
+                - key: "233"
+                  name: William
+                  age: 16
+                  address: Taiwan
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+advanced/eo-next-table/tree (2)
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-next-table children-column-name="student" id="brick-1"></eo-next-table>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.pagination = false;
+#   brick_1.rowSelection = {
+#     checkStrictly: false,
+#     indentSize: 50,
+#     rowDisabled: "<% DATA.rowData.age > 30 %>",
+#   };
+#   brick_1.columns = [
+#     {
+#       dataIndex: "name",
+#       key: "name",
+#       title: "Name",
+#     },
+#     {
+#       dataIndex: "age",
+#       key: "age",
+#       title: "Age",
+#     },
+#     {
+#       dataIndex: "address",
+#       key: "address",
+#       title: "Address",
+#     },
+#   ];
+#   brick_1.dataSource = {
+#     list: [
+#       {
+#         key: "1",
+#         name: "Jack",
+#         age: 18,
+#         address: "Guangzhou",
+#         student: [
+#           {
+#             key: "11",
+#             name: "Alex",
+#             age: 20,
+#             address: "Shanghai",
+#           },
+#           {
+#             key: "12",
+#             name: "Lucy",
+#             age: 16,
+#             address: "Yunnan",
+#           },
+#           {
+#             key: "13",
+#             name: "Sam",
+#             age: 34,
+#             address: "Guangzhou",
+#           },
+#         ],
+#       },
+#       {
+#         key: "2",
+#         name: "Bob",
+#         age: 27,
+#         address: "Hainan",
+#         student: [
+#           {
+#             key: "21",
+#             name: "Ava",
+#             age: 23,
+#             address: "Beijing",
+#           },
+#           {
+#             key: "22",
+#             name: "Sophia",
+#             age: 20,
+#             address: "Shanghai",
+#           },
+#           {
+#             key: "23",
+#             name: "Charlotte",
+#             age: 35,
+#             address: "Chongqing",
+#             student: [
+#               {
+#                 key: "231",
+#                 name: "Mia",
+#                 age: 18,
+#                 address: "Chengdu",
+#               },
+#               {
+#                 key: "232",
+#                 name: "Noah",
+#                 age: 38,
+#                 address: "Hainan",
+#               },
+#               {
+#                 key: "233",
+#                 name: "William",
+#                 age: 16,
+#                 address: "Taiwan",
+#               },
+#             ],
+#           },
+#         ],
+#       },
+#     ],
+#   };
+#   brick_1.addEventListener("row.select", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+#### With Front Search
+
+```yaml preview
+- brick: eo-search-bar
+  children:
+    - brick: eo-search
+      slot: start
+      properties:
+        placeholder: Enter keyword
+      events:
+        search:
+          target: "#table"
+          method: search
+          args:
+            - q: <% EVENT.detail %>
+- brick: eo-next-table
+  properties:
+    id: table
+    searchFields:
+      - name
+      - age
+      - address
+    pagination: false
+    childrenColumnName: student
+    columns:
+      - dataIndex: name
+        key: name
+        title: Name
+      - dataIndex: age
+        key: age
+        title: Age
+      - dataIndex: address
+        key: address
+        title: Address
+    dataSource:
+      list:
+        - key: "1"
+          name: Jack
+          age: 18
+          address: Guangzhou
+          student:
+            - key: "11"
+              name: Alex
+              age: 20
+              address: Shanghai
+            - key: "12"
+              name: Lucy
+              age: 16
+              address: Yunnan
+            - key: "13"
+              name: Sam
+              age: 34
+              address: Guangzhou
+        - key: "2"
+          name: Bob
+          age: 27
+          address: Hainan
+          student:
+            - key: "21"
+              name: Ava
+              age: 23
+              address: Beijing
+            - key: "22"
+              name: Sophia
+              age: 20
+              address: Shanghai
+            - key: "23"
+              name: Charlotte
+              age: 35
+              address: Chongqing
+              student:
+                - key: "231"
+                  name: Mia
+                  age: 18
+                  address: Chengdu
+                - key: "232"
+                  name: Noah
+                  age: 38
+                  address: Hainan
+                - key: "233"
+                  name: William
+                  age: 16
+                  address: Taiwan
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+advanced/eo-next-table/tree (3)
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-search-bar>
+#   <eo-search slot="start" placeholder="Enter keyword" id="brick-1"></eo-search>
+# </eo-search-bar>
+# <eo-next-table children-column-name="student" id="table"></eo-next-table>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("search", (e) => {
+#     const brick = document.querySelector("#table");
+#     brick.search({ q: "<% EVENT.detail %>" });
+#   });
+# 
+#   const table = document.getElementById("table");
+#   table.searchFields = ["name", "age", "address"];
+#   table.pagination = false;
+#   table.columns = [
+#     {
+#       dataIndex: "name",
+#       key: "name",
+#       title: "Name",
+#     },
+#     {
+#       dataIndex: "age",
+#       key: "age",
+#       title: "Age",
+#     },
+#     {
+#       dataIndex: "address",
+#       key: "address",
+#       title: "Address",
+#     },
+#   ];
+#   table.dataSource = {
+#     list: [
+#       {
+#         key: "1",
+#         name: "Jack",
+#         age: 18,
+#         address: "Guangzhou",
+#         student: [
+#           {
+#             key: "11",
+#             name: "Alex",
+#             age: 20,
+#             address: "Shanghai",
+#           },
+#           {
+#             key: "12",
+#             name: "Lucy",
+#             age: 16,
+#             address: "Yunnan",
+#           },
+#           {
+#             key: "13",
+#             name: "Sam",
+#             age: 34,
+#             address: "Guangzhou",
+#           },
+#         ],
+#       },
+#       {
+#         key: "2",
+#         name: "Bob",
+#         age: 27,
+#         address: "Hainan",
+#         student: [
+#           {
+#             key: "21",
+#             name: "Ava",
+#             age: 23,
+#             address: "Beijing",
+#           },
+#           {
+#             key: "22",
+#             name: "Sophia",
+#             age: 20,
+#             address: "Shanghai",
+#           },
+#           {
+#             key: "23",
+#             name: "Charlotte",
+#             age: 35,
+#             address: "Chongqing",
+#             student: [
+#               {
+#                 key: "231",
+#                 name: "Mia",
+#                 age: 18,
+#                 address: "Chengdu",
+#               },
+#               {
+#                 key: "232",
+#                 name: "Noah",
+#                 age: 38,
+#                 address: "Hainan",
+#               },
+#               {
+#                 key: "233",
+#                 name: "William",
+#                 age: 16,
+#                 address: "Taiwan",
+#               },
+#             ],
+#           },
+#         ],
+#       },
+#     ],
+#   };
+# </script>
+# 
+```
+
+### Dynamic Columns
+
+```yaml preview
+brick: eo-next-table
+properties:
+  cell:
+    useBrick:
+      - if: <% DATA.columnKey !== '01-13' %>
+        brick: em
+        properties:
+          textContent: <% DATA.cellData %>
+      - if: <% DATA.columnKey === '01-13' %>
+        brick: del
+        properties:
+          textContent: <% DATA.cellData %>
+    header:
+      useBrick:
+        brick: em
+        properties:
+          textContent: <% DATA.title %>
+  # Dynamic columns, such as by dates
+  columns: <% CTX.dates %>
+  dataSource:
+    list:
+      - "01-11": "abc"
+        "01-12": "def"
+        "01-13": "ghi"
+        "01-14": "jkl"
+      - "01-11": "123"
+        "01-12": "345"
+        "01-13": "789"
+        "01-14": "-"
+context:
+  - name: dates
+    value: |
+      <%
+        new Array(4).fill(null).map(
+          (d, i) => moment('2023-01-11').add(i, 'days').format('MM-DD')
+        ).map((key) => ({
+          dataIndex: key,
+          key,
+          title: key,
+        }))
+      %>
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+advanced/eo-next-table/dynamic columns
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-next-table id="brick-1"></eo-next-table>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.cell = {
+#     useBrick: [
+#       {
+#         if: "<% DATA.columnKey !== '01-13' %>",
+#         brick: "em",
+#         properties: {
+#           textContent: "<% DATA.cellData %>",
+#         },
+#       },
+#       {
+#         if: "<% DATA.columnKey === '01-13' %>",
+#         brick: "del",
+#         properties: {
+#           textContent: "<% DATA.cellData %>",
+#         },
+#       },
+#     ],
+#     header: {
+#       useBrick: {
+#         brick: "em",
+#         properties: {
+#           textContent: "<% DATA.title %>",
+#         },
+#       },
+#     },
+#   };
+#   brick_1.columns = "<% CTX.dates %>";
+#   brick_1.dataSource = {
+#     list: [
+#       {
+#         "01-11": "abc",
+#         "01-12": "def",
+#         "01-13": "ghi",
+#         "01-14": "jkl",
+#       },
+#       {
+#         "01-11": "123",
+#         "01-12": "345",
+#         "01-13": "789",
+#         "01-14": "-",
+#       },
+#     ],
+#   };
+# </script>
+# 
+```
+
+### Cell status
+
+```yaml preview
+- brick: eo-next-table
+  properties:
+    columns:
+      - dataIndex: name
+        key: name
+        title: Name
+        cellStatus:
+          dataIndex: age
+          mapping:
+            - value: 18
+              leftBorderColor: green
+            - value: 20
+              leftBorderColor: blue
+            - value: 28
+              leftBorderColor: red
+      - dataIndex: age
+        key: age
+        title: Age
+      - dataIndex: address
+        key: address
+        title: Address
+    dataSource:
+      pageSize: 5
+      page: 1
+      list:
+        - key: 0
+          name: Jack
+          age: 18
+          address: Guangzhou
+        - key: 1
+          name: Alex
+          age: 20
+          address: Shanghai
+        - key: 3
+          name: Sam
+          age: 28
+          address: Shenzhen
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+advanced/eo-next-table/cell status
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-next-table id="brick-1"></eo-next-table>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.columns = [
+#     {
+#       dataIndex: "name",
+#       key: "name",
+#       title: "Name",
+#       cellStatus: {
+#         dataIndex: "age",
+#         mapping: [
+#           {
+#             value: 18,
+#             leftBorderColor: "green",
+#           },
+#           {
+#             value: 20,
+#             leftBorderColor: "blue",
+#           },
+#           {
+#             value: 28,
+#             leftBorderColor: "red",
+#           },
+#         ],
+#       },
+#     },
+#     {
+#       dataIndex: "age",
+#       key: "age",
+#       title: "Age",
+#     },
+#     {
+#       dataIndex: "address",
+#       key: "address",
+#       title: "Address",
+#     },
+#   ];
+#   brick_1.dataSource = {
+#     pageSize: 5,
+#     page: 1,
+#     list: [
+#       {
+#         key: 0,
+#         name: "Jack",
+#         age: 18,
+#         address: "Guangzhou",
+#       },
+#       {
+#         key: 1,
+#         name: "Alex",
+#         age: 20,
+#         address: "Shanghai",
+#       },
+#       {
+#         key: 3,
+#         name: "Sam",
+#         age: 28,
+#         address: "Shenzhen",
+#       },
+#     ],
+#   };
+# </script>
+# 
+```
+
+### Theme variant Elevo
+
+```yaml preview
+# Use this container to emulate background
+brick: ai-portal.home-container
+properties:
+  style:
+    padding: 2em
+    backgroundColor: "#d8d8d8"
+children:
+  - brick: eo-next-table
+    properties:
+      themeVariant: elevo
+      pagination: false
+      columns:
+        - dataIndex: name
+          key: name
+          title: Name
+        - dataIndex: age
+          key: age
+          title: Age
+        - dataIndex: address
+          key: address
+          title: Address
+      dataSource:
+        pageSize: 5
+        page: 1
+        list:
+          - key: 0
+            name: Jack
+            age: 18
+            address: Guangzhou
+          - key: 1
+            name: Alex
+            age: 20
+            address: Shanghai
+          - key: 3
+            name: Sam
+            age: 28
+            address: Shenzhen
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+advanced/eo-next-table/theme variant elevo
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <ai-portal.home-container style="padding: 2em; background-color: #d8d8d8">
+#   <eo-next-table theme-variant="elevo" id="brick-1"></eo-next-table>
+# </ai-portal.home-container>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.pagination = false;
+#   brick_1.columns = [
+#     {
+#       dataIndex: "name",
+#       key: "name",
+#       title: "Name",
+#     },
+#     {
+#       dataIndex: "age",
+#       key: "age",
+#       title: "Age",
+#     },
+#     {
+#       dataIndex: "address",
+#       key: "address",
+#       title: "Address",
+#     },
+#   ];
+#   brick_1.dataSource = {
+#     pageSize: 5,
+#     page: 1,
+#     list: [
+#       {
+#         key: 0,
+#         name: "Jack",
+#         age: 18,
+#         address: "Guangzhou",
+#       },
+#       {
+#         key: 1,
+#         name: "Alex",
+#         age: 20,
+#         address: "Shanghai",
+#       },
+#       {
+#         key: 3,
+#         name: "Sam",
+#         age: 28,
+#         address: "Shenzhen",
+#       },
+#     ],
+#   };
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["Column","RecordType","ColumnProp","WithUseBrick","CellStatus","CellStatusMap","CellConfig","DataSource","PaginationType","PaginationConfig","Sort","RowSelectionType","RowSelectionConfig","ExpandableType","ExpandableConfig","TableScroll","PageOrPageSizeChangeEventDetail","RowSelectEventDetail","RowExpandEventDetail","RowDragEventDetail"]}>
+  <BrickDocProperties properties={[{"name":"rowKey","description":"指定表格行的 key","default":"\"key\"","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"columns","description":"列定义","attribute":false,"type":"Column[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"Column"}}}},{"name":"cell","description":"单元格","attribute":false,"type":"CellConfig","annotation":{"type":"reference","typeName":{"type":"identifier","name":"CellConfig"}}},{"name":"dataSource","description":"数据源","attribute":false,"type":"DataSource","annotation":{"type":"reference","typeName":{"type":"identifier","name":"DataSource"}}},{"name":"frontSearch","description":"是否前端搜索","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"pagination","description":"分页配置","attribute":false,"type":"PaginationType","annotation":{"type":"reference","typeName":{"type":"identifier","name":"PaginationType"}}},{"name":"loading","description":"显示加载中状态","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"multiSort","description":"是否支持多列排序，前端搜索时需设置 column.sortPriority 优先级","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"sort","description":"排序信息","attribute":false,"type":"Sort | Sort[]","annotation":{"type":"union","types":[{"type":"reference","typeName":{"type":"identifier","name":"Sort"}},{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"Sort"}}}]}},{"name":"rowSelection","description":"表格行可选择配置","attribute":false,"type":"RowSelectionType","annotation":{"type":"reference","typeName":{"type":"identifier","name":"RowSelectionType"}}},{"name":"selectedRowKeys","description":"选中项的 key","attribute":false,"type":"(string | number)[]","annotation":{"type":"array","elementType":{"type":"parenthesizedType","annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"number"}]}}}},{"name":"hiddenColumns","description":"隐藏的列（输入对应的 column.key）","attribute":false,"type":"(string | number)[]","annotation":{"type":"array","elementType":{"type":"parenthesizedType","annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"number"}]}}}},{"name":"expandable","description":"表格行展开配置","attribute":false,"type":"ExpandableType","annotation":{"type":"reference","typeName":{"type":"identifier","name":"ExpandableType"}}},{"name":"expandedRowKeys","description":"展开项的 key","attribute":false,"type":"(string | number)[]","annotation":{"type":"array","elementType":{"type":"parenthesizedType","annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"number"}]}}}},{"name":"childrenColumnName","description":"树形结构的列名","default":"\"children\"","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"rowDraggable","description":"表格行拖拽配置","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"rowClickable","description":"表格行可点击（激活鼠标手势）","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"searchFields","description":"进行前端搜索的字段，支持嵌套的写法。不配置的时候默认为对所有 column.dataIndex 进行前端搜索","attribute":false,"type":"(string | string[])[]","annotation":{"type":"array","elementType":{"type":"parenthesizedType","annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"array","elementType":{"type":"keyword","value":"string"}}]}}}},{"name":"size","description":"表格大小","default":"\"large\"","type":"TableProps<RecordType>[\"size\"]","annotation":{"type":"indexedAccess","objectType":{"type":"reference","typeName":{"type":"identifier","name":"TableProps"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"reference","typeName":{"type":"identifier","name":"RecordType"}}]}},"indexType":{"type":"jsLiteral","value":"size"}}},{"name":"showHeader","description":"是否显示表头","default":"true","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"bordered","description":"是否显示边框","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"scrollConfig","description":"滚动配置","default":"{ x: true }","attribute":false,"type":"TableScroll","annotation":{"type":"reference","typeName":{"type":"identifier","name":"TableScroll"}}},{"name":"optimizedColumns","description":"优化渲染的列（输入对应的 column.key）","attribute":false,"type":"(string | number)[]","annotation":{"type":"array","elementType":{"type":"parenthesizedType","annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"number"}]}}}},{"name":"themeVariant","description":"主题变体","type":"\"default\" | \"elevo\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"default"},{"type":"jsLiteral","value":"elevo"}]}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={["Column","RecordType","ColumnProp","WithUseBrick","CellStatus","CellStatusMap","CellConfig","DataSource","PaginationType","PaginationConfig","Sort","RowSelectionType","RowSelectionConfig","ExpandableType","ExpandableConfig","TableScroll","PageOrPageSizeChangeEventDetail","RowSelectEventDetail","RowExpandEventDetail","RowDragEventDetail"]}>
+  <BrickDocEvents events={[{"name":"page.change","description":"page 或 pageSize 改变的回调","detail":{"description":"改变后的页码及每页条数","type":"PageOrPageSizeChangeEventDetail","annotation":{"type":"reference","typeName":{"type":"identifier","name":"PageOrPageSizeChangeEventDetail"}}}},{"name":"page.size.change","description":"pageSize 变化的回调","deprecated":"统一用 `page.change` 事件","detail":{"description":"改变后的页码及每页条数","type":"PageOrPageSizeChangeEventDetail","annotation":{"type":"reference","typeName":{"type":"identifier","name":"PageOrPageSizeChangeEventDetail"}}}},{"name":"sort.change","description":"排序变化的回调","detail":{"description":"当前排序的信息","type":"Sort | Sort[] | undefined","annotation":{"type":"union","types":[{"type":"reference","typeName":{"type":"identifier","name":"Sort"}},{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"Sort"}}},{"type":"keyword","value":"undefined"}]}}},{"name":"row.click","description":"行点击时的回调","detail":{"description":"被点击的行数据","type":"RecordType","annotation":{"type":"reference","typeName":{"type":"identifier","name":"RecordType"}}}},{"name":"row.select","description":"行选中项发生变化时的回调","detail":{"description":"改变后的 rowKey 及行数据","type":"RowSelectEventDetail","annotation":{"type":"reference","typeName":{"type":"identifier","name":"RowSelectEventDetail"}}}},{"name":"row.select.v2","description":"行选中项发生变化时的回调（v2 版本）","detail":{"description":"改变后的行数据","type":"RecordType[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"RecordType"}}}}},{"name":"row.expand","description":"点击展开图标时触发","detail":{"description":"当前行的展开情况及数据","type":"RowExpandEventDetail","annotation":{"type":"reference","typeName":{"type":"identifier","name":"RowExpandEventDetail"}}}},{"name":"expanded.rows.change","description":"展开的行变化时触发","detail":{"description":"所有展开行的 key","type":"(string | number)[]","annotation":{"type":"array","elementType":{"type":"parenthesizedType","annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"number"}]}}}}},{"name":"row.drag","description":"表格行拖拽结束发生的事件","detail":{"description":"重新排序的行数据、拖拽的行数据、放下位置的行数据","type":"RowDragEventDetail","annotation":{"type":"reference","typeName":{"type":"identifier","name":"RowDragEventDetail"}}}}]} />
+</TypeReferencesContext.Provider>
+
+## Methods
+
+<TypeReferencesContext.Provider value={["Column","RecordType","ColumnProp","WithUseBrick","CellStatus","CellStatusMap","CellConfig","DataSource","PaginationType","PaginationConfig","Sort","RowSelectionType","RowSelectionConfig","ExpandableType","ExpandableConfig","TableScroll","PageOrPageSizeChangeEventDetail","RowSelectEventDetail","RowExpandEventDetail","RowDragEventDetail"]}>
+  <BrickDocMethods methods={[{"name":"search","params":[{"name":"params","type":"{ q: string }","annotation":{"type":"typeLiteral","members":[{"type":"propertySignature","key":{"type":"identifier","name":"q"},"annotation":{"type":"keyword","value":"string"},"computed":false}]}}],"description":"前端搜索","returns":{}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"Column","body":[],"extends":[{"type":"expressionWithTypeArguments","expression":{"type":"identifier","name":"Pick"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"reference","typeName":{"type":"identifier","name":"ColumnType"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"reference","typeName":{"type":"identifier","name":"RecordType"}}]}},{"type":"union","types":[{"type":"jsLiteral","value":"align"},{"type":"jsLiteral","value":"colSpan"},{"type":"jsLiteral","value":"dataIndex"},{"type":"jsLiteral","value":"ellipsis"},{"type":"jsLiteral","value":"fixed"},{"type":"jsLiteral","value":"rowScope"},{"type":"jsLiteral","value":"showSorterTooltip"},{"type":"jsLiteral","value":"sortDirections"},{"type":"jsLiteral","value":"title"},{"type":"jsLiteral","value":"width"}]}]}},{"type":"expressionWithTypeArguments","expression":{"type":"identifier","name":"ColumnProp"}}]},{"type":"typeAlias","name":"RecordType","annotation":{"type":"reference","typeName":{"type":"identifier","name":"Record"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"keyword","value":"string"},{"type":"keyword","value":"any"}]}}},{"type":"interface","name":"ColumnProp","body":[{"type":"propertySignature","key":{"type":"identifier","name":"key"},"annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"number"}]},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"headerBrick"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"WithUseBrick"}},"optional":true,"computed":false,"description":"表头自定义展示构件"},{"type":"propertySignature","key":{"type":"identifier","name":"useBrick"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"UseBrickConf"}},"optional":true,"computed":false,"description":"内容自定义展示构件"},{"type":"propertySignature","key":{"type":"identifier","name":"cellColSpanKey"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false,"description":"记录表格列合并的值的 key"},{"type":"propertySignature","key":{"type":"identifier","name":"cellRowSpanKey"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false,"description":"记录表格行合并的值的 key"},{"type":"propertySignature","key":{"type":"identifier","name":"sortable"},"annotation":{"type":"keyword","value":"boolean"},"optional":true,"computed":false,"description":"是否可排序"},{"type":"propertySignature","key":{"type":"identifier","name":"sortPriority"},"annotation":{"type":"keyword","value":"number"},"optional":true,"computed":false,"description":"前端搜索时，多列排序优先级，数字越大优先级越高"},{"type":"propertySignature","key":{"type":"identifier","name":"verticalAlign"},"annotation":{"type":"indexedAccess","objectType":{"type":"reference","typeName":{"type":"identifier","name":"CSSProperties"}},"indexType":{"type":"jsLiteral","value":"verticalAlign"}},"optional":true,"computed":false,"description":"垂直对齐方式"},{"type":"propertySignature","key":{"type":"identifier","name":"cellStyle"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"CSSProperties"}},"optional":true,"computed":false,"description":"单元格样式"},{"type":"propertySignature","key":{"type":"identifier","name":"headerStyle"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"CSSProperties"}},"optional":true,"computed":false,"description":"头部单元格样式"},{"type":"propertySignature","key":{"type":"identifier","name":"cellStatus"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"CellStatus"}},"optional":true,"computed":false}]},{"type":"interface","name":"WithUseBrick","body":[{"type":"propertySignature","key":{"type":"identifier","name":"useBrick"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"UseBrickConf"}},"optional":true,"computed":false}]},{"type":"interface","name":"CellStatus","body":[{"type":"propertySignature","key":{"type":"identifier","name":"dataIndex"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"mapping"},"annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"CellStatusMap"}}},"computed":false}]},{"type":"interface","name":"CellStatusMap","body":[{"type":"propertySignature","key":{"type":"identifier","name":"value"},"annotation":{"type":"keyword","value":"unknown"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"leftBorderColor"},"annotation":{"type":"keyword","value":"string"},"computed":false}]},{"type":"interface","name":"CellConfig","body":[{"type":"propertySignature","key":{"type":"identifier","name":"header"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"WithUseBrick"}},"optional":true,"computed":false}],"extends":[{"type":"expressionWithTypeArguments","expression":{"type":"identifier","name":"WithUseBrick"}}]},{"type":"interface","name":"DataSource","body":[{"type":"propertySignature","key":{"type":"identifier","name":"list"},"annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"RecordType"}}},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"total"},"annotation":{"type":"keyword","value":"number"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"page"},"annotation":{"type":"keyword","value":"number"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"pageSize"},"annotation":{"type":"keyword","value":"number"},"optional":true,"computed":false}]},{"type":"typeAlias","name":"PaginationType","annotation":{"type":"union","types":[{"type":"jsLiteral","value":false},{"type":"reference","typeName":{"type":"identifier","name":"PaginationConfig"}},{"type":"keyword","value":"undefined"}]}},{"type":"interface","name":"PaginationConfig","body":[{"type":"propertySignature","key":{"type":"identifier","name":"showTotal"},"annotation":{"type":"keyword","value":"boolean"},"optional":true,"computed":false}],"extends":[{"type":"expressionWithTypeArguments","expression":{"type":"identifier","name":"Pick"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"reference","typeName":{"type":"identifier","name":"TablePaginationConfig"}},{"type":"union","types":[{"type":"jsLiteral","value":"disabled"},{"type":"jsLiteral","value":"hideOnSinglePage"},{"type":"jsLiteral","value":"pageSizeOptions"},{"type":"jsLiteral","value":"responsive"},{"type":"jsLiteral","value":"showLessItems"},{"type":"jsLiteral","value":"showQuickJumper"},{"type":"jsLiteral","value":"showSizeChanger"},{"type":"jsLiteral","value":"showTitle"},{"type":"jsLiteral","value":"simple"},{"type":"jsLiteral","value":"size"}]}]}}]},{"type":"interface","name":"Sort","body":[{"type":"propertySignature","key":{"type":"identifier","name":"columnKey"},"annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"number"}]},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"order"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"SortOrder"}},"optional":true,"computed":false}]},{"type":"typeAlias","name":"RowSelectionType","annotation":{"type":"union","types":[{"type":"keyword","value":"boolean"},{"type":"reference","typeName":{"type":"identifier","name":"RowSelectionConfig"}},{"type":"keyword","value":"undefined"}]}},{"type":"interface","name":"RowSelectionConfig","body":[{"type":"propertySignature","key":{"type":"identifier","name":"showSelectInfo"},"annotation":{"type":"keyword","value":"boolean"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"rowDisabled"},"annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"boolean"}]},"optional":true,"computed":false}],"extends":[{"type":"expressionWithTypeArguments","expression":{"type":"identifier","name":"Pick"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"reference","typeName":{"type":"identifier","name":"TableRowSelection"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"reference","typeName":{"type":"identifier","name":"RecordType"}}]}},{"type":"union","types":[{"type":"jsLiteral","value":"columnWidth"},{"type":"jsLiteral","value":"fixed"},{"type":"jsLiteral","value":"hideSelectAll"},{"type":"jsLiteral","value":"preserveSelectedRowKeys"},{"type":"jsLiteral","value":"type"},{"type":"jsLiteral","value":"checkStrictly"}]}]}}]},{"type":"typeAlias","name":"ExpandableType","annotation":{"type":"union","types":[{"type":"keyword","value":"boolean"},{"type":"reference","typeName":{"type":"identifier","name":"ExpandableConfig"}},{"type":"keyword","value":"undefined"}]}},{"type":"interface","name":"ExpandableConfig","body":[{"type":"propertySignature","key":{"type":"identifier","name":"expandIconBrick"},"annotation":{"type":"typeLiteral","members":[{"type":"propertySignature","key":{"type":"identifier","name":"useBrick"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"UseBrickConf"}},"computed":false}]},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"expandedRowBrick"},"annotation":{"type":"typeLiteral","members":[{"type":"propertySignature","key":{"type":"identifier","name":"useBrick"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"UseBrickConf"}},"computed":false}]},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"rowExpandable"},"annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"boolean"}]},"optional":true,"computed":false}],"extends":[{"type":"expressionWithTypeArguments","expression":{"type":"identifier","name":"Pick"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"reference","typeName":{"type":"identifier","name":"TableExpandableConfig"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"reference","typeName":{"type":"identifier","name":"RecordType"}}]}},{"type":"union","types":[{"type":"jsLiteral","value":"columnWidth"},{"type":"jsLiteral","value":"expandRowByClick"},{"type":"jsLiteral","value":"defaultExpandAllRows"},{"type":"jsLiteral","value":"fixed"},{"type":"jsLiteral","value":"showExpandColumn"}]}]}}]},{"type":"typeAlias","name":"TableScroll","annotation":{"type":"union","types":[{"type":"indexedAccess","objectType":{"type":"reference","typeName":{"type":"identifier","name":"TableProps"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"reference","typeName":{"type":"identifier","name":"RecordType"}}]}},"indexType":{"type":"jsLiteral","value":"scroll"}},{"type":"jsLiteral","value":false}]}},{"type":"interface","name":"PageOrPageSizeChangeEventDetail","body":[{"type":"propertySignature","key":{"type":"identifier","name":"page"},"annotation":{"type":"keyword","value":"number"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"pageSize"},"annotation":{"type":"keyword","value":"number"},"computed":false}]},{"type":"interface","name":"RowSelectEventDetail","body":[{"type":"propertySignature","key":{"type":"identifier","name":"keys"},"annotation":{"type":"array","elementType":{"type":"parenthesizedType","annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"number"}]}}},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"rows"},"annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"RecordType"}}},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"info"},"annotation":{"type":"typeLiteral","members":[{"type":"propertySignature","key":{"type":"identifier","name":"type"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"RowSelectMethod"}},"computed":false}]},"computed":false}]},{"type":"interface","name":"RowExpandEventDetail","body":[{"type":"propertySignature","key":{"type":"identifier","name":"expanded"},"annotation":{"type":"keyword","value":"boolean"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"record"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"RecordType"}},"computed":false}]},{"type":"interface","name":"RowDragEventDetail","body":[{"type":"propertySignature","key":{"type":"identifier","name":"list"},"annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"RecordType"}}},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"active"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"RecordType"}},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"over"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"RecordType"}},"computed":false}]}]} />
+

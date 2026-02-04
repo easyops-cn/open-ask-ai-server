@@ -1,0 +1,129 @@
+---
+description: "<data-view.cabinet-container>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"data-view.cabinet-container"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+data-view.cabinet-container
+
+## Examples
+
+### Basic
+
+```yaml preview
+- brick: data-view.cabinet-container
+  properties:
+    customTitle: 集群容器
+    data:
+      - type: physical-machine
+        nodeTitle: "255.255.255"
+      - type: physical-machine
+        nodeTitle: "255.255.255"
+    style:
+      width: 400px
+      height: 500px
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+data-view/cabinet-container/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <data-view.cabinet-container
+#   custom-title="集群容器"
+#   style="width: 400px; height: 500px"
+#   id="brick-1"
+# ></data-view.cabinet-container>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.data = [
+#     {
+#       type: "physical-machine",
+#       nodeTitle: "255.255.255",
+#     },
+#     {
+#       type: "physical-machine",
+#       nodeTitle: "255.255.255",
+#     },
+#   ];
+# </script>
+# 
+```
+
+### Status
+
+```yaml preview
+- brick: data-view.cabinet-container
+  properties:
+    customTitle: 集群容器
+    status: active
+    data:
+      - type: physical-machine
+        nodeTitle: "255.255.255"
+      - type: physical-machine
+        nodeTitle: "255.255.255"
+    style:
+      width: 400px
+      height: 500px
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+data-view/cabinet-container/status
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <data-view.cabinet-container
+#   custom-title="集群容器"
+#   status="active"
+#   style="width: 400px; height: 500px"
+#   id="brick-1"
+# ></data-view.cabinet-container>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.data = [
+#     {
+#       type: "physical-machine",
+#       nodeTitle: "255.255.255",
+#     },
+#     {
+#       type: "physical-machine",
+#       nodeTitle: "255.255.255",
+#     },
+#   ];
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["ContainerType","CabinetNodeProps","ClickEventDataType"]}>
+  <BrickDocProperties properties={[{"name":"type","description":"","default":"\"host\"","attribute":false,"type":"ContainerType","annotation":{"type":"reference","typeName":{"type":"identifier","name":"ContainerType"}}},{"name":"data","description":"","default":"[]","attribute":false,"type":"CabinetNodeProps[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"CabinetNodeProps"}}}},{"name":"status","description":"","type":"\"active\" | \"faded\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"active"},{"type":"jsLiteral","value":"faded"}]}},{"name":"customTitle","description":"","type":"string","annotation":{"type":"keyword","value":"string"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={["ContainerType","CabinetNodeProps","ClickEventDataType"]}>
+  <BrickDocEvents events={[{"name":"container.click","description":"","detail":{"description":null,"type":"ClickEventDataType","annotation":{"type":"reference","typeName":{"type":"identifier","name":"ClickEventDataType"}}}},{"name":"container.dbclick","description":"","detail":{"description":null,"type":"ClickEventDataType","annotation":{"type":"reference","typeName":{"type":"identifier","name":"ClickEventDataType"}}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"typeAlias","name":"ContainerType","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"host"},{"type":"jsLiteral","value":"k8s"},{"type":"jsLiteral","value":"k8s-blue"}]}},{"type":"interface","name":"CabinetNodeProps","body":[{"type":"propertySignature","key":{"type":"identifier","name":"type"},"annotation":{"type":"union","types":[{"type":"jsLiteral","value":"container-group"},{"type":"jsLiteral","value":"physical-machine"},{"type":"jsLiteral","value":"virtual-machine"},{"type":"jsLiteral","value":"pod"}]},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"nodeTitle"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"status"},"annotation":{"type":"union","types":[{"type":"jsLiteral","value":"active"},{"type":"jsLiteral","value":"faded"}]},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"isAlert"},"annotation":{"type":"keyword","value":"boolean"},"optional":true,"computed":false}]},{"type":"interface","name":"ClickEventDataType","body":[{"type":"propertySignature","key":{"type":"identifier","name":"type"},"annotation":{"type":"union","types":[{"type":"jsLiteral","value":"node"},{"type":"jsLiteral","value":"container"}]},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"data"},"annotation":{"type":"union","types":[{"type":"reference","typeName":{"type":"identifier","name":"CabinetNodeProps"}},{"type":"keyword","value":"undefined"}]},"computed":false}]}]} />
+

@@ -1,0 +1,63 @@
+---
+description: "<data-view.modern-style-page-title>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"data-view.modern-style-page-title"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+现代风格的页面标题构件
+
+## Examples
+
+### Basic
+
+```yaml preview
+- brick: data-view.modern-style-page-title
+  properties:
+    pageTitle: XX应用大屏
+    description: "- APPLICATION HEALTH MONITORING SCREEN -"
+    style:
+      display: block
+      background-color: "#1c1e21"
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+data-view/modern-style-page-title/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <data-view.modern-style-page-title
+#   page-title="XX应用大屏"
+#   description="- APPLICATION HEALTH MONITORING SCREEN -"
+#   style="display: block; background-color: #1c1e21"
+# ></data-view.modern-style-page-title>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocProperties properties={[{"name":"pageTitle","description":"","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"description","description":"","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"backgroundStyle","description":"","attribute":false,"type":"CSSProperties","annotation":{"type":"reference","typeName":{"type":"identifier","name":"CSSProperties"}}},{"name":"leftRoundStyle","description":"","attribute":false,"type":"CSSProperties","annotation":{"type":"reference","typeName":{"type":"identifier","name":"CSSProperties"}}},{"name":"rightRoundStyle","description":"","attribute":false,"type":"CSSProperties","annotation":{"type":"reference","typeName":{"type":"identifier","name":"CSSProperties"}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+
+

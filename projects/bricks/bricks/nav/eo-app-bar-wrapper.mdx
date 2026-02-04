@@ -1,0 +1,104 @@
+---
+description: "<eo-app-bar-wrapper>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-app-bar-wrapper"}
+  alias={["basic.app-bar-wrapper"]}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `eo-app-bar-wrapper`
+
+## Examples
+
+### Basic
+
+```yaml preview
+- brick: eo-app-bar-wrapper
+  properties:
+    position: static
+  slots:
+    left:
+      bricks:
+        - brick: div
+          properties:
+            textContent: Left Content
+      type: bricks
+    right:
+      bricks:
+        - brick: div
+          properties:
+            textContent: Right Content
+      type: bricks
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+nav/eo-app-bar-wrapper/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-app-bar-wrapper position="static">
+#   <div slot="left">Left Content</div>
+#   <div slot="right">Right Content</div>
+# </eo-app-bar-wrapper>
+# 
+```
+
+### DisplayCenter
+
+```yaml preview
+- brick: eo-app-bar-wrapper
+  properties:
+    position: static
+    displayCenter: true
+  slots:
+    left:
+      bricks:
+        - brick: div
+          properties:
+            textContent: Left Content
+      type: bricks
+    right:
+      bricks:
+        - brick: div
+          properties:
+            textContent: Right Content
+      type: bricks
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+nav/eo-app-bar-wrapper/displaycenter
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-app-bar-wrapper position="static" display-center>
+#   <div slot="left">Left Content</div>
+#   <div slot="right">Right Content</div>
+# </eo-app-bar-wrapper>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocProperties properties={[{"name":"isFixed","description":"是否固定定位。","deprecated":"使用 `position` 属性代替","default":"true","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"position","description":"设置定位方式：静态定位或固定定位。\n\n设置时优先级高于 `isFixed`。","default":"\"fixed\"","type":"\"static\" | \"fixed\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"static"},{"type":"jsLiteral","value":"fixed"}]}},{"name":"displayCenter","description":"居中显示","default":"false","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"extraAppBarContentStyle","description":"自定义样式","attribute":false,"type":"React.CSSProperties","annotation":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}}}]} />
+</TypeReferencesContext.Provider>
+
+## Slots
+
+<BrickDocSlots slots={[{"name":"left","description":"左侧内容区"},{"name":"right","description":"右侧内容区"}]} />
+
+
+
+
+
+
+
+
+

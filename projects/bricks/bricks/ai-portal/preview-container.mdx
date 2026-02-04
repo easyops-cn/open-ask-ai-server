@@ -1,0 +1,194 @@
+---
+description: "<ai-portal.preview-container>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"ai-portal.preview-container"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `ai-portal.preview-container`
+
+## Examples
+
+### Basic
+
+```yaml preview minHeight="600px"
+brick: ai-portal.preview-container
+properties:
+  style:
+    position: fixed
+    inset: 0
+    overflowY: auto
+  source: |
+    const RESPONSE = {
+      "list": [
+        {
+          "inode_usage": [
+            {
+              "total_inodes": 21162000,
+              "used_inodes": 1385716,
+              "free_inodes": 19776284,
+              "percent": "7%",
+              "device": "/dev/sda1",
+              "mount_point": "/"
+            },
+            {
+              "mount_point": "/boot",
+              "total_inodes": 524288,
+              "used_inodes": 333,
+              "free_inodes": 523955,
+              "percent": "1%",
+              "device": "/dev/vda1"
+            }
+          ],
+          "ip": "172.30.0.134",
+          "disk_usage": [
+            {
+              "total": "95.00GB",
+              "used": "85.00GB",
+              "free": "9.00GB",
+              "percent": "91%",
+              "rw_status": "rw",
+              "large_files": [
+                {
+                  "size": "1.00GB",
+                  "path": "/temp/1"
+                },
+                {
+                  "path": "/temp/2",
+                  "size": "759.00MB"
+                },
+                {
+                  "size": "360.00MB",
+                  "path": "/temp/3"
+                }
+              ],
+              "device": "/dev/sda1",
+              "mount_point": "/"
+            },
+            {
+              "rw_status": "rw",
+              "device": "/dev/vda1",
+              "mount_point": "/boot",
+              "total": "1014.00MB",
+              "used": "181.00MB",
+              "free": "834.00MB",
+              "percent": "18%"
+            }
+          ]
+        }
+      ]
+    };
+
+    export default (
+      <View title="磁盘使用情况">
+        {RESPONSE.list.map((item) => (
+          <Card title={item.ip}>
+            {/* 磁盘空间使用情况 */}
+            <Plaintext>磁盘空间使用</Plaintext>
+            <Table
+              dataSource={{ list: item.disk_usage }}
+              columns={[
+                { dataIndex: "device", key: "device", title: "设备" },
+                { dataIndex: "mount_point", key: "mount_point", title: "挂载点" },
+                { dataIndex: "total", key: "total", title: "总大小" },
+                { dataIndex: "used", key: "used", title: "已用空间" },
+                { dataIndex: "free", key: "free", title: "可用空间" },
+                { dataIndex: "percent", key: "percent", title: "使用率" },
+                { dataIndex: "rw_status", key: "rw_status", title: "读写状态" }
+              ]}
+              rowKey="device"
+              pagination={false}
+            />
+
+            {/* Inode 使用情况 */}
+            <Plaintext>Inode 使用情况</Plaintext>
+            <Table
+              dataSource={{ list: item.inode_usage }}
+              columns={[
+                { dataIndex: "device", key: "device", title: "设备" },
+                { dataIndex: "mount_point", key: "mount_point", title: "挂载点" },
+                { dataIndex: "total_inodes", key: "total_inodes", title: "Inode 总数" },
+                { dataIndex: "used_inodes", key: "used_inodes", title: "已用 Inode" },
+                { dataIndex: "free_inodes", key: "free_inodes", title: "空闲 Inode" },
+                {
+                  dataIndex: "percent", key: "percent", title: "使用率",
+                  render: (cell, record) => (
+                    // <Plaintext>{record.percent}%</Plaintext>
+                    `~${record.percent}`
+                  )
+                }
+              ]}
+              rowKey="device"
+              pagination={false}
+            />
+
+            {/* 大文件列表（仅当存在 large_files 且有内容时） */}
+            {item.disk_usage
+              .filter(disk => disk.large_files && disk.large_files.length > 0)
+              .map(disk =>
+                disk.large_files ? (
+                  <Fragment key={disk.device}>
+                    <Plaintext>{`大文件列表 (${disk.mount_point})`}</Plaintext>
+                    <Table
+                      dataSource={{ list: disk.large_files }}
+                      columns={[
+                        { dataIndex: "path", key: "path", title: "路径" },
+                        { dataIndex: "size", key: "size", title: "大小" }
+                      ]}
+                      rowKey="path"
+                      pagination={false}
+                    />
+                  </Fragment>
+                ) : null
+              )}
+          </Card>
+        ))}
+      </View>
+    );
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+ai-portal/preview-container/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <ai-portal.preview-container
+#   style="position: fixed; inset: 0; overflow-y: auto"
+#   id="brick-1"
+# ></ai-portal.preview-container>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.source =
+#     'const RESPONSE = {\n  "list": [\n    {\n      "inode_usage": [\n        {\n          "total_inodes": 21162000,\n          "used_inodes": 1385716,\n          "free_inodes": 19776284,\n          "percent": "7%",\n          "device": "/dev/sda1",\n          "mount_point": "/"\n        },\n        {\n          "mount_point": "/boot",\n          "total_inodes": 524288,\n          "used_inodes": 333,\n          "free_inodes": 523955,\n          "percent": "1%",\n          "device": "/dev/vda1"\n        }\n      ],\n      "ip": "172.30.0.134",\n      "disk_usage": [\n        {\n          "total": "95.00GB",\n          "used": "85.00GB",\n          "free": "9.00GB",\n          "percent": "91%",\n          "rw_status": "rw",\n          "large_files": [\n            {\n              "size": "1.00GB",\n              "path": "/temp/1"\n            },\n            {\n              "path": "/temp/2",\n              "size": "759.00MB"\n            },\n            {\n              "size": "360.00MB",\n              "path": "/temp/3"\n            }\n          ],\n          "device": "/dev/sda1",\n          "mount_point": "/"\n        },\n        {\n          "rw_status": "rw",\n          "device": "/dev/vda1",\n          "mount_point": "/boot",\n          "total": "1014.00MB",\n          "used": "181.00MB",\n          "free": "834.00MB",\n          "percent": "18%"\n        }\n      ]\n    }\n  ]\n};\n\nexport default (\n  <View title="磁盘使用情况">\n    {RESPONSE.list.map((item) => (\n      <Card title={item.ip}>\n        {/* 磁盘空间使用情况 */}\n        <Plaintext>磁盘空间使用</Plaintext>\n        <Table\n          dataSource={{ list: item.disk_usage }}\n          columns={[\n            { dataIndex: "device", key: "device", title: "设备" },\n            { dataIndex: "mount_point", key: "mount_point", title: "挂载点" },\n            { dataIndex: "total", key: "total", title: "总大小" },\n            { dataIndex: "used", key: "used", title: "已用空间" },\n            { dataIndex: "free", key: "free", title: "可用空间" },\n            { dataIndex: "percent", key: "percent", title: "使用率" },\n            { dataIndex: "rw_status", key: "rw_status", title: "读写状态" }\n          ]}\n          rowKey="device"\n          pagination={false}\n        />\n\n        {/* Inode 使用情况 */}\n        <Plaintext>Inode 使用情况</Plaintext>\n        <Table\n          dataSource={{ list: item.inode_usage }}\n          columns={[\n            { dataIndex: "device", key: "device", title: "设备" },\n            { dataIndex: "mount_point", key: "mount_point", title: "挂载点" },\n            { dataIndex: "total_inodes", key: "total_inodes", title: "Inode 总数" },\n            { dataIndex: "used_inodes", key: "used_inodes", title: "已用 Inode" },\n            { dataIndex: "free_inodes", key: "free_inodes", title: "空闲 Inode" },\n            {\n              dataIndex: "percent", key: "percent", title: "使用率",\n              render: (cell, record) => (\n                // <Plaintext>{record.percent}%</Plaintext>\n                `~${record.percent}`\n              )\n            }\n          ]}\n          rowKey="device"\n          pagination={false}\n        />\n\n        {/* 大文件列表（仅当存在 large_files 且有内容时） */}\n        {item.disk_usage\n          .filter(disk => disk.large_files && disk.large_files.length > 0)\n          .map(disk =>\n            disk.large_files ? (\n              <Fragment key={disk.device}>\n                <Plaintext>{`大文件列表 (${disk.mount_point})`}</Plaintext>\n                <Table\n                  dataSource={{ list: disk.large_files }}\n                  columns={[\n                    { dataIndex: "path", key: "path", title: "路径" },\n                    { dataIndex: "size", key: "size", title: "大小" }\n                  ]}\n                  rowKey="path"\n                  pagination={false}\n                />\n              </Fragment>\n            ) : null\n          )}\n      </Card>\n    ))}\n  </View>\n);\n';
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocProperties properties={[{"name":"source","attribute":false,"type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"url","type":"string","annotation":{"type":"keyword","value":"string"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+
+

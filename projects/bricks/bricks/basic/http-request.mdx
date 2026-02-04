@@ -1,0 +1,99 @@
+---
+description: "<basic.http-request>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import GeneralType, { TypeReferencesContext } from "@site/src/components/GeneralType";
+import MaybeEmptyCode from "@site/src/components/MaybeEmptyCode";
+import ProviderDocParams from "@site/src/components/ProviderDocParams";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+
+<BrickTagName name="basic.http-request" isProvider />
+
+发送 HTTP 请求。
+
+## Examples
+
+```yaml preview
+brick: eo-button
+properties:
+  textContent: Check weather in Shenzhen
+events:
+  click:
+    useProvider: basic.http-request
+    args:
+      - |
+        <%
+          `//api.weatherapi.com/v1/current.json?q=Shenzhen&key=${MISC.weather_api_key}`
+        %>
+    callback:
+      success:
+        action: message.success
+        args:
+          - <% `It's ${EVENT.detail.current.condition.text} in Shenzhen` %>
+      error:
+        action: handleHttpError
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/http-request
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-button id="brick-1">Check weather in Shenzhen</eo-button>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("click", (e) => {
+#     const provider = document.createElement("basic.http-request");
+#     const promise = Promise.resolve(
+#       provider.resolve(
+#         /* WARN: incompatible expressions in HTML, please try YAML: */
+#         "<%\n  `//api.weatherapi.com/v1/current.json?q=Shenzhen&key=${MISC.weather_api_key}`\n%>\n"
+#       )
+#     );
+#     promise.then((r) => {
+#       const message = document.createElement("basic.show-notification");
+#       message.resolve({
+#         type: "success",
+#         /* WARN: incompatible expressions in HTML, please try YAML: */
+#         message:
+#           "<% `It's ${EVENT.detail.current.condition.text} in Shenzhen` %>",
+#       });
+#     });
+#     promise.catch((r) => {
+#       // WARN: encountered incompatible event handlers in HTML mode, please try YAML.
+#     });
+#   });
+# </script>
+# 
+```
+
+
+## Definition
+
+<pre>
+  <code>
+    <TypeReferencesContext.Provider value={undefined}>
+      <GeneralType annotation={{"type":"typeParameterDeclaration","params":[{"type":"typeParameter","name":"T","default":{"type":"keyword","value":"unknown"}}]}} />
+    </TypeReferencesContext.Provider>
+  </code>
+</pre>
+
+### Parameters
+
+<TypeReferencesContext.Provider value={undefined}>
+  <ProviderDocParams params={[{"name":"url","description":"请求地址","annotation":{"type":"keyword","value":"string"}},{"name":"init","description":"请求初始化数据","annotation":{"type":"reference","typeName":{"type":"identifier","name":"RequestInit"}}},{"name":"options","description":"请求选项","annotation":{"type":"reference","typeName":{"type":"identifier","name":"RequestCustomOptions"}}}]} />
+</TypeReferencesContext.Provider>
+
+### Returns
+
+<p>
+  <MaybeEmptyCode>
+    <TypeReferencesContext.Provider value={undefined}>
+      <GeneralType annotation={{"type":"reference","typeName":{"type":"identifier","name":"Promise"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"reference","typeName":{"type":"identifier","name":"T"}}]}}} />
+    </TypeReferencesContext.Provider>
+  </MaybeEmptyCode>
+</p>
+
+响应结果
+
+
+

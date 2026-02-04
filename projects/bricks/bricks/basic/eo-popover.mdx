@@ -1,0 +1,627 @@
+---
+description: "<eo-popover>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-popover"}
+  alias={["basic.general-popover"]}
+  insider={false}
+  deprecated={false}
+/>
+
+通用弹出层构件
+
+## Examples
+
+### Triggers
+
+```html preview
+<div class="example">
+  <eo-popover placement="bottom">
+    <eo-button slot="anchor">Click me</eo-button>
+    <div class="example-panel">I'm popover</div>
+  </eo-popover>
+
+  <eo-popover trigger="hover" placement="bottom">
+    <eo-button slot="anchor">Hover me</eo-button>
+    <div class="example-panel">I'm popover</div>
+  </eo-popover>
+</div>
+
+<style>
+  .example {
+    height: 132px;
+  }
+  .example-panel {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
+<!-- HTML HEADING DELIMITER start (1nbbm8) --
+basic/eo-popover/triggers
+-- HTML HEADING DELIMITER end (1nbbm8) -->
+<!-- HTML DELIMITER start (1nbbm8) --
+- brick: div
+  properties:
+    className: example
+  children:
+    - brick: eo-popover
+      properties:
+        placement: bottom
+      children:
+        - brick: eo-button
+          slot: anchor
+          properties:
+            textContent: Click me
+        - brick: div
+          properties:
+            className: example-panel
+            textContent: I'm popover
+    - brick: eo-popover
+      properties:
+        trigger: hover
+        placement: bottom
+      children:
+        - brick: eo-button
+          slot: anchor
+          properties:
+            textContent: Hover me
+        - brick: div
+          properties:
+            className: example-panel
+            textContent: I'm popover
+- brick: style
+  properties:
+    textContent: |2-
+       .example {
+          height: 132px;
+        }
+        .example-panel {
+          width: 100px;
+          height: 100px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+-- HTML DELIMITER end (1nbbm8) -->
+```
+
+### Placements
+
+```yaml preview
+- brick: div
+  properties:
+    className: example
+  children:
+    - brick: eo-popover
+      properties:
+        placement: bottom-start
+      children:
+        - brick: eo-button
+          slot: anchor
+          properties:
+            textContent: Bottom Start
+        - brick: div
+          properties:
+            className: example-panel
+            textContent: I'm popover
+    - brick: eo-popover
+      properties:
+        placement: bottom
+      children:
+        - brick: eo-button
+          slot: anchor
+          properties:
+            textContent: Bottom
+        - brick: div
+          properties:
+            className: example-panel
+            textContent: I'm popover
+    - brick: eo-popover
+      properties:
+        placement: bottom-end
+      children:
+        - brick: eo-button
+          slot: anchor
+          properties:
+            textContent: Bottom-End
+        - brick: div
+          properties:
+            className: example-panel
+            textContent: I'm popover
+    - brick: eo-popover
+      properties:
+        placement: right-start
+      children:
+        - brick: eo-button
+          slot: anchor
+          properties:
+            textContent: Right Start
+        - brick: div
+          properties:
+            className: example-panel
+            textContent: I'm popover
+    - brick: eo-popover
+      properties:
+        placement: right
+      children:
+        - brick: eo-button
+          slot: anchor
+          properties:
+            textContent: Right
+        - brick: div
+          properties:
+            className: example-panel
+            textContent: I'm popover
+    - brick: eo-popover
+      properties:
+        placement: right-end
+      children:
+        - brick: eo-button
+          slot: anchor
+          properties:
+            textContent: Right End
+        - brick: div
+          properties:
+            className: example-panel
+            textContent: I'm popover
+    - brick: eo-popover
+      properties:
+        placement: left
+      children:
+        - brick: eo-button
+          slot: anchor
+          properties:
+            textContent: Left
+        - brick: div
+          properties:
+            className: example-panel
+            textContent: I'm popover
+    - brick: eo-popover
+      properties:
+        placement: left-start
+      children:
+        - brick: eo-button
+          slot: anchor
+          properties:
+            textContent: Left Start
+        - brick: div
+          properties:
+            className: example-panel
+            textContent: I'm popover
+    - brick: eo-popover
+      properties:
+        placement: left-end
+      children:
+        - brick: eo-button
+          slot: anchor
+          properties:
+            textContent: Left End
+        - brick: div
+          properties:
+            className: example-panel
+            textContent: I'm popover
+    - brick: eo-popover
+      properties:
+        placement: top-start
+      children:
+        - brick: eo-button
+          slot: anchor
+          properties:
+            textContent: Top Start
+        - brick: div
+          properties:
+            className: example-panel
+            textContent: I'm popover
+    - brick: eo-popover
+      properties:
+        placement: top
+      children:
+        - brick: eo-button
+          slot: anchor
+          properties:
+            textContent: Top
+        - brick: div
+          properties:
+            className: example-panel
+            textContent: I'm popover
+    - brick: eo-popover
+      properties:
+        placement: top-end
+      children:
+        - brick: eo-button
+          slot: anchor
+          properties:
+            textContent: Top End
+        - brick: div
+          properties:
+            className: example-panel
+            textContent: I'm popover
+- brick: style
+  properties:
+    textContent: |
+      .example {
+         height: 200px;
+         margin: 100px;
+         position: relative;
+         display: grid;
+         grid-template-areas:
+           ". ts t te ."
+           "ls . . . rs"
+           "l . . . r"
+           "le . . . re"
+           ". bs b be .";
+       }
+       .example-panel {
+         width: 100px;
+         height: 100px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+       }
+
+       [placement="left-start"] {
+         grid-area: ls;
+         justify-self: end;
+       }
+       
+       [placement="left-end"] {
+         grid-area: le;
+         justify-self: end;
+       }
+
+       [placement="left"] {
+         grid-area: l;
+         justify-self: end;
+       }
+
+       [placement="right-start"] {
+         grid-area: rs;
+       }
+       [placement="right-end"] {
+         grid-area: re;
+       }
+       [placement="right"] {
+         grid-area: r;
+       }
+
+       [placement="top-start"] {
+         grid-area: ts;
+         justify-self: end;
+         align-self: end;
+       }
+       [placement="top-end"] {
+         grid-area: te;
+         justify-self: start;
+         align-self: end;
+       }
+       [placement="top"] {
+         grid-area: t;
+         justify-self: center;
+         align-self: end;
+       }
+
+       [placement="bottom-start"] {
+         grid-area: bs;
+         justify-self: end;
+       }
+       [placement="bottom-end"] {
+         grid-area: be;
+         justify-self: start;
+       }
+       [placement="bottom"] {
+         grid-area: b;
+         justify-self: center;
+       }
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-popover/placements
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <div class="example">
+#   <eo-popover placement="bottom-start">
+#     <eo-button slot="anchor">Bottom Start</eo-button>
+#     <div class="example-panel">I'm popover</div>
+#   </eo-popover>
+#   <eo-popover placement="bottom">
+#     <eo-button slot="anchor">Bottom</eo-button>
+#     <div class="example-panel">I'm popover</div>
+#   </eo-popover>
+#   <eo-popover placement="bottom-end">
+#     <eo-button slot="anchor">Bottom-End</eo-button>
+#     <div class="example-panel">I'm popover</div>
+#   </eo-popover>
+#   <eo-popover placement="right-start">
+#     <eo-button slot="anchor">Right Start</eo-button>
+#     <div class="example-panel">I'm popover</div>
+#   </eo-popover>
+#   <eo-popover placement="right">
+#     <eo-button slot="anchor">Right</eo-button>
+#     <div class="example-panel">I'm popover</div>
+#   </eo-popover>
+#   <eo-popover placement="right-end">
+#     <eo-button slot="anchor">Right End</eo-button>
+#     <div class="example-panel">I'm popover</div>
+#   </eo-popover>
+#   <eo-popover placement="left">
+#     <eo-button slot="anchor">Left</eo-button>
+#     <div class="example-panel">I'm popover</div>
+#   </eo-popover>
+#   <eo-popover placement="left-start">
+#     <eo-button slot="anchor">Left Start</eo-button>
+#     <div class="example-panel">I'm popover</div>
+#   </eo-popover>
+#   <eo-popover placement="left-end">
+#     <eo-button slot="anchor">Left End</eo-button>
+#     <div class="example-panel">I'm popover</div>
+#   </eo-popover>
+#   <eo-popover placement="top-start">
+#     <eo-button slot="anchor">Top Start</eo-button>
+#     <div class="example-panel">I'm popover</div>
+#   </eo-popover>
+#   <eo-popover placement="top">
+#     <eo-button slot="anchor">Top</eo-button>
+#     <div class="example-panel">I'm popover</div>
+#   </eo-popover>
+#   <eo-popover placement="top-end">
+#     <eo-button slot="anchor">Top End</eo-button>
+#     <div class="example-panel">I'm popover</div>
+#   </eo-popover>
+# </div>
+# <style>
+#   .example {
+#     height: 200px;
+#     margin: 100px;
+#     position: relative;
+#     display: grid;
+#     grid-template-areas: ". ts t te ." "ls . . . rs" "l . . . r" "le . . . re" ". bs b be .";
+#   }
+#   .example-panel {
+#     width: 100px;
+#     height: 100px;
+#     display: flex;
+#     align-items: center;
+#     justify-content: center;
+#   }
+#   [placement="left-start"] {
+#     grid-area: ls;
+#     justify-self: end;
+#   }
+#   [placement="left-end"] {
+#     grid-area: le;
+#     justify-self: end;
+#   }
+#   [placement="left"] {
+#     grid-area: l;
+#     justify-self: end;
+#   }
+#   [placement="right-start"] {
+#     grid-area: rs;
+#   }
+#   [placement="right-end"] {
+#     grid-area: re;
+#   }
+#   [placement="right"] {
+#     grid-area: r;
+#   }
+#   [placement="top-start"] {
+#     grid-area: ts;
+#     justify-self: end;
+#     align-self: end;
+#   }
+#   [placement="top-end"] {
+#     grid-area: te;
+#     justify-self: start;
+#     align-self: end;
+#   }
+#   [placement="top"] {
+#     grid-area: t;
+#     justify-self: center;
+#     align-self: end;
+#   }
+#   [placement="bottom-start"] {
+#     grid-area: bs;
+#     justify-self: end;
+#   }
+#   [placement="bottom-end"] {
+#     grid-area: be;
+#     justify-self: start;
+#   }
+#   [placement="bottom"] {
+#     grid-area: b;
+#     justify-self: center;
+#   }
+# </style>
+# 
+```
+
+### Custom Style
+
+```html preview
+<div class="example">
+  <eo-popover trigger="click" placement="bottom">
+    <eo-button slot="anchor">Normal</eo-button>
+    <div class="example-panel box1">I'm popover</div>
+  </eo-popover>
+
+  <eo-popover
+    trigger="click"
+    placement="bottom"
+    arrow="true"
+    arrow-color="pink"
+  >
+    <eo-button slot="anchor">Custom Style</eo-button>
+    <div class="example-panel box2">I'm popover</div>
+  </eo-popover>
+</div>
+
+<style>
+  .example {
+    height: 132px;
+  }
+  .example-panel {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--medius-border-radius);
+  }
+  .box2 {
+    background: pink;
+  }
+</style>
+<!-- HTML HEADING DELIMITER start (1nbbm8) --
+basic/eo-popover/custom style
+-- HTML HEADING DELIMITER end (1nbbm8) -->
+<!-- HTML DELIMITER start (1nbbm8) --
+- brick: div
+  properties:
+    className: example
+  children:
+    - brick: eo-popover
+      properties:
+        trigger: click
+        placement: bottom
+      children:
+        - brick: eo-button
+          slot: anchor
+          properties:
+            textContent: Normal
+        - brick: div
+          properties:
+            className: example-panel box1
+            textContent: I'm popover
+    - brick: eo-popover
+      properties:
+        trigger: click
+        placement: bottom
+        arrow: true
+        arrowColor: pink
+      children:
+        - brick: eo-button
+          slot: anchor
+          properties:
+            textContent: Custom Style
+        - brick: div
+          properties:
+            className: example-panel box2
+            textContent: I'm popover
+- brick: style
+  properties:
+    textContent: |2-
+       .example {
+          height: 132px;
+        }
+        .example-panel {
+          width: 100px;
+          height: 100px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: var(--medius-border-radius);
+        }
+        .box2 {
+          background: pink;
+        }
+-- HTML DELIMITER end (1nbbm8) -->
+```
+
+### Disabled
+
+```html preview
+<div class="example">
+  <eo-popover placement="bottom" disabled>
+    <eo-button slot="anchor">Click me</eo-button>
+    <div class="example-panel">I'm popover</div>
+  </eo-popover>
+</div>
+
+<style>
+  .example {
+    height: 132px;
+  }
+  .example-panel {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
+<!-- HTML HEADING DELIMITER start (1nbbm8) --
+basic/eo-popover/disabled
+-- HTML HEADING DELIMITER end (1nbbm8) -->
+<!-- HTML DELIMITER start (1nbbm8) --
+- brick: div
+  properties:
+    className: example
+  children:
+    - brick: eo-popover
+      properties:
+        placement: bottom
+        disabled: true
+      children:
+        - brick: eo-button
+          slot: anchor
+          properties:
+            textContent: Click me
+        - brick: div
+          properties:
+            className: example-panel
+            textContent: I'm popover
+- brick: style
+  properties:
+    textContent: |2-
+       .example {
+          height: 132px;
+        }
+        .example-panel {
+          width: 100px;
+          height: 100px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+-- HTML DELIMITER end (1nbbm8) -->
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["Placement","TriggerEvent","Sync"]}>
+  <BrickDocProperties properties={[{"name":"placement","description":"弹出层放置位置","type":"Placement","annotation":{"type":"reference","typeName":{"type":"identifier","name":"Placement"}}},{"name":"trigger","description":"弹出触发方式","default":"\"click\"","type":"TriggerEvent","annotation":{"type":"reference","typeName":{"type":"identifier","name":"TriggerEvent"}}},{"name":"active","description":"弹出层是否已激活","default":"false","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"arrow","description":"弹出层是否显示箭头","default":"true","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"shiftPadding","description":"发生移位行为之前超出的填充量","type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"arrowColor","description":"箭头颜色","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"strategy","description":"弹出层如何定位","default":"\"absolute\"","type":"\"absolute\" | \"fixed\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"absolute"},{"type":"jsLiteral","value":"fixed"}]}},{"name":"sync","description":"将弹出层的宽高与 anchor 元素同步","type":"Sync","annotation":{"type":"reference","typeName":{"type":"identifier","name":"Sync"}}},{"name":"disabled","description":"是否禁用","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"distance","description":"弹出窗口与其锚点之间的距离","type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"anchorDisplay","description":"触发器的显示类型","type":"CSSProperties[\"display\"]","annotation":{"type":"indexedAccess","objectType":{"type":"reference","typeName":{"type":"identifier","name":"CSSProperties"}},"indexType":{"type":"jsLiteral","value":"display"}}},{"name":"zIndex","description":"弹出层的 Z 轴顺序","type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"themeVariant","description":"主题变体","type":"\"default\" | \"elevo\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"default"},{"type":"jsLiteral","value":"elevo"}]}},{"name":"textContent","type":"string","description":"文本内容","annotation":{"type":"keyword","value":"string"}}]} />
+</TypeReferencesContext.Provider>
+
+## Slots
+
+<BrickDocSlots slots={[{"name":null,"description":"弹出层内容"},{"name":"anchor","description":"触发弹出层的元素"}]} />
+
+## Events
+
+<TypeReferencesContext.Provider value={["Placement","TriggerEvent","Sync"]}>
+  <BrickDocEvents events={[{"name":"visible.change","description":"当弹出层可见性变化之后触发","detail":{"description":"当前是否可见","type":"boolean","annotation":{"type":"keyword","value":"boolean"}}},{"name":"before.visible.change","description":"当弹出层可见性变化时触发","detail":{"description":"当前是否可见","type":"boolean","annotation":{"type":"keyword","value":"boolean"}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Parts
+
+<BrickDocParts parts={[{"name":"popup","description":"The popup’s container. Useful for setting a background color, box shadow, etc."}]} />
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"typeAlias","name":"Placement","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"top"},{"type":"jsLiteral","value":"top-start"},{"type":"jsLiteral","value":"top-end"},{"type":"jsLiteral","value":"bottom"},{"type":"jsLiteral","value":"bottom-start"},{"type":"jsLiteral","value":"bottom-end"},{"type":"jsLiteral","value":"right"},{"type":"jsLiteral","value":"right-start"},{"type":"jsLiteral","value":"right-end"},{"type":"jsLiteral","value":"left"},{"type":"jsLiteral","value":"left-start"},{"type":"jsLiteral","value":"left-end"}]}},{"type":"typeAlias","name":"TriggerEvent","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"click"},{"type":"jsLiteral","value":"hover"}]}},{"type":"typeAlias","name":"Sync","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"width"},{"type":"jsLiteral","value":"height"},{"type":"jsLiteral","value":"both"}]}}]} />
+

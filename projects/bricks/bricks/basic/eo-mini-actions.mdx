@@ -1,0 +1,134 @@
+---
+description: "<eo-mini-actions>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-mini-actions"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+小尺寸按钮组
+
+## Examples
+
+### Basic
+
+```yaml preview minHeight="160px"
+brick: eo-mini-actions
+properties:
+  actions:
+    - icon:
+        lib: antd
+        theme: outlined
+        icon: star
+      isDropdown: false
+      event: collect
+    - icon:
+        lib: antd
+        icon: copy
+        theme: outlined
+      text: 复制链接
+      isDropdown: true
+      event: copy
+    - icon:
+        lib: antd
+        icon: download
+        theme: outlined
+      text: 下载
+      isDropdown: true
+      disabled: true
+      event: download
+events:
+  collect:
+    - action: console.log
+  copy:
+    - action: console.log
+  download:
+    - action: console.log
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-mini-actions/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-mini-actions id="brick-1"></eo-mini-actions>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.actions = [
+#     {
+#       icon: {
+#         lib: "antd",
+#         theme: "outlined",
+#         icon: "star",
+#       },
+#       isDropdown: false,
+#       event: "collect",
+#     },
+#     {
+#       icon: {
+#         lib: "antd",
+#         icon: "copy",
+#         theme: "outlined",
+#       },
+#       text: "复制链接",
+#       isDropdown: true,
+#       event: "copy",
+#     },
+#     {
+#       icon: {
+#         lib: "antd",
+#         icon: "download",
+#         theme: "outlined",
+#       },
+#       text: "下载",
+#       isDropdown: true,
+#       disabled: true,
+#       event: "download",
+#     },
+#   ];
+#   brick_1.addEventListener("collect", (e) => {
+#     console.log(e.detail);
+#   });
+#   brick_1.addEventListener("copy", (e) => {
+#     console.log(e.detail);
+#   });
+#   brick_1.addEventListener("download", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["ActionType","SimpleActionType"]}>
+  <BrickDocProperties properties={[{"name":"actions","description":"操作列表配置","attribute":false,"type":"ActionType[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"ActionType"}}}},{"name":"themeVariant","description":"主题变体","type":"\"default\" | \"elevo\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"default"},{"type":"jsLiteral","value":"elevo"}]}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={["ActionType","SimpleActionType"]}>
+  <BrickDocEvents events={[{"name":"action.click","description":"点击按钮时触发","detail":{"description":"该按钮配置","type":"SimpleActionType","annotation":{"type":"reference","typeName":{"type":"identifier","name":"SimpleActionType"}}}},{"name":"visible.change","description":"当下拉菜单可见性变化之后触发","detail":{"description":"当前是否可见","type":"boolean","annotation":{"type":"keyword","value":"boolean"}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"typeAlias","name":"ActionType","annotation":{"type":"union","types":[{"type":"reference","typeName":{"type":"identifier","name":"SimpleActionType"}},{"type":"reference","typeName":{"type":"identifier","name":"Divider"}}]}},{"type":"interface","name":"SimpleActionType","body":[{"type":"propertySignature","key":{"type":"identifier","name":"text"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"isDropdown"},"annotation":{"type":"keyword","value":"boolean"},"optional":true,"computed":false}],"extends":[{"type":"expressionWithTypeArguments","expression":{"type":"identifier","name":"Omit"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"reference","typeName":{"type":"identifier","name":"SimpleAction"}},{"type":"jsLiteral","value":"text"}]}}]}]} />
+

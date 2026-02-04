@@ -1,0 +1,134 @@
+---
+description: "<data-view.globe-with-halo-indicator>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"data-view.globe-with-halo-indicator"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+地球加光环的数据展示构件。
+
+## Examples
+
+### Basic
+
+```yaml preview height="660px"
+brick: div
+properties:
+  style:
+    height: calc(100vh - 2em)
+children:
+  - brick: data-view.globe-with-halo-indicator
+    properties:
+      centerDataSource:
+        label: 资产总数
+        value: 30123
+      dataSource:
+        - label: 低值易耗品
+          value: 3889
+        - label: 摊销资产
+          value: 2087
+        - label: 固定资产
+          value: 12088
+        - label: 无形资产
+          value: 1082
+        - label: 在建工程
+          value: 10997
+      cornerDataSource:
+        - label: 资产增长
+          value: 43
+          color: red
+        - label: 资产减少
+          value: 21
+          color: green
+    # Currently this brick only works within dark theme
+    lifeCycle:
+      onPageLoad:
+        action: theme.setTheme
+        args:
+          - dark-v2
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+data-view/globe-with-halo-indicator/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <div style="height: calc(100vh - 2em)">
+#   <data-view.globe-with-halo-indicator
+#     id="brick-1"
+#   ></data-view.globe-with-halo-indicator>
+# </div>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.centerDataSource = {
+#     label: "资产总数",
+#     value: 30123,
+#   };
+#   brick_1.dataSource = [
+#     {
+#       label: "低值易耗品",
+#       value: 3889,
+#     },
+#     {
+#       label: "摊销资产",
+#       value: 2087,
+#     },
+#     {
+#       label: "固定资产",
+#       value: 12088,
+#     },
+#     {
+#       label: "无形资产",
+#       value: 1082,
+#     },
+#     {
+#       label: "在建工程",
+#       value: 10997,
+#     },
+#   ];
+#   brick_1.cornerDataSource = [
+#     {
+#       label: "资产增长",
+#       value: 43,
+#       color: "red",
+#     },
+#     {
+#       label: "资产减少",
+#       value: 21,
+#       color: "green",
+#     },
+#   ];
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["DataItem","CornerDataItem"]}>
+  <BrickDocProperties properties={[{"name":"dataSource","description":"指标数据列表（显示在环上）\n\n注意：最多显示8项数据","attribute":false,"type":"DataItem[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"DataItem"}}}},{"name":"centerDataSource","description":"中心数据（显示在中心地球内）","attribute":false,"type":"DataItem","annotation":{"type":"reference","typeName":{"type":"identifier","name":"DataItem"}}},{"name":"cornerDataSource","description":"左上角指标数据列表","attribute":false,"type":"CornerDataItem[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"CornerDataItem"}}}},{"name":"maxScale","description":"最大缩放比例","default":"1","type":"number","annotation":{"type":"keyword","value":"number"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"DataItem","body":[{"type":"propertySignature","key":{"type":"identifier","name":"label"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"value"},"annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"number"}]},"computed":false}]},{"type":"interface","name":"CornerDataItem","body":[{"type":"propertySignature","key":{"type":"identifier","name":"color"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false}],"extends":[{"type":"expressionWithTypeArguments","expression":{"type":"identifier","name":"DataItem"}}]}]} />
+

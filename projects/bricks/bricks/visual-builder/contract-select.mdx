@@ -1,0 +1,42 @@
+---
+description: "<visual-builder.contract-select>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"visual-builder.contract-select"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+契约选择构件
+
+## Properties
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocProperties properties={[{"name":"name","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"required","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"label","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"value","attribute":false,"type":"any","annotation":{"type":"keyword","value":"any"}},{"name":"suffix","attribute":false,"type":"{ useBrick: UseSingleBrickConf | UseSingleBrickConf[] }","annotation":{"type":"typeLiteral","members":[{"type":"propertySignature","key":{"type":"identifier","name":"useBrick"},"annotation":{"type":"union","types":[{"type":"reference","typeName":{"type":"identifier","name":"UseSingleBrickConf"}},{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"UseSingleBrickConf"}}}]},"computed":false}]}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocEvents events={[{"name":"change","detail":{"type":"string","annotation":{"type":"keyword","value":"string"}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+

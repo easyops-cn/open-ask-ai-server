@@ -1,0 +1,277 @@
+---
+description: "<data-view.graph-layout-grid>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"data-view.graph-layout-grid"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+有规律的网格布局的拓扑
+
+## Examples
+
+### Basic
+
+```yaml preview
+- brick: data-view.graph-layout-grid
+  properties:
+    columns: 7
+    rows: 3
+    style:
+      width: 960px
+      height: 600px
+      display: block
+      background-color: "#1c1e21"
+    dataSource:
+      - text: 负载均衡数
+        value: 200
+        url: https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png
+      - text: 应用
+        value: 7348
+        url: https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png
+      - text: 存储卷数
+        value: 638
+        url: https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png
+      - text: 负载均衡数
+        value: 200
+        url: https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png
+      - text: 应用
+        value: 200
+        url: https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png
+      - text: 守护进程数
+        value: 200
+        url: https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png
+      - text: 负载均衡数
+        value: 200
+        url: https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png
+      - text: 容器组数
+        value: 200
+        url: https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png
+      - text: 无状态服务数
+        value: 200
+        url: https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png
+      - text: 负载均衡数
+        value: 200
+        url: https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+data-view/graph-layout-grid/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <data-view.graph-layout-grid
+#   columns="7"
+#   rows="3"
+#   style="width: 960px; height: 600px; display: block; background-color: #1c1e21"
+#   id="brick-1"
+# ></data-view.graph-layout-grid>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.dataSource = [
+#     {
+#       text: "负载均衡数",
+#       value: 200,
+#       url: "https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png",
+#     },
+#     {
+#       text: "应用",
+#       value: 7348,
+#       url: "https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png",
+#     },
+#     {
+#       text: "存储卷数",
+#       value: 638,
+#       url: "https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png",
+#     },
+#     {
+#       text: "负载均衡数",
+#       value: 200,
+#       url: "https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png",
+#     },
+#     {
+#       text: "应用",
+#       value: 200,
+#       url: "https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png",
+#     },
+#     {
+#       text: "守护进程数",
+#       value: 200,
+#       url: "https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png",
+#     },
+#     {
+#       text: "负载均衡数",
+#       value: 200,
+#       url: "https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png",
+#     },
+#     {
+#       text: "容器组数",
+#       value: 200,
+#       url: "https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png",
+#     },
+#     {
+#       text: "无状态服务数",
+#       value: 200,
+#       url: "https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png",
+#     },
+#     {
+#       text: "负载均衡数",
+#       value: 200,
+#       url: "https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png",
+#     },
+#   ];
+# </script>
+# 
+```
+
+### IsReverse
+
+```yaml preview
+- brick: data-view.graph-layout-grid
+  properties:
+    columns: 7
+    rows: 3
+    isReverse: true
+    style:
+      width: 960px
+      height: 600px
+      display: block
+      background-color: "#1c1e21"
+    dataSource:
+      - text: 负载均衡数
+        value: 200
+        url: https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png
+      - text: 应用
+        value: 7348
+        url: https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png
+      - text: 存储卷数
+        value: 638
+        url: https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png
+      - text: 负载均衡数
+        value: 200
+        url: https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png
+      - text: 应用
+        value: 200
+        url: https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png
+      - text: 守护进程数
+        value: 200
+        url: https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png
+      - text: 负载均衡数
+        value: 200
+        url: https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png
+      - text: 容器组数
+        value: 200
+        url: https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png
+      - text: 无状态服务数
+        value: 200
+        url: https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png
+      - text: 负载均衡数
+        value: 200
+        url: https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png
+      - text: 负载均衡数
+        value: 200
+        url: https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+data-view/graph-layout-grid/isreverse
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <data-view.graph-layout-grid
+#   columns="7"
+#   rows="3"
+#   is-reverse
+#   style="width: 960px; height: 600px; display: block; background-color: #1c1e21"
+#   id="brick-1"
+# ></data-view.graph-layout-grid>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.dataSource = [
+#     {
+#       text: "负载均衡数",
+#       value: 200,
+#       url: "https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png",
+#     },
+#     {
+#       text: "应用",
+#       value: 7348,
+#       url: "https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png",
+#     },
+#     {
+#       text: "存储卷数",
+#       value: 638,
+#       url: "https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png",
+#     },
+#     {
+#       text: "负载均衡数",
+#       value: 200,
+#       url: "https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png",
+#     },
+#     {
+#       text: "应用",
+#       value: 200,
+#       url: "https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png",
+#     },
+#     {
+#       text: "守护进程数",
+#       value: 200,
+#       url: "https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png",
+#     },
+#     {
+#       text: "负载均衡数",
+#       value: 200,
+#       url: "https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png",
+#     },
+#     {
+#       text: "容器组数",
+#       value: 200,
+#       url: "https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png",
+#     },
+#     {
+#       text: "无状态服务数",
+#       value: 200,
+#       url: "https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png",
+#     },
+#     {
+#       text: "负载均衡数",
+#       value: 200,
+#       url: "https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png",
+#     },
+#     {
+#       text: "负载均衡数",
+#       value: 200,
+#       url: "https://user-assets.sxlcdn.com/images/367275/FtgabYjUD_Xhmne2wsyLPcKqlgCi.png",
+#     },
+#   ];
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["DataSourceType"]}>
+  <BrickDocProperties properties={[{"name":"columns","description":"","type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"rows","description":"","type":"number","annotation":{"type":"keyword","value":"number"}},{"name":"isReverse","description":"","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"dataSource","description":"","attribute":false,"type":"DataSourceType[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"DataSourceType"}}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"typeAlias","name":"DataSourceType","annotation":{"type":"intersection","types":[{"type":"reference","typeName":{"type":"identifier","name":"GraphTextProps"}},{"type":"reference","typeName":{"type":"identifier","name":"GraphNodeProps"}}]}}]} />
+

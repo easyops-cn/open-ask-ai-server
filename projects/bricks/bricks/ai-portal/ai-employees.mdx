@@ -1,0 +1,57 @@
+---
+description: "<ai-portal.ai-employees>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"ai-portal.ai-employees"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `ai-portal.ai-employees`
+
+## Examples
+
+### Basic
+
+```yaml preview
+brick: ai-portal.ai-employees
+properties:
+  textContent: Hello world
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+ai-portal/ai-employees/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <ai-portal.ai-employees>Hello world</ai-portal.ai-employees>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["Employee"]}>
+  <BrickDocProperties properties={[{"name":"list","attribute":false,"type":"Employee[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"Employee"}}}},{"name":"industries","attribute":false,"type":"string[]","annotation":{"type":"array","elementType":{"type":"keyword","value":"string"}}},{"name":"urlTemplate","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"stickyTop","type":"number","annotation":{"type":"keyword","value":"number"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"Employee","body":[{"type":"propertySignature","key":{"type":"identifier","name":"name"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"industry"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"role"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"description"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"avatar"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false}]}]} />
+

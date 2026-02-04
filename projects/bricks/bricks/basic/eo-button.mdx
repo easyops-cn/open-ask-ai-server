@@ -1,0 +1,461 @@
+---
+description: "<eo-button>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-button"}
+  alias={["basic.general-button"]}
+  insider={false}
+  deprecated={false}
+/>
+
+通用按钮构件。
+
+```html preview
+<eo-button type="primary">I'm a button</eo-button>
+<!-- HTML HEADING DELIMITER start (1nbbm8) --
+basic/eo-button
+-- HTML HEADING DELIMITER end (1nbbm8) -->
+<!-- HTML DELIMITER start (1nbbm8) --
+brick: eo-button
+properties:
+  type: primary
+  textContent: I'm a button
+-- HTML DELIMITER end (1nbbm8) -->
+```
+
+## Examples
+
+### Types
+
+```yaml preview gap
+- brick: eo-button
+  properties:
+    type: primary
+    textContent: Primary
+- brick: eo-button
+  properties:
+    textContent: Default
+- brick: eo-button
+  properties:
+    type: dashed
+    textContent: Dashed
+- brick: eo-button
+  properties:
+    type: ghost
+    textContent: Ghost
+- brick: eo-button
+  properties:
+    type: icon
+    icon:
+      lib: antd
+      icon: edit
+- brick: eo-button
+  properties:
+    type: text
+    textContent: Text
+- brick: eo-button
+  properties:
+    type: link
+    textContent: Link
+- brick: eo-button
+  properties:
+    type: ai
+    textContent: ai
+- brick: eo-button
+  properties:
+    type: ai-alt
+    size: large
+    icon:
+      lib: lucide
+      icon: sparkles
+      fill: true
+      strokeWidth: 1.5
+    textContent: ai-alt
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-button/types
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-button type="primary">Primary</eo-button>
+# <eo-button>Default</eo-button>
+# <eo-button type="dashed">Dashed</eo-button>
+# <eo-button type="ghost">Ghost</eo-button>
+# <eo-button type="icon" id="brick-1"></eo-button>
+# <eo-button type="text">Text</eo-button>
+# <eo-button type="link">Link</eo-button>
+# <eo-button type="ai">ai</eo-button>
+# <eo-button type="ai-alt" size="large" id="brick-2">ai-alt</eo-button>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.icon = {
+#     lib: "antd",
+#     icon: "edit",
+#   };
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.icon = {
+#     lib: "lucide",
+#     icon: "sparkles",
+#     fill: true,
+#     strokeWidth: 1.5,
+#   };
+# </script>
+# 
+```
+
+### Sizes
+
+```html preview gap
+<eo-button size="large">Large</eo-button>
+
+<eo-button>Medium</eo-button>
+
+<eo-button size="small">Small</eo-button>
+
+<eo-button size="xs">X-small</eo-button>
+<!-- HTML HEADING DELIMITER start (1nbbm8) --
+basic/eo-button/sizes
+-- HTML HEADING DELIMITER end (1nbbm8) -->
+<!-- HTML DELIMITER start (1nbbm8) --
+- brick: eo-button
+  properties:
+    size: large
+    textContent: Large
+- brick: eo-button
+  properties:
+    textContent: Medium
+- brick: eo-button
+  properties:
+    size: small
+    textContent: Small
+- brick: eo-button
+  properties:
+    size: xs
+    textContent: X-small
+-- HTML DELIMITER end (1nbbm8) -->
+```
+
+### Shapes
+
+```html preview gap
+<eo-button>Square</eo-button>
+
+<eo-button shape="circle">X</eo-button>
+<!-- HTML HEADING DELIMITER start (1nbbm8) --
+basic/eo-button/shapes
+-- HTML HEADING DELIMITER end (1nbbm8) -->
+<!-- HTML DELIMITER start (1nbbm8) --
+- brick: eo-button
+  properties:
+    textContent: Square
+- brick: eo-button
+  properties:
+    shape: circle
+    textContent: X
+-- HTML DELIMITER end (1nbbm8) -->
+```
+
+### Danger
+
+```html preview gap
+<eo-button danger type="primary">Primary</eo-button>
+
+<eo-button danger>Default</eo-button>
+
+<eo-button danger type="dashed">Dashed</eo-button>
+
+<eo-button danger type="ghost">Ghost</eo-button>
+
+<eo-button danger type="text">Text</eo-button>
+
+<eo-button danger type="link">Link</eo-button>
+<!-- HTML HEADING DELIMITER start (1nbbm8) --
+basic/eo-button/danger
+-- HTML HEADING DELIMITER end (1nbbm8) -->
+<!-- HTML DELIMITER start (1nbbm8) --
+- brick: eo-button
+  properties:
+    danger: true
+    type: primary
+    textContent: Primary
+- brick: eo-button
+  properties:
+    danger: true
+    textContent: Default
+- brick: eo-button
+  properties:
+    danger: true
+    type: dashed
+    textContent: Dashed
+- brick: eo-button
+  properties:
+    danger: true
+    type: ghost
+    textContent: Ghost
+- brick: eo-button
+  properties:
+    danger: true
+    type: text
+    textContent: Text
+- brick: eo-button
+  properties:
+    danger: true
+    type: link
+    textContent: Link
+-- HTML DELIMITER end (1nbbm8) -->
+```
+
+### Disabled
+
+```html preview gap
+<eo-button disabled type="primary">Primary</eo-button>
+
+<eo-button disabled>Default</eo-button>
+
+<eo-button disabled type="dashed">Dashed</eo-button>
+
+<eo-button disabled type="ghost">Ghost</eo-button>
+
+<eo-button disabled type="text">Text</eo-button>
+
+<eo-button disabled type="link">Link</eo-button>
+
+<eo-button disabled danger>Danger</eo-button>
+
+<eo-button disabled danger type="primary">Danger primary</eo-button>
+<!-- HTML HEADING DELIMITER start (1nbbm8) --
+basic/eo-button/disabled
+-- HTML HEADING DELIMITER end (1nbbm8) -->
+<!-- HTML DELIMITER start (1nbbm8) --
+- brick: eo-button
+  properties:
+    disabled: true
+    type: primary
+    textContent: Primary
+- brick: eo-button
+  properties:
+    disabled: true
+    textContent: Default
+- brick: eo-button
+  properties:
+    disabled: true
+    type: dashed
+    textContent: Dashed
+- brick: eo-button
+  properties:
+    disabled: true
+    type: ghost
+    textContent: Ghost
+- brick: eo-button
+  properties:
+    disabled: true
+    type: text
+    textContent: Text
+- brick: eo-button
+  properties:
+    disabled: true
+    type: link
+    textContent: Link
+- brick: eo-button
+  properties:
+    disabled: true
+    danger: true
+    textContent: Danger
+- brick: eo-button
+  properties:
+    disabled: true
+    danger: true
+    type: primary
+    textContent: Danger primary
+-- HTML DELIMITER end (1nbbm8) -->
+```
+
+### Tooltips
+
+```html preview gap minHeight="130px"
+<eo-button type="primary" tooltip="primary">Primary</eo-button>
+
+<eo-button type="link" tooltip="link">Link</eo-button>
+
+<eo-button disabled tooltip="disabled">Default</eo-button>
+<!-- HTML HEADING DELIMITER start (1nbbm8) --
+basic/eo-button/tooltips
+-- HTML HEADING DELIMITER end (1nbbm8) -->
+<!-- HTML DELIMITER start (1nbbm8) --
+- brick: eo-button
+  properties:
+    type: primary
+    tooltip: primary
+    textContent: Primary
+- brick: eo-button
+  properties:
+    type: link
+    tooltip: link
+    textContent: Link
+- brick: eo-button
+  properties:
+    disabled: true
+    tooltip: disabled
+    textContent: Default
+-- HTML DELIMITER end (1nbbm8) -->
+```
+
+### Icons
+
+```yaml preview gap
+- brick: eo-flex-layout
+  properties:
+    gap: 8px
+  children:
+    - brick: eo-button
+      properties:
+        icon:
+          lib: antd
+          icon: bell
+        textContent: Alarm
+    - brick: eo-button
+      properties:
+        icon:
+          lib: antd
+          icon: setting
+          theme: filled
+    - brick: eo-button
+      properties:
+        icon:
+          lib: antd
+          icon: setting
+          theme: filled
+        type: primary
+    - brick: eo-button
+      properties:
+        icon:
+          lib: antd
+          icon: setting
+          theme: filled
+        shape: circle
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-button/icons
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-flex-layout gap="8px">
+#   <eo-button id="brick-1">Alarm</eo-button>
+#   <eo-button id="brick-2"></eo-button>
+#   <eo-button type="primary" id="brick-3"></eo-button>
+#   <eo-button shape="circle" id="brick-4"></eo-button>
+# </eo-flex-layout>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.icon = {
+#     lib: "antd",
+#     icon: "bell",
+#   };
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.icon = {
+#     lib: "antd",
+#     icon: "setting",
+#     theme: "filled",
+#   };
+# 
+#   const brick_3 = document.getElementById("brick-3");
+#   brick_3.icon = {
+#     lib: "antd",
+#     icon: "setting",
+#     theme: "filled",
+#   };
+# 
+#   const brick_4 = document.getElementById("brick-4");
+#   brick_4.icon = {
+#     lib: "antd",
+#     icon: "setting",
+#     theme: "filled",
+#   };
+# </script>
+# 
+```
+
+### Click
+
+```yaml preview
+- brick: eo-button
+  properties:
+    textContent: Click me
+  events:
+    click:
+      action: message.success
+      args:
+        - Well done!
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-button/click
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-button id="brick-1">Click me</eo-button>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("click", (e) => {
+#     const message = document.createElement("basic.show-notification");
+#     message.resolve({ type: "success", message: "Well done!" });
+#   });
+# </script>
+# 
+```
+
+### Links
+
+```html preview
+<eo-button type="link" href="https://baidu.com/" target="_blank">
+  Link to Baidu
+</eo-button>
+<!-- HTML HEADING DELIMITER start (1nbbm8) --
+basic/eo-button/links
+-- HTML HEADING DELIMITER end (1nbbm8) -->
+<!-- HTML DELIMITER start (1nbbm8) --
+brick: eo-button
+properties:
+  type: link
+  href: 'https://baidu.com/'
+  target: _blank
+  textContent: ' Link to Baidu '
+-- HTML DELIMITER end (1nbbm8) -->
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["ButtonType","ComponentSize","Shape"]}>
+  <BrickDocProperties properties={[{"name":"type","description":"按钮类型","type":"ButtonType","annotation":{"type":"reference","typeName":{"type":"identifier","name":"ButtonType"}}},{"name":"size","description":"按钮大小","default":"\"medium\"","type":"ComponentSize","annotation":{"type":"reference","typeName":{"type":"identifier","name":"ComponentSize"}}},{"name":"danger","description":"是否开启危险状态","default":"false","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"icon","description":"图标","attribute":false,"type":"(GeneralIconProps & HTMLAttributes<GeneralIcon>)","annotation":{"type":"parenthesizedType","annotation":{"type":"intersection","types":[{"type":"reference","typeName":{"type":"identifier","name":"GeneralIconProps"}},{"type":"reference","typeName":{"type":"identifier","name":"HTMLAttributes"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"reference","typeName":{"type":"identifier","name":"GeneralIcon"}}]}}]}}},{"name":"shape","description":"按钮形状，支持圆形、椭圆形，不设置为默认方形","type":"Shape","annotation":{"type":"reference","typeName":{"type":"identifier","name":"Shape"}}},{"name":"disabled","description":"是否禁用","default":"false","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"url","description":"链接地址","attribute":false,"type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"href","description":"跳转外链地址","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"target","description":"链接类型","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"tooltip","description":"tooltip","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"buttonStyle","description":"按钮样式","attribute":false,"type":"React.CSSProperties","annotation":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}}},{"name":"themeVariant","description":"主题变体","type":"\"default\" | \"elevo\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"default"},{"type":"jsLiteral","value":"elevo"}]}},{"name":"textContent","type":"string","description":"文本内容","annotation":{"type":"keyword","value":"string"}}]} />
+</TypeReferencesContext.Provider>
+
+## Slots
+
+<BrickDocSlots slots={[{"name":null,"description":"按钮内容"}]} />
+
+## Events
+
+<TypeReferencesContext.Provider value={["ButtonType","ComponentSize","Shape"]}>
+  <BrickDocEvents events={[{"name":"click","description":"点击"}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Parts
+
+<BrickDocParts parts={[{"name":"button","description":"按钮元素"}]} />
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"typeAlias","name":"ButtonType","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"primary"},{"type":"jsLiteral","value":"default"},{"type":"jsLiteral","value":"dashed"},{"type":"jsLiteral","value":"ghost"},{"type":"jsLiteral","value":"link"},{"type":"jsLiteral","value":"text"},{"type":"jsLiteral","value":"icon"},{"type":"jsLiteral","value":"ai"},{"type":"jsLiteral","value":"ai-alt"},{"type":"jsLiteral","value":"neutral"},{"type":"jsLiteral","value":"flat"}]}},{"type":"typeAlias","name":"ComponentSize","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"large"},{"type":"jsLiteral","value":"medium"},{"type":"jsLiteral","value":"small"},{"type":"jsLiteral","value":"xs"}]}},{"type":"typeAlias","name":"Shape","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"round"},{"type":"jsLiteral","value":"circle"}]}}]} />
+

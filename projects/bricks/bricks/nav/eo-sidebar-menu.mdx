@@ -1,0 +1,224 @@
+---
+description: "<eo-sidebar-menu>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-sidebar-menu"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+侧栏菜单
+
+## Examples
+
+### Basic
+
+```yaml preview gap
+- brick: eo-button
+  context:
+    - name: menuCollapsed
+      value: false
+  properties:
+    type: primary
+    textContent: switch collapsed
+  events:
+    click:
+      - action: context.replace
+        args:
+          - menuCollapsed
+          - <% !CTX.menuCollapsed %>
+- brick: eo-sidebar-menu
+  properties:
+    id: sidebar-menu
+    menuCollapsed: <%= CTX.menuCollapsed %>
+    style: "<%= { width: CTX.menuCollapsed ? '40px' : '196px' } %>"
+  children:
+    - brick: eo-sidebar-menu-item
+      properties:
+        textContent: "菜单项 1"
+        icon:
+          lib: easyops
+          category: second-menu
+          icon: gaussdb-for-opengauss-second-menu
+    - brick: eo-sidebar-menu-group
+      children:
+        - brick: span
+          slot: title
+          properties:
+            textContent: "菜单分组"
+        - brick: eo-sidebar-menu-item
+          properties:
+            textContent: "菜单项 2"
+            icon:
+              lib: easyops
+              category: second-menu
+              icon: firewall-second-menu
+        - brick: eo-sidebar-menu-item
+          properties:
+            textContent: "菜单项 3"
+            icon:
+              lib: easyops
+              category: second-menu
+              icon: host-resources-second-menu
+        - brick: eo-sidebar-menu-item
+          properties:
+            textContent: "菜单项 4"
+            icon:
+              lib: easyops
+              category: second-menu
+              icon: loadbalance-second-menu
+    - brick: eo-sidebar-menu-submenu
+      properties:
+        icon:
+          lib: easyops
+          category: second-menu
+          icon: oceanbase-second-menu
+      children:
+        - brick: span
+          slot: title
+          properties:
+            textContent: "子菜单"
+        - brick: eo-sidebar-menu-item
+          properties:
+            textContent: "菜单项 5"
+            icon:
+              lib: easyops
+              category: second-menu
+              icon: nginx-second-menu
+            inSubmenu: true
+        - brick: eo-sidebar-menu-item
+          properties:
+            textContent: "菜单项 6"
+            icon:
+              lib: easyops
+              category: second-menu
+              icon: process-task-second-menu
+            inSubmenu: true
+        - brick: eo-sidebar-menu-item
+          properties:
+            textContent: "菜单项 7"
+            icon:
+              lib: easyops
+              category: second-menu
+              icon: persistent-volume-statement-second-menu
+            inSubmenu: true
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+nav/eo-sidebar-menu/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-button type="primary" id="brick-1">switch collapsed</eo-button>
+# <eo-sidebar-menu menu-collapsed id="sidebar-menu">
+#   <eo-sidebar-menu-item id="brick-2">菜单项 1</eo-sidebar-menu-item>
+#   <eo-sidebar-menu-group>
+#     <span slot="title">菜单分组</span>
+#     <eo-sidebar-menu-item id="brick-3">菜单项 2</eo-sidebar-menu-item>
+#     <eo-sidebar-menu-item id="brick-4">菜单项 3</eo-sidebar-menu-item>
+#     <eo-sidebar-menu-item id="brick-5">菜单项 4</eo-sidebar-menu-item>
+#   </eo-sidebar-menu-group>
+#   <eo-sidebar-menu-submenu id="brick-6">
+#     <span slot="title">子菜单</span>
+#     <eo-sidebar-menu-item in-submenu id="brick-7"
+#       >菜单项 5</eo-sidebar-menu-item
+#     >
+#     <eo-sidebar-menu-item in-submenu id="brick-8"
+#       >菜单项 6</eo-sidebar-menu-item
+#     >
+#     <eo-sidebar-menu-item in-submenu id="brick-9"
+#       >菜单项 7</eo-sidebar-menu-item
+#     >
+#   </eo-sidebar-menu-submenu>
+# </eo-sidebar-menu>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("click", (e) => {
+#     // WARN: encountered incompatible event handlers in HTML mode, please try YAML.
+#   });
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.icon = {
+#     lib: "easyops",
+#     category: "second-menu",
+#     icon: "gaussdb-for-opengauss-second-menu",
+#   };
+# 
+#   const brick_3 = document.getElementById("brick-3");
+#   brick_3.icon = {
+#     lib: "easyops",
+#     category: "second-menu",
+#     icon: "firewall-second-menu",
+#   };
+# 
+#   const brick_4 = document.getElementById("brick-4");
+#   brick_4.icon = {
+#     lib: "easyops",
+#     category: "second-menu",
+#     icon: "host-resources-second-menu",
+#   };
+# 
+#   const brick_5 = document.getElementById("brick-5");
+#   brick_5.icon = {
+#     lib: "easyops",
+#     category: "second-menu",
+#     icon: "loadbalance-second-menu",
+#   };
+# 
+#   const brick_6 = document.getElementById("brick-6");
+#   brick_6.icon = {
+#     lib: "easyops",
+#     category: "second-menu",
+#     icon: "oceanbase-second-menu",
+#   };
+# 
+#   const brick_7 = document.getElementById("brick-7");
+#   brick_7.icon = {
+#     lib: "easyops",
+#     category: "second-menu",
+#     icon: "nginx-second-menu",
+#   };
+# 
+#   const brick_8 = document.getElementById("brick-8");
+#   brick_8.icon = {
+#     lib: "easyops",
+#     category: "second-menu",
+#     icon: "process-task-second-menu",
+#   };
+# 
+#   const brick_9 = document.getElementById("brick-9");
+#   brick_9.icon = {
+#     lib: "easyops",
+#     category: "second-menu",
+#     icon: "persistent-volume-statement-second-menu",
+#   };
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocProperties properties={[{"name":"menuCollapsed","description":"菜单整体是否收起状态","type":"boolean","annotation":{"type":"keyword","value":"boolean"}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+
+

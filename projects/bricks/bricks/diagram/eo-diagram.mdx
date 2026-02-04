@@ -1,0 +1,1101 @@
+---
+description: "<eo-diagram>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-diagram"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `eo-diagram`
+
+## Examples
+
+### Basic
+
+```yaml preview minHeight="600px"
+brick: div
+properties:
+  style:
+    position: fixed
+    height: 100vh
+    width: 100vw
+    top: 0px
+    left: 0px
+context:
+  - name: activeTarget
+    value: null
+  - name: nodes
+    value:
+      - id: kspacey
+        label: Kevin Spacey
+      - id: swilliams
+        label: Saul Williams
+      - id: bpitt
+        label: Brad Pitt
+      # - id: hford
+      #   label: Harrison Ford
+      - id: lwilson
+        label: Luke Wilson
+      - id: kbacon
+        label: Kevin Bacon
+  - name: edges
+    value:
+      - source: kspacey
+        target: swilliams
+      - source: swilliams
+        target: kbacon
+      - source: bpitt
+        target: kbacon
+      # - source: hford
+      #   target: lwilson
+      - source: lwilson
+        target: kbacon
+children:
+  - brick: eo-button
+    properties:
+      textContent: Add Harrison Ford
+    events:
+      click:
+        - action: context.replace
+          args:
+            - nodes
+            - |
+              <%
+                CTX.nodes.concat({
+                  id: "hford",
+                  label: "Harrison Ford",
+                })
+              %>
+        - action: context.replace
+          args:
+            - edges
+            - |
+              <%
+                CTX.edges.concat({
+                  source: "hford",
+                  target: "lwilson",
+                })
+              %>
+        - target: _self
+          properties:
+            style:
+              visibility: hidden
+  - brick: eo-button
+    properties:
+      textContent: Remove Kevin Spacey
+    events:
+      click:
+        - action: context.replace
+          args:
+            - nodes
+            - |
+              <%
+                CTX.nodes.filter(node => node.id !== "kspacey")
+              %>
+        - action: context.replace
+          args:
+            - edges
+            - |
+              <%
+                CTX.edges.filter(({ source, target }) => source !== "kspacey" && target !== "kspacey")
+              %>
+        - target: _self
+          properties:
+            style:
+              visibility: hidden
+  - brick: eo-diagram
+    properties:
+      layout: dagre
+      nodes: <%= CTX.nodes %>
+      edges: <%= CTX.edges %>
+      lines:
+        - arrow: true
+      activeTarget: <%= CTX.activeTarget %>
+      nodeBricks:
+        - useBrick:
+            # if: <% DATA.node.id !== "kbacon" %>
+            brick: div
+            properties:
+              style: |
+                <%=
+                  {
+                    width: "180px",
+                    height: "100px",
+                    border: "2px solid green",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    outline: CTX.activeTarget?.type === "node" && CTX.activeTarget.nodeId === DATA.node.id ? "2px solid orange" : "none",
+                    outlineOffset: "2px",
+                  }
+                %>
+            children:
+              - brick: span
+                properties:
+                  textContent: <% DATA.node.label %>
+            events:
+              click:
+                action: context.replace
+                args:
+                  - activeTarget
+                  - type: node
+                    nodeId: <% DATA.node.id %>
+    events:
+      activeTarget.change:
+        action: context.replace
+        args:
+          - activeTarget
+          - <% EVENT.detail %>
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+diagram/eo-diagram/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <div style="position: fixed; height: 100vh; width: 100vw; top: 0px; left: 0px">
+#   <eo-button id="brick-1">Add Harrison Ford</eo-button>
+#   <eo-button id="brick-2">Remove Kevin Spacey</eo-button>
+#   <eo-diagram layout="dagre" id="brick-3"></eo-diagram>
+# </div>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("click", (e) => {
+#     // WARN: encountered incompatible event handlers in HTML mode, please try YAML.
+#   });
+#   brick_1.addEventListener("click", (e) => {
+#     // WARN: encountered incompatible event handlers in HTML mode, please try YAML.
+#   });
+#   brick_1.addEventListener("click", (e) => {
+#     const brick = e.target;
+#     brick.style = {
+#       visibility: "hidden",
+#     };
+#   });
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.addEventListener("click", (e) => {
+#     // WARN: encountered incompatible event handlers in HTML mode, please try YAML.
+#   });
+#   brick_2.addEventListener("click", (e) => {
+#     // WARN: encountered incompatible event handlers in HTML mode, please try YAML.
+#   });
+#   brick_2.addEventListener("click", (e) => {
+#     const brick = e.target;
+#     brick.style = {
+#       visibility: "hidden",
+#     };
+#   });
+# 
+#   const brick_3 = document.getElementById("brick-3");
+#   brick_3.nodes = "<%= CTX.nodes %>";
+#   brick_3.edges = "<%= CTX.edges %>";
+#   brick_3.lines = [
+#     {
+#       arrow: true,
+#     },
+#   ];
+#   brick_3.activeTarget = "<%= CTX.activeTarget %>";
+#   brick_3.nodeBricks = [
+#     {
+#       useBrick: {
+#         brick: "div",
+#         properties: {
+#           style:
+#             '<%=\n  {\n    width: "180px",\n    height: "100px",\n    border: "2px solid green",\n    display: "flex",\n    alignItems: "center",\n    justifyContent: "center",\n    outline: CTX.activeTarget?.type === "node" && CTX.activeTarget.nodeId === DATA.node.id ? "2px solid orange" : "none",\n    outlineOffset: "2px",\n  }\n%>\n',
+#         },
+#         children: [
+#           {
+#             brick: "span",
+#             properties: {
+#               textContent: "<% DATA.node.label %>",
+#             },
+#           },
+#         ],
+#         events: {
+#           click: {
+#             action: "context.replace",
+#             args: [
+#               "activeTarget",
+#               {
+#                 type: "node",
+#                 nodeId: "<% DATA.node.id %>",
+#               },
+#             ],
+#           },
+#         },
+#       },
+#     },
+#   ];
+#   brick_3.addEventListener("activeTarget.change", (e) => {
+#     // WARN: encountered incompatible event handlers in HTML mode, please try YAML.
+#   });
+# </script>
+# 
+```
+
+### Page Architecture
+
+```yaml preview minHeight="600px"
+brick: div
+properties:
+  style:
+    position: fixed
+    height: 100vh
+    width: 100vw
+    top: 0px
+    left: 0px
+context:
+  - name: activeTarget
+    value: null
+  - name: tempNodeId
+  - name: targetNode
+  - name: editingLabelNodes
+    value: []
+  - name: editingLabelEdges
+    value: []
+  - name: nodes
+    value:
+      - type: board
+        id: 60bf6078b095f
+        name: Visual Builder
+        depth: 0
+        parentId:
+        description: 某某产品
+      - type: page
+        id: 60bf60848d6d2
+        name: 项目列表
+        depth: 1
+        parentId: 60bf6078b095f
+        description: 列表页
+      - type: page
+        id: 60d533eba4ab2
+        name: ccc
+        depth: 1
+        parentId: 60bf6078b095f
+        description: cccc
+      - type: link
+        id: 60bf6091a1089
+        name: 新建项目
+        pageType: information:form:basic-form
+        description: 新建页213
+        to:
+          "@":
+            description: 无项目
+            instanceId: 60c5fea301b32
+          description: 新建页213
+          instanceId: 60bf6091a1089
+          module: []
+          name: 新建项目
+          pageType: information:form:basic-form
+        depth: -1
+        parentId:
+      - type: link
+        id: 60bf60a258613
+        name: 项目首页-路由管理
+        description: 路由管理
+        to:
+          description: 路由管理
+          instanceId: 60bf60a258613
+          module:
+            - instanceId: 60bf609b26889
+              name: Project
+          name: 项目首页-路由管理
+        depth: -1
+        parentId:
+      - type: link
+        id: 60c5f39a2c2e1
+        name: Launchpad 出厂配置
+        description: Launchpad 出厂配置
+        to:
+          description: Launchpad 出厂配置
+          instanceId: 60c5f39a2c2e1
+          module: []
+          name: Launchpad 出厂配置
+        depth: -1
+        parentId:
+  - name: edges
+    value:
+      - type: menu
+        source: 60bf6078b095f
+        target: 60bf60848d6d2
+      - type: menu
+        source: 60bf6078b095f
+        target: 60d533eba4ab2
+      - type: link
+        source: 60bf60848d6d2
+        target: 60bf6091a1089
+        description: 无项目
+      - type: link
+        source: 60bf60848d6d2
+        target: 60bf60a258613
+      - type: link
+        source: 60bf60848d6d2
+        target: 60c5f39a2c2e1
+children:
+  - brick: eo-diagram
+    properties:
+      layout: dagre
+      nodes: <%= CTX.nodes %>
+      edges: <%= CTX.edges %>
+      lines:
+        - edgeType: link
+          strokeColor: var(--theme-blue-color)
+          arrow: true
+          interactable: true
+          label:
+            useBrick:
+              brick: diagram.editable-label
+              properties:
+                label: <% DATA.edge.description %>
+                type: line
+              events:
+                label.change:
+                  if: <% (DATA.edge.description || "") !== (EVENT.detail || "") %>
+                  action: context.replace
+                  args:
+                    - edges
+                    - |-
+                      <%
+                        CTX.edges.map((edge) =>
+                          edge.source === DATA.edge.source &&
+                          edge.target === DATA.edge.target
+                            ? { ...edge, description: EVENT.detail }
+                            : edge
+                        )
+                      %>
+                label.editing.change:
+                  action: context.replace
+                  args:
+                    - editingLabelEdges
+                    - |-
+                      <%
+                        EVENT.detail
+                          ? CTX.editingLabelEdges.concat(
+                              `${DATA.edge.source}-:-${DATA.edge.target}`
+                            )
+                          : CTX.editingLabelEdges.filter(
+                              (id) =>
+                                id !== `${DATA.edge.source}-:-${DATA.edge.target}`
+                            )
+                      %>
+                click:
+                  action: context.replace
+                  args:
+                    - activeTarget
+                    - type: edge
+                      edge: <% DATA.edge %>
+        - edgeType: menu
+          strokeColor: var(--palette-gray-5)
+          arrow: true
+          interactable: true
+      layoutOptions:
+        nodePadding: [4, 10, 10]
+      activeTarget: <%= CTX.activeTarget %>
+      disableKeyboardAction: <%= CTX.editingLabelNodes.length > 0 || CTX.editingLabelEdges.length > 0 %>
+      connectNodes:
+        arrow: true
+        strokeColor: |-
+          <%
+            DATA.source.type === "board"
+              ? "var(--palette-gray-5)"
+              : "var(--theme-blue-color)"
+          %>
+      nodeBricks:
+        - useBrick:
+            brick: visual-builder.page-arch-node
+            properties:
+              label: <% DATA.node.name %>
+              type: <% DATA.node.type %>
+              autoFocusOnce: |
+                <% DATA.node.$temp ? DATA.node.id : undefined %>
+              active: <%= CTX.activeTarget?.type === "node" && CTX.activeTarget.nodeId === DATA.node.id %>
+            events:
+              click:
+                action: context.replace
+                args:
+                  - activeTarget
+                  - type: node
+                    nodeId: <% DATA.node.id %>
+              label.editing.change:
+                action: context.replace
+                args:
+                  - editingLabelNodes
+                  - |
+                    <%
+                      EVENT.detail
+                        ? CTX.editingLabelNodes.concat(DATA.node.id)
+                        : CTX.editingLabelNodes.filter(
+                            id => id !== DATA.node.id
+                          )
+                    %>
+              label.change:
+              - if: <% CTX.nodes.find(({id}) => id === DATA.node.id)?.$temp %>
+                action: context.replace
+                args:
+                args:
+                  - nodes
+                  - |
+                    <%
+                      CTX.nodes.map((node) => (
+                        node.id === DATA.node.id
+                          ? { ...node, $temp: false, name: EVENT.detail }
+                          : node
+                      ))
+                    %>
+                # Take reaction only if the label has been changed
+              - if: <% CTX.nodes.find(({id}) => id === DATA.node.id)?.name !== EVENT.detail %>
+                action: context.replace
+                args:
+                  - nodes
+                  - |
+                    <%
+                      CTX.nodes.map((node) => (
+                        node.id === DATA.node.id
+                          ? { ...node, name: EVENT.detail }
+                          : node
+                      ))
+                    %>
+              child.append:
+                - action: context.replace
+                  args:
+                    - tempNodeId
+                    - <% _.uniqueId('$temp-') %>
+                - action: context.replace
+                  args:
+                    - nodes
+                    - |
+                      <% CTX.nodes.concat({ id: CTX.tempNodeId, name: "未命名", $temp: true }) %>
+                - action: context.replace
+                  args:
+                    - edges
+                    - |
+                      <% CTX.edges.concat({ source: DATA.node.id, target: CTX.tempNodeId, name: "未命名", type: "link", $temp: true }) %>
+                - action: context.replace
+                  args:
+                    - activeTarget
+                    - type: node
+                      nodeId: <% CTX.tempNodeId %>
+    events:
+      activeTarget.change:
+        action: context.replace
+        args:
+          - activeTarget
+          - <% EVENT.detail %>
+      node.delete:
+        - action: context.replace
+          args:
+            - targetNode
+            - <% EVENT.detail %>
+        - useProvider: basic.show-dialog
+          args:
+          - type: delete
+            title: Delete Confirm
+            content: Please enter {{ expect }} to delete the node.
+            expect: <% EVENT.detail.name || "未命名" %>
+          callback:
+            success:
+            - action: context.replace
+              args:
+                - nodes
+                - |-
+                  <%
+                    CTX.nodes.filter(
+                      ({ id }) => id !== CTX.targetNode.id
+                    )
+                  %>
+            - action: context.replace
+              args:
+                - edges
+                - |-
+                  <%
+                    CTX.edges.filter(
+                      ({ source, target }) =>
+                        source !== CTX.targetNode.id &&
+                        target !== CTX.targetNode.id
+                    )
+                  %>
+      edge.delete:
+        action: context.replace
+        args:
+          - edges
+          - |-
+            <%
+              CTX.edges.filter(
+                ({ source, target }) =>
+                  source !== EVENT.detail.source ||
+                  target !== EVENT.detail.target
+              )
+            %>
+      line.click:
+        action: context.replace
+        args:
+          - activeTarget
+          - type: edge
+            edge: <% EVENT.detail.edge %>
+      line.dblclick:
+        target: _self
+        method: callOnLineLabel
+        args:
+          - <% `${EVENT.detail.id}-center` %>
+          - enableEditing
+      nodes.connect:
+        if: |-
+          <%
+            EVENT.detail.target.type !== "board" &&
+            !CTX.edges.some(
+              (edge) =>
+                edge.source === EVENT.detail.source.id &&
+                edge.target === EVENT.detail.target.id
+            )
+          %>
+        action: context.replace
+        args:
+          - edges
+          - |-
+            <%
+              CTX.edges.concat({
+                source: EVENT.detail.source.id,
+                target: EVENT.detail.target.id,
+                type:
+                  EVENT.detail.source.type === "board"
+                    ? "menu"
+                    : "link",
+              })
+            %>
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+diagram/eo-diagram/page architecture
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <div style="position: fixed; height: 100vh; width: 100vw; top: 0px; left: 0px">
+#   <eo-diagram layout="dagre" disable-keyboard-action id="brick-1"></eo-diagram>
+# </div>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.nodes = "<%= CTX.nodes %>";
+#   brick_1.edges = "<%= CTX.edges %>";
+#   brick_1.lines = [
+#     {
+#       edgeType: "link",
+#       strokeColor: "var(--theme-blue-color)",
+#       arrow: true,
+#       interactable: true,
+#       label: {
+#         useBrick: {
+#           brick: "diagram.editable-label",
+#           properties: {
+#             label: "<% DATA.edge.description %>",
+#             type: "line",
+#           },
+#           events: {
+#             "label.change": {
+#               if: '<% (DATA.edge.description || "") !== (EVENT.detail || "") %>',
+#               action: "context.replace",
+#               args: [
+#                 "edges",
+#                 "<%\n  CTX.edges.map((edge) =>\n    edge.source === DATA.edge.source &&\n    edge.target === DATA.edge.target\n      ? { ...edge, description: EVENT.detail }\n      : edge\n  )\n%>",
+#               ],
+#             },
+#             "label.editing.change": {
+#               action: "context.replace",
+#               args: [
+#                 "editingLabelEdges",
+#                 "<%\n  EVENT.detail\n    ? CTX.editingLabelEdges.concat(\n        `${DATA.edge.source}-:-${DATA.edge.target}`\n      )\n    : CTX.editingLabelEdges.filter(\n        (id) =>\n          id !== `${DATA.edge.source}-:-${DATA.edge.target}`\n      )\n%>",
+#               ],
+#             },
+#             click: {
+#               action: "context.replace",
+#               args: [
+#                 "activeTarget",
+#                 {
+#                   type: "edge",
+#                   edge: "<% DATA.edge %>",
+#                 },
+#               ],
+#             },
+#           },
+#         },
+#       },
+#     },
+#     {
+#       edgeType: "menu",
+#       strokeColor: "var(--palette-gray-5)",
+#       arrow: true,
+#       interactable: true,
+#     },
+#   ];
+#   brick_1.layoutOptions = {
+#     nodePadding: [4, 10, 10],
+#   };
+#   brick_1.activeTarget = "<%= CTX.activeTarget %>";
+#   brick_1.connectNodes = {
+#     arrow: true,
+#     strokeColor:
+#       '<%\n  DATA.source.type === "board"\n    ? "var(--palette-gray-5)"\n    : "var(--theme-blue-color)"\n%>',
+#   };
+#   brick_1.nodeBricks = [
+#     {
+#       useBrick: {
+#         brick: "visual-builder.page-arch-node",
+#         properties: {
+#           label: "<% DATA.node.name %>",
+#           type: "<% DATA.node.type %>",
+#           autoFocusOnce: "<% DATA.node.$temp ? DATA.node.id : undefined %>\n",
+#           active:
+#             '<%= CTX.activeTarget?.type === "node" && CTX.activeTarget.nodeId === DATA.node.id %>',
+#         },
+#         events: {
+#           click: {
+#             action: "context.replace",
+#             args: [
+#               "activeTarget",
+#               {
+#                 type: "node",
+#                 nodeId: "<% DATA.node.id %>",
+#               },
+#             ],
+#           },
+#           "label.editing.change": {
+#             action: "context.replace",
+#             args: [
+#               "editingLabelNodes",
+#               "<%\n  EVENT.detail\n    ? CTX.editingLabelNodes.concat(DATA.node.id)\n    : CTX.editingLabelNodes.filter(\n        id => id !== DATA.node.id\n      )\n%>\n",
+#             ],
+#           },
+#           "label.change": [
+#             {
+#               if: "<% CTX.nodes.find(({id}) => id === DATA.node.id)?.$temp %>",
+#               action: "context.replace",
+#               args: [
+#                 "nodes",
+#                 "<%\n  CTX.nodes.map((node) => (\n    node.id === DATA.node.id\n      ? { ...node, $temp: false, name: EVENT.detail }\n      : node\n  ))\n%>\n",
+#               ],
+#             },
+#             {
+#               if: "<% CTX.nodes.find(({id}) => id === DATA.node.id)?.name !== EVENT.detail %>",
+#               action: "context.replace",
+#               args: [
+#                 "nodes",
+#                 "<%\n  CTX.nodes.map((node) => (\n    node.id === DATA.node.id\n      ? { ...node, name: EVENT.detail }\n      : node\n  ))\n%>\n",
+#               ],
+#             },
+#           ],
+#           "child.append": [
+#             {
+#               action: "context.replace",
+#               args: ["tempNodeId", "<% _.uniqueId('$temp-') %>"],
+#             },
+#             {
+#               action: "context.replace",
+#               args: [
+#                 "nodes",
+#                 '<% CTX.nodes.concat({ id: CTX.tempNodeId, name: "未命名", $temp: true }) %>\n',
+#               ],
+#             },
+#             {
+#               action: "context.replace",
+#               args: [
+#                 "edges",
+#                 '<% CTX.edges.concat({ source: DATA.node.id, target: CTX.tempNodeId, name: "未命名", type: "link", $temp: true }) %>\n',
+#               ],
+#             },
+#             {
+#               action: "context.replace",
+#               args: [
+#                 "activeTarget",
+#                 {
+#                   type: "node",
+#                   nodeId: "<% CTX.tempNodeId %>",
+#                 },
+#               ],
+#             },
+#           ],
+#         },
+#       },
+#     },
+#   ];
+#   brick_1.addEventListener("activeTarget.change", (e) => {
+#     // WARN: encountered incompatible event handlers in HTML mode, please try YAML.
+#   });
+#   brick_1.addEventListener("node.delete", (e) => {
+#     // WARN: encountered incompatible event handlers in HTML mode, please try YAML.
+#   });
+#   brick_1.addEventListener("node.delete", (e) => {
+#     const provider = document.createElement("basic.show-dialog");
+#     const promise = Promise.resolve(
+#       provider.resolve({
+#         type: "delete",
+#         title: "Delete Confirm",
+#         content: "Please enter {{ expect }} to delete the node.",
+#         expect: '<% EVENT.detail.name || "未命名" %>',
+#       })
+#     );
+#     promise.then((r) => {
+#       // WARN: encountered incompatible event handlers in HTML mode, please try YAML.
+#     });
+#     promise.then((r) => {
+#       // WARN: encountered incompatible event handlers in HTML mode, please try YAML.
+#     });
+#   });
+#   brick_1.addEventListener("edge.delete", (e) => {
+#     // WARN: encountered incompatible event handlers in HTML mode, please try YAML.
+#   });
+#   brick_1.addEventListener("line.click", (e) => {
+#     // WARN: encountered incompatible event handlers in HTML mode, please try YAML.
+#   });
+#   brick_1.addEventListener("line.dblclick", (e) => {
+#     const brick = e.target;
+#     brick.callOnLineLabel(
+#       /* WARN: incompatible expressions in HTML, please try YAML: */
+#       "<% `${EVENT.detail.id}-center` %>",
+#       "enableEditing"
+#     );
+#   });
+#   brick_1.addEventListener("nodes.connect", (e) => {
+#     // WARN: encountered incompatible event handlers in HTML mode, please try YAML.
+#   });
+# </script>
+# 
+```
+
+### Force
+
+```yaml preview minHeight="600px"
+brick: div
+properties:
+  style:
+    position: fixed
+    height: 100vh
+    width: 100vw
+    top: 0px
+    left: 0px
+context:
+  - name: activeTarget
+    value: null
+  - name: nodes
+    value:
+      - id: 产品评价
+      - id: 产品线
+      - id: 用户角色
+      - id: 模型视图
+      - id: 产品
+      - id: 业务场景
+      - id: 业务规则
+      - id: 模型
+      - id: 产品模块
+      - id: 产品价值点
+      - id: 工作流
+      - id: 测试用例
+      - id: 功能点
+      # - id: 其他
+  - name: edges
+    value:
+      - source: 产品
+        target: 产品评价
+        sourceName: 评价列表
+        targetName: 所属产品
+        sourceConstraints:
+          required: true
+        targetConstraints:
+          multiple: true
+      - source: 产品
+        target: 产品线
+        sourceName: 所属产品线
+        targetName: 产品列表
+        sourceConstraints:
+          multiple: true
+        targetConstraints:
+          required: true
+      - source: 产品
+        target: 用户角色
+        sourceName: 负责人
+        targetName: 负责的产品
+        sourceConstraints:
+          multiple: true
+        targetConstraints:
+          multiple: true
+      - source: 产品
+        target: 模型视图
+        sourceName: 模型视图列表
+        targetName: 所属产品
+        sourceConstraints:
+          required: true
+        targetConstraints:
+          multiple: true
+      - source: 产品
+        target: 业务场景
+        sourceName: 业务场景列表
+        targetName: 所属产品
+        sourceConstraints:
+          required: true
+        targetConstraints:
+          multiple: true
+      - source: 业务场景
+        target: 业务场景
+      - source: 业务场景
+        target: 业务规则
+        sourceName: 业务规则列表
+        targetName: 所属业务场景
+        sourceConstraints:
+          required: true
+        targetConstraints:
+          multiple: true
+      - source: 业务场景
+        target: 用户角色
+        sourceName: 负责人
+        targetName: 负责的业务场景
+        sourceConstraints:
+          multiple: true
+        targetConstraints:
+          multiple: true
+      - source: 产品
+        target: 模型
+        sourceName: 模型列表
+        targetName: 关联的产品
+        sourceConstraints:
+          required: true
+        targetConstraints:
+          multiple: true
+      - source: 产品
+        target: 产品模块
+        sourceName: 模块列表
+        targetName: 所属产品
+        sourceConstraints:
+          required: true
+        targetConstraints:
+          multiple: true
+      - source: 产品
+        target: 产品价值点
+        sourceName: 价值点列表
+        targetName: 所属产品
+        sourceConstraints:
+          required: true
+        targetConstraints:
+          multiple: true
+      - source: 业务场景
+        target: 产品价值点
+        sourceName: 价值点列表
+        targetName: 关联的业务场景
+      - source: 业务场景
+        target: 工作流
+      - source: 业务规则
+        target: 工作流
+      - source: 产品模块
+        target: 产品模块
+      - source: 产品模块
+        target: 测试用例
+        sourceName: 测试用例列表
+        targetName: 所属产品模块
+        sourceConstraints:
+          multiple: true
+        targetConstraints:
+          multiple: true
+      - source: 产品模块
+        target: 功能点
+        sourceName: 功能点列表
+        targetName: 所属产品模块
+        sourceConstraints:
+          required: true
+        targetConstraints:
+          multiple: true
+      - source: 测试用例
+        target: 功能点
+        sourceName: 关联的功能点
+        targetName: 关联的测试用例
+        sourceConstraints:
+          multiple: true
+        targetConstraints:
+          multiple: true
+      # - source: 产品线
+      #   target: 模型视图
+children:
+  - brick: eo-diagram
+    properties:
+      layout: force
+      dragNodes: {}
+      nodes: <%= CTX.nodes %>
+      edges: <%= CTX.edges %>
+      activeTarget: <%= CTX.activeTarget %>
+      layoutOptions:
+        # nodePadding: 5
+        dummyNodesOnEdges: 1
+        collide:
+          dummyRadius: 10
+          radiusDiff: 40
+        # rankdir: LR
+        # acyclicer: greedy
+        # align: DL
+      lines:
+        - label:
+            - useBrick:
+                brick: span
+                properties:
+                  hidden: <%= CTX.activeTarget?.type !== "node" || (DATA.edge.source !== CTX.activeTarget.nodeId && DATA.edge.target !== CTX.activeTarget.nodeId) %>
+                  textContent: |
+                    <%= DATA.edge.source === CTX.activeTarget?.nodeId ? DATA.edge.sourceName : DATA.edge.target === CTX.activeTarget?.nodeId ? DATA.edge.targetName : "" %>
+                  style:
+                    color: var(--palette-gray-6)
+          overrides:
+            activeRelated:
+              strokeColor: var(--palette-blue-4)
+      nodeBricks:
+        - useBrick:
+            # if: <% DATA.node.id !== "kbacon" %>
+            brick: div
+            properties:
+              style: |
+                <%=
+                  {
+                    width: "160px",
+                    height: "50px",
+                    background: "var(--palette-green-1)",
+                    border: "1px solid var(--palette-gray-4)",
+                    borderRadius: "8px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    outline: CTX.activeTarget?.type === "node" && DATA.node.id === CTX.activeTarget.nodeId ? "2px solid orange" : "none",
+                    outlineOffset: "2px",
+                    cursor: "pointer",
+                    userSelect: "none",
+                  }
+                %>
+            children:
+              - brick: span
+                properties:
+                  textContent: <% DATA.node.id %>
+            events:
+              click:
+                action: context.replace
+                args:
+                  - activeTarget
+                  - type: node
+                    nodeId: <% DATA.node.id %>
+    events:
+      activeTarget.change:
+        action: context.replace
+        args:
+          - activeTarget
+          - <% EVENT.detail %>
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+diagram/eo-diagram/force
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <div style="position: fixed; height: 100vh; width: 100vw; top: 0px; left: 0px">
+#   <eo-diagram layout="force" id="brick-1"></eo-diagram>
+# </div>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.dragNodes = {};
+#   brick_1.nodes = "<%= CTX.nodes %>";
+#   brick_1.edges = "<%= CTX.edges %>";
+#   brick_1.activeTarget = "<%= CTX.activeTarget %>";
+#   brick_1.layoutOptions = {
+#     dummyNodesOnEdges: 1,
+#     collide: {
+#       dummyRadius: 10,
+#       radiusDiff: 40,
+#     },
+#   };
+#   brick_1.lines = [
+#     {
+#       label: [
+#         {
+#           useBrick: {
+#             brick: "span",
+#             properties: {
+#               hidden:
+#                 '<%= CTX.activeTarget?.type !== "node" || (DATA.edge.source !== CTX.activeTarget.nodeId && DATA.edge.target !== CTX.activeTarget.nodeId) %>',
+#               textContent:
+#                 '<%= DATA.edge.source === CTX.activeTarget?.nodeId ? DATA.edge.sourceName : DATA.edge.target === CTX.activeTarget?.nodeId ? DATA.edge.targetName : "" %>\n',
+#               style: {
+#                 color: "var(--palette-gray-6)",
+#               },
+#             },
+#           },
+#         },
+#       ],
+#       overrides: {
+#         activeRelated: {
+#           strokeColor: "var(--palette-blue-4)",
+#         },
+#       },
+#     },
+#   ];
+#   brick_1.nodeBricks = [
+#     {
+#       useBrick: {
+#         brick: "div",
+#         properties: {
+#           style:
+#             '<%=\n  {\n    width: "160px",\n    height: "50px",\n    background: "var(--palette-green-1)",\n    border: "1px solid var(--palette-gray-4)",\n    borderRadius: "8px",\n    display: "flex",\n    alignItems: "center",\n    justifyContent: "center",\n    outline: CTX.activeTarget?.type === "node" && DATA.node.id === CTX.activeTarget.nodeId ? "2px solid orange" : "none",\n    outlineOffset: "2px",\n    cursor: "pointer",\n    userSelect: "none",\n  }\n%>\n',
+#         },
+#         children: [
+#           {
+#             brick: "span",
+#             properties: {
+#               textContent: "<% DATA.node.id %>",
+#             },
+#           },
+#         ],
+#         events: {
+#           click: {
+#             action: "context.replace",
+#             args: [
+#               "activeTarget",
+#               {
+#                 type: "node",
+#                 nodeId: "<% DATA.node.id %>",
+#               },
+#             ],
+#           },
+#         },
+#       },
+#     },
+#   ];
+#   brick_1.addEventListener("activeTarget.change", (e) => {
+#     // WARN: encountered incompatible event handlers in HTML mode, please try YAML.
+#   });
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["DiagramNode","DiagramNodeId","DiagramEdge","NodeBrickConf","LineConf","LineType","CurveType","TextOptions","LabelOrTextBaseOptions","LineLabelPlacement","LineLabelConf","LineConfOverrides","LineConfOverridable","LineMarkerConf","LineMarkerPlacement","LineMarkerType","LayoutOptions","LayoutOptionsDagre","BaseLayoutOptions","PartialRectTuple","LayoutOptionsForce","ForceCollideOptions","ActiveTarget","ActiveTargetOfNode","ActiveTargetOfEdge","ConnectNodesOptions","NodesFilterOptions","DragNodesOptions","UserViewQuery","RangeTuple","LineTarget","ConnectLineDetail"]}>
+  <BrickDocProperties properties={[{"name":"layout","description":"","required":true,"type":"\"dagre\" | \"force\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"dagre"},{"type":"jsLiteral","value":"force"}]}},{"name":"nodes","attribute":false,"type":"DiagramNode[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"DiagramNode"}}}},{"name":"edges","attribute":false,"type":"DiagramEdge[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"DiagramEdge"}}}},{"name":"nodeBricks","attribute":false,"type":"NodeBrickConf[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"NodeBrickConf"}}}},{"name":"lines","attribute":false,"type":"LineConf[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"LineConf"}}}},{"name":"layoutOptions","attribute":false,"type":"LayoutOptions","annotation":{"type":"reference","typeName":{"type":"identifier","name":"LayoutOptions"}}},{"name":"activeTarget","attribute":false,"type":"ActiveTarget | null","annotation":{"type":"union","types":[{"type":"reference","typeName":{"type":"identifier","name":"ActiveTarget"}},{"type":"keyword","value":"null"}]}},{"name":"disableKeyboardAction","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"connectNodes","attribute":false,"type":"ConnectNodesOptions","annotation":{"type":"reference","typeName":{"type":"identifier","name":"ConnectNodesOptions"}}},{"name":"dragNodes","attribute":false,"type":"DragNodesOptions","annotation":{"type":"reference","typeName":{"type":"identifier","name":"DragNodesOptions"}}},{"name":"zoomable","type":"boolean","default":"true","annotation":{"type":"keyword","value":"boolean"}},{"name":"scrollable","type":"boolean","default":"true","annotation":{"type":"keyword","value":"boolean"}},{"name":"pannable","type":"boolean","default":"true","annotation":{"type":"keyword","value":"boolean"}},{"name":"scaleRange","attribute":false,"type":"RangeTuple","annotation":{"type":"reference","typeName":{"type":"identifier","name":"RangeTuple"}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={["DiagramNode","DiagramNodeId","DiagramEdge","NodeBrickConf","LineConf","LineType","CurveType","TextOptions","LabelOrTextBaseOptions","LineLabelPlacement","LineLabelConf","LineConfOverrides","LineConfOverridable","LineMarkerConf","LineMarkerPlacement","LineMarkerType","LayoutOptions","LayoutOptionsDagre","BaseLayoutOptions","PartialRectTuple","LayoutOptionsForce","ForceCollideOptions","ActiveTarget","ActiveTargetOfNode","ActiveTargetOfEdge","ConnectNodesOptions","NodesFilterOptions","DragNodesOptions","UserViewQuery","RangeTuple","LineTarget","ConnectLineDetail"]}>
+  <BrickDocEvents events={[{"name":"activeTarget.change","detail":{"type":"ActiveTarget | null","annotation":{"type":"union","types":[{"type":"reference","typeName":{"type":"identifier","name":"ActiveTarget"}},{"type":"keyword","value":"null"}]}}},{"name":"node.delete","detail":{"type":"DiagramNode","annotation":{"type":"reference","typeName":{"type":"identifier","name":"DiagramNode"}}}},{"name":"edge.delete","detail":{"type":"DiagramEdge","annotation":{"type":"reference","typeName":{"type":"identifier","name":"DiagramEdge"}}}},{"name":"line.click","detail":{"type":"LineTarget","annotation":{"type":"reference","typeName":{"type":"identifier","name":"LineTarget"}}}},{"name":"line.dblclick","detail":{"type":"LineTarget","annotation":{"type":"reference","typeName":{"type":"identifier","name":"LineTarget"}}}},{"name":"nodes.connect","detail":{"type":"ConnectLineDetail","annotation":{"type":"reference","typeName":{"type":"identifier","name":"ConnectLineDetail"}}}}]} />
+</TypeReferencesContext.Provider>
+
+## Methods
+
+<TypeReferencesContext.Provider value={["DiagramNode","DiagramNodeId","DiagramEdge","NodeBrickConf","LineConf","LineType","CurveType","TextOptions","LabelOrTextBaseOptions","LineLabelPlacement","LineLabelConf","LineConfOverrides","LineConfOverridable","LineMarkerConf","LineMarkerPlacement","LineMarkerType","LayoutOptions","LayoutOptionsDagre","BaseLayoutOptions","PartialRectTuple","LayoutOptionsForce","ForceCollideOptions","ActiveTarget","ActiveTargetOfNode","ActiveTargetOfEdge","ConnectNodesOptions","NodesFilterOptions","DragNodesOptions","UserViewQuery","RangeTuple","LineTarget","ConnectLineDetail"]}>
+  <BrickDocMethods methods={[{"name":"callOnLineLabel","params":[{"name":"id","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"method","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"param_3","type":"unknown[]","annotation":{"type":"array","elementType":{"type":"keyword","value":"unknown"}}}],"returns":{}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"DiagramNode","body":[{"type":"propertySignature","key":{"type":"identifier","name":"id"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"DiagramNodeId"}},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"type"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false},{"type":"indexSignature","parameter":{"type":"identifier","name":"key","annotation":{"type":"keyword","value":"string"}},"annotation":{"type":"keyword","value":"unknown"}}]},{"type":"typeAlias","name":"DiagramNodeId","annotation":{"type":"keyword","value":"string"}},{"type":"interface","name":"DiagramEdge","body":[{"type":"propertySignature","key":{"type":"identifier","name":"source"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"target"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"type"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false},{"type":"indexSignature","parameter":{"type":"identifier","name":"key","annotation":{"type":"keyword","value":"string"}},"annotation":{"type":"keyword","value":"unknown"}}]},{"type":"interface","name":"NodeBrickConf","body":[{"type":"propertySignature","key":{"type":"identifier","name":"useBrick"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"UseSingleBrickConf"}},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"nodeType"},"annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"array","elementType":{"type":"keyword","value":"string"}}]},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"if"},"annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"boolean"},{"type":"keyword","value":"null"}]},"optional":true,"computed":false}]},{"type":"interface","name":"LineConf","body":[{"type":"propertySignature","key":{"type":"identifier","name":"edgeType"},"annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"array","elementType":{"type":"keyword","value":"string"}}]},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"if"},"annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"boolean"},{"type":"keyword","value":"null"}]},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"draw"},"annotation":{"type":"keyword","value":"boolean"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"type"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"LineType"}},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"interactable"},"annotation":{"type":"keyword","value":"boolean"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"curveType"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"CurveType"}},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"arrow"},"annotation":{"type":"keyword","value":"boolean"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"text"},"annotation":{"type":"union","types":[{"type":"reference","typeName":{"type":"identifier","name":"TextOptions"}},{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"TextOptions"}}}]},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"label"},"annotation":{"type":"union","types":[{"type":"reference","typeName":{"type":"identifier","name":"LineLabelConf"}},{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"LineLabelConf"}}}]},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"cursor"},"annotation":{"type":"indexedAccess","objectType":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}},"indexType":{"type":"jsLiteral","value":"cursor"}},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"overrides"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"LineConfOverrides"}},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"markers"},"annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"LineMarkerConf"}}},"optional":true,"computed":false}],"extends":[{"type":"expressionWithTypeArguments","expression":{"type":"identifier","name":"LineConfOverridable"}}]},{"type":"typeAlias","name":"LineType","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"auto"},{"type":"jsLiteral","value":"curve"},{"type":"jsLiteral","value":"straight"},{"type":"jsLiteral","value":"polyline"}]}},{"type":"typeAlias","name":"CurveType","annotation":{"type":"unsupported","source":"`curve${string}`"}},{"type":"interface","name":"TextOptions","body":[{"type":"propertySignature","key":{"type":"identifier","name":"content"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"style"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"CSSProperties"}},"optional":true,"computed":false}],"extends":[{"type":"expressionWithTypeArguments","expression":{"type":"identifier","name":"LabelOrTextBaseOptions"}}]},{"type":"interface","name":"LabelOrTextBaseOptions","body":[{"type":"propertySignature","key":{"type":"identifier","name":"placement"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"LineLabelPlacement"}},"optional":true,"computed":false,"description":"","default":"\"center\""},{"type":"propertySignature","key":{"type":"identifier","name":"offset"},"annotation":{"type":"keyword","value":"number"},"optional":true,"computed":false,"description":"根据 placement 的不同，设置 offset 分别表示文本中心点距离连线的起点、中心点或终点的偏移量。","default":"0"}]},{"type":"typeAlias","name":"LineLabelPlacement","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"center"},{"type":"jsLiteral","value":"start"},{"type":"jsLiteral","value":"end"}]}},{"type":"interface","name":"LineLabelConf","body":[{"type":"propertySignature","key":{"type":"identifier","name":"if"},"annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"boolean"},{"type":"keyword","value":"null"}]},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"useBrick"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"UseSingleBrickConf"}},"computed":false}],"extends":[{"type":"expressionWithTypeArguments","expression":{"type":"identifier","name":"LabelOrTextBaseOptions"}}]},{"type":"interface","name":"LineConfOverrides","body":[{"type":"propertySignature","key":{"type":"identifier","name":"active"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"LineConfOverridable"}},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"activeRelated"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"LineConfOverridable"}},"optional":true,"computed":false}]},{"type":"interface","name":"LineConfOverridable","body":[{"type":"propertySignature","key":{"type":"identifier","name":"strokeColor"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"strokeWidth"},"annotation":{"type":"keyword","value":"number"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"interactStrokeWidth"},"annotation":{"type":"keyword","value":"number"},"optional":true,"computed":false}]},{"type":"interface","name":"LineMarkerConf","body":[{"type":"propertySignature","key":{"type":"identifier","name":"placement"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"LineMarkerPlacement"}},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"type"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"LineMarkerType"}},"optional":true,"computed":false}]},{"type":"typeAlias","name":"LineMarkerPlacement","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"start"},{"type":"jsLiteral","value":"end"}]}},{"type":"typeAlias","name":"LineMarkerType","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"arrow"},{"type":"jsLiteral","value":"circle"},{"type":"jsLiteral","value":"0..1"},{"type":"jsLiteral","value":"0..N"}]}},{"type":"typeAlias","name":"LayoutOptions","annotation":{"type":"union","types":[{"type":"reference","typeName":{"type":"identifier","name":"LayoutOptionsDagre"}},{"type":"reference","typeName":{"type":"identifier","name":"LayoutOptionsForce"}}]}},{"type":"interface","name":"LayoutOptionsDagre","body":[{"type":"propertySignature","key":{"type":"identifier","name":"rankdir"},"annotation":{"type":"union","types":[{"type":"jsLiteral","value":"TB"},{"type":"jsLiteral","value":"BT"},{"type":"jsLiteral","value":"LR"},{"type":"jsLiteral","value":"RL"}]},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"ranksep"},"annotation":{"type":"keyword","value":"number"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"edgesep"},"annotation":{"type":"keyword","value":"number"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"nodesep"},"annotation":{"type":"keyword","value":"number"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"align"},"annotation":{"type":"union","types":[{"type":"jsLiteral","value":"UL"},{"type":"jsLiteral","value":"UR"},{"type":"jsLiteral","value":"DL"},{"type":"jsLiteral","value":"DR"}]},"optional":true,"computed":false}],"extends":[{"type":"expressionWithTypeArguments","expression":{"type":"identifier","name":"BaseLayoutOptions"}}]},{"type":"interface","name":"BaseLayoutOptions","body":[{"type":"propertySignature","key":{"type":"identifier","name":"nodePadding"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"PartialRectTuple"}},"optional":true,"computed":false}]},{"type":"typeAlias","name":"PartialRectTuple","annotation":{"type":"union","types":[{"type":"keyword","value":"number"},{"type":"tuple","elementTypes":[{"type":"namedTupleMember","label":"all","optional":false,"elementType":{"type":"keyword","value":"number"}}]},{"type":"tuple","elementTypes":[{"type":"namedTupleMember","label":"vertical","optional":false,"elementType":{"type":"keyword","value":"number"}},{"type":"namedTupleMember","label":"horizontal","optional":false,"elementType":{"type":"keyword","value":"number"}}]},{"type":"tuple","elementTypes":[{"type":"namedTupleMember","label":"top","optional":false,"elementType":{"type":"keyword","value":"number"}},{"type":"namedTupleMember","label":"horizontal","optional":false,"elementType":{"type":"keyword","value":"number"}},{"type":"namedTupleMember","label":"bottom","optional":false,"elementType":{"type":"keyword","value":"number"}}]},{"type":"tuple","elementTypes":[{"type":"namedTupleMember","label":"top","optional":false,"elementType":{"type":"keyword","value":"number"}},{"type":"namedTupleMember","label":"right","optional":false,"elementType":{"type":"keyword","value":"number"}},{"type":"namedTupleMember","label":"bottom","optional":false,"elementType":{"type":"keyword","value":"number"}},{"type":"namedTupleMember","label":"left","optional":false,"elementType":{"type":"keyword","value":"number"}}]}]}},{"type":"interface","name":"LayoutOptionsForce","body":[{"type":"propertySignature","key":{"type":"identifier","name":"dummyNodesOnEdges"},"annotation":{"type":"keyword","value":"number"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"collide"},"annotation":{"type":"union","types":[{"type":"keyword","value":"boolean"},{"type":"reference","typeName":{"type":"identifier","name":"ForceCollideOptions"}}]},"optional":true,"computed":false}],"extends":[{"type":"expressionWithTypeArguments","expression":{"type":"identifier","name":"BaseLayoutOptions"}}]},{"type":"interface","name":"ForceCollideOptions","body":[{"type":"propertySignature","key":{"type":"identifier","name":"dummyRadius"},"annotation":{"type":"keyword","value":"number"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"radiusDiff"},"annotation":{"type":"keyword","value":"number"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"strength"},"annotation":{"type":"keyword","value":"number"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"iterations"},"annotation":{"type":"keyword","value":"number"},"optional":true,"computed":false}]},{"type":"typeAlias","name":"ActiveTarget","annotation":{"type":"union","types":[{"type":"reference","typeName":{"type":"identifier","name":"ActiveTargetOfNode"}},{"type":"reference","typeName":{"type":"identifier","name":"ActiveTargetOfEdge"}}]}},{"type":"interface","name":"ActiveTargetOfNode","body":[{"type":"propertySignature","key":{"type":"identifier","name":"type"},"annotation":{"type":"jsLiteral","value":"node"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"nodeId"},"annotation":{"type":"keyword","value":"string"},"computed":false}]},{"type":"interface","name":"ActiveTargetOfEdge","body":[{"type":"propertySignature","key":{"type":"identifier","name":"type"},"annotation":{"type":"jsLiteral","value":"edge"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"edge"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"DiagramEdge"}},"computed":false}]},{"type":"interface","name":"ConnectNodesOptions","body":[{"type":"propertySignature","key":{"type":"identifier","name":"strokeColor"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"strokeWidth"},"annotation":{"type":"keyword","value":"number"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"arrow"},"annotation":{"type":"keyword","value":"boolean"},"optional":true,"computed":false}],"extends":[{"type":"expressionWithTypeArguments","expression":{"type":"identifier","name":"NodesFilterOptions"}}]},{"type":"interface","name":"NodesFilterOptions","body":[{"type":"propertySignature","key":{"type":"identifier","name":"sourceType"},"annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"array","elementType":{"type":"keyword","value":"string"}}]},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"if"},"annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"boolean"},{"type":"keyword","value":"null"}]},"optional":true,"computed":false}]},{"type":"interface","name":"DragNodesOptions","body":[{"type":"propertySignature","key":{"type":"identifier","name":"save"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"UserViewQuery"}},"optional":true,"computed":false}],"extends":[{"type":"expressionWithTypeArguments","expression":{"type":"identifier","name":"NodesFilterOptions"}}]},{"type":"interface","name":"UserViewQuery","body":[{"type":"propertySignature","key":{"type":"identifier","name":"namespace"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"key"},"annotation":{"type":"keyword","value":"string"},"computed":false}]},{"type":"typeAlias","name":"RangeTuple","annotation":{"type":"tuple","elementTypes":[{"type":"namedTupleMember","label":"min","optional":false,"elementType":{"type":"keyword","value":"number"}},{"type":"namedTupleMember","label":"max","optional":false,"elementType":{"type":"keyword","value":"number"}}]}},{"type":"interface","name":"LineTarget","body":[{"type":"propertySignature","key":{"type":"identifier","name":"id"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"edge"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"DiagramEdge"}},"computed":false}]},{"type":"interface","name":"ConnectLineDetail","body":[{"type":"propertySignature","key":{"type":"identifier","name":"source"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"DiagramNode"}},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"target"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"DiagramNode"}},"computed":false}]}]} />
+

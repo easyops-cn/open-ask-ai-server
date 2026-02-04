@@ -1,0 +1,464 @@
+---
+description: "<eo-tag>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-tag"}
+  alias={["basic.general-tag"]}
+  insider={false}
+  deprecated={false}
+/>
+
+通用标签构件
+
+```yaml preview gap
+- brick: eo-tag
+  properties:
+    textContent: Normal Item
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-tag
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-tag>Normal Item</eo-tag>
+# 
+```
+
+## Examples
+
+### Closable & Event
+
+```yaml preview gap
+- brick: eo-tag
+  properties:
+    textContent: Normal Item
+- brick: eo-tag
+  properties:
+    closable: true
+    textContent: Closable Item
+  events:
+    close:
+      - action: message.success
+        args:
+          - <% JSON.stringify(EVENT.detail) %>
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-tag/closable & event
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-tag>Normal Item</eo-tag>
+# <eo-tag closable id="brick-1">Closable Item</eo-tag>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("close", (e) => {
+#     const message = document.createElement("basic.show-notification");
+#     message.resolve({
+#       type: "success",
+#       /* WARN: incompatible expressions in HTML, please try YAML: */
+#       message: "<% JSON.stringify(EVENT.detail) %>",
+#     });
+#   });
+# </script>
+# 
+```
+
+### Checkable & Event
+
+```yaml preview gap
+- brick: eo-tag
+  properties:
+    checkable: true
+    textContent: Check Item
+  events:
+    check:
+      - action: message.success
+        args:
+          - <% JSON.stringify(EVENT.detail) %>
+- brick: eo-tag
+  properties:
+    checkable: true
+    textContent: Default Checked Item
+    checked: true
+  events:
+    check:
+      - action: message.success
+        args:
+          - <% JSON.stringify(EVENT.detail) %>
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-tag/checkable & event
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-tag checkable id="brick-1">Check Item</eo-tag>
+# <eo-tag checkable checked id="brick-2">Default Checked Item</eo-tag>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("check", (e) => {
+#     const message = document.createElement("basic.show-notification");
+#     message.resolve({
+#       type: "success",
+#       /* WARN: incompatible expressions in HTML, please try YAML: */
+#       message: "<% JSON.stringify(EVENT.detail) %>",
+#     });
+#   });
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.addEventListener("check", (e) => {
+#     const message = document.createElement("basic.show-notification");
+#     message.resolve({
+#       type: "success",
+#       /* WARN: incompatible expressions in HTML, please try YAML: */
+#       message: "<% JSON.stringify(EVENT.detail) %>",
+#     });
+#   });
+# </script>
+# 
+```
+
+### Disabled
+
+```yaml preview gap
+- brick: eo-tag
+  properties:
+    closable: true
+    checkable: true
+    disabled: true
+    textContent: Disabled Item
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-tag/disabled
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-tag closable checkable disabled>Disabled Item</eo-tag>
+# 
+```
+
+### Size
+
+```yaml preview gap
+- brick: eo-tag
+  properties:
+    size: large
+    textContent: Large Item
+- brick: eo-tag
+  properties:
+    size: medium
+    textContent: Medium Item
+- brick: eo-tag
+  properties:
+    size: small
+    textContent: Small Item
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-tag/size
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-tag size="large">Large Item</eo-tag>
+# <eo-tag size="medium">Medium Item</eo-tag>
+# <eo-tag size="small">Small Item</eo-tag>
+# 
+```
+
+### Color
+
+```yaml preview gap
+- brick: div
+  properties:
+    textContent: "Normal:"
+- brick: eo-tag
+  properties:
+    color: gray
+    textContent: 灰色
+- brick: eo-tag
+  properties:
+    color: red
+    textContent: 红色
+- brick: eo-tag
+  properties:
+    color: orange
+    textContent: 橙色
+- brick: eo-tag
+  properties:
+    color: yellow
+    textContent: 黄色
+- brick: eo-tag
+  properties:
+    color: blue
+    textContent: 蓝色
+- brick: eo-tag
+  properties:
+    color: geekblue
+    textContent: 深蓝色
+- brick: eo-tag
+  properties:
+    color: grayblue
+    textContent: 灰蓝色
+- brick: eo-tag
+  properties:
+    color: cyan
+    textContent: 浅蓝色
+- brick: eo-tag
+  properties:
+    color: green
+    textContent: 绿色
+- brick: eo-tag
+  properties:
+    color: purple
+    textContent: 紫色
+- brick: eo-tag
+  properties:
+    color: teal
+    textContent: 青绿色
+- brick: eo-tag
+  properties:
+    color: pink
+    textContent: 粉色
+- brick: div
+  properties:
+    style:
+      flexBasis: 100%
+- brick: div
+  properties:
+    textContent: "Outline:"
+- brick: eo-tag
+  properties:
+    color: gray
+    outline: true
+    textContent: 灰色
+- brick: eo-tag
+  properties:
+    color: red
+    outline: true
+    textContent: 红色
+- brick: eo-tag
+  properties:
+    color: orange
+    outline: true
+    textContent: 橙色
+- brick: eo-tag
+  properties:
+    color: yellow
+    outline: true
+    textContent: 黄色
+- brick: eo-tag
+  properties:
+    color: blue
+    outline: true
+    textContent: 蓝色
+- brick: eo-tag
+  properties:
+    color: geekblue
+    outline: true
+    textContent: 深蓝色
+- brick: eo-tag
+  properties:
+    color: grayblue
+    outline: true
+    textContent: 灰蓝色
+- brick: eo-tag
+  properties:
+    color: cyan
+    outline: true
+    textContent: 浅蓝色
+- brick: eo-tag
+  properties:
+    color: green
+    outline: true
+    textContent: 绿色
+- brick: eo-tag
+  properties:
+    color: purple
+    outline: true
+    textContent: 紫色
+- brick: eo-tag
+  properties:
+    color: teal
+    outline: true
+    textContent: 青绿色
+- brick: eo-tag
+  properties:
+    color: pink
+    outline: true
+    textContent: 粉色
+- brick: div
+  properties:
+    style:
+      flexBasis: 100%
+- brick: div
+  properties:
+    textContent: "Inverse:"
+- brick: eo-tag
+  properties:
+    color: gray-inverse
+    textContent: 灰色
+- brick: eo-tag
+  properties:
+    color: red-inverse
+    textContent: 红色
+- brick: eo-tag
+  properties:
+    color: orange-inverse
+    textContent: 橙色
+- brick: eo-tag
+  properties:
+    color: yellow-inverse
+    textContent: 黄色
+- brick: eo-tag
+  properties:
+    color: blue-inverse
+    textContent: 蓝色
+- brick: eo-tag
+  properties:
+    color: geekblue-inverse
+    textContent: 深蓝色
+- brick: eo-tag
+  properties:
+    color: grayblue-inverse
+    textContent: 灰蓝色
+- brick: eo-tag
+  properties:
+    color: cyan-inverse
+    textContent: 浅蓝色
+- brick: eo-tag
+  properties:
+    color: green-inverse
+    textContent: 绿色
+- brick: eo-tag
+  properties:
+    color: purple-inverse
+    textContent: 紫色
+- brick: eo-tag
+  properties:
+    color: teal-inverse
+    textContent: 青绿色
+- brick: eo-tag
+  properties:
+    color: pink-inverse
+    textContent: 粉色
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-tag/color
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <div>Normal:</div>
+# <eo-tag color="gray">灰色</eo-tag>
+# <eo-tag color="red">红色</eo-tag>
+# <eo-tag color="orange">橙色</eo-tag>
+# <eo-tag color="yellow">黄色</eo-tag>
+# <eo-tag color="blue">蓝色</eo-tag>
+# <eo-tag color="geekblue">深蓝色</eo-tag>
+# <eo-tag color="grayblue">灰蓝色</eo-tag>
+# <eo-tag color="cyan">浅蓝色</eo-tag>
+# <eo-tag color="green">绿色</eo-tag>
+# <eo-tag color="purple">紫色</eo-tag>
+# <eo-tag color="teal">青绿色</eo-tag>
+# <eo-tag color="pink">粉色</eo-tag>
+# <div style="flex-basis: 100%"></div>
+# <div>Outline:</div>
+# <eo-tag color="gray" outline>灰色</eo-tag>
+# <eo-tag color="red" outline>红色</eo-tag>
+# <eo-tag color="orange" outline>橙色</eo-tag>
+# <eo-tag color="yellow" outline>黄色</eo-tag>
+# <eo-tag color="blue" outline>蓝色</eo-tag>
+# <eo-tag color="geekblue" outline>深蓝色</eo-tag>
+# <eo-tag color="grayblue" outline>灰蓝色</eo-tag>
+# <eo-tag color="cyan" outline>浅蓝色</eo-tag>
+# <eo-tag color="green" outline>绿色</eo-tag>
+# <eo-tag color="purple" outline>紫色</eo-tag>
+# <eo-tag color="teal" outline>青绿色</eo-tag>
+# <eo-tag color="pink" outline>粉色</eo-tag>
+# <div style="flex-basis: 100%"></div>
+# <div>Inverse:</div>
+# <eo-tag color="gray-inverse">灰色</eo-tag>
+# <eo-tag color="red-inverse">红色</eo-tag>
+# <eo-tag color="orange-inverse">橙色</eo-tag>
+# <eo-tag color="yellow-inverse">黄色</eo-tag>
+# <eo-tag color="blue-inverse">蓝色</eo-tag>
+# <eo-tag color="geekblue-inverse">深蓝色</eo-tag>
+# <eo-tag color="grayblue-inverse">灰蓝色</eo-tag>
+# <eo-tag color="cyan-inverse">浅蓝色</eo-tag>
+# <eo-tag color="green-inverse">绿色</eo-tag>
+# <eo-tag color="purple-inverse">紫色</eo-tag>
+# <eo-tag color="teal-inverse">青绿色</eo-tag>
+# <eo-tag color="pink-inverse">粉色</eo-tag>
+# 
+```
+
+### TagStyle
+
+```yaml preview gap
+- brick: eo-tag
+  properties:
+    textContent: TagStyle
+    tagStyle:
+      color: "#abc"
+      width: 200px
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-tag/tagstyle
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-tag id="brick-1">TagStyle</eo-tag>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.tagStyle = {
+#     color: "#abc",
+#     width: "200px",
+#   };
+# </script>
+# 
+```
+
+### EllipsisWidth
+
+```yaml preview gap
+- brick: eo-tag
+  properties:
+    textContent: Hello World, This is over flow test
+    ellipsisWidth: 100px
+- brick: eo-tag
+  properties:
+    textContent: Hello World, This is over flow test
+    ellipsisWidth: 150px
+- brick: eo-tag
+  properties:
+    textContent: Hello World, This is over flow test
+    ellipsisWidth: 300px
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-tag/ellipsiswidth
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-tag ellipsis-width="100px">Hello World, This is over flow test</eo-tag>
+# <eo-tag ellipsis-width="150px">Hello World, This is over flow test</eo-tag>
+# <eo-tag ellipsis-width="300px">Hello World, This is over flow test</eo-tag>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["ComponentSize","TagColor","TagProps"]}>
+  <BrickDocProperties properties={[{"name":"size","description":"按钮大小","default":"\"medium\"","type":"ComponentSize","annotation":{"type":"reference","typeName":{"type":"identifier","name":"ComponentSize"}}},{"name":"icon","description":"图标","attribute":false,"type":"GeneralIconProps","annotation":{"type":"reference","typeName":{"type":"identifier","name":"GeneralIconProps"}}},{"name":"color","description":"颜色","type":"TagColor | string","annotation":{"type":"union","types":[{"type":"reference","typeName":{"type":"identifier","name":"TagColor"}},{"type":"keyword","value":"string"}]}},{"name":"outline","description":"是否有边线","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"disabled","description":"是否禁用","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"closable","description":"是否允许关闭","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"ellipsisWidth","description":"超过宽度文本隐藏宽度","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"checkable","description":"是否允许选择","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"checked","description":"是否选择","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"tagStyle","description":"标签自定义样式","attribute":false,"type":"React.CSSProperties","annotation":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={["ComponentSize","TagColor","TagProps"]}>
+  <BrickDocEvents events={[{"name":"check","description":"","detail":{"description":null,"type":"TagProps","annotation":{"type":"reference","typeName":{"type":"identifier","name":"TagProps"}}}},{"name":"close","description":"","detail":{"description":null,"type":"TagProps","annotation":{"type":"reference","typeName":{"type":"identifier","name":"TagProps"}}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"typeAlias","name":"ComponentSize","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"large"},{"type":"jsLiteral","value":"medium"},{"type":"jsLiteral","value":"small"},{"type":"jsLiteral","value":"xs"}]}},{"type":"enum","name":"TagColor","members":[{"type":"enumMember","id":{"type":"identifier","name":"blue"},"initializer":{"type":"jsLiteral","value":"blue"}},{"type":"enumMember","id":{"type":"jsLiteral","value":"blue-inverse"},"initializer":{"type":"jsLiteral","value":"blue-inverse"}},{"type":"enumMember","id":{"type":"identifier","name":"cyan"},"initializer":{"type":"jsLiteral","value":"cyan"}},{"type":"enumMember","id":{"type":"jsLiteral","value":"cyan-inverse"},"initializer":{"type":"jsLiteral","value":"cyan-inverse"}},{"type":"enumMember","id":{"type":"identifier","name":"geekblue"},"initializer":{"type":"jsLiteral","value":"geekblue"}},{"type":"enumMember","id":{"type":"jsLiteral","value":"geekblue-inverse"},"initializer":{"type":"jsLiteral","value":"geekblue-inverse"}},{"type":"enumMember","id":{"type":"identifier","name":"grayblue"},"initializer":{"type":"jsLiteral","value":"grayblue"}},{"type":"enumMember","id":{"type":"jsLiteral","value":"grayblue-inverse"},"initializer":{"type":"jsLiteral","value":"grayblue-inverse"}},{"type":"enumMember","id":{"type":"identifier","name":"gray"},"initializer":{"type":"jsLiteral","value":"gray"}},{"type":"enumMember","id":{"type":"jsLiteral","value":"gray-inverse"},"initializer":{"type":"jsLiteral","value":"gray-inverse"}},{"type":"enumMember","id":{"type":"identifier","name":"green"},"initializer":{"type":"jsLiteral","value":"green"}},{"type":"enumMember","id":{"type":"jsLiteral","value":"green-inverse"},"initializer":{"type":"jsLiteral","value":"green-inverse"}},{"type":"enumMember","id":{"type":"identifier","name":"orange"},"initializer":{"type":"jsLiteral","value":"orange"}},{"type":"enumMember","id":{"type":"jsLiteral","value":"orange-inverse"},"initializer":{"type":"jsLiteral","value":"orange-inverse"}},{"type":"enumMember","id":{"type":"identifier","name":"purple"},"initializer":{"type":"jsLiteral","value":"purple"}},{"type":"enumMember","id":{"type":"jsLiteral","value":"purple-inverse"},"initializer":{"type":"jsLiteral","value":"purple-inverse"}},{"type":"enumMember","id":{"type":"identifier","name":"red"},"initializer":{"type":"jsLiteral","value":"red"}},{"type":"enumMember","id":{"type":"jsLiteral","value":"red-inverse"},"initializer":{"type":"jsLiteral","value":"red-inverse"}},{"type":"enumMember","id":{"type":"identifier","name":"yellow"},"initializer":{"type":"jsLiteral","value":"yellow"}},{"type":"enumMember","id":{"type":"jsLiteral","value":"yellow-inverse"},"initializer":{"type":"jsLiteral","value":"yellow-inverse"}},{"type":"enumMember","id":{"type":"identifier","name":"teal"},"initializer":{"type":"jsLiteral","value":"teal"}},{"type":"enumMember","id":{"type":"jsLiteral","value":"teal-inverse"},"initializer":{"type":"jsLiteral","value":"teal-inverse"}},{"type":"enumMember","id":{"type":"identifier","name":"pink"},"initializer":{"type":"jsLiteral","value":"pink"}},{"type":"enumMember","id":{"type":"jsLiteral","value":"pink-inverse"},"initializer":{"type":"jsLiteral","value":"pink-inverse"}}]},{"type":"interface","name":"TagProps","body":[{"type":"propertySignature","key":{"type":"identifier","name":"size"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"ComponentSize"}},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"icon"},"annotation":{"type":"reference","typeName":{"type":"identifier","name":"GeneralIconProps"}},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"color"},"annotation":{"type":"union","types":[{"type":"reference","typeName":{"type":"identifier","name":"TagColor"}},{"type":"keyword","value":"string"}]},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"outline"},"annotation":{"type":"keyword","value":"boolean"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"closable"},"annotation":{"type":"keyword","value":"boolean"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"disabled"},"annotation":{"type":"keyword","value":"boolean"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"checkable"},"annotation":{"type":"keyword","value":"boolean"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"checked"},"annotation":{"type":"keyword","value":"boolean"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"hidden"},"annotation":{"type":"keyword","value":"boolean"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"ellipsisWidth"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"tagStyle"},"annotation":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}},"optional":true,"computed":false}]}]} />
+

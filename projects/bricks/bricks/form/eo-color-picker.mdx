@@ -1,0 +1,267 @@
+---
+description: "<eo-color-picker>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-color-picker"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `eo-color-picker`
+
+## Examples
+
+### Basic
+
+```yaml preview
+brick: eo-color-picker
+events:
+  change:
+    action: console.log
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+form/eo-color-picker/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-color-picker id="brick-1"></eo-color-picker>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("change", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+### Size
+
+```yaml preview
+- brick: eo-flex-layout
+  properties:
+    justifyContent: start
+    gap: 20px
+  slots:
+    "":
+      bricks:
+        - brick: eo-color-picker
+          properties:
+            size: small
+            value: red
+        - brick: eo-color-picker
+          properties:
+            size: medium
+            value: "#36b545"
+        - brick: eo-color-picker
+          properties:
+            size: large
+            value: rgb(59, 52, 255)
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+form/eo-color-picker/size
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-flex-layout justify-content="start" gap="20px">
+#   <eo-color-picker value="red" id="brick-1"></eo-color-picker>
+#   <eo-color-picker value="#36b545" id="brick-2"></eo-color-picker>
+#   <eo-color-picker value="rgb(59, 52, 255)" id="brick-3"></eo-color-picker>
+# </eo-flex-layout>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.size = "small";
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.size = "medium";
+# 
+#   const brick_3 = document.getElementById("brick-3");
+#   brick_3.size = "large";
+# </script>
+# 
+```
+
+### ShowText
+
+```yaml preview
+- brick: eo-color-picker
+  properties:
+    showText: true
+  events:
+    change:
+      action: console.log
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+form/eo-color-picker/showtext
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-color-picker show-text id="brick-1"></eo-color-picker>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("change", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+### AllowClear
+
+```yaml preview
+- brick: eo-color-picker
+  properties:
+    allowClear: true
+    defaultValue: "#f5a623"
+  events:
+    change:
+      action: console.log
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+form/eo-color-picker/allowclear
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-color-picker
+#   allow-clear
+#   default-value="#f5a623"
+#   id="brick-1"
+# ></eo-color-picker>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("change", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+### Formats
+
+```yaml preview
+- brick: eo-flex-layout
+  properties:
+    justifyContent: start
+    gap: 20px
+  slots:
+    "":
+      bricks:
+        - brick: eo-color-picker
+          properties:
+            format: hex
+            value: "#FCFA0E"
+        - brick: eo-color-picker
+          properties:
+            format: rgb
+            value: rgb(80, 227, 194)
+        - brick: eo-color-picker
+          properties:
+            format: hsb
+            value: hsb(215, 91%, 100%)
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+form/eo-color-picker/formats
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-flex-layout justify-content="start" gap="20px">
+#   <eo-color-picker value="#FCFA0E" id="brick-1"></eo-color-picker>
+#   <eo-color-picker value="rgb(80, 227, 194)" id="brick-2"></eo-color-picker>
+#   <eo-color-picker value="hsb(215, 91%, 100%)" id="brick-3"></eo-color-picker>
+# </eo-flex-layout>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.format = "hex";
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.format = "rgb";
+# 
+#   const brick_3 = document.getElementById("brick-3");
+#   brick_3.format = "hsb";
+# </script>
+# 
+```
+
+### With Form
+
+```yaml preview
+- brick: form.general-form
+  events:
+    validate.success:
+      - action: console.log
+    validate.error:
+      - action: console.log
+  slots:
+    "":
+      type: bricks
+      bricks:
+        - brick: eo-color-picker
+          properties:
+            name: color
+            label: 颜色
+            required: true
+            defaultValue: "#1677FF"
+            showText: true
+          events:
+            change:
+              action: console.log
+        - brick: eo-submit-buttons
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+form/eo-color-picker/with form
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <form.general-form id="brick-1">
+#   <eo-color-picker
+#     name="color"
+#     label="颜色"
+#     required
+#     default-value="#1677FF"
+#     show-text
+#     id="brick-2"
+#   ></eo-color-picker>
+#   <eo-submit-buttons></eo-submit-buttons>
+# </form.general-form>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("validate.success", (e) => {
+#     console.log(e.detail);
+#   });
+#   brick_1.addEventListener("validate.error", (e) => {
+#     console.log(e.detail);
+#   });
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.addEventListener("change", (e) => {
+#     console.log(e.detail);
+#   });
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocProperties properties={[{"name":"name","description":"字段名称","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"label","description":"字段说明","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"value","description":"值","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"defaultValue","description":"颜色默认的值","type":"string | Color","annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"reference","typeName":{"type":"identifier","name":"Color"}}]}},{"name":"required","description":"是否必填","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"allowClear","description":"允许清除选择的颜色","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"size","description":"设置触发器大小","default":"middle","attribute":false,"type":"\"small\" | \"middle\" | \"large\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"small"},{"type":"jsLiteral","value":"middle"},{"type":"jsLiteral","value":"large"}]}},{"name":"showText","description":"显示颜色文本","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"disabled","description":"是否禁用","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"format","description":"颜色格式","default":"hex","attribute":false,"type":"\"rgb\" | \"hex\" | \"hsb\"","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"rgb"},{"type":"jsLiteral","value":"hex"},{"type":"jsLiteral","value":"hsb"}]}},{"name":"configProps","description":"透传 antd ColorPicker 属性 [ColorPickerProps](https://ant.design/components/color-picker-cn#api)","attribute":false,"type":"Partial<ColorPickerProps>","annotation":{"type":"reference","typeName":{"type":"identifier","name":"Partial"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"reference","typeName":{"type":"identifier","name":"ColorPickerProps"}}]}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocEvents events={[{"name":"change","description":"颜色变化事件, 返回值格式和`format`格式一致","detail":{"type":"string | undefined","annotation":{"type":"union","types":[{"type":"keyword","value":"string"},{"type":"keyword","value":"undefined"}]}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+

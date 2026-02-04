@@ -1,0 +1,140 @@
+---
+description: "<eo-list>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-list"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `eo-list`
+
+## Examples
+
+### Basic
+
+```yaml preview
+brick: ai-portal.home-container
+properties:
+  style:
+    padding: 2em
+    backgroundColor: "#d8d8d8"
+children:
+  - brick: eo-list
+    properties:
+      variant: navigation
+      dataSource:
+        - title: IT资源管理
+          description: 管理IT基础设施和资源
+          icon:
+            lib: fa
+            prefix: fas
+            icon: server
+          url: /cmdb-instance-management
+        - title: 个人工作台
+          description: 您的个人工作区和任务管理
+          icon:
+            lib: fa
+            prefix: fas
+            icon: desktop
+          url: /portal
+        - title: 持续集成
+          description: CI/CD流水线和自动化部署
+          icon:
+            lib: fa
+            prefix: fas
+            icon: code-branch
+          url: /ci
+      fields:
+        title: title
+        description: description
+        icon: icon
+        url: url
+      dataset:
+        componentId: navigation-list
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-list/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <ai-portal.home-container style="padding: 2em; background-color: #d8d8d8">
+#   <eo-list
+#     variant="navigation"
+#     data-componentId="navigation-list"
+#     id="brick-1"
+#   ></eo-list>
+# </ai-portal.home-container>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.dataSource = [
+#     {
+#       title: "IT资源管理",
+#       description: "管理IT基础设施和资源",
+#       icon: {
+#         lib: "fa",
+#         prefix: "fas",
+#         icon: "server",
+#       },
+#       url: "/cmdb-instance-management",
+#     },
+#     {
+#       title: "个人工作台",
+#       description: "您的个人工作区和任务管理",
+#       icon: {
+#         lib: "fa",
+#         prefix: "fas",
+#         icon: "desktop",
+#       },
+#       url: "/portal",
+#     },
+#     {
+#       title: "持续集成",
+#       description: "CI/CD流水线和自动化部署",
+#       icon: {
+#         lib: "fa",
+#         prefix: "fas",
+#         icon: "code-branch",
+#       },
+#       url: "/ci",
+#     },
+#   ];
+#   brick_1.fields = {
+#     title: "title",
+#     description: "description",
+#     icon: "icon",
+#     url: "url",
+#   };
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["ListVariant","ListFields"]}>
+  <BrickDocProperties properties={[{"name":"variant","type":"ListVariant","annotation":{"type":"reference","typeName":{"type":"identifier","name":"ListVariant"}}},{"name":"dataSource","attribute":false,"type":"Record<string, unknown>[]","annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"Record"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"keyword","value":"string"},{"type":"keyword","value":"unknown"}]}}}},{"name":"fields","attribute":false,"type":"ListFields","annotation":{"type":"reference","typeName":{"type":"identifier","name":"ListFields"}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"typeAlias","name":"ListVariant","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"default"},{"type":"jsLiteral","value":"navigation"},{"type":"jsLiteral","value":"ranking"}]}},{"type":"interface","name":"ListFields","body":[{"type":"propertySignature","key":{"type":"identifier","name":"title"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"description"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"icon"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"url"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"href"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false}]}]} />
+

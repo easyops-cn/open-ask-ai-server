@@ -1,0 +1,68 @@
+---
+description: "<eo-current-time>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-current-time"}
+  alias={null}
+  insider={false}
+  deprecated={false}
+/>
+
+构件 `eo-current-time`
+
+## Examples
+
+### Basic
+
+```yaml preview
+brick: eo-current-time
+properties:
+  format: "YYYY-MM-DD HH:mm:ss"
+  icon:
+    lib: easyops
+    category: itsc-form
+    icon: time
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+presentational/eo-current-time/basic
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-current-time format="YYYY-MM-DD HH:mm:ss" id="brick-1"></eo-current-time>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.icon = {
+#     lib: "easyops",
+#     category: "itsc-form",
+#     icon: "time",
+#   };
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={[]}>
+  <BrickDocProperties properties={[{"name":"format","description":"时间格式","default":"\"YYYY-MM-DD HH:mm:ss\"","type":"string","annotation":{"type":"keyword","value":"string"}},{"name":"icon","description":"前置图标","attribute":false,"type":"GeneralIconProps","annotation":{"type":"reference","typeName":{"type":"identifier","name":"GeneralIconProps"}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+
+
+
+
+
+

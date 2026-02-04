@@ -1,0 +1,528 @@
+---
+description: "<eo-tag-list>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import BrickDocProperties from "@site/src/components/BrickDocProperties";
+import BrickDocSlots from "@site/src/components/BrickDocSlots";
+import BrickDocEvents from "@site/src/components/BrickDocEvents";
+import BrickDocMethods from "@site/src/components/BrickDocMethods";
+import BrickDocParts from "@site/src/components/BrickDocParts";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+import { TypeReferencesContext } from "@site/src/components/GeneralType";
+
+<BrickTagName
+  name={"eo-tag-list"}
+  alias={["basic.general-tag-list"]}
+  insider={false}
+  deprecated={false}
+/>
+
+通用标签列表构件
+
+```yaml preview
+- brick: eo-tag-list
+  properties:
+    list:
+      - text: Item A
+        key: Item A
+      - text: Item B
+        key: Item B
+      - text: Item C
+        key: Item C
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-tag-list
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-tag-list id="brick-1"></eo-tag-list>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.list = [
+#     {
+#       text: "Item A",
+#       key: "Item A",
+#     },
+#     {
+#       text: "Item B",
+#       key: "Item B",
+#     },
+#     {
+#       text: "Item C",
+#       key: "Item C",
+#     },
+#   ];
+# </script>
+# 
+```
+
+## Examples
+
+### Closable
+
+```yaml preview
+- brick: eo-tag-list
+  properties:
+    closable: true
+    list:
+      - text: Item A
+        key: Item A
+      - text: Item B
+        key: Item B
+      - text: Item C
+        key: Item C
+  events:
+    close:
+      - action: message.success
+        args:
+          - <% JSON.stringify(EVENT.detail) %>
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-tag-list/closable
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-tag-list closable id="brick-1"></eo-tag-list>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.list = [
+#     {
+#       text: "Item A",
+#       key: "Item A",
+#     },
+#     {
+#       text: "Item B",
+#       key: "Item B",
+#     },
+#     {
+#       text: "Item C",
+#       key: "Item C",
+#     },
+#   ];
+#   brick_1.addEventListener("close", (e) => {
+#     const message = document.createElement("basic.show-notification");
+#     message.resolve({
+#       type: "success",
+#       /* WARN: incompatible expressions in HTML, please try YAML: */
+#       message: "<% JSON.stringify(EVENT.detail) %>",
+#     });
+#   });
+# </script>
+# 
+```
+
+### Checkable
+
+```yaml preview
+- brick: eo-tag-list
+  properties:
+    checkable: true
+    list:
+      - text: Item A
+        key: Item A
+      - text: Default checked item
+        key: Item B
+        checked: true
+      - text: Item C
+        key: Item C
+  events:
+    check:
+      - action: message.success
+        args:
+          - <% JSON.stringify(EVENT.detail) %>
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-tag-list/checkable
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-tag-list checkable id="brick-1"></eo-tag-list>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.list = [
+#     {
+#       text: "Item A",
+#       key: "Item A",
+#     },
+#     {
+#       text: "Default checked item",
+#       key: "Item B",
+#       checked: true,
+#     },
+#     {
+#       text: "Item C",
+#       key: "Item C",
+#     },
+#   ];
+#   brick_1.addEventListener("check", (e) => {
+#     const message = document.createElement("basic.show-notification");
+#     message.resolve({
+#       type: "success",
+#       /* WARN: incompatible expressions in HTML, please try YAML: */
+#       message: "<% JSON.stringify(EVENT.detail) %>",
+#     });
+#   });
+# </script>
+# 
+```
+
+### Multiple
+
+```yaml preview
+- brick: eo-tag-list
+  properties:
+    multiple: true
+    checkable: true
+    list:
+      - text: Item A
+        key: Item A
+      - text: Item B
+        key: Item B
+      - text: Item C
+        key: Item C
+- brick: div
+  properties:
+    style:
+      height: 20px
+- brick: eo-tag-list
+  properties:
+    multiple: false
+    checkable: true
+    list:
+      - text: Item A
+        key: Item A
+      - text: Item B
+        key: Item B
+      - text: Item C
+        key: Item C
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-tag-list/multiple
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-tag-list multiple checkable id="brick-1"></eo-tag-list>
+# <div style="height: 20px"></div>
+# <eo-tag-list checkable id="brick-2"></eo-tag-list>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.list = [
+#     {
+#       text: "Item A",
+#       key: "Item A",
+#     },
+#     {
+#       text: "Item B",
+#       key: "Item B",
+#     },
+#     {
+#       text: "Item C",
+#       key: "Item C",
+#     },
+#   ];
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.list = [
+#     {
+#       text: "Item A",
+#       key: "Item A",
+#     },
+#     {
+#       text: "Item B",
+#       key: "Item B",
+#     },
+#     {
+#       text: "Item C",
+#       key: "Item C",
+#     },
+#   ];
+# </script>
+# 
+```
+
+### Disabled
+
+```yaml preview
+- brick: eo-tag-list
+  properties:
+    closable: true
+    checkable: true
+    disabled: true
+    mulitple: true
+    list:
+      - text: Item A
+        key: Item A
+      - text: Item B
+        key: Item B
+        disabled: false
+      - text: Item C
+        key: Item C
+      - text: Item D
+        key: Item D
+        disabled: false
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-tag-list/disabled
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-tag-list closable checkable disabled mulitple id="brick-1"></eo-tag-list>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.list = [
+#     {
+#       text: "Item A",
+#       key: "Item A",
+#     },
+#     {
+#       text: "Item B",
+#       key: "Item B",
+#       disabled: false,
+#     },
+#     {
+#       text: "Item C",
+#       key: "Item C",
+#     },
+#     {
+#       text: "Item D",
+#       key: "Item D",
+#       disabled: false,
+#     },
+#   ];
+# </script>
+# 
+```
+
+### Size
+
+```yaml preview
+- brick: eo-tag-list
+  properties:
+    size: large
+    list:
+      - text: Item A
+        key: Item A
+      - text: Item B
+        key: Item B
+      - text: Item C
+        key: Item C
+- brick: eo-tag-list
+  properties:
+    size: medium
+    list:
+      - text: Item A
+        key: Item A
+      - text: Item B
+        key: Item B
+      - text: Item C
+        key: Item C
+    style:
+      margin: 0 10px
+- brick: eo-tag-list
+  properties:
+    size: small
+    list:
+      - text: Item A
+        key: Item A
+      - text: Item B
+        key: Item B
+      - text: Item C
+        key: Item C
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-tag-list/size
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-tag-list size="large" id="brick-1"></eo-tag-list>
+# <eo-tag-list size="medium" style="margin: 0 10px" id="brick-2"></eo-tag-list>
+# <eo-tag-list size="small" id="brick-3"></eo-tag-list>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.list = [
+#     {
+#       text: "Item A",
+#       key: "Item A",
+#     },
+#     {
+#       text: "Item B",
+#       key: "Item B",
+#     },
+#     {
+#       text: "Item C",
+#       key: "Item C",
+#     },
+#   ];
+# 
+#   const brick_2 = document.getElementById("brick-2");
+#   brick_2.list = [
+#     {
+#       text: "Item A",
+#       key: "Item A",
+#     },
+#     {
+#       text: "Item B",
+#       key: "Item B",
+#     },
+#     {
+#       text: "Item C",
+#       key: "Item C",
+#     },
+#   ];
+# 
+#   const brick_3 = document.getElementById("brick-3");
+#   brick_3.list = [
+#     {
+#       text: "Item A",
+#       key: "Item A",
+#     },
+#     {
+#       text: "Item B",
+#       key: "Item B",
+#     },
+#     {
+#       text: "Item C",
+#       key: "Item C",
+#     },
+#   ];
+# </script>
+# 
+```
+
+### Color
+
+```yaml preview
+- brick: eo-tag-list
+  properties:
+    mulitple: true
+    list:
+      - text: Item A
+        key: Item A
+        color: red
+      - text: Item A+
+        key: Item A+
+        color: red
+        outline: true
+      - text: Item B
+        key: Item B
+        color: red-inverse
+      - text: Item C
+        key: Item C
+        color: yellow
+      - text: Item D
+        key: Item D
+        color: blue-inverse
+      - text: Custom Color Item
+        key: Custom Color Item
+        color: "#abc"
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-tag-list/color
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-tag-list mulitple id="brick-1"></eo-tag-list>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.list = [
+#     {
+#       text: "Item A",
+#       key: "Item A",
+#       color: "red",
+#     },
+#     {
+#       text: "Item A+",
+#       key: "Item A+",
+#       color: "red",
+#       outline: true,
+#     },
+#     {
+#       text: "Item B",
+#       key: "Item B",
+#       color: "red-inverse",
+#     },
+#     {
+#       text: "Item C",
+#       key: "Item C",
+#       color: "yellow",
+#     },
+#     {
+#       text: "Item D",
+#       key: "Item D",
+#       color: "blue-inverse",
+#     },
+#     {
+#       text: "Custom Color Item",
+#       key: "Custom Color Item",
+#       color: "#abc",
+#     },
+#   ];
+# </script>
+# 
+```
+
+### TagStyle
+
+```yaml preview
+- brick: eo-tag-list
+  properties:
+    list:
+      - text: Item A
+        key: Item A
+      - text: Item B
+        key: Item B
+        tagStyle:
+          color: green
+      - text: Item C
+        key: Item C
+    tagStyle:
+      color: red
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+basic/eo-tag-list/tagstyle
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-tag-list id="brick-1"></eo-tag-list>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.list = [
+#     {
+#       text: "Item A",
+#       key: "Item A",
+#     },
+#     {
+#       text: "Item B",
+#       key: "Item B",
+#       tagStyle: {
+#         color: "green",
+#       },
+#     },
+#     {
+#       text: "Item C",
+#       key: "Item C",
+#     },
+#   ];
+#   brick_1.tagStyle = {
+#     color: "red",
+#   };
+# </script>
+# 
+```
+
+
+## Properties
+
+<TypeReferencesContext.Provider value={["TagListItem","ComponentSize","TagColor"]}>
+  <BrickDocProperties properties={[{"name":"list","description":"标签列表","attribute":false,"type":"Array<TagListItem | string>","annotation":{"type":"reference","typeName":{"type":"identifier","name":"Array"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"union","types":[{"type":"reference","typeName":{"type":"identifier","name":"TagListItem"}},{"type":"keyword","value":"string"}]}]}}},{"name":"size","description":"按钮大小","default":"\"medium\"","type":"ComponentSize","annotation":{"type":"reference","typeName":{"type":"identifier","name":"ComponentSize"}}},{"name":"color","description":"颜色","type":"TagColor | string","annotation":{"type":"union","types":[{"type":"reference","typeName":{"type":"identifier","name":"TagColor"}},{"type":"keyword","value":"string"}]}},{"name":"outline","description":"是否有边线","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"showTagCircle","description":"显示圆点","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"disabled","description":"是否禁用","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"closable","description":"是否允许关闭","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"checkable","description":"是否允许选择","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"multiple","description":"是否允许多选","type":"boolean","annotation":{"type":"keyword","value":"boolean"}},{"name":"tagStyle","description":"标签自定义样式","attribute":false,"type":"React.CSSProperties","annotation":{"type":"reference","typeName":{"type":"qualifiedName","left":{"type":"identifier","name":"React"},"right":{"type":"identifier","name":"CSSProperties"}}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+## Events
+
+<TypeReferencesContext.Provider value={["TagListItem","ComponentSize","TagColor"]}>
+  <BrickDocEvents events={[{"name":"check","description":"选择标签事件","detail":{"type":"{\n    item: TagListItem | string | undefined;\n    list: TagListItem[];\n  }","annotation":{"type":"typeLiteral","members":[{"type":"propertySignature","key":{"type":"identifier","name":"item"},"annotation":{"type":"union","types":[{"type":"reference","typeName":{"type":"identifier","name":"TagListItem"}},{"type":"keyword","value":"string"},{"type":"keyword","value":"undefined"}]},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"list"},"annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"TagListItem"}}},"computed":false}]}}},{"name":"close","description":"关闭标签事件","detail":{"type":"{\n    item: TagListItem | string | undefined;\n    list: TagListItem[];\n  }","annotation":{"type":"typeLiteral","members":[{"type":"propertySignature","key":{"type":"identifier","name":"item"},"annotation":{"type":"union","types":[{"type":"reference","typeName":{"type":"identifier","name":"TagListItem"}},{"type":"keyword","value":"string"},{"type":"keyword","value":"undefined"}]},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"list"},"annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"TagListItem"}}},"computed":false}]}}},{"name":"tag.click","description":"点击标签事件","detail":{"type":"TagListItem | string | undefined","annotation":{"type":"union","types":[{"type":"reference","typeName":{"type":"identifier","name":"TagListItem"}},{"type":"keyword","value":"string"},{"type":"keyword","value":"undefined"}]}}}]} />
+</TypeReferencesContext.Provider>
+
+
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"typeAlias","name":"TagListItem","annotation":{"type":"intersection","types":[{"type":"reference","typeName":{"type":"identifier","name":"TagProps"}},{"type":"typeLiteral","members":[{"type":"propertySignature","key":{"type":"identifier","name":"text"},"annotation":{"type":"keyword","value":"string"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"key"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false}]}]}},{"type":"typeAlias","name":"ComponentSize","annotation":{"type":"union","types":[{"type":"jsLiteral","value":"large"},{"type":"jsLiteral","value":"medium"},{"type":"jsLiteral","value":"small"},{"type":"jsLiteral","value":"xs"}]}},{"type":"enum","name":"TagColor","members":[{"type":"enumMember","id":{"type":"identifier","name":"blue"},"initializer":{"type":"jsLiteral","value":"blue"}},{"type":"enumMember","id":{"type":"jsLiteral","value":"blue-inverse"},"initializer":{"type":"jsLiteral","value":"blue-inverse"}},{"type":"enumMember","id":{"type":"identifier","name":"cyan"},"initializer":{"type":"jsLiteral","value":"cyan"}},{"type":"enumMember","id":{"type":"jsLiteral","value":"cyan-inverse"},"initializer":{"type":"jsLiteral","value":"cyan-inverse"}},{"type":"enumMember","id":{"type":"identifier","name":"geekblue"},"initializer":{"type":"jsLiteral","value":"geekblue"}},{"type":"enumMember","id":{"type":"jsLiteral","value":"geekblue-inverse"},"initializer":{"type":"jsLiteral","value":"geekblue-inverse"}},{"type":"enumMember","id":{"type":"identifier","name":"grayblue"},"initializer":{"type":"jsLiteral","value":"grayblue"}},{"type":"enumMember","id":{"type":"jsLiteral","value":"grayblue-inverse"},"initializer":{"type":"jsLiteral","value":"grayblue-inverse"}},{"type":"enumMember","id":{"type":"identifier","name":"gray"},"initializer":{"type":"jsLiteral","value":"gray"}},{"type":"enumMember","id":{"type":"jsLiteral","value":"gray-inverse"},"initializer":{"type":"jsLiteral","value":"gray-inverse"}},{"type":"enumMember","id":{"type":"identifier","name":"green"},"initializer":{"type":"jsLiteral","value":"green"}},{"type":"enumMember","id":{"type":"jsLiteral","value":"green-inverse"},"initializer":{"type":"jsLiteral","value":"green-inverse"}},{"type":"enumMember","id":{"type":"identifier","name":"orange"},"initializer":{"type":"jsLiteral","value":"orange"}},{"type":"enumMember","id":{"type":"jsLiteral","value":"orange-inverse"},"initializer":{"type":"jsLiteral","value":"orange-inverse"}},{"type":"enumMember","id":{"type":"identifier","name":"purple"},"initializer":{"type":"jsLiteral","value":"purple"}},{"type":"enumMember","id":{"type":"jsLiteral","value":"purple-inverse"},"initializer":{"type":"jsLiteral","value":"purple-inverse"}},{"type":"enumMember","id":{"type":"identifier","name":"red"},"initializer":{"type":"jsLiteral","value":"red"}},{"type":"enumMember","id":{"type":"jsLiteral","value":"red-inverse"},"initializer":{"type":"jsLiteral","value":"red-inverse"}},{"type":"enumMember","id":{"type":"identifier","name":"yellow"},"initializer":{"type":"jsLiteral","value":"yellow"}},{"type":"enumMember","id":{"type":"jsLiteral","value":"yellow-inverse"},"initializer":{"type":"jsLiteral","value":"yellow-inverse"}},{"type":"enumMember","id":{"type":"identifier","name":"teal"},"initializer":{"type":"jsLiteral","value":"teal"}},{"type":"enumMember","id":{"type":"jsLiteral","value":"teal-inverse"},"initializer":{"type":"jsLiteral","value":"teal-inverse"}},{"type":"enumMember","id":{"type":"identifier","name":"pink"},"initializer":{"type":"jsLiteral","value":"pink"}},{"type":"enumMember","id":{"type":"jsLiteral","value":"pink-inverse"},"initializer":{"type":"jsLiteral","value":"pink-inverse"}}]}]} />
+

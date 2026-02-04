@@ -1,0 +1,77 @@
+---
+description: "<icons.search-icons>"
+---
+
+import BrickTagName from "@site/src/components/BrickTagName";
+import GeneralType, { TypeReferencesContext } from "@site/src/components/GeneralType";
+import MaybeEmptyCode from "@site/src/components/MaybeEmptyCode";
+import ProviderDocParams from "@site/src/components/ProviderDocParams";
+import BrickDocTypes from "@site/src/components/BrickDocTypes";
+
+<BrickTagName name="icons.search-icons" isProvider />
+
+获取图标库信息。
+
+## Examples
+
+```yaml preview
+brick: eo-button
+properties:
+  textContent: Search icons
+events:
+  click:
+    useProvider: icons.search-icons
+    args:
+      - q: bell
+    callback:
+      success:
+        action: console.log
+        args:
+          - "Search result:"
+          - "<% EVENT.detail %>"
+# -- YAML HEADING DELIMITER start (1nbbm8) --
+icons/search-icons
+# -- YAML HEADING DELIMITER end (1nbbm8) --
+# -- YAML DELIMITER (1nbbm8) --
+# <eo-button id="brick-1">Search icons</eo-button>
+# 
+# <script>
+#   const brick_1 = document.getElementById("brick-1");
+#   brick_1.addEventListener("click", (e) => {
+#     const provider = document.createElement("icons.search-icons");
+#     const promise = Promise.resolve(provider.resolve({ q: "bell" }));
+#     promise.then((r) => {
+#       console.log("Search result:", r);
+#     });
+#   });
+# </script>
+# 
+```
+
+
+## Definition
+
+
+
+### Parameters
+
+<TypeReferencesContext.Provider value={["SearchParams","SearchResult"]}>
+  <ProviderDocParams params={[{"name":"params","annotation":{"type":"reference","typeName":{"type":"identifier","name":"SearchParams"}}}]} />
+</TypeReferencesContext.Provider>
+
+### Returns
+
+<p>
+  <MaybeEmptyCode>
+    <TypeReferencesContext.Provider value={["SearchParams","SearchResult"]}>
+      <GeneralType annotation={{"type":"reference","typeName":{"type":"identifier","name":"Promise"},"typeParameters":{"type":"typeParameterInstantiation","params":[{"type":"reference","typeName":{"type":"identifier","name":"SearchResult"}}]}}} />
+    </TypeReferencesContext.Provider>
+  </MaybeEmptyCode>
+</p>
+
+
+
+## Type references
+
+<BrickDocTypes types={[{"type":"interface","name":"SearchParams","body":[{"type":"propertySignature","key":{"type":"identifier","name":"q"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"lib"},"annotation":{"type":"keyword","value":"string"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"page"},"annotation":{"type":"keyword","value":"number"},"optional":true,"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"pageSize"},"annotation":{"type":"keyword","value":"number"},"optional":true,"computed":false}]},{"type":"interface","name":"SearchResult","body":[{"type":"propertySignature","key":{"type":"identifier","name":"list"},"annotation":{"type":"array","elementType":{"type":"reference","typeName":{"type":"identifier","name":"IconInfo"}}},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"page"},"annotation":{"type":"keyword","value":"number"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"pageSize"},"annotation":{"type":"keyword","value":"number"},"computed":false},{"type":"propertySignature","key":{"type":"identifier","name":"total"},"annotation":{"type":"keyword","value":"number"},"computed":false}]}]} />
+
