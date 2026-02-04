@@ -5,7 +5,7 @@
   "description": "AI-powered document search with streaming responses",
   "type": "module",
   "scripts": {
-    "scan-docs": "tsx scripts/scan-docs.ts"
+    "build": "tsx scripts/scan-docs.ts"
   },
   "dependencies": {
     "ai": "^6.0.69",

@@ -2,6 +2,27 @@
 
 AI-powered multi-project documentation search with streaming responses using Vercel Functions, AI SDK v6 ToolLoopAgent, and bash-tool.
 
+This is a template repository for deploying an AI documentation assistant assistant as a serverless function on Vercel.
+
+Once deployed, it provides an API endpoint `/api/stream` that accepts conversation messages and streams back AI-generated responses based on pre-scanned markdown documentation files.
+
+## Usage
+
+1. Click "Use this template" to create your own repo, or fork this repository.
+2. Edit `projects.json` to define your documentation projects.
+3. Add your markdown documentation files in the `projects/` directory.
+4. Deploy to Vercel using the Vercel CLI.
+
+```bash
+npm i -g vercel
+vercel login
+vercel --prod
+```
+
+Your AI documentation assistant will be live at `https://<your-vercel-project>.vercel.app/api/stream`.
+
+It accepts a POST request with conversation messages and streams back AI-generated responses. See the "API Endpoints" section below for details.
+
 ## Features
 
 - **Multi-project support**: Serve multiple documentation projects from a single deployment
@@ -24,7 +45,7 @@ AI-powered multi-project documentation search with streaming responses using Ver
 
 ### How It Works
 
-1. **Pre-generation**: Run `npm run scan-docs` to scan all projects in `projects/` directory
+1. **Pre-generation**: Run `npm run build` to scan all projects in `projects/` directory
 2. **Generated Files**: Creates JSON files in `generated/` with all markdown content
 3. **Runtime**: API loads project JSON into memory and creates bash-tool with files
 4. **Agent Execution**: ToolLoopAgent uses bash commands to search pre-loaded files
@@ -87,7 +108,7 @@ projects/
 Scan all projects and generate JSON files:
 
 ```bash
-npm run scan-docs
+npm run build
 ```
 
 This creates files in `generated/`:
@@ -108,7 +129,6 @@ vercel
 ### 5. Run Locally
 
 ```bash
-npm install -g vercel
 vercel dev
 ```
 
@@ -297,33 +317,12 @@ All commands operate on pre-loaded in-memory files for fast access.
 vercel --prod
 ```
 
-### Pre-deployment
-
-Before deploying, ensure you've generated the documentation files:
-
-```bash
-npm run scan-docs
-git add generated/
-git commit -m "Update generated documentation"
-git push
-```
-
-The `generated/` directory is committed to the repository so Vercel can access pre-scanned files at runtime.
-
 ## Development
 
 ### Type Checking
 
 ```bash
 npx tsc --noEmit
-```
-
-### Scan Documentation
-
-After adding or updating markdown files in `projects/`:
-
-```bash
-npm run scan-docs
 ```
 
 ### Local Development
