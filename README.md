@@ -52,7 +52,7 @@ Health check endpoint.
 }
 ```
 
-### POST /api/search/stream
+### POST /api/stream
 
 Streaming search endpoint.
 
@@ -77,7 +77,7 @@ curl http://localhost:3000/api/health
 ### Search Documentation
 
 ```bash
-curl -X POST http://localhost:3000/api/search/stream \
+curl -X POST http://localhost:3000/api/stream \
   -H "Content-Type: application/json" \
   -d '{"query": "What topics are covered in the documentation?"}'
 ```
@@ -85,7 +85,7 @@ curl -X POST http://localhost:3000/api/search/stream \
 ### Custom Instructions
 
 ```bash
-curl -X POST http://localhost:3000/api/search/stream \
+curl -X POST http://localhost:3000/api/stream \
   -H "Content-Type: application/json" \
   -d '{
     "query": "Find API endpoints",
@@ -135,15 +135,12 @@ Client Request → Vercel Function → AI SDK v6 (streamText)
 open-ask-ai/
 ├── api/
 │   ├── health.ts                    # GET /api/health
-│   └── search/
-│       └── stream.ts                # POST /api/search/stream
+│   └── stream.ts                    # POST /api/stream
 ├── lib/
 │   ├── types.ts                     # TypeScript interfaces
 │   ├── utils.ts                     # Error handling utilities
 │   ├── bash-tool-setup.ts          # OverlayFs + createBashTool config
 │   └── agent.ts                     # Agent configuration
-├── docs/                            # Markdown documentation directory
-│   └── *.md                         # Your markdown files
 ├── package.json                     # Dependencies
 ├── tsconfig.json                    # TypeScript config
 ├── vercel.json                      # Vercel deployment config
@@ -154,7 +151,7 @@ open-ask-ai/
 
 ## How It Works
 
-1. **Client sends query**: POST request to `/api/search/stream`
+1. **Client sends query**: POST request to `/api/stream`
 2. **Bash tools created**: OverlayFs provides read-only access to docs directory
 3. **Agent processes query**: AI model uses bash commands to search documentation
 4. **Results streamed**: Real-time streaming response to client

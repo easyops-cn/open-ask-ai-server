@@ -10,6 +10,7 @@ export interface HealthResponse {
 
 export interface SearchStreamRequest {
   messages?: UIMessage[]; // For conversation history
+  project?: string; // Project ID to use for instructions and files
 }
 
 export interface ErrorResponse {
@@ -29,4 +30,18 @@ export interface AgentConfig {
 // Bash tool configuration
 export interface BashToolConfig {
   files: Record<string, string>; // File paths to content mapping
+}
+
+// Project configuration types
+export interface ProjectConfig {
+  name: string;
+  instructions?: string;
+}
+
+export interface ProjectWithFiles extends ProjectConfig {
+  files: Record<string, string>;
+}
+
+export interface GeneratedProjects {
+  [projectId: string]: ProjectWithFiles;
 }

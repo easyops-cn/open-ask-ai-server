@@ -1,8 +1,18 @@
 import type { HealthResponse, ErrorResponse } from '../lib/types.js';
 
-export const config = {
-  runtime: 'nodejs',
-};
+const ALLOWED_ORIGIN = '*';
+
+export async function OPTIONS() {
+  return new Response(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': ALLOWED_ORIGIN,
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      'Access-Control-Allow-Credentials': 'true',
+    },
+  });
+}
 
 export async function GET(request: Request): Promise<Response> {
   try {
@@ -17,6 +27,7 @@ export async function GET(request: Request): Promise<Response> {
       headers: {
         'Content-Type': 'application/json',
         'Cache-Control': 'no-cache',
+        'Access-Control-Allow-Origin': ALLOWED_ORIGIN,
       },
     });
   } catch (error) {
@@ -28,7 +39,10 @@ export async function GET(request: Request): Promise<Response> {
 
     return new Response(JSON.stringify(errorResponse), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': ALLOWED_ORIGIN,
+      },
     });
   }
 }
