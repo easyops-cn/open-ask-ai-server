@@ -6,7 +6,7 @@ A deployable-ready, serverless documentation assistant AI agent, can be hosted o
 
 Once deployed, it provides an API endpoint `/api/stream` that accepts conversation messages and streams back AI-generated responses based on pre-scanned markdown documentation files.
 
-Then integrate with [Open Ask AI Widget](./index.mdx) on your documentation site.
+Then integrate with [Open Ask AI Widget](https://github.com/easyops-cn/open-ask-ai) on your documentation site.
 
 ## Usage
 
