@@ -122,7 +122,7 @@ export async function POST(request: Request): Promise<Response> {
       providerOptions: {
         openai: {
           reasoningEffort: 'low',
-          textVerbosity: 'low', // Produces terse, minimal responses
+          textVerbosity: 'medium',
         },
       },
       tools: {
@@ -130,7 +130,7 @@ export async function POST(request: Request): Promise<Response> {
         readFile: tools.readFile,
       },
       instructions,
-      stopWhen: stepCountIs(10),
+      stopWhen: stepCountIs(16),
     });
 
     // Stream the agent's response

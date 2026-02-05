@@ -1,17 +1,20 @@
 # Open Ask AI Server
 
-AI-powered multi-project documentation search with streaming responses using Vercel Functions, AI SDK v6 ToolLoopAgent, and bash-tool.
+A deployable-ready, serverless documentation assistant AI agent, can be hosted on [Vercel]((https://vercel.com/docs/functions)), leveraging LLM through [Vercel AI Gateway](https://vercel.com/ai-gateway), and providing in-memory filesystem based agentic searching using [bash-tool](https://github.com/vercel-labs/bash-tool), **ALL FOR FREE** ([Vercel Hobby Plan](https://vercel.com/docs/plans/hobby) with generous quota usage).
 
-This is a template repository for deploying an AI documentation assistant assistant as a serverless function on Vercel.
+[Open Ask AI Server](https://github.com/easyops-cn/open-ask-ai-server) on GitHub is a template repository ready for deploy as a serverless function on Vercel.
 
 Once deployed, it provides an API endpoint `/api/stream` that accepts conversation messages and streams back AI-generated responses based on pre-scanned markdown documentation files.
+
+Then integrate with [Open Ask AI Widget](./index.mdx) on your documentation site.
 
 ## Usage
 
 1. Click "Use this template" to create your own repo, or fork this repository.
 2. Edit `projects.json` to define your documentation projects.
 3. Add your markdown documentation files in the `projects/` directory.
-4. Deploy to Vercel using the Vercel CLI.
+4. Optionally, add an `AGENTS.md` file in each project folder to provide additional agent instructions, such as what the project is about and what's the docs file structure.
+5. Deploy to Vercel using the Vercel CLI.
 
 ```bash
 npm i -g vercel
@@ -19,7 +22,7 @@ vercel login
 vercel --prod
 ```
 
-Your AI documentation assistant will be live at `https://<your-vercel-project>.vercel.app/api/stream`.
+Your AI agent API will be live at `https://<your-vercel-project>.vercel.app/api/stream`.
 
 It accepts a POST request with conversation messages and streams back AI-generated responses. See the "API Endpoints" section below for details.
 
@@ -52,21 +55,20 @@ It accepts a POST request with conversation messages and streams back AI-generat
 5. **Streaming**: Returns UIMessage stream compatible with AI SDK UI components
 
 ```
-Client Request → Vercel Function → AI SDK v6 (streamText)
-                                         ↓
-                                   ToolLoopAgent
-                                         ↓
-                                   bash-tool (OverlayFs)
-                                         ↓
-                              Pre-loaded Files (in-memory)
-                                         ↓
-                             Streaming Response → Client
+Client Request → Vercel Function → AI SDK
+                                      ↓
+                                ToolLoopAgent
+                                      ↓
+                                  bash-tool
+                                      ↓
+                          Pre-loaded Files (in-memory)
+                                      ↓
+                          Streaming Response → Client
 ```
 
 ## Prerequisites
 
 - Node.js 20+
-- OpenAI API key
 - Markdown documentation files
 
 ## Setup
@@ -84,8 +86,7 @@ Edit `projects.json` to define your documentation projects:
 ```json
 {
   "my-project": {
-    "name": "My Project",
-    "instructions": "You are a helpful assistant for My Project documentation."
+    "name": "My Project"
   }
 }
 ```
@@ -97,6 +98,7 @@ Create a directory for each project in `projects/`:
 ```
 projects/
 ├── my-project/
+│   ├── AGENTS.md             # (Optional) Agent instructions
 │   ├── getting-started.md
 │   ├── api-reference.md
 │   └── guides/
@@ -158,7 +160,6 @@ Streaming conversation endpoint with multi-project support.
 {
   "messages": [
     {
-      "id": "msg-1",
       "role": "user",
       "parts": [
         {
@@ -194,7 +195,6 @@ curl -X POST http://localhost:3000/api/stream \
   -d '{
     "messages": [
       {
-        "id": "msg-1",
         "role": "user",
         "parts": [
           {
@@ -216,7 +216,6 @@ curl -X POST http://localhost:3000/api/stream \
   -d '{
     "messages": [
       {
-        "id": "msg-1",
         "role": "user",
         "parts": [
           {
@@ -238,7 +237,6 @@ curl -X POST http://localhost:3000/api/stream \
   -d '{
     "messages": [
       {
-        "id": "msg-1",
         "role": "user",
         "parts": [
           {
@@ -248,7 +246,6 @@ curl -X POST http://localhost:3000/api/stream \
         ]
       },
       {
-        "id": "msg-2",
         "role": "assistant",
         "parts": [
           {
@@ -258,7 +255,6 @@ curl -X POST http://localhost:3000/api/stream \
         ]
       },
       {
-        "id": "msg-3",
         "role": "user",
         "parts": [
           {
@@ -336,23 +332,15 @@ vercel dev
 - **Pre-generated Files**: All documentation loaded into memory at startup
 - **Fluid Compute**: Enabled for cost-efficient scaling
 - **maxDuration: 60**: Functions can run up to 60 seconds
-- **OverlayFs**: Memory-based writes prevent disk I/O overhead
+- **just-bash**: A simulated bash environment with an in-memory virtual filesystem
 - **Streaming**: Real-time responses improve perceived performance
-- **Low Reasoning Effort**: Fast model responses with `reasoningEffort: "low"`
 
 ## Security
 
-- **Read-Only Access**: OverlayFs prevents writing to actual filesystem
-- **Sandboxed**: bash-tool provides isolated bash environment
+- **Read-Only Access**: just-bash provides a read-only in-memory virtual filesystem
 - **Input Validation**: Messages validated before processing
-- **Environment Variables**: API keys stored securely in Vercel
+- **No LLM API Keys**: Vercel Functions call Vercel AI Gateway directly
 - **No File System Access**: All files pre-loaded from JSON
-
-## Environment Variables
-
-### Optional
-
-None. Project configurations are defined in `projects.json`.
 
 ## License
 

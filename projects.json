@@ -10,5 +10,8 @@
   },
   "open-ask-ai": {
     "name": "Open Ask AI"
+  },
+  "docusaurus-search-local": {
+    "name": "@easyops-cn/docusaurus-search-local"
   }
 }
