@@ -1,17 +1,5 @@
 {
-  "a2ui-sdk": {
-    "name": "A2UI SDK"
-  },
-  "brick-next": {
-    "name": "Brick Next"
-  },
-  "bricks": {
-    "name": "Bricks"
-  },
   "open-ask-ai": {
     "name": "Open Ask AI"
-  },
-  "docusaurus-search-local": {
-    "name": "@easyops-cn/docusaurus-search-local"
   }
 }
