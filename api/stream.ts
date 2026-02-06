@@ -6,6 +6,12 @@ import { ToolLoopAgent, convertToModelMessages, stepCountIs } from 'ai';
 import { getInstructions } from '../lib/agent.js';
 import type { SearchStreamRequest, ErrorResponse, ProjectWithFiles } from '../lib/types.js';
 
+// Environment variables for LLM configuration
+const LLM_MODEL = process.env.LLM_MODEL || 'openai/gpt-oss-120b';
+const LLM_REASONING_EFFORT = process.env.LLM_REASONING_EFFORT || 'low';
+const LLM_TEXT_VERBOSITY = process.env.LLM_TEXT_VERBOSITY || 'medium';
+const MAX_STEPS = parseInt(process.env.MAX_STEPS || '16', 10);
+
 let projectCache: Map<string, Promise<ProjectWithFiles | null>> = new Map();
 
 function getProject(projectId: string): Promise<ProjectWithFiles | null> {
@@ -116,13 +122,11 @@ export async function POST(request: Request): Promise<Response> {
     const instructions = getInstructions(project.name || 'the project');
 
     const agent = new ToolLoopAgent({
-      model: 'openai/gpt-oss-120b',
-      // model: 'openai/gpt-5-nano',
-      // model: 'openai/gpt-4.1-nano',
+      model: LLM_MODEL,
       providerOptions: {
         openai: {
-          reasoningEffort: 'low',
-          textVerbosity: 'medium',
+          reasoningEffort: LLM_REASONING_EFFORT as 'low' | 'medium' | 'high',
+          textVerbosity: LLM_TEXT_VERBOSITY as 'low' | 'medium' | 'high',
         },
       },
       tools: {
@@ -130,7 +134,7 @@ export async function POST(request: Request): Promise<Response> {
         readFile: tools.readFile,
       },
       instructions,
-      stopWhen: stepCountIs(16),
+      stopWhen: stepCountIs(MAX_STEPS),
     });
 
     // Stream the agent's response

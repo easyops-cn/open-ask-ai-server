@@ -313,6 +313,33 @@ All commands operate on pre-loaded in-memory files for fast access.
 vercel --prod
 ```
 
+### Environment Variables
+
+The following environment variables can be configured to customize the LLM behavior. It's recommended to configure them in the **Vercel Dashboard** (`Settings > Environment Variables`) for production deployments.
+
+| Variable | Description | Default Value |
+|----------|-------------|---------------|
+| `LLM_MODEL` | Model to use for the agent | `openai/gpt-oss-120b` |
+| `LLM_REASONING_EFFORT` | Reasoning effort level (low, medium, high) | `low` |
+| `LLM_TEXT_VERBOSITY` | Text verbosity level (low, medium, high) | `medium` |
+| `MAX_STEPS` | Maximum number of steps the agent can take | `16` |
+
+**For local development**, edit `.env.local`:
+
+```env
+LLM_MODEL=openai/gpt-oss-120b
+LLM_REASONING_EFFORT=low
+LLM_TEXT_VERBOSITY=medium
+MAX_STEPS=16
+```
+
+**For production deployment on Vercel**:
+
+1. Go to your project in the [Vercel Dashboard](https://vercel.com/dashboard)
+2. Navigate to `Settings > Environment Variables`
+3. Add the environment variables you want to customize
+4. Redeploy your project for the changes to take effect
+
 ## Development
 
 ### Type Checking
